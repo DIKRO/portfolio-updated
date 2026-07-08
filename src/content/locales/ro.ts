@@ -34,7 +34,7 @@ export const ro = {
     label: "Contact",
     cta: "Hai să lucrăm împreună",
     // Înlocuiește cu emailul tău
-    email: "hello@example.com",
+    email: "sokurdmitrii18@gmail.com",
   },
   project: {
     back: "← Toate lucrările",

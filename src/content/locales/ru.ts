@@ -34,7 +34,7 @@ export const ru = {
     label: "Контакты",
     cta: "Давайте поработаем",
     // Замени на свою почту
-    email: "hello@example.com",
+    email: "sokurdmitrii18@gmail.com",
   },
   project: {
     back: "← Все работы",
