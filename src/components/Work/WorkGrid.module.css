@@ -170,7 +170,7 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: 20px 24px 70px;
+  padding: 20px 24px 24px; /* было 70px внизу */
   }
 
   .grid {
