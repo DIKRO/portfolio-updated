@@ -16,14 +16,11 @@
 .bgPhoto {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;       /* фото растягивается на весь блок */
   object-position: 50% 20%;
   display: block;
 }
 
-/* Тонкий шумовой слой (dithering) — маскирует "лесенки" на плавных
-   градиентах фото (студийный свет, тени), которые появляются из-за
-   8-битного сжатия JPEG независимо от разрешения самого фото. */
 .grain {
   position: absolute;
   inset: 0;

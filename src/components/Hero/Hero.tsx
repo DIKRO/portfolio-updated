@@ -17,10 +17,8 @@ interface HeroProps {
   };
 }
 
-// Замени на своё фото: положи файл в /public/images/ и обнови путь.
-// Подойдёт горизонтальное фото хорошего разрешения (минимум ~1600px по ширине) —
-// оно растянется на всю ширину и высоту блока, от шапки до галереи.
-const PHOTO_SRC = "/images/1.jpg";
+// Используй оригинал фото в /public/images/
+const PHOTO_SRC = "/images/11111.jpg";
 
 export default function Hero({ t }: HeroProps) {
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
@@ -34,9 +32,10 @@ export default function Hero({ t }: HeroProps) {
         <Image
           src={PHOTO_SRC}
           alt="Portrait"
-          fill
-          priority
-          sizes="100vw"
+          width={3840}   // реальные размеры фото
+          height={1580}
+          unoptimized    // отключаем оптимизацию Next.js
+          priority       // загружается сразу
           className={styles.bgPhoto}
         />
         <div className={styles.grain} />
