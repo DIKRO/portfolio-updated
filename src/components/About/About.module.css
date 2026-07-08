@@ -111,7 +111,7 @@
   object-fit: contain;
   padding: 20px 24px;
   /* приводим разноцветные логотипы к единому стилю витрины */
-  filter: grayscale(1) brightness(1.6);
+  filter: grayscale(2) brightness(100);
   opacity: 0.8;
 }
 
