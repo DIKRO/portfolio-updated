@@ -1,0 +1,85 @@
+.section {
+  width: 70vw;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px 0 140px;
+  scroll-margin-top: 100px;
+  text-align: center;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 24px;
+}
+
+.label {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.cta {
+  display: block;
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  color: var(--text);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.cta:hover {
+  color: var(--accent);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.iconLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.iconLink svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.iconLink:hover {
+  color: var(--accent);
+  border-color: rgba(255, 90, 31, 0.5);
+}
+
+@media (max-width: 768px) {
+  .section {
+    width: 100%;
+    padding: 20px 24px 90px;
+  }
+
+  .cta {
+    font-size: 30px;
+  }
+
+  .line {
+    display: none;
+  }
+}

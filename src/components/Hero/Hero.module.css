@@ -1,0 +1,160 @@
+.hero {
+  position: relative;
+  min-height: 86vh;
+  display: flex;
+  align-items: center;
+  padding: 60px 90px;
+  overflow: hidden;
+}
+
+.bgWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bgPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  display: block;
+}
+
+/* Тонкий шумовой слой (dithering) — маскирует "лесенки" на плавных
+   градиентах фото (студийный свет, тени), которые появляются из-за
+   8-битного сжатия JPEG независимо от разрешения самого фото. */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 560px;
+  transform: scale(1.08);
+  transform-origin: left center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(255, 90, 31, 0.35);
+  background: rgba(255, 90, 31, 0.1);
+  border-radius: 999px;
+  padding: 7px 16px 7px 12px;
+  margin-bottom: 26px;
+}
+
+.badge svg {
+  width: 13px;
+  height: 13px;
+}
+
+.content h1 {
+  font-size: 78px;
+  font-weight: 600;
+  letter-spacing: -1.7px;
+  line-height: 1.05;
+}
+
+.subtitle {
+  margin-top: 18px;
+  font-size: 17px;
+  color: var(--muted);
+  max-width: 440px;
+  line-height: 1.5;
+}
+
+.ctaRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 15px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18) inset, 0 0 24px rgba(255, 90, 31, 0.24);
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 15px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.ctaSecondary svg {
+  width: 14px;
+  height: 14px;
+}
+
+.ctaSecondary:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16) inset, 0 0 18px rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 50px 24px;
+    min-height: 70vh;
+    align-items: flex-end;
+  }
+
+  .content {
+    max-width: none;
+    padding-bottom: 20px;
+  }
+
+  .content h1 {
+    font-size: 41px;
+  }
+
+  .subtitle {
+    max-width: none;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cta,
+  .ctaSecondary {
+    justify-content: center;
+    width: 100%;
+  }
+}
