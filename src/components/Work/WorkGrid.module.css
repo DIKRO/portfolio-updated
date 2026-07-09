@@ -170,7 +170,7 @@
 
 @media (max-width: 768px) {
   .section {
-  padding: 20px 24px 24px; /* было 70px внизу */
+  padding: 20px 24px 16px; /* было 70px внизу */
   }
 
   .grid {
@@ -179,7 +179,7 @@
   }
 
   .fade {
-    height: 220px;
-    padding-bottom: 20px;
+    height: 160px;
+    padding-bottom: 16px;
   }
 }

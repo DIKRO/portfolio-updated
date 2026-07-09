@@ -8,9 +8,6 @@
 .photoBand {
   position: relative;
   width: 100%;
-  /* Высота считается от ширины экрана (как в приветственном блоке),
-     а не подгоняется под конкретное фото — min/max ограничивают крайности
-     на очень широких и очень узких экранах. */
   height: 38vw;
   min-height: 420px;
   max-height: 700px;
@@ -40,9 +37,9 @@
   inset: 0;
   pointer-events: none;
   mix-blend-mode: overlay;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 140px 140px;
+  opacity: 0.14;
+  background-image: url("data:image/svg+xml,...width='110' height='110' viewBox='0 0 110 110'...baseFrequency='0.85'...");
+  background-size: 110px 110px;
 }
 
 .content {
@@ -133,9 +130,9 @@
   }
 
   .photoBand {
-    height: 130vw;
-    min-height: 380px;
-    max-height: 560px;
+    height: 100vw;
+    min-height: 320px;
+    max-height: 480px;
     margin-bottom: 40px;
   }
 
@@ -148,7 +145,7 @@
     margin-left: 0;
     align-items: flex-start;
     text-align: left;
-    justify-content: flex-end;
+    justify-content: flex-start;
     padding: 24px;
   }
 
