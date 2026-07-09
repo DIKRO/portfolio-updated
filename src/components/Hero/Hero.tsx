@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { StarIcon, PlayIcon } from "@/components/Icons/Icons";
 import styles from "./Hero.module.css";
 
@@ -19,6 +18,9 @@ interface HeroProps {
 
 // Используй оригинал фото в /public/images/
 const PHOTO_SRC = "/images/11111.jpg";
+// Отдельное фото для телефонов (другой кадр/пропорции) — положи файл сюда.
+// Рекомендуемый размер: ориентировочно 1600×2000 (портрет).
+const PHOTO_SRC_MOBILE = "/images/11111-mobile.jpg";
 
 export default function Hero({ t }: HeroProps) {
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
@@ -29,15 +31,20 @@ export default function Hero({ t }: HeroProps) {
   return (
     <section id="top" className={styles.hero}>
       <div className={styles.bgWrap}>
-        <Image
-          src={PHOTO_SRC}
-          alt="Portrait"
-          width={3840}   // реальные размеры фото
-          height={1580}
-          unoptimized    // отключаем оптимизацию Next.js
-          priority       // загружается сразу
-          className={styles.bgPhoto}
-        />
+        <picture>
+          {/* На экранах уже 900px (совпадает с брейкпоинтом .hero ниже)
+              браузер скачает mobile-версию вместо десктопной. */}
+          <source media="(max-width: 900px)" srcSet={PHOTO_SRC_MOBILE} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={PHOTO_SRC}
+            alt="Portrait"
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            className={styles.bgPhoto}
+          />
+        </picture>
         <div className={styles.grain} />
       </div>
 

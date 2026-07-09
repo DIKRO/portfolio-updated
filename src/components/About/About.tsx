@@ -11,11 +11,11 @@ interface AboutProps {
 }
 
 // Замени на своё фото: положи файл в /public/images/ и обнови путь.
-// Подойдёт горизонтальное фото хорошего разрешения (минимум ~1920px по ширине) —
-// оно растянется на всю ширину экрана, а высота блока считается от ширины
-// (как в приветственном блоке), а не подгоняется под рост/пропорции фото.
-// Временно используется приветственное фото — замени на своё.
 const PHOTO_SRC = "/images/22222.jpg";
+// Отдельное фото для телефонов — блок на мобилке почти квадратный
+// (100vw по высоте, макс. 480px), так что подойдёт кадр ближе к 1:1.
+// Рекомендуемый размер: ориентировочно 1200×1200.
+const PHOTO_SRC_MOBILE = "/images/22222-mobile.jpg";
 
 // Добавь сюда пути к логотипам компаний, с которыми сотрудничал,
 // например "/images/clients/acme.svg". Пустая строка "" рисуется
@@ -27,13 +27,18 @@ export default function About({ t }: AboutProps) {
     <section id="about" className={styles.section}>
       <div className={styles.photoBand}>
         <div className={styles.bgWrap}>
-          <Image
-            src={PHOTO_SRC}
-            alt="Portrait"
-            fill
-            sizes="100vw"
-            className={styles.bgPhoto}
-          />
+          <picture>
+            {/* Брейкпоинт совпадает с @media (max-width: 768px) в About.module.css */}
+            <source media="(max-width: 768px)" srcSet={PHOTO_SRC_MOBILE} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={PHOTO_SRC}
+              alt="Portrait"
+              loading="lazy"
+              decoding="async"
+              className={styles.bgPhoto}
+            />
+          </picture>
           <div className={styles.grain} />
         </div>
 
