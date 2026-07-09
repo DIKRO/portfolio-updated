@@ -10,7 +10,7 @@ export const projects: Project[] = [
     title: { ru: "Логотип для дизайнера Socur Dmitrii", en: "Logo for designer Socur Dmitrii", ro: "Logo pentru designerul Socur Dmitrii" },
     categoryKey: "branding",
     year: 2026,
-    cover: "/images/work/cover-1.jpg",
+    cover: "/images/work/socurdmitrii/cover-1.jpg",
     images: [
       "/images/work/socurdmitrii/work.jpg",
       "/images/work/socurdmitrii/work3.png",
