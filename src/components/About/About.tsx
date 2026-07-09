@@ -20,7 +20,13 @@ const PHOTO_SRC_MOBILE = "/images/22222-mobile.jpg";
 // Добавь сюда пути к логотипам компаний, с которыми сотрудничал,
 // например "/images/clients/acme.svg". Пустая строка "" рисуется
 // как пустая заготовка-плейсхолдер — просто замени её на реальный путь.
-const CLIENT_LOGOS: string[] = ["/images/clients/energy.svg", "/images/clients/ss.svg", "/images/clients/telemarket.png", "/images/clients/cheton.svg", ""];
+const CLIENT_LOGOS: string[] = [
+  "/images/clients/energy.svg",
+  "/images/clients/ss.svg",
+  "/images/clients/telemarket.png",
+  "/images/clients/cheton.svg",
+  "/images/clients/puma.svg"
+];
 
 export default function About({ t }: AboutProps) {
   return (
