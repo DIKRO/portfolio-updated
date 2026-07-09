@@ -23,8 +23,11 @@ const PHOTO_SRC_MOBILE = "/images/22222-mobile.jpg";
 const CLIENT_LOGOS: string[] = [
   "/images/clients/energy.svg",
   "/images/clients/ss.svg",
-  "/images/clients/telemarket.png",
+  "/images/clients/puma.svg",
   "/images/clients/cheton.svg",
+  "/images/clients/telemarket.png",
+  "/images/clients/puma.svg",
+  "/images/clients/puma.svg",
   "/images/clients/puma.svg"
 ];
 

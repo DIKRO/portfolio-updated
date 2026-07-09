@@ -11,11 +11,19 @@ export const projects: Project[] = [
     categoryKey: "branding",
     year: 2026,
     cover: "/images/work/cover-1.jpg",
-    images: ["/images/work/work.jpg", "/images/work/detail-1.jpg", "/images/work/detail-2.jpg"],
+    images: [
+      "/images/work/socurdmitrii/work.jpg",
+      "/images/work/socurdmitrii/work3.png",
+      "/images/work/socurdmitrii/work4.png",
+      "/images/work/socurdmitrii/work5.jpg",
+      "/images/work/socurdmitrii/work6.jpg",
+      "/images/work/socurdmitrii/work8.png",
+      "/images/work/socurdmitrii/work7.jpg",
+      "/images/work/socurdmitrii/work9.jpg"],
     description: {
-      ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
-      en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
-      ro: "Descriere scurtă a proiectului: povestește ce ai făcut în acest proiect. Înlocuiește cu textul real.",
+      ru: "Логотип, разработанный для себя. Лого выполнено в плоском стиле, сочетает в себе аббревиатуру имени и фамилии Socur Dmitrii. Помимо этого, для формирования визуального баланса левая часть была дополнена вертикальным элементом, который замыкает фигуру.",
+      en: "A logo I designed for myself. The logo is created in a flat style and combines the initials of my first and last name, Socur Dmitrii. In addition, to create visual balance, a vertical element was added to the left side to complete the shape.",
+      ro: "Un logo creat pentru mine. Logo-ul este realizat în stil plat și combină inițialele numelui și prenumelui Socur Dmitrii. În plus, pentru a crea un echilibru vizual, partea stângă a fost completată cu un element vertical care încheie forma.",
     },
   },
   {
