@@ -12,23 +12,14 @@ interface AboutProps {
 
 // Замени на своё фото: положи файл в /public/images/ и обнови путь.
 const PHOTO_SRC = "/images/22222.jpg";
-// Отдельное фото для телефонов — блок на мобилке почти квадратный
-// (100vw по высоте, макс. 480px), так что подойдёт кадр ближе к 1:1.
-// Рекомендуемый размер: ориентировочно 1200×1200.
 const PHOTO_SRC_MOBILE = "/images/22222-mobile.jpg";
-
-// Добавь сюда пути к логотипам компаний, с которыми сотрудничал,
-// например "/images/clients/acme.svg". Пустая строка "" рисуется
-// как пустая заготовка-плейсхолдер — просто замени её на реальный путь.
 const CLIENT_LOGOS: string[] = [
   "/images/clients/energy.svg",
   "/images/clients/ss.svg",
   "/images/clients/puma.svg",
   "/images/clients/cheton.svg",
-  "/images/clients/telemarket.png",
-  "/images/clients/puma.svg",
-  "/images/clients/puma.svg",
-  "/images/clients/puma.svg"
+  "/images/clients/stip.svg",
+  "/images/clients/telemarket.png"
 ];
 
 export default function About({ t }: AboutProps) {
