@@ -7,11 +7,11 @@ export const projects: Project[] = [
   {
     id: "1",
     slug: "project-one",
-    title: { ru: "Название проекта", en: "Project name", ro: "Numele proiectului" },
+    title: { ru: "Логотип для дизайнера Socur Dmitrii", en: "Logo for designer Socur Dmitrii", ro: "Logo pentru designerul Socur Dmitrii" },
     categoryKey: "branding",
     year: 2026,
-    cover: "/images/work/cover-1.svg",
-    images: ["/images/work/cover-1.svg", "/images/work/detail-1.svg", "/images/work/detail-2.svg"],
+    cover: "/images/work/cover-1.jpg",
+    images: ["/images/work/work.jpg", "/images/work/detail-1.jpg", "/images/work/detail-2.jpg"],
     description: {
       ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
       en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
@@ -124,6 +124,20 @@ export const projects: Project[] = [
     year: 2023,
     cover: "/images/work/cover-9.svg",
     images: ["/images/work/cover-9.svg", "/images/work/detail-1.svg", "/images/work/detail-2.svg"],
+    description: {
+      ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
+      en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
+      ro: "Descriere scurtă a proiectului: povestește ce ai făcut în acest proiect. Înlocuiește cu textul real.",
+    },
+  },
+  {
+    id: "10",
+    slug: "project-ten",
+    title: { ru: "Название проекта", en: "Project name", ro: "Numele proiectului" },
+    categoryKey: "print",
+    year: 2023,
+    cover: "/images/work/cover-10.svg",
+    images: ["/images/work/cover-10.svg", "/images/work/detail-1.svg", "/images/work/detail-2.svg"],
     description: {
       ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
       en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
