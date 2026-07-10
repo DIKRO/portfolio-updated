@@ -106,7 +106,12 @@ export const projects: Project[] = [
     images: [
       "/images/work/matematica/work1.jpg",
       "/images/work/matematica/work2.jpg",
-      "/images/work/matematica/work3.png"],
+      "/images/work/matematica/work3.png",
+      "/images/work/matematica/work4.jpg",
+      "/images/work/matematica/work5.jpg",
+      "/images/work/matematica/work6.jpg",
+      "/images/work/matematica/work7.png"
+            ],
     description: {
       ru: "Логотип, созданный в рамках лицензионного проекта («Исследование и разработка визуальной идентичности факультета ȘREM, USARB: от концепции до реализации»), с последующим применением. В основе логотипа лежит аббревиатура слов Matematica/Informatica, вписанных в квадратные скобки, которые используются в обеих дисциплинах.",
       en: "A logo created as part of a licensing project (“Research and Development of the Visual Identity for the ȘREM Faculty, USARB: From Concept to Implementation”), followed by its implementation. The logo is based on the abbreviation of the words “Matematica/Informatica,” enclosed in square brackets, which are used in both disciplines.",
