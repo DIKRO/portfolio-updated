@@ -74,6 +74,8 @@
   text-align: left;
   justify-content: center;
   padding: 48px clamp(24px, 5vw, 64px);
+  --content-shift: -300px;
+  transform: translateX(var(--content-shift));
 }
 
 .label {
