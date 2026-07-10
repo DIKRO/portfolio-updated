@@ -10,35 +10,34 @@ interface AboutProps {
   };
 }
 
-// Замени на своё фото: положи файл в /public/images/ и обнови путь.
-const PHOTO_SRC = "/images/22222.jpg";
-const PHOTO_SRC_MOBILE = "/images/22222-mobile.jpg";
+// Вырезка тебя без фона (прозрачный PNG) — фон рисуется через CSS-градиент
+// в About.module.css (.bgWrap). Отдельное фото для мобилки больше не нужно.
+const PHOTO_SRC = "/images/22222-cutout.png";
+
+// Добавь сюда пути к логотипам компаний, с которыми сотрудничал,
+// например "/images/clients/acme.svg". Пустая строка "" рисуется
+// как пустая заготовка-плейсхолдер — просто замени её на реальный путь.
 const CLIENT_LOGOS: string[] = [
   "/images/clients/energy.svg",
   "/images/clients/ss.svg",
   "/images/clients/puma.svg",
+  "/images/clients/telemarket.png",
   "/images/clients/cheton.svg",
-  "/images/clients/stip.svg",
-  "/images/clients/telemarket.png"
-];
+  "/images/clients/stip.svg"];
 
 export default function About({ t }: AboutProps) {
   return (
     <section id="about" className={styles.section}>
       <div className={styles.photoBand}>
         <div className={styles.bgWrap}>
-          <picture>
-            {/* Брейкпоинт совпадает с @media (max-width: 768px) в About.module.css */}
-            <source media="(max-width: 768px)" srcSet={PHOTO_SRC_MOBILE} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={PHOTO_SRC}
-              alt="Portrait"
-              loading="lazy"
-              decoding="async"
-              className={styles.bgPhoto}
-            />
-          </picture>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={PHOTO_SRC}
+            alt="Portrait"
+            loading="lazy"
+            decoding="async"
+            className={styles.bgPhoto}
+          />
           <div className={styles.grain} />
         </div>
 

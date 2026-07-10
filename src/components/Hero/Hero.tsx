@@ -16,11 +16,10 @@ interface HeroProps {
   };
 }
 
-// Используй оригинал фото в /public/images/
-const PHOTO_SRC = "/images/11111.jpg";
-// Отдельное фото для телефонов (другой кадр/пропорции) — положи файл сюда.
-// Рекомендуемый размер: ориентировочно 1600×2000 (портрет).
-const PHOTO_SRC_MOBILE = "/images/11111-mobile.jpg";
+// Вырезка тебя без фона (прозрачный PNG) — фон рисуется через CSS-градиент
+// в Hero.module.css (.bgWrap), а не самим фото. Отдельное фото для мобилки
+// больше не нужно: object-position ниже сам переобрезает эту же картинку.
+const PHOTO_SRC = "/images/11111-cutout.png";
 
 export default function Hero({ t }: HeroProps) {
   const scrollTo = (id: string) => (e: React.MouseEvent) => {
@@ -31,20 +30,15 @@ export default function Hero({ t }: HeroProps) {
   return (
     <section id="top" className={styles.hero}>
       <div className={styles.bgWrap}>
-        <picture>
-          {/* На экранах уже 900px (совпадает с брейкпоинтом .hero ниже)
-              браузер скачает mobile-версию вместо десктопной. */}
-          <source media="(max-width: 900px)" srcSet={PHOTO_SRC_MOBILE} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={PHOTO_SRC}
-            alt="Portrait"
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
-            className={styles.bgPhoto}
-          />
-        </picture>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={PHOTO_SRC}
+          alt="Portrait"
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+          className={styles.bgPhoto}
+        />
         <div className={styles.grain} />
       </div>
 

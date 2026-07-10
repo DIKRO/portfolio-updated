@@ -11,6 +11,45 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+
+  /* ==== Пятно №1 — тёплый отблеск у тебя ==== */
+  --glow-x: 72%;               /* горизонтальная позиция: 0% = левый край, 100% = правый */
+  --glow-y: 45%;                /* вертикальная позиция: 0% = верх, 100% = низ */
+  --glow-width: 40%;            /* ширина овала свечения */
+  --glow-height: 90%;           /* высота овала свечения */
+  --glow-color: #c6531a;        /* самый яркий/центральный цвет */
+  --glow-color-mid: #3a2010;    /* цвет на середине затухания */
+  --glow-color-dark: #1d140e;   /* цвет ближе к краю затухания */
+
+  /* ==== Пятно №2 — под лого ==== */
+  --glow2-x: 20%;
+  --glow2-y: 2%;
+  --glow2-width: 75%;
+  --glow2-height: 50%;
+  --glow2-color: #5a2a12;
+  --glow2-color-mid: #3a2010;
+  --glow2-color-dark: #1d140e;
+
+  --bg-color: #0e0e0e;          /* базовый тёмный фон — обычно не трогаешь */
+
+  background:
+    radial-gradient(
+      var(--glow-width) var(--glow-height) at var(--glow-x) var(--glow-y),
+      var(--glow-color) 0%,
+      var(--glow-color-mid) 16%,
+      var(--glow-color-dark) 32%,
+      color-mix(in srgb, var(--glow-color-dark) 40%, var(--bg-color)) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      var(--glow2-width) var(--glow2-height) at var(--glow2-x) var(--glow2-y),
+      var(--glow2-color) 0%,
+      var(--glow2-color-mid) 16%,
+      var(--glow2-color-dark) 32%,
+      color-mix(in srgb, var(--glow2-color-dark) 40%, var(--bg-color)) 50%,
+      transparent 100%
+    ),
+    var(--bg-color);
 }
 
 .bgPhoto {

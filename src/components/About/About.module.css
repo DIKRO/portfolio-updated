@@ -19,6 +19,28 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+
+  /* ==== Пятно — тёплый отблеск у тебя ==== */
+  --glow-x: 85%;                /* горизонтальная позиция: 0% = левый край, 100% = правый */
+  --glow-y: 97%;                 /* вертикальная позиция: 0% = верх, 100% = низ */
+  --glow-width: 90%;             /* ширина овала свечения */
+  --glow-height: 65%;            /* высота овала свечения */
+  --glow-color: #3b1a0b;         /* самый яркий/центральный цвет */
+  --glow-color-mid: #201209;     /* цвет на середине затухания */
+  --glow-color-dark: #120e0c;    /* цвет ближе к краю затухания */
+  --bg-color: #0e0e0e;           /* используется только для плавного перехода в прозрачность */
+
+  /* Заливки фона нет — только пятно, затухающее в transparent.
+     Всё остальное пространство блока прозрачное. */
+  background:
+    radial-gradient(
+      var(--glow-width) var(--glow-height) at var(--glow-x) var(--glow-y),
+      var(--glow-color) 0%,
+      var(--glow-color-mid) 25%,
+      var(--glow-color-dark) 45%,
+      color-mix(in srgb, var(--glow-color-dark) 40%, var(--bg-color)) 65%,
+      transparent 100%
+    );
 }
 
 .bgPhoto {
@@ -29,9 +51,6 @@
   display: block;
 }
 
-/* Тонкий шумовой слой (dithering) — маскирует "лесенки" на плавных
-   градиентах фото, которые появляются из-за 8-битного сжатия JPEG
-   независимо от разрешения самого фото. */
 .grain {
   position: absolute;
   inset: 0;
