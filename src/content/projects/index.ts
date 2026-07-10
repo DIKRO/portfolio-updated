@@ -91,7 +91,7 @@ export const projects: Project[] = [
     cover: "/images/work/cover-6.svg",
     images: ["/images/work/cover-6.svg", "/images/work/detail-1.svg", "/images/work/detail-2.svg"],
     description: {
-      ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
+      ru: "Логотип созданный в рамках лицензионного проекта (Исследование и разработка визуальной идентичности Факультета ȘREM, USARB: от концепции до реализации), с последующем применением. В основе логотипа лежит аббревиатура слов Matematica/Informatica, вписанные в увадратные скобки, которые используются в обеих дисциплинах.",
       en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
       ro: "Descriere scurtă a proiectului: povestește ce ai făcut în acest proiect. Înlocuiește cu textul real.",
     },
@@ -99,15 +99,18 @@ export const projects: Project[] = [
   {
     id: "7",
     slug: "project-seven",
-    title: { ru: "Название проекта", en: "Project name", ro: "Numele proiectului" },
+    title: { ru: "Логотип для кафедры математики и информатики факультета ȘREM, USARB", en: "Logo for the Department of Mathematics and Computer Science, ȘREM Faculty, USARB", ro: "Logotip pentru catedra de matematică și informatică a facultății ȘREM, USARB" },
     categoryKey: "branding",
-    year: 2024,
-    cover: "/images/work/cover-7.svg",
-    images: ["/images/work/cover-7.svg", "/images/work/detail-1.svg", "/images/work/detail-2.svg"],
+    year: 2026,
+    cover: "/images/work/matematica/cover-7.jpg",
+    images: [
+      "/images/work/matematica/work1.jpg",
+      "/images/work/matematica/work2.jpg",
+      "/images/work/matematica/work3.png"],
     description: {
-      ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
-      en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
-      ro: "Descriere scurtă a proiectului: povestește ce ai făcut în acest proiect. Înlocuiește cu textul real.",
+      ru: "Логотип, созданный в рамках лицензионного проекта («Исследование и разработка визуальной идентичности факультета ȘREM, USARB: от концепции до реализации»), с последующим применением. В основе логотипа лежит аббревиатура слов Matematica/Informatica, вписанных в квадратные скобки, которые используются в обеих дисциплинах.",
+      en: "A logo created as part of a licensing project (“Research and Development of the Visual Identity for the ȘREM Faculty, USARB: From Concept to Implementation”), followed by its implementation. The logo is based on the abbreviation of the words “Matematica/Informatica,” enclosed in square brackets, which are used in both disciplines.",
+      ro: "Logo-ul creat în cadrul proiectului licențial („Cercetarea și dezvoltarea identității vizuale a Facultății ȘREM, USARB: de la concept la realizare”), urmat de punerea sa în practică. La baza logo-ului stă abrevierea cuvintelor „Matematica/Informatica”, încadrate între paranteze pătrate, care sunt utilizate în ambele discipline.",
     },
   },
   {
