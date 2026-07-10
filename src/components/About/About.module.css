@@ -21,17 +21,15 @@
   z-index: 0;
 
   /* ==== Пятно — тёплый отблеск у тебя ==== */
-  --glow-x: 85%;                /* горизонтальная позиция: 0% = левый край, 100% = правый */
-  --glow-y: 97%;                 /* вертикальная позиция: 0% = верх, 100% = низ */
-  --glow-width: 90%;             /* ширина овала свечения */
-  --glow-height: 65%;            /* высота овала свечения */
-  --glow-color: #3b1a0b;         /* самый яркий/центральный цвет */
-  --glow-color-mid: #201209;     /* цвет на середине затухания */
-  --glow-color-dark: #120e0c;    /* цвет ближе к краю затухания */
-  --bg-color: #0e0e0e;           /* используется только для плавного перехода в прозрачность */
+  --glow-x: 85%;
+  --glow-y: 97%;
+  --glow-width: 90%;
+  --glow-height: 65%;
+  --glow-color: #3b1a0b;
+  --glow-color-mid: #201209;
+  --glow-color-dark: #120e0c;
+  --bg-color: #0e0e0e;
 
-  /* Заливки фона нет — только пятно, затухающее в transparent.
-     Всё остальное пространство блока прозрачное. */
   background:
     radial-gradient(
       var(--glow-width) var(--glow-height) at var(--glow-x) var(--glow-y),
@@ -51,18 +49,12 @@
   display: block;
 }
 
-.grain {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  mix-blend-mode: overlay;
-  /* См. комментарий в Hero.module.css — та же логика. */
-  opacity: 0.14;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 110 110'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='110' height='110' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 110px 110px;
-}
-
-.content {
+/* Статичный слой позиционирования — здесь и только здесь двигаем блок
+   по горизонтали. motion.div внутри (.content) отвечает только за
+   анимацию появления (opacity/y) и не должен трогать transform:
+   framer-motion сам пишет translate в инлайн-стиль и перезаписал бы
+   translateX, если бы обе вещи висели на одном элементе. */
+.contentWrap {
   position: relative;
   z-index: 1;
   height: 100%;
@@ -74,8 +66,12 @@
   text-align: left;
   justify-content: center;
   padding: 48px clamp(24px, 5vw, 64px);
-  --content-shift: -300px;
+  --content-shift: -360px;
   transform: translateX(var(--content-shift));
+}
+
+.content {
+  width: 100%;
 }
 
 .label {
@@ -129,7 +125,6 @@
 .logoImg {
   object-fit: contain;
   padding: 20px 24px;
-  /* приводим разноцветные логотипы к единому стилю витрины */
   filter: grayscale(2) brightness(100);
   opacity: 0.8;
 }
@@ -162,13 +157,14 @@
     object-position: 50% 20%;
   }
 
-  .content {
+  .contentWrap {
     max-width: none;
     margin-left: 0;
     align-items: flex-start;
     text-align: left;
     justify-content: flex-start;
     padding: 24px;
+    transform: none;
   }
 
   .text {
