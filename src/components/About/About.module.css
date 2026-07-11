@@ -20,7 +20,7 @@
   inset: 0;
   z-index: 0;
 
-  /* ==== Пятно — тёплый отблеск у тебя ==== */
+  /* ==== Пятно 1 — тёплый отблеск справа-снизу (уже было) ==== */
   --glow-x: 85%;
   --glow-y: 97%;
   --glow-width: 90%;
@@ -30,7 +30,27 @@
   --glow-color-dark: #120e0c;
   --bg-color: #0e0e0e;
 
+  /* ==== Пятно 2 — новое, слева. Та же логика, свои параметры позиции/
+     размера/цвета — правь смело, на первое пятно не влияет. ==== */
+  --glow2-x: 1%;
+  --glow2-y: 50%;
+  --glow2-width: 20%;
+  --glow2-height: 100%;
+  --glow2-color: #3b1a0b;
+  --glow2-color-mid: #201209;
+  --glow2-color-dark: #120e0c;
+
+  /* Заливки фона нет — только пятна, затухающие в transparent.
+     Первое в списке рисуется поверх второго, если пересекаются. */
   background:
+    radial-gradient(
+      var(--glow2-width) var(--glow2-height) at var(--glow2-x) var(--glow2-y),
+      var(--glow2-color) 0%,
+      var(--glow2-color-mid) 25%,
+      var(--glow2-color-dark) 45%,
+      color-mix(in srgb, var(--glow2-color-dark) 40%, var(--bg-color)) 65%,
+      transparent 100%
+    ),
     radial-gradient(
       var(--glow-width) var(--glow-height) at var(--glow-x) var(--glow-y),
       var(--glow-color) 0%,
@@ -163,7 +183,7 @@
   }
 
   .text {
-    font-size: 16px;
+    font-size: 11px;
   }
 
   .logoSlot {

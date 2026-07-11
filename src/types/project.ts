@@ -3,8 +3,8 @@ export type CategoryKey =
   | "web"
   | "print"
   | "packaging"
-  | "identity"
-  | "advertising";
+  | "video-editing"
+  | "Motion design";
 
 export interface LocalizedText {
   ru: string;
