@@ -110,7 +110,8 @@ export const projects: Project[] = [
       "/images/work/matematica/work4.jpg",
       "/images/work/matematica/work5.jpg",
       "/images/work/matematica/work6.jpg",
-      "/images/work/matematica/work7.png"
+      "/images/work/matematica/work7.jpg",
+      "/images/work/matematica/work8.jpg"
             ],
     description: {
       ru: "Логотип, созданный в рамках лицензионного проекта («Исследование и разработка визуальной идентичности факультета ȘREM, USARB: от концепции до реализации»), с последующим применением. В основе логотипа лежит аббревиатура слов Matematica/Informatica, вписанных в квадратные скобки, которые используются в обеих дисциплинах.",

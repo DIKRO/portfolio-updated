@@ -49,16 +49,11 @@
   display: block;
 }
 
-/* Статичный слой позиционирования — здесь и только здесь двигаем блок
-   по горизонтали. motion.div внутри (.content) отвечает только за
-   анимацию появления (opacity/y) и не должен трогать transform:
-   framer-motion сам пишет translate в инлайн-стиль и перезаписал бы
-   translateX, если бы обе вещи висели на одном элементе. */
 .contentWrap {
   position: relative;
   z-index: 1;
   height: 100%;
-  max-width: 520px;
+  max-width: 720px;
   margin-left: auto;
   display: flex;
   flex-direction: column;
@@ -66,7 +61,7 @@
   text-align: left;
   justify-content: center;
   padding: 48px clamp(24px, 5vw, 64px);
-  --content-shift: -360px;
+  --content-shift: -150px;
   transform: translateX(var(--content-shift));
 }
 
@@ -75,7 +70,7 @@
 }
 
 .label {
-  font-size: 13px;
+  font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--muted);
@@ -83,7 +78,7 @@
 }
 
 .text {
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
   font-weight: 300;
   color: var(--text);
