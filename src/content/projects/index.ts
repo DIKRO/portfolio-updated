@@ -6,7 +6,7 @@ import { Project } from "@/types/project";
 export const projects: Project[] = [
   {
     id: "1",
-    slug: "project-one",
+    slug: "socurdmitrii_logo",
     title: { ru: "Логотип для дизайнера Socur Dmitrii", en: "Logo for designer Socur Dmitrii", ro: "Logo pentru designerul Socur Dmitrii" },
     categoryKey: "branding",
     year: 2026,
@@ -98,7 +98,7 @@ export const projects: Project[] = [
   },
   {
     id: "7",
-    slug: "project-seven",
+    slug: "catedra_matinf_logo",
     title: { ru: "Логотип для кафедры математики и информатики факультета ȘREM, USARB", en: "Logo for the Department of Mathematics and Computer Science, ȘREM Faculty, USARB", ro: "Logotip pentru catedra de matematică și informatică a facultății ȘREM, USARB" },
     categoryKey: "branding",
     year: 2026,
@@ -159,6 +159,58 @@ export const projects: Project[] = [
       ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
       en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
       ro: "Descriere scurtă a proiectului: povestește ce ai făcut în acest proiect. Înlocuiește cu textul real.",
+    },
+  },
+  {
+    id: "11",
+    slug: "energywind_logo",
+    title: { ru: "Логотип для компании System Global Group (Energy Wind Moldova)",
+            en: "Logo for System Global Group (Energy Wind Moldova)",
+            ro: "Logo pentru compania System Global Group (Energy Wind Moldova)" },
+    categoryKey: "branding",
+    year: 2026,
+    cover: "/images/work/energywind/cover-11.jpg",
+    images: [
+      "/images/work/energywind/work1.jpg",
+      "/images/work/energywind/work2.jpg",
+      "/images/work/energywind/work3.jpg",
+      "/images/work/energywind/work4.jpg",
+      "/images/work/energywind/work5.jpg",
+      "/images/work/energywind/work6.jpg",
+      "/images/work/energywind/work9.jpg",
+      "/images/work/energywind/work7.jpg",
+      "/images/work/energywind/work8.jpg"
+            ],
+    description: {
+      ru: "Логотип, созданный для компании, которая занимается ветроэнергетикой в Молдове — Energy Wind Moldova. Логотип выполнен в современном стиле с использованием зелёных оттенков, отражающих экологичность и возобновляемую энергию.",
+      en: "A logo created for a company specializing in wind energy in Moldova — Energy Wind Moldova. The logo is designed in a modern style using green shades that reflect environmental friendliness and renewable energy.",
+      ro: "Logo-ul creat pentru o companie care se ocupă de energie eoliană în Moldova — Energy Wind Moldova. Logo-ul este realizat într-un stil modern folosind nuanțe de verde care reflectă prietenia față de mediu și energia regenerabilă.",
+    },
+  },
+  {
+    id: "12",
+    slug: "HDL_logo",
+    title: { ru: "Логотип для киберспортивной команды HDL (Hope Dies Last)",
+            en: "Logo for the HDL (Hope Dies Last) esports team",
+            ro: "Logo pentru echipa de e-sport HDL (Hope Dies Last)" },
+    categoryKey: "branding",
+    year: 2026,
+    cover: "/images/work/hdl/cover-12.jpg",
+    images: [
+      "/images/work/hdl/work1.jpg",
+      "/images/work/hdl/work2.jpg",
+      "/images/work/hdl/work3.jpg",
+      "/images/work/hdl/work4.jpg",
+      "/images/work/hdl/work5.jpg",
+      "/images/work/hdl/work6.jpg",
+      "/images/work/hdl/work9.jpg",
+      "/images/work/hdl/work7.jpg",
+      "/images/work/energywind/work8.jpg"
+            ],
+    description: {
+      ru: "Логотип, созданный для компании, которая занимается ветроэнергетикой в Молдове — Energy Wind Moldova. Логотип выполнен в современном стиле с использованием зелёных оттенков, отражающих экологичность и возобновляемую энергию.",
+      en: "A logo created for a company specializing in wind energy in Moldova — Energy Wind Moldova. The logo is designed in a modern style using green shades that reflect environmental friendliness and renewable energy.",
+      ro: "Logo-ul creat pentru o companie care se ocupă de energie eoliană în Moldova — Energy Wind Moldova. Logo-ul este realizat într-un stil modern folosind nuanțe de verde care reflectă prietenia față de mediu și energia regenerabilă.",
     },
   },
 ];
