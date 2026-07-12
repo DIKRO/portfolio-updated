@@ -203,9 +203,7 @@ export const projects: Project[] = [
       "/images/work/hdl/work4.jpg",
       "/images/work/hdl/work5.jpg",
       "/images/work/hdl/work6.jpg",
-      "/images/work/hdl/work9.jpg",
-      "/images/work/hdl/work7.jpg",
-      "/images/work/energywind/work8.jpg"
+      "/images/work/hdl/work7.jpg"
             ],
     description: {
       ru: "Логотип, созданный для компании, которая занимается ветроэнергетикой в Молдове — Energy Wind Moldova. Логотип выполнен в современном стиле с использованием зелёных оттенков, отражающих экологичность и возобновляемую энергию.",
