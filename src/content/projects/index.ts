@@ -206,9 +206,9 @@ export const projects: Project[] = [
       "/images/work/hdl/work7.jpg"
             ],
     description: {
-      ru: "Логотип, созданный для компании, которая занимается ветроэнергетикой в Молдове — Energy Wind Moldova. Логотип выполнен в современном стиле с использованием зелёных оттенков, отражающих экологичность и возобновляемую энергию.",
-      en: "A logo created for a company specializing in wind energy in Moldova — Energy Wind Moldova. The logo is designed in a modern style using green shades that reflect environmental friendliness and renewable energy.",
-      ro: "Logo-ul creat pentru o companie care se ocupă de energie eoliană în Moldova — Energy Wind Moldova. Logo-ul este realizat într-un stil modern folosind nuanțe de verde care reflectă prietenia față de mediu și energia regenerabilă.",
+      ru: "Логотип, созданный для киберспортивной команды Hope Dies Last. В его основе — образ воина, сражающегося до последнего дыхания. Когда единственным остаётся лишь надежда, вспыхивает искра, воплощённая в виде огня, исходящего из левого глаза.",
+      en: "A logo created for the esports team Hope Dies Last. It is based on the image of a warrior fighting until his last breath. When hope is all that remains, a spark flares up, represented by the fire emanating from his left eye.",
+      ro: "Logo-ul creat pentru echipa de e-sport Hope Dies Last. La baza acestuia stă imaginea unui războinic care luptă până la ultima suflare. Când nu mai rămâne decât speranța, se aprinde o scânteie, reprezentată sub forma unui foc care izvorăște din ochiul stâng.",
     },
   },
 ];
