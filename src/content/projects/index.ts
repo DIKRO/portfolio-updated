@@ -164,9 +164,9 @@ export const projects: Project[] = [
   {
     id: "11",
     slug: "energywind_logo",
-    title: { ru: "Логотип для компании System Global Group (Energy Wind Moldova)",
-            en: "Logo for System Global Group (Energy Wind Moldova)",
-            ro: "Logo pentru compania System Global Group (Energy Wind Moldova)" },
+    title: { ru: "Логотип для компании в области ветроэнергетики System Global Group (Energy Wind Moldova)",
+            en: "Logo for System Global Group (Energy Wind Moldova), a company in the wind energy sector",
+            ro: "Logo pentru compania din domeniul energiei eoliene System Global Group (Energy Wind Moldova)" },
     categoryKey: "branding",
     year: 2026,
     cover: "/images/work/energywind/cover-11.jpg",
