@@ -100,7 +100,7 @@ export const projects: Project[] = [
   {
     id: "5",
     slug: "sport_spirit_1",
-    title: { ru: "Sport Spirit", en: "Project name", ro: "Numele proiectului" },
+    title: { ru: "Рекламный креатив для коллекции одежды Converse, Sport Spirit", en: "Advertising creative for Converse Sport Spirit collection", ro: "Creativ publicitar pentru colecția Converse Sport Spirit" },
     categoryKey: "web",
     year: 2025,
     cover: "/images/work/web/ss_1/cover-5.jpg",
@@ -108,9 +108,9 @@ export const projects: Project[] = [
               "/images/work/web/ss_1/2.jpg",
               "/images/work/web/ss_1/detail-2.jpg"],
     description: {
-      ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
-      en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
-      ro: "Descriere scurtă a proiectului: povestește ce ai făcut în acest proiect. Înlocuiește cu textul real.",
+      ru: "Рекламный креатив для коллекции одежды Converse, Sport Spirit. В рамках проекта была разработана концепция, создан визуальный контент и реализована рекламная кампания в социальных сетях.",
+      en: "Advertising creative for Converse Sport Spirit collection. As part of the project, a concept was developed, visual content was created, and a social media advertising campaign was implemented.",
+      ro: "Creativ publicitar pentru colecția Converse Sport Spirit. În cadrul proiectului, a fost dezvoltată o concept, a fost creat conținut vizual și a fost implementată o campanie de publicitate în rețelele sociale.",
     },
   },
   {
