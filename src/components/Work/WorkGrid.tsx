@@ -23,9 +23,39 @@ const VISIBLE_ROWS = 2;
 
 export default function WorkGrid({ lang, t }: WorkGridProps) {
   const [filter, setFilter] = useState<FilterKey>("all");
-  const [expanded, setExpanded] = useState(false);
+
+  // При заходе в конкретный проект и возврате назад Next.js иногда
+  // переиспользует уже отрисованную версию этой страницы из своего
+  // клиентского кэша, а не пересоздаёт компонент с нуля — из-за этого
+  // эффект на монтирование может просто не сработать повторно. Поэтому
+  // читаем sessionStorage прямо при инициализации состояния (тело
+  // компонента выполняется заново при каждом рендере в любом случае),
+  // а не только один раз в useEffect на mount.
+  const [expanded, setExpanded] = useState(() => {
+    if (typeof window === "undefined") return false; // на сервере sessionStorage нет
+    return sessionStorage.getItem("workGridExpanded") === "1";
+  });
   const gridRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [heights, setHeights] = useState<{ clip: number; full: number } | null>(null);
+
+  useEffect(() => {
+    sessionStorage.setItem("workGridExpanded", expanded ? "1" : "0");
+  }, [expanded]);
+
+  const collapse = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.blur();
+    // Важен порядок: сначала долистываем к началу секции (пока грид ещё
+    // полной высоты — ничего не схлопывается, скроллу ничего не мешает),
+    // и только когда страница уже встала на место, запускаем схлопывание.
+    // Если делать это одновременно — пока высота грида на лету уменьшается
+    // CSS-переходом (0.8s), браузер за это же время постоянно урезает
+    // максимально доступный скролл под ещё-уменьшающуюся высоту страницы,
+    // и текущую позицию резко тянет вниз, к футеру, пока наш scrollIntoView
+    // это не перебьёт — отсюда и рывок.
+    sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.setTimeout(() => setExpanded(false), 400);
+  };
 
   const selectFilter = (key: FilterKey) => {
     setFilter(key);
@@ -97,7 +127,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   const canClip = isAll && heights !== null && heights.clip < heights.full - 1;
 
   return (
-    <section id="work" className={styles.section}>
+    <section id="work" ref={sectionRef} className={styles.section}>
       <div className={styles.filters}>
         {availableFilters.map((key) => (
           <button
@@ -168,7 +198,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
 
       {canClip && expanded && (
         <div className={styles.collapseRow}>
-          <button className={styles.showLessButton} onClick={() => setExpanded(false)}>
+          <button className={styles.showLessButton} onClick={collapse}>
             {t.work.showLess}
           </button>
         </div>
