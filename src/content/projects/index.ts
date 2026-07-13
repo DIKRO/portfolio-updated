@@ -90,21 +90,23 @@ export const projects: Project[] = [
     cover: "/images/work/web/mma_steclo/cover-4.jpg",
     images: ["/images/work/web/mma_steclo/1.jpg",
             "/images/work/web/mma_steclo/2.jpg",],
-            
+
     description: {
-      ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
-      en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
-      ro: "Descriere scurtă a proiectului: povestește ce ai făcut în acest proiect. Înlocuiește cu textul real.",
+      ru: "Проект, выполненный для додзё Persistent MMA в городе Кишинёв. На стекло нанесён оракал с логотипом клуба и 14 величайшими бойцами MMA (по мнению клиента). Данный проект реализован в рамках сотрудничества с клубом, чтобы улучшить визуальное представление и идентичность додзё.",
+      en: "A project completed for the Persistent MMA dojo in Chisinau. An oracle featuring the club's logo and 14 of the greatest MMA fighters (according to the client) was applied to the glass. This project was implemented as part of a collaboration with the club to enhance the dojo's visual identity.",
+      ro: "Un proiect finalizat pentru dojo-ul Persistent MMA din Chișinău. Pe sticlă a fost aplicat un oracol cu ​​logo-ul clubului și 14 dintre cei mai mari luptători MMA (conform clientului). Acest proiect a fost implementat ca parte a unei colaborări cu clubul pentru a îmbunătăți identitatea vizuală a dojo-ului.",
     },
   },
   {
     id: "5",
-    slug: "project-five",
-    title: { ru: "Название проекта", en: "Project name", ro: "Numele proiectului" },
-    categoryKey: "video-editing",
+    slug: "sport_spirit_1",
+    title: { ru: "Sport Spirit", en: "Project name", ro: "Numele proiectului" },
+    categoryKey: "web",
     year: 2025,
-    cover: "/images/work/cover-5.svg",
-    images: ["/images/work/cover-5.svg", "/images/work/detail-1.svg", "/images/work/detail-2.svg"],
+    cover: "/images/work/web/ss_1/cover-5.jpg",
+    images: ["/images/work/web/ss_1/1.jpg",
+              "/images/work/web/ss_1/2.jpg",
+              "/images/work/web/ss_1/detail-2.jpg"],
     description: {
       ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
       en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
@@ -238,6 +240,20 @@ export const projects: Project[] = [
       ru: "Логотип, созданный для киберспортивной команды Hope Dies Last. В его основе — образ воина, сражающегося до последнего дыхания. Когда единственным остаётся лишь надежда, вспыхивает искра, воплощённая в виде огня, исходящего из левого глаза.",
       en: "A logo created for the esports team Hope Dies Last. It is based on the image of a warrior fighting until his last breath. When hope is all that remains, a spark flares up, represented by the fire emanating from his left eye.",
       ro: "Logo-ul creat pentru echipa de e-sport Hope Dies Last. La baza acestuia stă imaginea unui războinic care luptă până la ultima suflare. Când nu mai rămâne decât speranța, se aprinde o scânteie, reprezentată sub forma unui foc care izvorăște din ochiul stâng.",
+    },
+  },
+  {
+    id: "13",
+    slug: "project-13",
+    title: { ru: "Название проекта", en: "Project name", ro: "Numele proiectului" },
+    categoryKey: "video-editing",
+    year: 2025,
+    cover: "/images/work/cover-5.svg",
+    images: ["/images/work/cover-5.svg", "/images/work/detail-1.svg", "/images/work/detail-2.svg"],
+    description: {
+      ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
+      en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
+      ro: "Descriere scurtă a proiectului: povestește ce ai făcut în acest proiect. Înlocuiește cu textul real.",
     },
   },
 ];
