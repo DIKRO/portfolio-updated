@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { projects, getProjectBySlug } from "@/content/projects";
+import { buildGalleryRows } from "@/lib/imageOrientation";
 import ProjectView from "@/components/ProjectView/ProjectView";
 
 export function generateStaticParams() {
@@ -18,5 +19,7 @@ export default async function ProjectPage({ params }: PageProps) {
     notFound();
   }
 
-  return <ProjectView project={project} />;
+  const galleryRows = buildGalleryRows(project.images);
+
+  return <ProjectView project={project} galleryRows={galleryRows} />;
 }

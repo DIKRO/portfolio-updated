@@ -106,7 +106,7 @@ export const projects: Project[] = [
     cover: "/images/work/web/ss_1/cover-5.jpg",
     images: ["/images/work/web/ss_1/1.jpg",
               "/images/work/web/ss_1/2.jpg",
-              "/images/work/web/ss_1/detail-2.jpg"],
+              "/images/work/web/ss_1/3.jpg"],
     description: {
       ru: "Рекламный креатив для коллекции одежды Converse, Sport Spirit. В рамках проекта была разработана концепция, создан визуальный контент и реализована рекламная кампания в социальных сетях.",
       en: "Advertising creative for Converse Sport Spirit collection. As part of the project, a concept was developed, visual content was created, and a social media advertising campaign was implemented.",
@@ -115,7 +115,23 @@ export const projects: Project[] = [
   },
   {
     id: "6",
-    slug: "project-six",
+    slug: "sport_spirit_2",
+    title: { ru: "Рекламный креатив для сезонной акции Black Friday, PUMA Moldova", en: "Advertising creative for the Black Friday seasonal promotion, PUMA Moldova", ro: "Concept publicitar pentru campania sezonieră de Black Friday, PUMA Moldova" },
+    categoryKey: "web",
+    year: 2025,
+    cover: "/images/work/web/ss_2/cover-6.jpg",
+    images: ["/images/work/web/ss_2/1.jpg",
+              "/images/work/web/ss_2/2.jpg",
+              "/images/work/web/ss_2/3.jpg"],
+    description: {
+      ru: "Рекламный креатив для сезонной акции Black Friday, PUMA Moldova. В рамках проекта была разработана концепция, создан визуальный контент и реализована рекламная кампания для продвижения в социальных сетях.",
+      en: "Advertising creative for the Black Friday seasonal promotion, PUMA Moldova. As part of the project, a concept was developed, visual content was created, and an advertising campaign was launched for promotion on social media.",
+      ro: "Concept publicitar pentru campania sezonieră de Black Friday, PUMA Moldova. În cadrul proiectului, s-a elaborat conceptul, s-a creat conținutul vizual și s-a derulat campania publicitară pentru promovarea pe rețelele sociale.",
+    },
+  },
+  {
+    id: "14",
+    slug: "project-14",
     title: { ru: "Название проекта", en: "Project name", ro: "Numele proiectului" },
     categoryKey: "Motion design",
     year: 2024,

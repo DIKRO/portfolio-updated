@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useLang } from "@/content/lang";
 import { Project } from "@/types/project";
+import { GalleryRow } from "@/lib/imageOrientation";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { EmailIcon } from "@/components/Icons/Icons";
@@ -12,9 +13,10 @@ import styles from "./ProjectView.module.css";
 
 interface ProjectViewProps {
   project: Project;
+  galleryRows: GalleryRow[];
 }
 
-export default function ProjectView({ project }: ProjectViewProps) {
+export default function ProjectView({ project, galleryRows }: ProjectViewProps) {
   const { lang, setLang, t } = useLang();
 
   return (
@@ -54,25 +56,53 @@ export default function ProjectView({ project }: ProjectViewProps) {
         </motion.p>
 
         <div className={styles.gallery}>
-          {project.images.map((src, index) => (
-            <motion.div
-              key={src + index}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5 }}
-              className={styles.imageWrap}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={src}
-                alt={`${project.title[lang]} ${index + 1}`}
-                loading="lazy"
-                decoding="async"
-                className={styles.image}
-              />
-            </motion.div>
-          ))}
+          {galleryRows.map((row, index) => {
+            if (row.type === "pair") {
+              return (
+                <motion.div
+                  key={row.items[0] + row.items[1]}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.5 }}
+                  className={styles.pairRow}
+                >
+                  {row.items.map((src, itemIndex) => (
+                    <div key={src} className={styles.imageWrap}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={src}
+                        alt={`${project.title[lang]} ${index + 1}.${itemIndex + 1}`}
+                        loading="lazy"
+                        decoding="async"
+                        className={styles.image}
+                      />
+                    </div>
+                  ))}
+                </motion.div>
+              );
+            }
+
+            return (
+              <motion.div
+                key={row.src}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5 }}
+                className={styles.imageWrap}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={row.src}
+                  alt={`${project.title[lang]} ${index + 1}`}
+                  loading="lazy"
+                  decoding="async"
+                  className={styles.image}
+                />
+              </motion.div>
+            );
+          })}
         </div>
 
         <motion.div

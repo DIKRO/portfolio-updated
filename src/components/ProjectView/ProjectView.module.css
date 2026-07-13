@@ -56,6 +56,29 @@
   align-self: center;
 }
 
+/* Пара портретных фото рядом — определяется автоматически на сервере
+   (см. src/lib/imageOrientation.ts) по реальным пропорциям файлов: если
+   два портретных фото идут подряд, они становятся парой (не больше 2 в
+   ряд), всё остальное — как обычно, одно фото на всю строку. Ничего в
+   данных проекта для этого указывать не нужно, срабатывает само. */
+.pairRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+}
+
+.pairRow .imageWrap {
+  flex: 1;
+  min-width: 0; /* чтобы flex-item мог сжаться меньше intrinsic-ширины фото */
+}
+
+.pairRow .image {
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+
 .image {
   width: auto;
   height: auto;
@@ -152,6 +175,10 @@
     position: static;
     left: auto;
     transform: none;
+  }
+
+  .pairRow {
+    flex-direction: column;
   }
 
   .head h1 {
