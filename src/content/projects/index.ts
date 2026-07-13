@@ -36,7 +36,7 @@ export const projects: Project[] = [
             en: "System Global Group's Presentation on Wind Energy (Energy Wind Moldova)",
             ro: "Prezentarea companiei System Global Group în domeniul energiei eoliene (Energy Wind Moldova)" },
     categoryKey: "web",
-    year: 2026,
+    year: 2025,
     cover: "/images/work/web/energy_prezentation/cover-2.jpg",
     images: [
   "/images/work/web/energy_prezentation/лист 1 копия.jpg",
@@ -83,12 +83,14 @@ export const projects: Project[] = [
   },
   {
     id: "4",
-    slug: "project-four",
-    title: { ru: "Название проекта", en: "Project name", ro: "Numele proiectului" },
+    slug: "persistentmma_steclo",
+    title: { ru: "Оракал на стекло для додзё Persistent MMA в городе Кишинёв", en: "Oracle on glass for Persistent MMA dojo in Chișinău", ro: "Oracle pe sticlă pentru dojosul Persistent MMA în Chișinău" },
     categoryKey: "packaging",
-    year: 2025,
-    cover: "/images/work/cover-4.svg",
-    images: ["/images/work/cover-4.svg", "/images/work/detail-1.svg", "/images/work/detail-2.svg"],
+    year: 2026,
+    cover: "/images/work/web/mma_steclo/cover-4.jpg",
+    images: ["/images/work/web/mma_steclo/1.jpg",
+            "/images/work/web/mma_steclo/2.jpg",],
+            
     description: {
       ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
       en: "Short project description: tell the story of what you did in this piece of work. Replace this with the real text.",
