@@ -453,6 +453,43 @@ export const projects: Project[] = [
       ro: "Conceptul publicitar creat pentru magazinul Sport Spirit, cu scopul de a promova colecția de iarnă de îmbrăcăminte și accesorii Nike, Jordan și New York Yankees. Accentul principal este pus pe tipografia expresivă, pe paleta de culori contrastante și pe stilul vizual modern, care atrage în mod eficient atenția publicului pe rețelele sociale.",
     },
   },
+   {
+    id: "25",
+    slug: "sport_spirit_14",
+    title: { ru: "Рекламный креатив для новой коллекции легкой одежды Nike, Sport Spirit",
+              en: "Advertising campaign for Nike's new lightweight clothing collection, Sport Spirit",
+              ro: "Conceptul publicitar pentru noua colecție de îmbrăcăminte ușoară Nike, Sport Spirit"},
+    categoryKey: "web",
+    year: 2025,
+    cover: "/images/work/web/ss_14/cover-25.jpg",
+    images: ["/images/work/web/ss_14/1.jpg",
+            "/images/work/web/ss_14/2.jpg",
+            "/images/work/web/ss_14/3.jpg",],
+    description: {
+      ru: "Рекламный креатив для продукции Nike, Sport Spirit. В рамках проекта была разработана концепция кампании «Выходи за рамки», ориентированной на молодёжную аудиторию и активный образ жизни. Визуальный контент построен вокруг динамичных образов в спортивной экипировке Nike, дополненных графикой и социальными элементами, что подчёркивает идею свободы и выхода за привычные границы. Кампания была реализована в социальных сетях и использована для продвижения коллекции одежды и аксессуаров.",
+      en: "Advertising creative for Nike products, Sport Spirit. As part of the project, the “Go Beyond” campaign concept was developed, targeting a young audience and promoting an active lifestyle. The visual content is built around dynamic images of people wearing Nike sportswear, complemented by graphics and social media elements that emphasize the idea of freedom and pushing beyond familiar boundaries. The campaign was launched on social media and used to promote a collection of clothing and accessories.",
+      ro: "Concepție publicitară pentru produsele Nike, Sport Spirit. În cadrul proiectului a fost elaborată conceptul campaniei „Ieși din tipare”, orientată către publicul tânăr și un stil de viață activ. Conținutul vizual este construit în jurul unor imagini dinamice cu persoane îmbrăcate în echipament sportiv Nike, completate cu elemente grafice și sociale, care subliniază ideea de libertate și de depășire a limitelor obișnuite. Campania a fost derulată pe rețelele sociale și utilizată pentru promovarea colecției de îmbrăcăminte și accesorii.",
+    },
+  },
+  {
+    id: "26",
+    slug: "sport_spirit_15",
+    title: { ru: "Рекламный креатив для сезонной акции Midseason Sale, PUMA Moldova",
+              en: "Advertising creative for the Midseason Sale, PUMA Moldova",
+              ro: "Conceptul publicitar pentru campania sezonieră „Midseason Sale”, PUMA Moldova"},
+    categoryKey: "web",
+    year: 2025,
+    cover: "/images/work/web/ss_15/cover-26.jpg",
+    images: ["/images/work/web/ss_15/1.jpg",
+            "/images/work/web/ss_15/2.jpg",
+            "/images/work/web/ss_15/3.jpg",
+            "/images/work/web/ss_15/4.jpg",],
+    description: {
+      ru: "Рекламный креатив для продукции Puma. В рамках проекта была разработана концепция кампании Midseason Sale, акцент сделан на выгодные предложения и стильный образ бренда. Визуальный контент включает динамичную подачу скидки «-30%» и образ в фирменной экипировке Puma, что подчёркивает актуальность коллекции и стимулирует интерес к распродаже. Кампания была реализована в социальных сетях и использована для продвижения выбранных товаров в рамках сезонной акции.",
+      en: "Advertising creative for Puma products. As part of the project, the “Midseason Sale” campaign concept was developed, focusing on attractive offers and a stylish brand image. The visual content includes dynamic discount displays and images of people wearing Puma apparel, highlighting the relevance of the collection and encouraging interest in the sale. The campaign was implemented on social media and used to promote selected products during the seasonal sale.",
+      ro: "Concepție publicitară pentru produsele Puma. În cadrul proiectului a fost elaborată conceptul campaniei „Vânzări de mijloc de sezon”, cu accent pe ofertele avantajoase și un stil de viață stilizat al brandului. Conținutul vizual include prezentări dinamice ale reducerii de 30% și imagini cu persoane îmbrăcate în echipament Puma, subliniind actualitatea colecției și stimulând interesul pentru vânzări. Campania a fost implementată pe rețelele sociale și utilizată pentru promovarea produselor selectate în cadrul acțiunii sezoniere.",
+    },
+  },
 ];
 
 export function getProjectBySlug(slug: string) {
