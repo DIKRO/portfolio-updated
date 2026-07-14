@@ -69,7 +69,12 @@
 }
 
 .pairRow .imageWrap {
-  flex: 1;
+  /* Делим ширину не поровну, а пропорционально соотношению сторон каждого
+     фото (--ar приходит инлайном из ProjectView.tsx). Раз ширина ∝ ratio,
+     а height:auto у .image сохраняет собственные пропорции картинки —
+     итоговая высота у обеих автоматически совпадает, без object-fit и
+     без единого пикселя обрезки. Фолбэк "1", если --ar почему-то не задан. */
+  flex: var(--ar, 1) 1 0px;
   min-width: 0; /* чтобы flex-item мог сжаться меньше intrinsic-ширины фото */
 }
 
@@ -179,6 +184,11 @@
 
   .pairRow {
     flex-direction: column;
+  }
+
+  .pairRow .imageWrap {
+    flex: none;
+    width: 100%;
   }
 
   .head h1 {

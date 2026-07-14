@@ -60,18 +60,22 @@ export default function ProjectView({ project, galleryRows }: ProjectViewProps) 
             if (row.type === "pair") {
               return (
                 <motion.div
-                  key={row.items[0] + row.items[1]}
+                  key={row.items[0].src + row.items[1].src}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5 }}
                   className={styles.pairRow}
                 >
-                  {row.items.map((src, itemIndex) => (
-                    <div key={src} className={styles.imageWrap}>
+                  {row.items.map((item, itemIndex) => (
+                    <div
+                      key={item.src}
+                      className={styles.imageWrap}
+                      style={{ "--ar": item.ratio } as React.CSSProperties}
+                    >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={src}
+                        src={item.src}
                         alt={`${project.title[lang]} ${index + 1}.${itemIndex + 1}`}
                         loading="lazy"
                         decoding="async"
@@ -91,6 +95,7 @@ export default function ProjectView({ project, galleryRows }: ProjectViewProps) 
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5 }}
                 className={styles.imageWrap}
+                style={{ alignSelf: row.isPortrait ? "center" : "stretch" }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -99,6 +104,7 @@ export default function ProjectView({ project, galleryRows }: ProjectViewProps) 
                   loading="lazy"
                   decoding="async"
                   className={styles.image}
+                  style={row.isPortrait ? undefined : { width: "100%", maxHeight: "none" }}
                 />
               </motion.div>
             );

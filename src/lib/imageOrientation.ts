@@ -1,9 +1,11 @@
 import fs from "fs";
 import path from "path";
 
+export type GalleryImage = { src: string; ratio: number };
+
 export type GalleryRow =
-  | { type: "single"; src: string }
-  | { type: "pair"; items: [string, string] };
+  | { type: "single"; src: string; isPortrait: boolean }
+  | { type: "pair"; items: [GalleryImage, GalleryImage] };
 
 /**
  * Читает реальную ширину/высоту PNG или JPEG прямо из файла (без внешних
@@ -55,22 +57,27 @@ function readImageSize(absPath: string): { width: number; height: number } | nul
   return null;
 }
 
-function isPortrait(src: string): boolean {
+function getSize(src: string): { width: number; height: number } | null {
   // src в данных проекта всегда вида "/images/...", а реальный файл
   // лежит в public/images/... — поэтому просто добавляем "public".
   const absPath = path.join(process.cwd(), "public", src);
-  const size = readImageSize(absPath);
-  if (!size) return false; // не смогли определить — считаем как обычное фото
-  // <= а не строго "больше": квадратные фото (1:1, частый формат для
-  // соцсетей) тоже подходят под пару, не только вытянутые вертикально.
-  return size.height >= size.width;
+  return readImageSize(absPath);
 }
 
 /**
- * Раскладывает список фото проекта на строки: два портретных фото подряд
- * становятся парой (рядом, на десктопе), всё остальное — одно фото в строке,
- * как раньше. Не больше 2 в ряд, работает полностью автоматически —
- * ничего в данных проекта указывать не нужно.
+ * Раскладывает список фото проекта на строки: два портретных (или
+ * квадратных) фото подряд становятся парой (рядом, на десктопе), всё
+ * остальное — одно фото в строке, как раньше. Не больше 2 в ряд, работает
+ * полностью автоматически — ничего в данных проекта указывать не нужно.
+ *
+ * Внутри пары ширина делится не поровну 50/50, а пропорционально
+ * соотношению сторон (width/height) каждого фото — если у одной картинки
+ * пропорции чуть другие, чем у соседней (например, 1080×1080 рядом с
+ * 1080×1078), при равном делении 50/50 получались бы едва заметные зазоры
+ * по высоте между ними. Пропорциональное деление через flex-grow даёт
+ * обеим картинкам ОДИНАКОВУЮ итоговую высоту без единого пикселя обрезки —
+ * это просто следствие геометрии (ширина каждой ∝ её же ratio), без CSS
+ * object-fit:cover и без JS-вычислений на клиенте.
  */
 export function buildGalleryRows(images: string[]): GalleryRow[] {
   const rows: GalleryRow[] = [];
@@ -80,11 +87,22 @@ export function buildGalleryRows(images: string[]): GalleryRow[] {
     const current = images[i];
     const next = images[i + 1];
 
-    if (next && isPortrait(current) && isPortrait(next)) {
-      rows.push({ type: "pair", items: [current, next] });
+    const curSize = getSize(current);
+    const nextSize = next ? getSize(next) : null;
+    const curIsPortrait = curSize ? curSize.height >= curSize.width : false;
+    const nextIsPortrait = nextSize ? nextSize.height >= nextSize.width : false;
+
+    if (next && curIsPortrait && nextIsPortrait && curSize && nextSize) {
+      rows.push({
+        type: "pair",
+        items: [
+          { src: current, ratio: curSize.width / curSize.height },
+          { src: next, ratio: nextSize.width / nextSize.height },
+        ],
+      });
       i += 2;
     } else {
-      rows.push({ type: "single", src: current });
+      rows.push({ type: "single", src: current, isPortrait: curIsPortrait });
       i += 1;
     }
   }
