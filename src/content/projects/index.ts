@@ -571,10 +571,10 @@ export const projects: Project[] = [
     cover: "/images/work/logo/kreola/cover-30.jpg",
     images: [
       "/images/work/logo/kreola/work1.jpg",
-      "/images/work/logo/kreola/work2.jpg",
+      "/images/work/logo/kreola/work2.png",
       "/images/work/logo/kreola/work3.jpg",
-      "/images/work/logo/kreola/work4.jpg",
       "/images/work/logo/kreola/work5.jpg",
+      "/images/work/logo/kreola/work4.jpg",
       "/images/work/logo/kreola/work6.jpg",
       "/images/work/logo/kreola/work7.jpg"
             ],
