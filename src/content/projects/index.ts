@@ -573,10 +573,11 @@ export const projects: Project[] = [
       "/images/work/logo/kreola/work1.jpg",
       "/images/work/logo/kreola/work2.png",
       "/images/work/logo/kreola/work3.jpg",
-      "/images/work/logo/kreola/work5.jpg",
       "/images/work/logo/kreola/work4.jpg",
+      "/images/work/logo/kreola/work5.jpg",
       "/images/work/logo/kreola/work6.jpg",
-      "/images/work/logo/kreola/work7.jpg"
+      "/images/work/logo/kreola/work7.jpg",
+      "/images/work/logo/kreola/work8.png"
             ],
     description: {
       ru: "Логотип, созданный для киберспортивной команды Hope Dies Last. В его основе — образ воина, сражающегося до последнего дыхания. Когда единственным остаётся лишь надежда, вспыхивает искра, воплощённая в виде огня, исходящего из левого глаза.",
