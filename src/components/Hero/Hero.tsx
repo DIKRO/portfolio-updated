@@ -48,30 +48,32 @@ export default function Hero({ t }: HeroProps) {
         <div className={styles.grain} />
       </div>
 
-      <motion.div
-        className={styles.content}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-      >
-        <span className={styles.badge}>
-          <StarIcon />
-          {t.hero.badge}
-        </span>
+      <div className={styles.contentWrap}>
+        <motion.div
+          className={styles.content}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          <span className={styles.badge}>
+            <StarIcon />
+            {t.hero.badge}
+          </span>
 
-        <h1>{t.hero.title}</h1>
-        <p className={styles.subtitle}>{t.hero.subtitle}</p>
+          <h1>{t.hero.title}</h1>
+          <p className={styles.subtitle}>{t.hero.subtitle}</p>
 
-        <div className={styles.ctaRow}>
-          <a href="#contact" className={styles.cta} onClick={scrollTo("contact")}>
-            {t.hero.cta} →
-          </a>
-          <a href="#work" className={styles.ctaSecondary} onClick={scrollTo("work")}>
-            <PlayIcon />
-            {t.hero.ctaSecondary}
-          </a>
-        </div>
-      </motion.div>
+          <div className={styles.ctaRow}>
+            <a href="#contact" className={styles.cta} onClick={scrollTo("contact")}>
+              {t.hero.cta} →
+            </a>
+            <a href="#work" className={styles.ctaSecondary} onClick={scrollTo("work")}>
+              <PlayIcon />
+              {t.hero.ctaSecondary}
+            </a>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

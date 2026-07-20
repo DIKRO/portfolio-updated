@@ -74,12 +74,23 @@
   background-size: 90px 90px;
 }
 
-.content {
+/* Статичный слой позиционирования — сюда и только сюда добавляем сдвиг.
+   motion.div внутри (.content) отвечает только за анимацию появления
+   (opacity/y) и не должен трогать transform: framer-motion сам пишет
+   translate в инлайн-стиль и перезаписал бы наш сдвиг, если бы он был
+   на том же элементе, что и анимация. */
+.contentWrap {
   position: relative;
   z-index: 1;
   max-width: 560px;
-  transform: scale(1.08);
+  transform: scale(1.08) translateX(var(--content-shift, 0px));
   transform-origin: left center;
+  /* Положительное значение — сдвиг вправо (ближе к центру), отрицательное — влево. */
+  --content-shift: 170px;
+}
+
+.content {
+  width: 100%;
 }
 
 .badge {
@@ -103,7 +114,7 @@
 }
 
 .content h1 {
-  font-size: 78px;
+  font-size: 65px;
   font-weight: 600;
   letter-spacing: -1.7px;
   line-height: 1.05;
@@ -174,9 +185,10 @@
     align-items: flex-end;
   }
 
-  .content {
+  .contentWrap {
     max-width: none;
     padding-bottom: 20px;
+    --content-shift: 0px;
   }
 
   .content h1 {
