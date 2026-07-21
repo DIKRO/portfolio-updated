@@ -563,9 +563,9 @@ export const projects: Project[] = [
    {
     id: "30",
     slug: "kreola_logo",
-    title: { ru: "Логотип для киберспортивной команды HDL (Hope Dies Last)",
-            en: "Logo for the HDL (Hope Dies Last) esports team",
-            ro: "Logo pentru echipa de e-sport HDL (Hope Dies Last)" },
+    title: { ru: "Логотип для шоколадной фрабрики Kreola в Румынии",
+            en: "Logo for the Kreola Chocolate Factory in Romania",
+            ro: "Logo pentru fabrica de ciocolată Kreola din România" },
     categoryKey: "branding",
     year: 2026,
     cover: "/images/work/logo/kreola/cover-30.jpg",
@@ -577,12 +577,13 @@ export const projects: Project[] = [
       "/images/work/logo/kreola/work5.jpg",
       "/images/work/logo/kreola/work6.jpg",
       "/images/work/logo/kreola/work7.jpg",
-      "/images/work/logo/kreola/work8.png"
+      "/images/work/logo/kreola/work8.png",
+      "/images/work/logo/kreola/work9.jpg"
             ],
     description: {
-      ru: "Логотип, созданный для киберспортивной команды Hope Dies Last. В его основе — образ воина, сражающегося до последнего дыхания. Когда единственным остаётся лишь надежда, вспыхивает искра, воплощённая в виде огня, исходящего из левого глаза.",
-      en: "A logo created for the esports team Hope Dies Last. It is based on the image of a warrior fighting until his last breath. When hope is all that remains, a spark flares up, represented by the fire emanating from his left eye.",
-      ro: "Logo-ul creat pentru echipa de e-sport Hope Dies Last. La baza acestuia stă imaginea unui războinic care luptă până la ultima suflare. Când nu mai rămâne decât speranța, se aprinde o scânteie, reprezentată sub forma unui foc care izvorăște din ochiul stâng.",
+      ru: "Айдентика бренда KREOLA объединяет премиальную эстетику с духом настоящего ремесленного шоколада. Глубокие винные и теплые землистые оттенки в сочетании с элегантной антиквой подчеркивают благородство продукта. Тактильные паттерны на упаковке и открытое окно, демонстрирующее богатство натуральных ингредиентов, создают образ честного, но роскошного шоколада, который хочется попробовать прямо сейчас",
+      en: "A logo created for the Kreola Chocolate Factory in Romania. It combines premium aesthetics with the spirit of authentic artisanal chocolate. Deep wine and warm earthy tones, combined with elegant antiques, emphasize the nobility of the product. Textured patterns on the packaging and an open window showcasing the abundance of natural ingredients create an image of honest yet luxurious chocolate that you want to try right now.",
+      ro: "Identitatea de brand KREOLA combină estetica de premium cu spiritul ciocolăței artizanale autentice. Nuanțele adânci de vin și cele calde de pământ, combinate cu antici elegant, subliniază nobilățea produsului. Modelele tactil pe ambalaj și un spațiu deschis care arată bogăția ingredientelor naturale creează o imagine de ciocolată sinceră, dar luxuoasă, pe care o dorești să o încerci chiar acum.",
     },
   },
 ];
