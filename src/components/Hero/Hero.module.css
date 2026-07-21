@@ -86,7 +86,7 @@
   transform: scale(1.08) translateX(var(--content-shift, 0px));
   transform-origin: left center;
   /* Положительное значение — сдвиг вправо (ближе к центру), отрицательное — влево. */
-  --content-shift: 170px;
+  --content-shift: 140px;
 }
 
 .content {
@@ -114,7 +114,7 @@
 }
 
 .content h1 {
-  font-size: 65px;
+  font-size: 60px;
   font-weight: 600;
   letter-spacing: -1.7px;
   line-height: 1.05;
@@ -189,6 +189,7 @@
     max-width: none;
     padding-bottom: 20px;
     --content-shift: 0px;
+    transform: none;
   }
 
   .content h1 {
