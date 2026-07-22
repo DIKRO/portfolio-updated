@@ -38,6 +38,7 @@ export const ro = {
   },
   project: {
     back: "← Toate lucrările",
+    allWorks: "← Toate lucrările",
     cta: "Îți place? Hai să discutăm proiectul tău",
     ctaButton: "Contactează-mă",
   },

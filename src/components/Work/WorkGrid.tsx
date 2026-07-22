@@ -22,7 +22,13 @@ interface WorkGridProps {
 const VISIBLE_ROWS = 2;
 
 export default function WorkGrid({ lang, t }: WorkGridProps) {
-  const [filter, setFilter] = useState<FilterKey>("all");
+  // Та же логика, что и с expanded ниже — читаем сразу при инициализации,
+  // а не в useEffect на mount, чтобы работало даже если Next.js
+  // переиспользует закэшированный экземпляр страницы при навигации назад.
+  const [filter, setFilter] = useState<FilterKey>(() => {
+    if (typeof window === "undefined") return "all";
+    return (sessionStorage.getItem("workGridFilter") as FilterKey) || "all";
+  });
 
   // При заходе в конкретный проект и возврате назад Next.js иногда
   // переиспользует уже отрисованную версию этой страницы из своего
@@ -42,6 +48,10 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   useEffect(() => {
     sessionStorage.setItem("workGridExpanded", expanded ? "1" : "0");
   }, [expanded]);
+
+  useEffect(() => {
+    sessionStorage.setItem("workGridFilter", filter);
+  }, [filter]);
 
   const collapse = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.blur();
@@ -71,6 +81,16 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
     }
     return keys;
   }, []);
+
+  // Если сохранённая категория больше не существует (например, её
+  // переименовали или удалили в данных проектов) — откатываемся на "all",
+  // чтобы не остаться на пустом несуществующем фильтре.
+  useEffect(() => {
+    if (!availableFilters.includes(filter)) {
+      setFilter("all");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [availableFilters]);
 
   const filtered =
     filter === "all" ? projects : projects.filter((p) => p.categoryKey === filter);

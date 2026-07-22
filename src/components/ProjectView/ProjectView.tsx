@@ -120,6 +120,10 @@ export default function ProjectView({ project, galleryRows }: ProjectViewProps) 
         >
           <p>{t.project.cta}</p>
           <div className={styles.ctaRow}>
+            <Link href="/#work" className={styles.allWorksButton}>
+              {t.project.allWorks}
+            </Link>
+
             <Link href="/#contact" className={styles.ctaButton}>
               {t.project.ctaButton} →
             </Link>
