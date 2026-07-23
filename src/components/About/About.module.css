@@ -191,3 +191,48 @@
     height: 64px;
   }
 }
+
+/* Телефон, повёрнутый горизонтально — так же, как в Hero, определяем по
+   низкой высоте экрана, а не по ширине. Тут дополнительно меняем саму
+   раскладку: в десктопном виде текст лежит ПОВЕРХ фото (через absolute +
+   translateX) — на короткий альбомный экран телефона это не влезает и
+   текст наезжает на лицо. Разводим фото и текст в ряд рядом друг с другом. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .photoBand {
+    display: flex;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    margin-bottom: 24px;
+  }
+
+  .bgWrap {
+    /* Больше не перекрывает текст абсолютным позиционированием — обычный
+       флекс-элемент слева, ширина/высота — как у соседа за счёт stretch. */
+    position: relative;
+    inset: auto;
+    flex: 0 0 42%;
+  }
+
+  .contentWrap {
+    position: relative;
+    flex: 1;
+    height: auto;
+    max-width: none;
+    margin-left: 0;
+    --content-shift: 0px;
+    transform: none;
+    padding: 20px 24px;
+    justify-content: center;
+  }
+
+  .label {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .text {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}

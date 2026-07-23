@@ -21,26 +21,35 @@ interface WorkGridProps {
 
 const VISIBLE_ROWS = 2;
 
+// Флаг на уровне модуля (не React state) — переживает переходы между
+// страницами внутри одной вкладки (модуль не перевыполняется заново при
+// SPA-навигации), но сбрасывается в false при настоящей перезагрузке
+// страницы (весь JS выполняется с нуля). Нужен, чтобы отличать два разных
+// случая:
+// 1) САМАЯ ПЕРВАЯ загрузка страницы — сервер всегда рендерит "all"/false,
+//    не зная про sessionStorage. Если тут же прочитать sessionStorage на
+//    клиенте, разметка разойдётся с серверной — React ругается на
+//    гидратацию. Поэтому здесь тоже возвращаем "all"/false, как сервер.
+// 2) Возврат из проекта на эту же страницу внутри той же вкладки — это
+//    обычный клиентский рендер без сверки с HTML сервера, тут сверяться
+//    не с чем, поэтому можно и нужно сразу читать sessionStorage.
+let hasHydratedOnce = false;
+
 export default function WorkGrid({ lang, t }: WorkGridProps) {
-  // Та же логика, что и с expanded ниже — читаем сразу при инициализации,
-  // а не в useEffect на mount, чтобы работало даже если Next.js
-  // переиспользует закэшированный экземпляр страницы при навигации назад.
   const [filter, setFilter] = useState<FilterKey>(() => {
-    if (typeof window === "undefined") return "all";
+    if (typeof window === "undefined" || !hasHydratedOnce) return "all";
     return (sessionStorage.getItem("workGridFilter") as FilterKey) || "all";
   });
 
-  // При заходе в конкретный проект и возврате назад Next.js иногда
-  // переиспользует уже отрисованную версию этой страницы из своего
-  // клиентского кэша, а не пересоздаёт компонент с нуля — из-за этого
-  // эффект на монтирование может просто не сработать повторно. Поэтому
-  // читаем sessionStorage прямо при инициализации состояния (тело
-  // компонента выполняется заново при каждом рендере в любом случае),
-  // а не только один раз в useEffect на mount.
   const [expanded, setExpanded] = useState(() => {
-    if (typeof window === "undefined") return false; // на сервере sessionStorage нет
+    if (typeof window === "undefined" || !hasHydratedOnce) return false;
     return sessionStorage.getItem("workGridExpanded") === "1";
   });
+
+  useEffect(() => {
+    hasHydratedOnce = true;
+  }, []);
+
   const gridRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const [heights, setHeights] = useState<{ clip: number; full: number } | null>(null);
