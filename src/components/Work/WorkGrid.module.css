@@ -173,6 +173,34 @@
     padding: 20px 24px 16px; /* было 70px, потом 24px внизу */
   }
 
+  /* На десктопе фильтры переносятся на несколько строк — на телефоне
+     при таком же количестве категорий это превращается в громоздкую
+     стену кнопок на пол-экрана. Вместо переноса — один ряд с
+     горизонтальной прокруткой, как в Instagram/Twitter-категориях:
+     компактно, привычно, скроллбар скрыт для чистоты вида. */
+  .filters {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 0 -24px 32px;
+    padding: 0 24px 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .filters::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .filter,
+  .filterActive {
+    flex: 0 0 auto; /* не сжимаются и не переносятся — едут в ряд */
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 9px 18px;
+  }
+
   .grid {
     grid-template-columns: 1fr;
     gap: 32px;

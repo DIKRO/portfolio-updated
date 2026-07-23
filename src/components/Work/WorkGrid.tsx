@@ -52,7 +52,22 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
 
   const gridRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const filtersRef = useRef<HTMLDivElement>(null);
   const [heights, setHeights] = useState<{ clip: number; full: number } | null>(null);
+
+  // "Бесконечная" прокрутка фильтров нужна только на телефоне (на десктопе
+  // они и так все помещаются без скролла) — определяем по той же ширине,
+  // на которой уже переключается вёрстка в CSS (768px), и переслушиваем
+  // resize/поворот экрана.
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   useEffect(() => {
     sessionStorage.setItem("workGridExpanded", expanded ? "1" : "0");
@@ -155,18 +170,53 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
 
   const canClip = isAll && heights !== null && heights.clip < heights.full - 1;
 
+  // Бесконечная прокрутка: рисуем список категорий трижды подряд (три
+  // одинаковых "комплекта") и всегда стартуем со среднего комплекта — тогда
+  // с обеих сторон есть запас, куда крутить. Как только пользователь
+  // докручивает почти до края первого или третьего комплекта, незаметно
+  // (без анимации) перепрыгиваем ровно на ширину одного комплекта в
+  // противоположную сторону — глаз этого не замечает, а прокрутка кажется
+  // бесконечной в обе стороны.
+  useEffect(() => {
+    if (!isMobile) return;
+    const el = filtersRef.current;
+    if (!el) return;
+
+    const setWidth = () => el.scrollWidth / 3;
+
+    // Стартуем со среднего комплекта.
+    el.scrollLeft = setWidth();
+
+    const onScroll = () => {
+      const width = setWidth();
+      if (width === 0) return;
+      if (el.scrollLeft < width * 0.5) {
+        el.scrollLeft += width;
+      } else if (el.scrollLeft > width * 1.5) {
+        el.scrollLeft -= width;
+      }
+    };
+
+    el.addEventListener("scroll", onScroll);
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [isMobile, availableFilters]);
+
+  const filterSets = isMobile ? [0, 1, 2] : [0];
+
   return (
     <section id="work" ref={sectionRef} className={styles.section}>
-      <div className={styles.filters}>
-        {availableFilters.map((key) => (
-          <button
-            key={key}
-            className={key === filter ? styles.filterActive : styles.filter}
-            onClick={() => selectFilter(key)}
-          >
-            {t.categories[key]}
-          </button>
-        ))}
+      <div className={styles.filters} ref={filtersRef}>
+        {filterSets.map((setIndex) =>
+          availableFilters.map((key) => (
+            <button
+              key={`${setIndex}-${key}`}
+              className={key === filter ? styles.filterActive : styles.filter}
+              onClick={() => selectFilter(key)}
+            >
+              {t.categories[key]}
+            </button>
+          ))
+        )}
       </div>
 
       <div className={styles.gridWrap}>
