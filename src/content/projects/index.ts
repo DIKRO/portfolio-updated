@@ -265,7 +265,7 @@ export const projects: Project[] = [
     title: { ru: "Название проекта", en: "Project name", ro: "Numele proiectului" },
     categoryKey: "video-editing",
     year: 2025,
-    cover: "/images/work/cover-5.svg",
+    cover: "/images/soon.jpg",
     images: ["/images/work/cover-5.svg", "/images/work/detail-1.svg", "/images/work/detail-2.svg"],
     description: {
       ru: "Краткое описание проекта: расскажи, что сделал в этой работе. Замени этот текст на реальную историю.",
@@ -578,7 +578,7 @@ export const projects: Project[] = [
     title: { ru: "Название проекта", en: "Project name", ro: "Numele proiectului" },
     categoryKey: "Motion design",
     year: 2024,
-    cover: "/images/work/cover-6.svg",
+    cover: "/images/soon.jpg",
     images: ["/images/work/cover-6.svg", "/images/work/detail-1.svg", "/images/work/detail-2.svg"],
     description: {
       ru: "Логотип созданный в рамках лицензионного проекта (Исследование и разработка визуальной идентичности Факультета ȘREM, USARB: от концепции до реализации), с последующем применением. В основе логотипа лежит аббревиатура слов Matematica/Informatica, вписанные в увадратные скобки, которые используются в обеих дисциплинах.",
@@ -603,6 +603,25 @@ export const projects: Project[] = [
       ru: "Разработка дизайна упаковки для плитки шоколада производителя Kreola. Основная задача заключалась в создании премиального образа продукта с акцентом на натуральность: прозрачное окно демонстрирует цельные орехи в молочном шоколаде, а крафтовый картон подчеркивает ручную работу и экологичность. Элегантная типографика и минималистичная композиция усиливают ощущение аутентичности бренда. Этот кейс иллюстрирует подход к айдентике шоколадных брендов, где упаковка становится важным элементом позиционирования и доверия к продукту.",
       en: "Development of packaging design for Kreola’s chocolate bars. The main objective was to create a premium product image with an emphasis on naturalness: a transparent window showcases whole nuts encased in milk chocolate, while the craft cardboard highlights the handcrafted nature and eco-friendliness of the product. Elegant typography and a minimalist composition reinforce the brand’s sense of authenticity. This case study illustrates an approach to the brand identity of chocolate brands, where packaging becomes a key element of positioning and building trust in the product.",
       ro: "Proiectarea ambalajului pentru tabletele de ciocolată ale producătorului Kreola. Obiectivul principal a fost crearea unei imagini premium a produsului, cu accent pe naturalețe: fereastra transparentă pune în evidență nucile întregi învelite în ciocolată cu lapte, iar cartonul de tip „craft” subliniază caracterul artizanal și sustenabilitatea. Tipografia elegantă și compoziția minimalistă întăresc senzația de autenticitate a mărcii. Acest caz ilustrează abordarea identității vizuale a mărcilor de ciocolată, în care ambalajul devine un element important al poziționării și al încrederii în produs.",
+    },
+  },
+  {
+    id: "33",
+    slug: "corporatia_finantare",
+    title: { ru: "Рекламные креативы для программы финансирования ODA, Corporatia de Finantare",
+              en: "Advertising creative for ODA financing program, Corporatia de Finantare",
+              ro: "Creativ publicitar pentru programul de finanțare ODA, Corporatia de Finantare" },
+    categoryKey: "web",
+    year: 2025,
+    cover: "/images/work/web/corporatia_finantare/cover-33.jpg",
+    images: ["/images/work/web/corporatia_finantare/work1.jpg",
+              "/images/work/web/corporatia_finantare/work2.jpg",
+              "/images/work/web/corporatia_finantare/work3.jpg",
+              "/images/work/web/corporatia_finantare/work4.jpg"],
+    description: {
+      ru: "Создана серия рекламных креативов для продвижения финансовых продуктов с гарантией ODA. Визуальные решения подчеркивают надежность и масштаб предложения — акцент сделан на сумме гарантии в 1 000 000 леев и персонализированном графике выплат. Использованы деловые образы (рукопожатие, работа за ноутбуком, звонок клиенту), которые транслируют доверие и партнерство. Креативы объединены единым стилем, что усиливает восприятие бренда и делает кампанию целостной.",
+      en: "Advertising creative for ODA financing program, Corporatia de Finantare. As part of the project, a concept was developed, visual content was created, and a social media advertising campaign was implemented.",
+      ro: "Creativ publicitar pentru programul de finanțare ODA, Corporatia de Finantare. În cadrul proiectului, a fost dezvoltată o concept, a fost creat conținut vizual și a fost implementată o campanie de publicitate în rețelele sociale.",
     },
   },
 ];
