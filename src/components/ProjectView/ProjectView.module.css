@@ -10,11 +10,35 @@
   color: var(--muted);
   text-decoration: none;
   transition: color var(--transition);
-  margin-bottom: 40px;
 }
 
 .back:hover {
   color: var(--accent);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.next {
+  display: inline-block;
+  font-size: 14px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.next:hover {
+  color: var(--accent);
+}
+
+/* Нижняя ссылка "Все работы" (перед блоком CTA) стоит отдельно, не в
+   ряду с topRow — ей самой, в отличие от верхней, нужен отступ снизу. */
+.backBottom {
+  margin-bottom: 40px;
 }
 
 .head {

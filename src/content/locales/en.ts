@@ -37,6 +37,7 @@ export const en = {
   },
   project: {
     back: "← All work",
+    next: "Next project",
     cta: "Like this? Let's discuss your project",
     ctaButton: "Get in touch",
   },

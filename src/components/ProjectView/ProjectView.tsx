@@ -14,9 +14,10 @@ import styles from "./ProjectView.module.css";
 interface ProjectViewProps {
   project: Project;
   galleryRows: GalleryRow[];
+  nextProject: Project;
 }
 
-export default function ProjectView({ project, galleryRows }: ProjectViewProps) {
+export default function ProjectView({ project, galleryRows, nextProject }: ProjectViewProps) {
   const { lang, setLang, t } = useLang();
 
   return (
@@ -30,9 +31,15 @@ export default function ProjectView({ project, galleryRows }: ProjectViewProps) 
         animate={{ opacity: 1 }}
         transition={{ duration: 0.25 }}
       >
-        <Link href="/#work" className={styles.back}>
-          {t.project.back}
-        </Link>
+        <div className={styles.topRow}>
+          <Link href="/#work" className={styles.back}>
+            {t.project.back}
+          </Link>
+
+          <Link href={`/work/${nextProject.slug}`} className={styles.next}>
+            {t.project.next} →
+          </Link>
+        </div>
 
         <motion.header
           className={styles.head}
@@ -111,7 +118,7 @@ export default function ProjectView({ project, galleryRows }: ProjectViewProps) 
           })}
         </div>
 
-        <Link href="/#work" className={styles.back}>
+        <Link href="/#work" className={`${styles.back} ${styles.backBottom}`}>
           {t.project.back}
         </Link>
 

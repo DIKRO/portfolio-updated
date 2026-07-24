@@ -22,7 +22,7 @@ export default function Home() {
       <motion.div key={lang} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
         <Hero t={t} />
         <WorkGrid lang={lang} t={t} />
-        <About t={t} />
+        <About lang={lang} t={t} />
         <Contact t={t} />
         <Footer />
       </motion.div>
