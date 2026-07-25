@@ -35,12 +35,6 @@
   color: var(--accent);
 }
 
-/* Нижняя ссылка "Все работы" (перед блоком CTA) стоит отдельно, не в
-   ряду с topRow — ей самой, в отличие от верхней, нужен отступ снизу. */
-.backBottom {
-  margin-bottom: 40px;
-}
-
 .head {
   margin-bottom: 48px;
 }

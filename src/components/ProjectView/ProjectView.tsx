@@ -118,9 +118,15 @@ export default function ProjectView({ project, galleryRows, nextProject }: Proje
           })}
         </div>
 
-        <Link href="/#work" className={`${styles.back} ${styles.backBottom}`}>
-          {t.project.back}
-        </Link>
+        <div className={styles.topRow}>
+          <Link href="/#work" className={styles.back}>
+            {t.project.back}
+          </Link>
+
+          <Link href={`/work/${nextProject.slug}`} className={styles.next}>
+            {t.project.next} →
+          </Link>
+        </div>
 
         <motion.div
           className={styles.cta}

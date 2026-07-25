@@ -243,7 +243,13 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, delay: (index % 3) * 0.05 }}
               >
-                <Link href={`/work/${project.slug}`} className={styles.card}>
+                <Link
+                  href={`/work/${project.slug}`}
+                  className={styles.card}
+                  onTouchStart={(e) => e.currentTarget.classList.add(styles.cardActive)}
+                  onTouchEnd={(e) => e.currentTarget.classList.remove(styles.cardActive)}
+                  onTouchCancel={(e) => e.currentTarget.classList.remove(styles.cardActive)}
+                >
                   <div className={styles.imageWrap}>
                     <Image
                       src={project.cover}
