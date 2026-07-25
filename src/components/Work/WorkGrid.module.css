@@ -131,11 +131,31 @@
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--surface);
+  /* Еле заметное свечение у краёв (не в центре — иначе фото "выцветает").
+     inset box-shadow светится только у самой рамки внутрь, до центра
+     фото не достаёт. В покое — нулевое, при наведении плавно нарастает,
+     это и даёт ощущение "стягивания" именно от края, а не из центра. */
+  box-shadow: inset 0 0 0 0 rgba(255, 255, 255, 0);
+  transition: box-shadow 0.5s ease;
 }
 
-/* Переливающаяся бело-серая рамка — градиент рисуется на всём блоке,
-   но через mask виден только тонкий контур (padding ниже = толщина).
-   Сам градиент "бежит" через background-position (анимация shimmer). */
+.card:hover .imageWrap,
+.card.cardActive .imageWrap {
+  box-shadow: inset 0 0 26px -6px rgba(255, 255, 255, 0.16);
+}
+
+/* Переливающаяся рамка — вращающийся конический градиент по периметру.
+   Важно: вращается не сам элемент (transform на замаскированном блоке
+   в некоторых браузерах ломает саму маску — кольцо съезжает и превращается
+   в закрашенный круг по центру), а угол ВНУТРИ градиента, через отдельно
+   зарегистрированное CSS-свойство. Форма кольца (маска, padding) всегда
+   остаётся статичной, крутится только сам узор внутри неё. */
+@property --shimmer-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .imageWrap::before {
   content: "";
   position: absolute;
@@ -144,58 +164,44 @@
   pointer-events: none;
   border-radius: var(--radius);
   padding: 1px; /* толщина рамки в состоянии покоя */
-  background: linear-gradient(
-    115deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 255, 255, 0.75) 35%,
-    rgba(180, 180, 180, 0.25) 50%,
-    rgba(255, 255, 255, 0.75) 65%,
-    rgba(255, 255, 255, 0.1) 100%
+  background: conic-gradient(
+    from var(--shimmer-angle),
+    transparent 0deg,
+    transparent 5deg,
+    rgba(255, 255, 255, 0.9) 60deg,
+    transparent 115deg,
+    transparent 125deg,
+    rgba(255, 255, 255, 0.9) 180deg,
+    transparent 235deg,
+    transparent 245deg,
+    rgba(255, 255, 255, 0.9) 300deg,
+    transparent 355deg,
+    transparent 360deg
   );
-  background-size: 250% 250%;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
   transition: opacity 0.35s ease, padding 0.35s ease;
-  animation: cardShimmer 3.5s linear infinite;
+  animation: cardShimmer 5s linear infinite;
   animation-play-state: paused;
 }
 
-.card:hover .imageWrap::before {
+.card:hover .imageWrap::before,
+.card.cardActive .imageWrap::before {
   opacity: 1;
   padding: 2px; /* рамка становится толще при наведении */
   animation-play-state: running;
 }
 
 @keyframes cardShimmer {
-  0% {
-    background-position: 0% 50%;
+  to {
+    /* Полный оборот — 0° и 360° визуально идентичны, поэтому переход
+       всегда бесшовный. Меняется только --shimmer-angle, сам элемент
+       (и его маска) неподвижны. */
+    --shimmer-angle: 360deg;
   }
-  100% {
-    background-position: 200% 50%;
-  }
-}
-
-/* Свечение, "стягивающееся" к центру: в покое — размытое и увеличенное
-   (края, почти невидимо), при наведении сжимается к центру и проявляется.
-   transform анимируется плавно везде, в отличие от смены самого градиента. */
-.imageWrap::after {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  z-index: 1;
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.16), transparent 65%);
-  opacity: 0;
-  transform: scale(1.4);
-  transition: opacity 0.45s ease, transform 0.55s ease;
-}
-
-.card:hover .imageWrap::after {
-  opacity: 1;
-  transform: scale(1);
 }
 
 .image {
@@ -206,7 +212,8 @@
   transition: transform 0.5s ease;
 }
 
-.card:hover .image {
+.card:hover .image,
+.card.cardActive .image {
   transform: scale(1.05);
 }
 
