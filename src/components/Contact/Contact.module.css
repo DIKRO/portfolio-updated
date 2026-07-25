@@ -83,3 +83,32 @@
     display: none;
   }
 }
+
+/* Телефон, повёрнутый горизонтально — та же логика, что в Hero/About:
+   определяем по низкой высоте экрана, а не по ширине, потому что в
+   лендскейпе ширина телефона часто превышает 768px и попадает под
+   десктопный вид с крупным (48px) заголовком, который тут слишком большой. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .section {
+    width: 100%;
+    padding: 16px 24px 60px;
+  }
+
+  .cta {
+    font-size: 26px;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .row {
+    margin-top: 20px;
+    gap: 10px;
+  }
+
+  .iconLink {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+}

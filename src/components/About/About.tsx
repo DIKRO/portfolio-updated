@@ -52,7 +52,7 @@ const PHOTO_SRC = "/images/22222-cutout.png";
 // (см. .photoBand в @media 768px), поэтому кроп/кадрирование часто
 // нужен другой. Просто положи файл с таким именем в public/images —
 // он подхватится сам через <picture> ниже, десктопное фото трогать не надо.
-const PHOTO_SRC_MOBILE = "/images/22222-cutout-mobile.png";
+const PHOTO_SRC_MOBILE = "/images/22222-mobile.jpg";
 
 // Добавь сюда пути к логотипам компаний, с которыми сотрудничал,
 // например "/images/clients/acme.svg". Пустая строка "" рисуется
