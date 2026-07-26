@@ -71,7 +71,10 @@ export default function About({ lang, t }: AboutProps) {
       <div className={styles.photoBand}>
         <div className={styles.bgWrap}>
           <picture style={{ display: "contents" }}>
-            <source media="(max-width: 768px)" srcSet={PHOTO_SRC_MOBILE} />
+            <source
+              media="(max-width: 768px), (orientation: landscape) and (max-height: 500px)"
+              srcSet={PHOTO_SRC_MOBILE}
+            />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={PHOTO_SRC}
