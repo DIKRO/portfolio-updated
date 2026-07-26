@@ -101,14 +101,6 @@
   text-align: center;
 }
 
-.statValue {
-  font-size: 40px;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: -0.5px;
-  line-height: 1.1;
-}
-
 .statLabel {
   margin-top: 6px;
   font-size: 13px;
@@ -117,35 +109,42 @@
   color: var(--muted);
 }
 
-.stats {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: clamp(32px, 6vw, 90px);
-  padding: 0 clamp(24px, 6vw, 90px);
-  margin-bottom: 64px;
-}
-
-.statItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
+/* Перелив: бегущая под 45° светлая полоса по градиенту текста.
+   Двигаем позицию фона только по одной оси (X) — background-size по
+   высоте всегда 100% (точная высота текста), ей просто некуда сдвигаться
+   по вертикали. Раньше сдвигалось по обеим осям сразу (200% 200%), а раз
+   текст намного шире, чем выше, одинаковый процент по X и Y давал совсем
+   разное смещение в пикселях — из-за этого угол визуально "плыл" к концу
+   цикла. Первый и последний цветовые стопы совпадают (var(--accent)),
+   поэтому цикл закольцовывается без шва. */
 .statValue {
   font-size: 42px;
   font-weight: 600;
-  color: var(--accent);
   letter-spacing: -1px;
+  background: linear-gradient(
+    45deg,
+    var(--accent) 0%,
+    var(--accent) 40%,
+    #ff8d47 50%,
+    var(--accent) 60%,
+    var(--accent) 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* Лёгкое оранжевое свечение вокруг цифр. text-shadow работает поверх
+     формы букв даже когда сама заливка через background-clip прозрачная. */
+  filter: drop-shadow(0 0 10px rgba(255, 90, 31, 0.15));
+  animation: statShimmer 5s linear infinite;
 }
 
-.statLabel {
-  margin-top: 6px;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: var(--muted);
+@keyframes statShimmer {
+  to {
+    background-position: 200% 0%;
+  }
 }
 
 .clients {
@@ -179,6 +178,10 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius);
+  /* Еле заметное белое свечение вокруг плашки — постоянное, не завязано
+     на наведение. Держим очень слабым (0.06), чтобы просто чуть "дышало",
+     а не бросалось в глаза. */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.03);
 }
 
 .logoImg {

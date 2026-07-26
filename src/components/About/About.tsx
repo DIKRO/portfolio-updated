@@ -35,11 +35,19 @@ const STATS: { value: string; label: LocalizedText }[] = [
     },
   },
   {
-    value: "5+",
+    value: "4+",
     label: {
-      ru: "Лет опыта",
+      ru: "Года опыта работы",
       en: "Years of experience",
       ro: "Ani de experiență",
+    },
+  },
+  {
+    value: "20+",
+    label: {
+      ru: "Напрвлений клиентов",
+      en: "Market segments",
+      ro: "Segmente de piață",
     },
   },
 ];
