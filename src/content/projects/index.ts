@@ -624,6 +624,29 @@ export const projects: Project[] = [
       ro: "Creativ publicitar pentru programul de finanțare ODA, Corporatia de Finantare. În cadrul proiectului, a fost dezvoltată o concept, a fost creat conținut vizual și a fost implementată o campanie de publicitate în rețelele sociale.",
     },
   },
+  {
+    id: "34",
+    slug: "energywind_web_1",
+    title: { ru: "Рекламные креативы для производителей ветроэнергетического оборудования, Energy Wind Moldova",
+              en: "Advertising creatives for wind energy equipment manufacturers, Energy Wind Moldova",
+              ro: "Materiale publicitare pentru producătorii de echipamente eoliene, Energy Wind Moldova" },
+    categoryKey: "web",
+    year: 2025,
+    cover: "/images/work/web/energywind_web_1/cover-34.jpg",
+    images: ["/images/work/web/energywind_web_1/1.jpg",
+              "/images/work/web/energywind_web_1/2.jpg",
+              "/images/work/web/energywind_web_1/3.jpg",
+              "/images/work/web/energywind_web_1/4.jpg",
+              "/images/work/web/energywind_web_1/5.jpg",
+              "/images/work/web/energywind_web_1/6.jpg",
+              "/images/work/web/energywind_web_1/7.jpg",
+              "/images/work/web/energywind_web_1/8.jpg"],
+    description: {
+      ru: "Рекламные креативы для производителей ветряных турбин демонстрируют решения ведущих мировых брендов - Enercon, Envision, General Electric, Goldwind, Mingyang, Nordex, Siemens Gamesa и Vestas, доступные в Energy Wind Moldova. Каждый макет сочетает мощные фотографии турбин с чёткой структурой информации: диапазон мощности (от 1.1 до 8.3 МВт), контактные данные и полный спектр услуг — от продажи и доставки до монтажа, гарантии и лизинга. Визуальная подача подчёркивает как технологичность, так и универсальность брендов, создавая ощущение надёжности и современности.",
+      en: "Advertising creatives for wind turbine manufacturers showcase solutions from the world’s leading brands—Enercon, Envision, General Electric, Goldwind, Mingyang, Nordex, Siemens Gamesa, and Vestas—available through Energy Wind Moldova. Each layout combines striking photographs of turbines with a clear information structure: power range (from 1.1 to 8.3 MW), contact information, and a full range of services—from sales and delivery to installation, warranty, and leasing. The visual presentation highlights both the technological sophistication and versatility of the brands, creating a sense of reliability and modernity.",
+      ro: "Materialele publicitare pentru producătorii de turbine eoliene prezintă soluțiile oferite de marile branduri mondiale — Enercon, Envision, General Electric, Goldwind, Mingyang, Nordex, Siemens Gamesa și Vestas — disponibile la Energy Wind Moldova. Fiecare machetă combină fotografii impresionante ale turbinelor cu o structură clară a informațiilor: gama de putere (de la 1,1 la 8,3 MW), datele de contact și gama completă de servicii — de la vânzare și livrare până la montare, garanție și leasing. Prezentarea vizuală subliniază atât caracterul tehnologic, cât și universalitatea mărcilor, creând o senzație de fiabilitate și modernitate. ",
+    },
+  },
 ];
 
 export function getProjectBySlug(slug: string) {
