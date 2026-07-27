@@ -74,6 +74,21 @@
   overflow: hidden;
   background: transparent;
   align-self: center;
+  cursor: pointer;
+}
+
+.imageWrap .image {
+  transition: transform var(--transition), filter var(--transition);
+}
+
+.imageWrap:hover .image {
+  transform: scale(1.015);
+  filter: brightness(1.05);
+}
+
+.imageWrap:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* Пара портретных фото рядом — определяется автоматически на сервере

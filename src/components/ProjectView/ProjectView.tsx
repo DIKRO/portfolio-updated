@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useLang } from "@/content/lang";
@@ -7,6 +8,7 @@ import { Project } from "@/types/project";
 import { GalleryRow } from "@/lib/imageOrientation";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import GalleryLightbox from "@/components/Work/Lightbox";
 import { EmailIcon } from "@/components/Icons/Icons";
 import { SOCIALS } from "@/content/socials";
 import styles from "./ProjectView.module.css";
@@ -19,6 +21,26 @@ interface ProjectViewProps {
 
 export default function ProjectView({ project, galleryRows, nextProject }: ProjectViewProps) {
   const { lang, setLang, t } = useLang();
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  // Плоский список всех фото проекта в порядке отображения — по нему же
+  // листает лайтбокс, независимо от группировки в галерее (одиночные
+  // строки или пары портретных фото рядом). rowStartIndices[i] — с какого
+  // плоского индекса начинается i-й ряд галереи (вычисляется один раз,
+  // без мутаций во время рендера).
+  const { flatImages, rowStartIndices } = useMemo(() => {
+    const list: string[] = [];
+    const starts: number[] = [];
+    for (const row of galleryRows) {
+      starts.push(list.length);
+      if (row.type === "pair") {
+        list.push(row.items[0].src, row.items[1].src);
+      } else {
+        list.push(row.src);
+      }
+    }
+    return { flatImages: list, rowStartIndices: starts };
+  }, [galleryRows]);
 
   return (
     <main>
@@ -64,6 +86,7 @@ export default function ProjectView({ project, galleryRows, nextProject }: Proje
 
         <div className={styles.gallery}>
           {galleryRows.map((row, index) => {
+            const firstFlatIndex = rowStartIndices[index];
             if (row.type === "pair") {
               return (
                 <motion.div
@@ -79,6 +102,14 @@ export default function ProjectView({ project, galleryRows, nextProject }: Proje
                       key={item.src}
                       className={styles.imageWrap}
                       style={{ "--ar": item.ratio } as React.CSSProperties}
+                      onClick={() => setLightboxIndex(firstFlatIndex + itemIndex)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          setLightboxIndex(firstFlatIndex + itemIndex);
+                        }
+                      }}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -94,6 +125,8 @@ export default function ProjectView({ project, galleryRows, nextProject }: Proje
               );
             }
 
+            const singleFlatIndex = firstFlatIndex;
+
             return (
               <motion.div
                 key={row.src}
@@ -103,6 +136,14 @@ export default function ProjectView({ project, galleryRows, nextProject }: Proje
                 transition={{ duration: 0.5 }}
                 className={styles.imageWrap}
                 style={{ alignSelf: row.isPortrait ? "center" : "stretch" }}
+                onClick={() => setLightboxIndex(singleFlatIndex)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setLightboxIndex(singleFlatIndex);
+                  }
+                }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -117,6 +158,16 @@ export default function ProjectView({ project, galleryRows, nextProject }: Proje
             );
           })}
         </div>
+
+        {lightboxIndex !== null && (
+          <GalleryLightbox
+            images={flatImages}
+            index={lightboxIndex}
+            alt={project.title[lang]}
+            onClose={() => setLightboxIndex(null)}
+            onNavigate={setLightboxIndex}
+          />
+        )}
 
         <div className={styles.topRow}>
           <Link href="/#work" className={styles.back}>
