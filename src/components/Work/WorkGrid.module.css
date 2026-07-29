@@ -22,12 +22,13 @@
   color: var(--muted);
   cursor: pointer;
   transition: border-color var(--transition), color var(--transition),
-    background var(--transition);
+    background var(--transition), box-shadow var(--transition);
 }
 
 .filter:hover {
   color: var(--text);
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16) inset, 0 0 18px rgba(255, 255, 255, 0.08);
 }
 
 .filterActive {
@@ -148,63 +149,51 @@
   box-shadow: inset 0 0 26px -6px rgba(255, 255, 255, 0.16);
 }
 
-/* Переливающаяся рамка — вращающийся конический градиент по периметру.
-   Важно: вращается не сам элемент (transform на замаскированном блоке
-   в некоторых браузерах ломает саму маску — кольцо съезжает и превращается
-   в закрашенный круг по центру), а угол ВНУТРИ градиента, через отдельно
-   зарегистрированное CSS-свойство. Форма кольца (маска, padding) всегда
-   остаётся статичной, крутится только сам узор внутри неё. */
-@property --shimmer-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
-.imageWrap::before {
+/* Блик: узкая светлая полоса, "проезжающая" по превью по диагонали —
+   тот же приём, что и на фото внутри проекта (см. ProjectView), только
+   слегка уменьшенный по интенсивности и ускоренный — превью заметно
+   компактнее полноразмерного фото, и на маленькой площади бликом нужно
+   "пробежать" быстрее, иначе эффект читается вяло. Ширина/высота полосы
+   заданы в процентах от контейнера, поэтому автоматически подстраиваются
+   под любой размер карточки. */
+.imageWrap::after {
   content: "";
   position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  border-radius: var(--radius);
-  padding: 1px; /* толщина рамки в состоянии покоя */
-  background: conic-gradient(
-    from var(--shimmer-angle),
-    transparent 0deg,
-    transparent 5deg,
-    rgba(255, 255, 255, 0.9) 60deg,
-    transparent 115deg,
-    transparent 125deg,
-    rgba(255, 255, 255, 0.9) 180deg,
-    transparent 235deg,
-    transparent 245deg,
-    rgba(255, 255, 255, 0.9) 300deg,
-    transparent 355deg,
-    transparent 360deg
+  top: -25%;
+  left: -60%;
+  width: 45%;
+  height: 150%;
+  background: linear-gradient(
+    100deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 75%
   );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 2;
   opacity: 0;
-  transition: opacity 0.35s ease, padding 0.35s ease;
-  animation: cardShimmer 5s linear infinite;
-  animation-play-state: paused;
 }
 
-.card:hover .imageWrap::before,
-.card.cardActive .imageWrap::before {
-  opacity: 1;
-  padding: 2px; /* рамка становится толще при наведении */
-  animation-play-state: running;
+.card:hover .imageWrap::after,
+.card.cardActive .imageWrap::after {
+  animation: cardShine 1.8s ease-in-out infinite;
 }
 
-@keyframes cardShimmer {
-  to {
-    /* Полный оборот — 0° и 360° визуально идентичны, поэтому переход
-       всегда бесшовный. Меняется только --shimmer-angle, сам элемент
-       (и его маска) неподвижны. */
-    --shimmer-angle: 360deg;
+@keyframes cardShine {
+  0% {
+    left: -60%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    left: 160%;
+    opacity: 0;
   }
 }
 

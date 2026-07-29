@@ -23,6 +23,12 @@
   cursor: pointer;
   justify-self: start;
   margin-left: 0;
+  transform-origin: left center;
+  transition: transform 0.3s ease;
+}
+
+.brand:hover {
+  transform: scale(1.04);
 }
 
 .logoImg {
@@ -30,6 +36,11 @@
   height: 24px;
   display: block;
   flex-shrink: 0;
+  transition: filter 0.3s ease;
+}
+
+.brand:hover .logoImg {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4));
 }
 
 .logo {
@@ -37,10 +48,20 @@
   letter-spacing: 2px;
   font-weight: 500;
   color: var(--text);
+  transition: text-shadow 0.3s ease;
+}
+
+.brand:hover .logo {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
 }
 
 .accent {
   color: var(--accent);
+  transition: text-shadow 0.3s ease;
+}
+
+.brand:hover .accent {
+  text-shadow: 0 0 10px rgba(255, 90, 31, 0.36);
 }
 
 .nav {
@@ -68,6 +89,11 @@
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.14);
 }
 
+.activeNav {
+  color: var(--accent) !important;
+  text-shadow: 0 0 12px rgba(255, 90, 31, 0.25);
+}
+
 .langSwitch {
   display: flex;
   gap: 10px;
@@ -89,12 +115,13 @@
 }
 
 .langSwitch button:hover {
-  color: var(--accent);
-  text-shadow: 0 0 12px rgba(255, 90, 31, 0.18);
+  color: var(--text);
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.16);
 }
 
 .activeLang {
   color: var(--accent) !important;
+  text-shadow: 0 0 12px rgba(255, 90, 31, 0.25);
 }
 
 @media (max-width: 768px) {

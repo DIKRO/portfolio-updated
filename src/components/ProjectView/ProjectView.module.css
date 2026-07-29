@@ -68,6 +68,7 @@
 }
 
 .imageWrap {
+  position: relative;
   display: flex;
   justify-content: center;
   border-radius: var(--radius);
@@ -78,12 +79,60 @@
 }
 
 .imageWrap .image {
-  transition: transform var(--transition), filter var(--transition);
+  transition: transform var(--transition);
 }
 
 .imageWrap:hover .image {
   transform: scale(1.015);
-  filter: brightness(1.05);
+}
+
+/* Блик: узкая светлая полоса, "проезжающая" по фото по диагонали —
+   как отблеск на металле. Анимируется свойство left (не transform) —
+   проценты однозначно считаются от размера контейнера, без искажений
+   на не-квадратных фото и без путаницы при составлении transform из
+   нескольких функций. Полоса шире и выше самого фото с запасом, поэтому
+   в начале/конце прохода она полностью за пределами видимой области —
+   обрезка контейнером (overflow: hidden) не видна, у самой полосы края
+   уже прозрачны. Пока курсор на фото — анимация зациклена; каждый новый
+   проход стартует только после того, как предыдущий полностью завершился. */
+.imageWrap::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -60%;
+  width: 55%;
+  height: 150%;
+  background: linear-gradient(
+    100deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 75%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+}
+
+.imageWrap:hover::after {
+  animation: metalShine 2.4s ease-in-out infinite;
+}
+
+@keyframes metalShine {
+  0% {
+    left: -60%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    left: 160%;
+    opacity: 0;
+  }
 }
 
 .imageWrap:focus-visible {

@@ -2,13 +2,13 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLang } from "@/content/lang";
-import { Project } from "@/types/project";
+import { Project, CategoryKey } from "@/types/project";
 import { GalleryRow } from "@/lib/imageOrientation";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import GalleryLightbox from "@/components/Work/Lightbox";
+import GalleryLightbox from "../Work/Lightbox";
 import { EmailIcon } from "@/components/Icons/Icons";
 import { SOCIALS } from "@/content/socials";
 import styles from "./ProjectView.module.css";
@@ -17,11 +17,24 @@ interface ProjectViewProps {
   project: Project;
   galleryRows: GalleryRow[];
   nextProject: Project;
+  // Категория, внутри которой сейчас листаются проекты (undefined — режим
+  // "Все", листаем по общему списку). Прокидывается дальше в ссылку
+  // "Следующий проект", чтобы цепочка переходов оставалась внутри той же
+  // категории и на следующей странице тоже.
+  category?: CategoryKey;
 }
 
-export default function ProjectView({ project, galleryRows, nextProject }: ProjectViewProps) {
+export default function ProjectView({ project, galleryRows, nextProject, category }: ProjectViewProps) {
   const { lang, setLang, t } = useLang();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const nextProjectHref = category
+    ? `/work/${nextProject.slug}?category=${category}`
+    : `/work/${nextProject.slug}`;
+
+  const closeLightbox = () => {
+    setLightboxIndex(null);
+  };
 
   // Плоский список всех фото проекта в порядке отображения — по нему же
   // листает лайтбокс, независимо от группировки в галерее (одиночные
@@ -58,7 +71,7 @@ export default function ProjectView({ project, galleryRows, nextProject }: Proje
             {t.project.back}
           </Link>
 
-          <Link href={`/work/${nextProject.slug}`} className={styles.next}>
+          <Link href={nextProjectHref} className={styles.next}>
             {t.project.next} →
           </Link>
         </div>
@@ -159,22 +172,25 @@ export default function ProjectView({ project, galleryRows, nextProject }: Proje
           })}
         </div>
 
-        {lightboxIndex !== null && (
-          <GalleryLightbox
-            images={flatImages}
-            index={lightboxIndex}
-            alt={project.title[lang]}
-            onClose={() => setLightboxIndex(null)}
-            onNavigate={setLightboxIndex}
-          />
-        )}
+        <AnimatePresence>
+          {lightboxIndex !== null && (
+            <GalleryLightbox
+              key="gallery-lightbox"
+              images={flatImages}
+              index={lightboxIndex}
+              alt={project.title[lang]}
+              onClose={closeLightbox}
+              onNavigate={setLightboxIndex}
+            />
+          )}
+        </AnimatePresence>
 
         <div className={styles.topRow}>
           <Link href="/#work" className={styles.back}>
             {t.project.back}
           </Link>
 
-          <Link href={`/work/${nextProject.slug}`} className={styles.next}>
+          <Link href={nextProjectHref} className={styles.next}>
             {t.project.next} →
           </Link>
         </div>

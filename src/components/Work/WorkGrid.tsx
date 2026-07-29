@@ -244,7 +244,9 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
                 transition={{ duration: 0.4, delay: (index % 3) * 0.05 }}
               >
                 <Link
-                  href={`/work/${project.slug}`}
+                  href={
+                    filter === "all" ? `/work/${project.slug}` : `/work/${project.slug}?category=${filter}`
+                  }
                   className={styles.card}
                   onTouchStart={(e) => e.currentTarget.classList.add(styles.cardActive)}
                   onTouchEnd={(e) => e.currentTarget.classList.remove(styles.cardActive)}

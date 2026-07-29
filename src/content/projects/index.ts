@@ -647,6 +647,23 @@ export const projects: Project[] = [
       ro: "Materialele publicitare pentru producătorii de turbine eoliene prezintă soluțiile oferite de marile branduri mondiale — Enercon, Envision, General Electric, Goldwind, Mingyang, Nordex, Siemens Gamesa și Vestas — disponibile la Energy Wind Moldova. Fiecare machetă combină fotografii impresionante ale turbinelor cu o structură clară a informațiilor: gama de putere (de la 1,1 la 8,3 MW), datele de contact și gama completă de servicii — de la vânzare și livrare până la montare, garanție și leasing. Prezentarea vizuală subliniază atât caracterul tehnologic, cât și universalitatea mărcilor, creând o senzație de fiabilitate și modernitate. ",
     },
   },
+  {
+    id: "35",
+    slug: "energywind_web_2",
+    title: { ru: "Рекламные креативы для систем хранения энергии BESS, Energy Wind Moldova",
+              en: "Advertising creatives for BESS energy storage systems, Energy Wind Moldova",
+              ro: "Materiale publicitare pentru sistemele de stocare a energiei BESS, Energy Wind Moldova" },
+    categoryKey: "web",
+    year: 2025,
+    cover: "/images/work/web/energywind_web_2/cover-35.jpg",
+    images: ["/images/work/web/energywind_web_2/1.jpg",
+              "/images/work/web/energywind_web_2/2.jpg"],
+    description: {
+      ru: "Разработаны рекламные креативы для социальных сетей в области ветроэнергетики, акцент сделан на продвижении систем хранения энергии (ESS/BESS) как инвестиционного продукта. В обоих баннерах использованы изображения промышленных контейнеров для хранения энергии, сопровождаемые текстовыми блоками о цене и выгоде — «от 100 000$ за MW/h» и обещание пассивного дохода. Визуально выделены контактные данные и сайт компании Energy Wind Moldova, что усиливает доверие и направляет потенциальных клиентов к действию.",
+      en: "Advertising creatives have been developed for social media in the wind energy sector, with an emphasis on promoting energy storage systems (ESS/BESS) as an investment product. Both banners feature images of industrial energy storage containers, accompanied by text blocks highlighting the price and benefits - “starting at $100,000 per MW/h” - and a promise of passive income. The contact information and website for Energy Wind Moldova are visually highlighted, which builds trust and encourages potential customers to take action.",
+      ro: "Au fost elaborate materiale publicitare pentru rețelele sociale din domeniul energiei eoliene, accentul fiind pus pe promovarea sistemelor de stocare a energiei (ESS/BESS) ca produs de investiții. În ambele bannere au fost utilizate imagini cu containere industriale pentru stocarea energiei, însoțite de blocuri de text referitoare la preț și beneficii - „de la 100 000$ pe MW/h” și promisiunea unui venit pasiv. Datele de contact și site-ul companiei Energy Wind Moldova sunt evidențiate vizual, ceea ce sporește încrederea și îndrumă potențialii clienți spre acțiune.",
+    },
+  },
 ];
 
 export function getProjectBySlug(slug: string) {

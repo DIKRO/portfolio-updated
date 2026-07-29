@@ -23,6 +23,10 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
   const isHome = pathname === "/";
+  // Страница конкретного проекта (/work/slug) — это всё ещё раздел
+  // "Работы" по смыслу, хоть это и не главная. Подсвечиваем "Работы" в
+  // шапке и там тоже.
+  const isProjectPage = pathname?.startsWith("/work/") ?? false;
 
   // header теперь position: fixed (обходим баг Chrome с backdrop-filter
   // + position: sticky), поэтому под него нужен "спейсер" такой же высоты,
@@ -53,6 +57,74 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
     }
   };
 
+  // Индикатор текущего раздела в навигации (как активный язык) — работает
+  // только на главной странице, где реально есть секции work/about/contact.
+  // Считается напрямую от позиции скролла (см. эффект ниже, там же и
+  // объяснение, почему не через IntersectionObserver).
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!isHome || headerHeight === 0) return;
+
+    // На главной странице контент секций (Hero/WorkGrid/About/Contact)
+    // оборачивается в <motion.div key={lang}>, который полностью
+    // перемонтируется при смене языка — старые DOM-узлы #work/#about/#contact
+    // уничтожаются, создаются новые, поэтому эффект пересоздаёт всё заново
+    // при каждой смене lang (см. зависимость ниже).
+    const ids = ["work", "about", "contact"];
+    const elements = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+    if (elements.length === 0) return;
+
+    // Раньше активный раздел определялся через IntersectionObserver: он
+    // подсвечивал секцию, только пока часть её видна в определённой
+    // "полосе" экрана. У этого подхода два слабых места: 1) короткая
+    // секция (например "Обо мне") может целиком проскочить эту полосу за
+    // один кадр скролла (особенно на трекпаде/инерционной прокрутке) —
+    // observer просто не успевает зафиксировать промежуточное состояние,
+    // и индикатор остаётся на предыдущем разделе; 2) при быстром скролле
+    // вверх события enter/exit могут прийти не в том порядке, из-за чего
+    // индикатор перескакивал сразу с "Контактов" на "Работы", минуя
+    // "Обо мне".
+    //
+    // Вместо слежения за пересечениями считаем активный раздел напрямую
+    // от текущей позиции скролла: берём последнюю (самую нижнюю) секцию,
+    // верх которой уже поднялся выше фиксированной "линии" под шапкой.
+    // Это чистая функция от scrollY — для любой позиции скролла результат
+    // всегда однозначен и меняется строго по порядку секций, без
+    // возможности что-то пропустить в любую сторону прокрутки.
+    const lastId = ids[ids.length - 1];
+
+    const update = () => {
+      const activationLine = headerHeight + window.innerHeight * 0.35;
+
+      let current = elements[0].id;
+      for (const el of elements) {
+        if (el.getBoundingClientRect().top <= activationLine) {
+          current = el.id;
+        }
+      }
+
+      // На случай совсем короткой последней секции на маленьком экране —
+      // если долистали до самого низа документа, последняя секция активна
+      // в любом случае, даже если формально не дотянула до линии.
+      const atBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+      if (atBottom) current = lastId;
+
+      setActiveSection(current);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [isHome, headerHeight, lang]);
+
   return (
     <>
       <header ref={headerRef} className={styles.header}>
@@ -64,13 +136,25 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
         </a>
 
         <nav className={styles.nav}>
-          <a href={isHome ? "#work" : "/#work"} onClick={goTo("work")}>
+          <a
+            href={isHome ? "#work" : "/#work"}
+            onClick={goTo("work")}
+            className={activeSection === "work" || isProjectPage ? styles.activeNav : ""}
+          >
             {t.nav.work}
           </a>
-          <a href={isHome ? "#about" : "/#about"} onClick={goTo("about")}>
+          <a
+            href={isHome ? "#about" : "/#about"}
+            onClick={goTo("about")}
+            className={activeSection === "about" ? styles.activeNav : ""}
+          >
             {t.nav.about}
           </a>
-          <a href={isHome ? "#contact" : "/#contact"} onClick={goTo("contact")}>
+          <a
+            href={isHome ? "#contact" : "/#contact"}
+            onClick={goTo("contact")}
+            className={activeSection === "contact" ? styles.activeNav : ""}
+          >
             {t.nav.contact}
           </a>
         </nav>
