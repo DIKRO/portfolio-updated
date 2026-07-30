@@ -79,10 +79,16 @@ export default function About({ lang, t }: AboutProps) {
       <div className={styles.photoBand}>
         <div className={styles.bgWrap}>
           <picture style={{ display: "contents" }}>
-            <source
-              media="(max-width: 768px), (orientation: landscape) and (max-height: 500px)"
-              srcSet={PHOTO_SRC_MOBILE}
-            />
+            {/* Только портретная мобилка — квадратное фото. В альбомной
+                ориентации специально НЕ подключаем его: полоса там низкая
+                и широкая, а квадратный кроп при таком растягивании
+                непредсказуемо обрезает кадр по бокам (лицо может занять
+                почти всю видимую ширину независимо от object-position).
+                Вместо этого в landscape просто используется тот же широкий
+                десктопный PHOTO_SRC ниже (через <img> — сработает как
+                обычный fallback <picture>, раз ни один <source> не подошёл)
+                — там кадрирование лица уже подобрано под широкую полосу. */}
+            <source media="(max-width: 768px)" srcSet={PHOTO_SRC_MOBILE} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={PHOTO_SRC}

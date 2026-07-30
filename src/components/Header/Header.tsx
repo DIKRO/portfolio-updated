@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { Lang } from "@/content/lang";
+import { SOCIALS } from "@/content/socials";
+import { EmailIcon } from "@/components/Icons/Icons";
 import styles from "./Header.module.css";
 
 interface HeaderProps {
@@ -11,6 +13,7 @@ interface HeaderProps {
   setLang: (lang: Lang) => void;
   t: {
     nav: { work: string; about: string; contact: string };
+    contact: { email: string };
   };
 }
 
@@ -27,6 +30,20 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
   // "Работы" по смыслу, хоть это и не главная. Подсвечиваем "Работы" в
   // шапке и там тоже.
   const isProjectPage = pathname?.startsWith("/work/") ?? false;
+
+  // Мобильное меню-гамбургер (нав + языки собраны в выпадающую панель).
+  // На десктопе не используется вообще — там нав и языки всегда видны
+  // в строке шапки как обычно.
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [mobileMenuOpen]);
 
   // header теперь position: fixed (обходим баг Chrome с backdrop-filter
   // + position: sticky), поэтому под него нужен "спейсер" такой же высоты,
@@ -50,6 +67,7 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
 
   const goTo = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
+    setMobileMenuOpen(false);
     if (isHome) {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -127,7 +145,15 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
 
   return (
     <>
-      <header ref={headerRef} className={styles.header}>
+      {mobileMenuOpen && (
+        <div
+          className={styles.backdrop}
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      <header ref={headerRef} className={`${styles.header} ${mobileMenuOpen ? styles.headerMenuOpen : ""}`}>
         <a href={isHome ? "#top" : "/"} className={styles.brand} onClick={goTo("top")}>
           <Image src={LOGO_SRC} alt="Logo" width={24} height={24} className={styles.logoImg} priority />
           <span className={styles.logo}>
@@ -135,41 +161,87 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
           </span>
         </a>
 
-        <nav className={styles.nav}>
-          <a
-            href={isHome ? "#work" : "/#work"}
-            onClick={goTo("work")}
-            className={activeSection === "work" || isProjectPage ? styles.activeNav : ""}
-          >
-            {t.nav.work}
-          </a>
-          <a
-            href={isHome ? "#about" : "/#about"}
-            onClick={goTo("about")}
-            className={activeSection === "about" ? styles.activeNav : ""}
-          >
-            {t.nav.about}
-          </a>
-          <a
-            href={isHome ? "#contact" : "/#contact"}
-            onClick={goTo("contact")}
-            className={activeSection === "contact" ? styles.activeNav : ""}
-          >
-            {t.nav.contact}
-          </a>
-        </nav>
-
-        <div className={styles.langSwitch}>
-          {LANGS.map((l) => (
-            <button
-              key={l}
-              className={lang === l ? styles.activeLang : ""}
-              onClick={() => setLang(l)}
+        {/* display:contents на десктопе — обёртка "прозрачна" для CSS-грида
+            шапки, .nav и .langSwitch занимают те же 2-я/3-я колонки, что и
+            раньше, макет не меняется вообще. На мобильной версии эта же
+            обёртка превращается в выпадающую панель под шапкой (см. CSS). */}
+        <div className={styles.menuPanel} data-open={mobileMenuOpen}>
+          <nav className={styles.nav}>
+            <a
+              href={isHome ? "#work" : "/#work"}
+              onClick={goTo("work")}
+              className={activeSection === "work" || isProjectPage ? styles.activeNav : ""}
             >
-              {l.toUpperCase()}
-            </button>
-          ))}
+              {t.nav.work}
+            </a>
+            <a
+              href={isHome ? "#about" : "/#about"}
+              onClick={goTo("about")}
+              className={activeSection === "about" ? styles.activeNav : ""}
+            >
+              {t.nav.about}
+            </a>
+            <a
+              href={isHome ? "#contact" : "/#contact"}
+              onClick={goTo("contact")}
+              className={activeSection === "contact" ? styles.activeNav : ""}
+            >
+              {t.nav.contact}
+            </a>
+          </nav>
+
+          <div className={styles.langSwitch}>
+            {LANGS.map((l) => (
+              <button
+                key={l}
+                className={lang === l ? styles.activeLang : ""}
+                onClick={() => {
+                  setLang(l);
+                  setMobileMenuOpen(false);
+                }}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          {/* Быстрые контакты — видны только в мобильном выпадающем меню
+              (см. .mobileContacts в CSS, на десктопе display:none, чтобы
+              не ломать 2-колоночный грид шапки). */}
+          <div className={styles.mobileContacts}>
+            <a
+              href={`mailto:${t.contact.email}`}
+              aria-label="Email"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <EmailIcon />
+            </a>
+            {SOCIALS.map(({ key, href, icon: Icon, label }) => (
+              <a
+                key={key}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <Icon />
+              </a>
+            ))}
+          </div>
         </div>
+
+        <button
+          type="button"
+          className={`${styles.burger} ${mobileMenuOpen ? styles.burgerOpen : ""}`}
+          aria-label={mobileMenuOpen ? "Закрыть меню" : "Открыть меню"}
+          aria-expanded={mobileMenuOpen}
+          onClick={() => setMobileMenuOpen((v) => !v)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </header>
 
       {/* Спейсер: занимает место, которое раньше занимал header в потоке

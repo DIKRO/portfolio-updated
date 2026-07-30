@@ -136,6 +136,10 @@
   display: none;
 }
 
+.mobileContacts {
+  display: none;
+}
+
 .backdrop {
   display: none;
 }
@@ -148,6 +152,16 @@
     justify-content: space-between;
     padding: 18px 24px;
     gap: 12px;
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+
+  /* Пока меню открыто, шапка с лого получает тот же тёмный фон, что и
+     сама выпадающая панель под ней — раньше у шапки была своя (более
+     прозрачная) подложка, и на стыке с панелью была заметна некрасивая
+     граница/шов. Теперь визуально это один сплошной блок. */
+  .headerMenuOpen {
+    background: rgba(14, 14, 14, 0.98);
+    border-bottom-color: transparent;
   }
 
   .logoImg {
@@ -209,9 +223,9 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: rgba(14, 14, 14, 0.97);
-    -webkit-backdrop-filter: blur(10px) saturate(180%);
-    backdrop-filter: blur(10px) saturate(180%);
+    background: rgba(14, 14, 14, 0.98);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 16px 32px -12px rgba(0, 0, 0, 0.55);
     max-height: 0;
@@ -222,7 +236,7 @@
   }
 
   .menuPanel[data-open="true"] {
-    max-height: 400px;
+    max-height: 520px;
     opacity: 1;
     pointer-events: auto;
   }
@@ -245,9 +259,36 @@
   .langSwitch {
     justify-self: auto;
     margin: 0;
-    padding: 16px 24px 24px;
+    padding: 16px 24px 20px;
     border-left: none;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     gap: 16px;
+  }
+
+  .mobileContacts {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 24px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .mobileContacts a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    transition: color 0.25s ease, text-shadow 0.25s ease;
+  }
+
+  .mobileContacts a:hover,
+  .mobileContacts a:active {
+    color: var(--text);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.25);
+  }
+
+  .mobileContacts svg {
+    width: 20px;
+    height: 20px;
   }
 }
