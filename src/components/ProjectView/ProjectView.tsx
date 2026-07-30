@@ -131,6 +131,10 @@ export default function ProjectView({ project, galleryRows, nextProject, categor
                         loading="lazy"
                         decoding="async"
                         className={styles.image}
+                        onLoad={(e) => {
+                          e.currentTarget.classList.add(styles.loaded);
+                          e.currentTarget.parentElement?.classList.add(styles.wrapLoaded);
+                        }}
                       />
                     </div>
                   ))}
@@ -166,6 +170,10 @@ export default function ProjectView({ project, galleryRows, nextProject, categor
                   decoding="async"
                   className={styles.image}
                   style={row.isPortrait ? undefined : { width: "100%", maxHeight: "none" }}
+                  onLoad={(e) => {
+                          e.currentTarget.classList.add(styles.loaded);
+                          e.currentTarget.parentElement?.classList.add(styles.wrapLoaded);
+                        }}
                 />
               </motion.div>
             );

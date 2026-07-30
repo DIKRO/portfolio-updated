@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { projects, getProjectBySlug } from "@/content/projects";
 import { buildGalleryRows } from "@/lib/imageOrientation";
 import { CategoryKey } from "@/types/project";
@@ -11,6 +12,38 @@ export function generateStaticParams() {
 interface PageProps {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ category?: string }>;
+}
+
+// Превью ссылки на конкретный проект в мессенджерах/соцсетях (когда кидаешь
+// ссылку на работу, а не на весь сайт) — заголовок, описание и обложка
+// именно этого проекта, а не общие og-теги сайта из layout.tsx. Язык не
+// знаем на сервере (выбор языка — на клиенте, в localStorage), поэтому
+// метатеги всегда на английском — как и общий title/description сайта
+// в корневом layout.
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+  if (!project) return {};
+
+  const title = `${project.title.en} — Socur Dmitrii`;
+  const description = project.description.en;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      images: [project.cover],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [project.cover],
+    },
+  };
 }
 
 export default async function ProjectPage({ params, searchParams }: PageProps) {

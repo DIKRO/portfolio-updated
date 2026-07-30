@@ -124,13 +124,30 @@
   text-shadow: 0 0 12px rgba(255, 90, 31, 0.25);
 }
 
+.menuPanel {
+  /* На десктопе обёртка полностью "прозрачна" для раскладки — .nav и
+     .langSwitch продолжают быть прямыми участниками грида шапки (2-я и
+     3-я колонки), как будто этого div вообще нет. Стилизуется в панель
+     только внутри мобильного медиа-запроса ниже. */
+  display: contents;
+}
+
+.burger {
+  display: none;
+}
+
+.backdrop {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 18px 24px;
-  gap: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    gap: 12px;
   }
 
   .logoImg {
@@ -138,11 +155,87 @@
     height: 20px;
   }
 
+  .burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+  }
+
+  .burgerOpen span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .burgerOpen span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burgerOpen span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(0, 0, 0, 0.35);
+  }
+
+  /* Тут обёртка уже реальный блок — выпадающая панель под шапкой,
+     появляется/прячется через max-height + opacity (плавно, без прыжка
+     контента: header position:fixed, поэтому панель абсолютно
+     спозиционирована и не толкает страницу вниз, а перекрывает её сверху). */
+  .menuPanel {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(14, 14, 14, 0.97);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    backdrop-filter: blur(10px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 16px 32px -12px rgba(0, 0, 0, 0.55);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 0.3s ease, opacity 0.25s ease;
+  }
+
+  .menuPanel[data-open="true"] {
+    max-height: 400px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   .nav {
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
     justify-self: auto;
-    margin-left: 0;
-    margin-right: 0;
+    gap: 18px;
+    margin: 0;
+    padding: 24px 24px 20px;
+    font-size: 16px;
   }
 
   .nav a {
@@ -150,8 +243,11 @@
   }
 
   .langSwitch {
-    margin-left: 0;
-    padding-left: 0;
+    justify-self: auto;
+    margin: 0;
+    padding: 16px 24px 24px;
     border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 16px;
   }
 }

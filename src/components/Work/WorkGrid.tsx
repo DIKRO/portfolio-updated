@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Lang } from "@/content/lang";
 import { projects } from "@/content/projects";
 import { CategoryKey } from "@/types/project";
+import { shimmerBlurDataURL } from "@/lib/shimmer";
 import styles from "./WorkGrid.module.css";
 
 type FilterKey = "all" | CategoryKey;
@@ -259,6 +260,8 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className={styles.image}
+                      placeholder="blur"
+                      blurDataURL={shimmerBlurDataURL()}
                     />
                   </div>
 

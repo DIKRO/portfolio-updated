@@ -73,16 +73,68 @@
   justify-content: center;
   border-radius: var(--radius);
   overflow: hidden;
-  background: transparent;
   align-self: center;
   cursor: pointer;
+  /* Скелетон-заглушка: видна, пока фото не загрузилось (см. .image ниже) —
+     та же бегущая полоса, что и на превью проектов в сетке. Как только
+     фото полностью загрузилось (:has(.loaded) — реагирует на класс,
+     который добавляется в onLoad в ProjectView.tsx), фон и блик убираем
+     совсем: иначе на фото с прозрачным фоном (например лого на макете)
+     этот фон продолжал бы просвечивать сквозь прозрачные области даже
+     после загрузки, создавая ощущение, что картинка "всё ещё грузится".
+  */
+  background: var(--surface);
+}
+
+.imageWrap.wrapLoaded,
+.imageWrap:has(.image.loaded) {
+  background: transparent;
+}
+
+.imageWrap.wrapLoaded::before,
+.imageWrap:has(.image.loaded)::before {
+  content: none;
+}
+
+.imageWrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: gallerySkeleton 1.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes gallerySkeleton {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .imageWrap .image {
-  transition: transform var(--transition);
+  transition: transform var(--transition), opacity 0.5s ease, filter 0.5s ease;
+  position: relative;
+  z-index: 1;
+  /* Blur-up: фото появляется размытым и слегка увеличенным, затем плавно
+     проявляется резким на 100% размере в момент полной загрузки (см. onLoad
+     в ProjectView.tsx). Пока не загрузилось — прозрачное, виден скелетон
+     позади (.imageWrap::before выше). */
+  opacity: 0;
+  filter: blur(20px);
+  transform: scale(1.04);
 }
 
-.imageWrap:hover .image {
+.imageWrap .image.loaded {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+.imageWrap:hover .image.loaded {
   transform: scale(1.015);
 }
 

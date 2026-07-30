@@ -135,6 +135,26 @@ export default function GalleryLightbox({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.97 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
+            // Свайп/драг для перелистывания — актуально в первую очередь на
+            // телефоне (палец), но точно так же работает мышью на десктопе.
+            // dragElastic тянет картинку за курсором/пальцем, а если отпустили,
+            // не дотянув до порога — плавно пружинит обратно на место.
+            drag={total > 1 ? "x" : false}
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.7}
+            onDragEnd={(_e, info) => {
+              const { offset, velocity } = info;
+              if (offset.x < -80 || velocity.x < -500) {
+                goNext();
+              } else if (offset.x > 80 || velocity.x > 500) {
+                goPrev();
+              }
+            }}
+            // Blur-up: пока полноразмерное фото ещё грузится по сети, оно
+            // показывается смазанным, и резко проявляется в момент полной
+            // загрузки — без этого на медленном интернете можно на секунду
+            // увидеть пустое/битое место вместо картинки.
+            onLoad={(e) => e.currentTarget.classList.add(styles.loaded)}
           />
         </AnimatePresence>
       </div>
