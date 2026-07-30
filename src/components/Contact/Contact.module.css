@@ -25,17 +25,138 @@
 
 .cta {
   display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0 auto;
+  font-family: inherit;
   font-size: 48px;
   font-weight: 500;
   letter-spacing: -1px;
   color: var(--text);
+  text-align: center;
   text-decoration: none;
+  cursor: pointer;
   transition: color var(--transition), text-shadow var(--transition);
 }
 
 .cta:hover {
   color: var(--accent);
   text-shadow: 0 0 24px rgba(255, 90, 31, 0.45);
+}
+
+.formWrap {
+  overflow: hidden;
+}
+
+.form {
+  max-width: 640px;
+  margin: 32px auto 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.formRow {
+  display: flex;
+  gap: 14px;
+}
+
+.formInput,
+.formTextarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder {
+  color: var(--muted);
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: rgba(255, 90, 31, 0.6);
+  box-shadow: 0 0 0 3px rgba(255, 90, 31, 0.12);
+}
+
+.formTextarea {
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.5;
+}
+
+.formFooter {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.formSubmit {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #0e0e0e;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+}
+
+.formSubmit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(255, 90, 31, 0.4);
+}
+
+.formSubmit:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.formNote {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 0;
+}
+
+.formNoteError {
+  font-size: 13px;
+  color: #ff8a5c;
+  margin: 0;
+}
+
+.formStatus {
+  max-width: 640px;
+  margin: 32px auto 0;
+  padding: 28px 24px;
+  border: 1px solid rgba(255, 90, 31, 0.3);
+  border-radius: var(--radius);
+  background: rgba(255, 90, 31, 0.06);
+  text-align: center;
+}
+
+.formStatus p {
+  color: var(--text);
+  font-size: 16px;
+  margin: 0 0 18px;
 }
 
 .row {
@@ -84,6 +205,30 @@
   .line {
     display: none;
   }
+
+  .form {
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .formRow {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .formFooter {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .formSubmit {
+    justify-content: center;
+  }
+
+  .formNote {
+    text-align: center;
+  }
 }
 
 /* Телефон, повёрнутый горизонтально — та же логика, что в Hero/About:
@@ -112,5 +257,29 @@
   .iconLink {
     padding: 8px 14px;
     font-size: 12px;
+  }
+
+  .form {
+    margin-top: 18px;
+    gap: 10px;
+  }
+
+  .formRow {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .formInput,
+  .formTextarea {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .formTextarea {
+    min-height: 70px;
+  }
+
+  .formFooter {
+    margin-top: 0;
   }
 }

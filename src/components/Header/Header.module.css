@@ -144,6 +144,17 @@
   display: none;
 }
 
+.scrollProgress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  background: #ffffff;
+  box-shadow: 0 0 6px rgba(255, 90, 31, 0.75), 0 0 14px rgba(255, 90, 31, 0.4);
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
 @media (max-width: 768px) {
   .header {
     display: flex;

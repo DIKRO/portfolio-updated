@@ -26,7 +26,7 @@ export const en = {
   },
   about: {
     label: "About",
-    text: "My name is Dmitrii Socur, and I’m a graphic designer from Moldova. I’m drawn to minimalism: I create designs that look modern, simple, and clear. I work with logos, corporate identity, print materials, and digital content, paying close attention to detail and the overall coherence of the final result. I’m particularly interested in advertising concepts, brand identity, and visual systems—where all elements, from the logo to promotional materials, are unified by a consistent style and form a recognizable brand image. I’m currently continuing to grow professionally: learning new tools and approaches, and experimenting with composition, typography, and color. For me, it’s not just about creating a pretty picture—it’s about developing a design that looks confident, is memorable, and helps solve my clients’ problems. If this approach resonates with you, I’d love to work with you!",
+    text: "My name is Dmitrii Socur, and I’m a graphic designer from Moldova. I work with logos, brand identity, print, and digital materials — drawn to minimalism and attention to detail. For me it’s not just about a pretty picture, but design that’s memorable and solves real problems for clients. If this approach resonates with you, I’d love to work together!",
     clientsLabel: "Companies I've worked with",
   },
   contact: {
@@ -34,6 +34,18 @@ export const en = {
     cta: "Let's work together",
     // Замени на свою почту
     email: "sokurdmitrii18@gmail.com",
+    form: {
+      name: "Name",
+      email: "Email",
+      message: "Tell me about your project",
+      submit: "Send",
+      note: "I'll reply within 1-2 days",
+      close: "Collapse the form",
+      sending: "Sending…",
+      success: "Thanks! Your message is on its way, I'll reply soon.",
+      error: "Something went wrong. Please try again or email me directly.",
+      sendAnother: "Send another",
+    },
   },
   project: {
     back: "← All work",
