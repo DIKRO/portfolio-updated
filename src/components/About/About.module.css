@@ -71,7 +71,7 @@
 }
 
 .label {
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--muted);
@@ -79,7 +79,7 @@
 }
 
 .text {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.6;
   font-weight: 300;
   color: var(--text);
@@ -237,13 +237,12 @@
     margin-left: 0;
     align-items: flex-start;
     text-align: left;
-    justify-content: flex-start;
     padding: 24px;
     transform: none;
   }
 
   .text {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .logoSlot {
