@@ -65,29 +65,6 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
     return () => observer.disconnect();
   }, []);
 
-  // Полоска прогресса скролла страницы под шапкой — считается как доля
-  // window.scrollY от максимально доступного скролла (высота документа
-  // минус высота вьюпорта). Пересчитывается и при смене языка/страницы:
-  // высота документа может измениться (другой текст), а после перехода
-  // на новую страницу scrollY сбрасывается сам собой.
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const update = () => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
-      setScrollProgress(Math.min(100, Math.max(0, progress)));
-    };
-
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, [pathname, lang]);
-
   const goTo = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
     setMobileMenuOpen(false);
@@ -265,8 +242,6 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
           <span />
           <span />
         </button>
-
-        <div className={styles.scrollProgress} style={{ width: `${scrollProgress}%` }} aria-hidden="true" />
       </header>
 
       {/* Спейсер: занимает место, которое раньше занимал header в потоке
