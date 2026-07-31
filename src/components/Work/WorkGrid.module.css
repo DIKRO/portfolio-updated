@@ -276,3 +276,36 @@
     padding-bottom: 16px;
   }
 }
+
+/* Телефон, повёрнутый горизонтально — та же логика, что и у секции About/
+   Hero (низкая высота экрана, а не ширина: в landscape ширина телефона
+   обычно больше 768px, из-за чего иначе срабатывал бы десктопный стиль
+   фильтров — перенос на несколько строк по центру, а не компактная лента).
+   Переиспользуем ровно ту же карусель, что и в портретной версии, только
+   отступы бьём под фактический padding секции в этом режиме (90px по
+   бокам, он наследуется от десктопной версии — в landscape отдельно не
+   переопределялся). */
+@media (orientation: landscape) and (max-height: 500px) {
+  .filters {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 0 -90px 24px;
+    padding: 0 90px 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter,
+  .filterActive {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    font-size: 13px;
+    padding: 9px 18px;
+  }
+}
