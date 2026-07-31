@@ -41,17 +41,17 @@ export const viewport: Viewport = {
 // будет без картинки.
 export const metadata: Metadata = {
   metadataBase: new URL("https://socurdmitrii.com"),
-  title: "Socur Dmitrii — Graphic Designer",
+  title: "Socur Dmitrii - Graphic Designer",
   description: "Brand identity, visual design and art direction portfolio.",
   openGraph: {
-    title: "Socur Dmitrii — Graphic Designer",
+    title: "Socur Dmitrii - Graphic Designer",
     description: "Brand identity, visual design and art direction portfolio.",
     type: "website",
     images: ["/images/og-cover.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Socur Dmitrii — Graphic Designer",
+    title: "Socur Dmitrii - Graphic Designer",
     description: "Brand identity, visual design and art direction portfolio.",
     images: ["/images/og-cover.jpg"],
   },
