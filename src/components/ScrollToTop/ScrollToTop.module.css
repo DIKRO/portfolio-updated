@@ -1,0 +1,56 @@
+.button {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 40;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text);
+  cursor: pointer;
+  padding: 0;
+
+  /* Скрыта по умолчанию — появляется/пропадает вместе со сменой .visible,
+     через прозрачность + лёгкое смещение вниз, а не резким display:none
+     (иначе кнопка не успевала бы плавно исчезнуть при скролле вверх). */
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.button.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.button:hover {
+  border-color: rgba(255, 90, 31, 0.5);
+  box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.16) inset, 0 0 18px rgba(255, 90, 31, 0.25);
+}
+
+.button svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 768px) {
+  .button {
+    right: 16px;
+    bottom: 16px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .button svg {
+    width: 16px;
+    height: 16px;
+  }
+}

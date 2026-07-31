@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 import { Montserrat } from "next/font/google";
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -31,10 +33,14 @@ export const viewport: Viewport = {
 };
 
 // Замени title/description на своё имя и специализацию.
-// Замени metadataBase на реальный домен после публикации сайта, и добавь
-// /public/images/og-cover.jpg (рекомендуемый размер 1200×630) для превью в соцсетях.
+// metadataBase уже указывает на реальный домен (socurdmitrii.com). Если
+// когда-нибудь сменишь домен — поменяй значение и тут, и в src/app/sitemap.ts
+// и src/app/robots.ts (там та же константа BASE_URL).
+// Не забудь также добавить /public/images/og-cover.jpg (рекомендуемый
+// размер 1200×630) — сейчас его нет, а без него превью сайта в соцсетях
+// будет без картинки.
 export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL("https://socurdmitrii.com"),
   title: "Socur Dmitrii — Graphic Designer",
   description: "Brand identity, visual design and art direction portfolio.",
   openGraph: {
@@ -61,6 +67,8 @@ export default function RootLayout({
       <body className={montserrat.className}>
         <div className="dotsBg" aria-hidden="true" />
         {children}
+        <ScrollToTop />
+        <Analytics />
       </body>
     </html>
   );
