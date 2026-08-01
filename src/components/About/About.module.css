@@ -71,7 +71,7 @@
 }
 
 .label {
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--muted);
@@ -79,7 +79,7 @@
 }
 
 .text {
-  font-size: 17px;
+  font-size: 15px;
   line-height: 1.6;
   font-weight: 300;
   color: var(--text);
@@ -178,10 +178,24 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius);
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
   /* Еле заметное белое свечение вокруг плашки — постоянное, не завязано
      на наведение. Держим очень слабым (0.06), чтобы просто чуть "дышало",
      а не бросалось в глаза. */
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.03);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.logoSlot:hover:not(:disabled) {
+  transform: scale(1.05);
+  border-color: rgba(255, 90, 31, 0.45);
+  box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.14) inset, 0 0 22px rgba(255, 90, 31, 0.28);
+}
+
+.logoSlot:disabled {
+  cursor: default;
 }
 
 .logoImg {
@@ -197,6 +211,79 @@
   text-transform: uppercase;
   color: var(--muted);
   opacity: 0.4;
+}
+
+/* Карточка с описанием клиента — открывается по клику на логотип.
+   Та же визуальная логика, что и у лайтбокса фото в проектах: тёмная
+   размытая подложка + всплывающая по центру карточка. */
+.clientBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(14, 14, 14, 0.75);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.clientCard {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.6);
+  padding: 40px 36px 36px;
+  text-align: center;
+}
+
+.clientClose {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 6px;
+  opacity: 0.7;
+  transition: opacity var(--transition);
+}
+
+.clientClose:hover {
+  opacity: 1;
+}
+
+.clientLogoWrap {
+  position: relative;
+  width: 100px;
+  height: 56px;
+  margin: 0 auto 24px;
+}
+
+.clientLogoImg {
+  object-fit: contain;
+  filter: grayscale(1) brightness(100);
+}
+
+.clientName {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0 0 16px;
+}
+
+.clientDescription {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+  white-space: pre-line;
+  text-align: left;
 }
 
 @media (max-width: 768px) {
@@ -237,12 +324,13 @@
     margin-left: 0;
     align-items: flex-start;
     text-align: left;
+    justify-content: center;
     padding: 24px;
     transform: none;
   }
 
   .text {
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .logoSlot {
