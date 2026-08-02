@@ -161,6 +161,8 @@ export default function About({ lang, t }: AboutProps) {
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpenClient(null);
+      if (e.key === "ArrowRight") goToClient(1);
+      if (e.key === "ArrowLeft") goToClient(-1);
     };
     document.addEventListener("keydown", onKeyDown);
 
@@ -178,6 +180,24 @@ export default function About({ lang, t }: AboutProps) {
       html.style.scrollBehavior = prevScrollBehavior;
     };
   }, [openClient]);
+
+  // Сколько клиентов реально кликабельны (с логотипом) — стрелки навигации
+  // показываем, только если есть, между чем переключаться.
+  const clickableCount = CLIENTS.filter((c) => c.logo).length;
+
+  // Переход к следующему/предыдущему клиенту внутри открытой карточки
+  // (свайпом на телефоне, стрелками или клавишами ← → на десктопе).
+  // Пропускает пустые заготовки без логотипа — у них нечего показывать,
+  // открывать их нельзя.
+  const goToClient = (direction: 1 | -1) => {
+    if (openClient === null) return;
+    let next = openClient;
+    for (let i = 0; i < CLIENTS.length; i++) {
+      next = (next + direction + CLIENTS.length) % CLIENTS.length;
+      if (CLIENTS[next].logo) break;
+    }
+    setOpenClient(next);
+  };
 
   return (
     <section id="about" className={styles.section}>
@@ -247,7 +267,7 @@ export default function About({ lang, t }: AboutProps) {
             <button
               key={i}
               type="button"
-              className={styles.logoSlot}
+              className={`${styles.logoSlot} ${openClient === i ? styles.logoSlotActive : ""}`}
               onClick={() => client.logo && setOpenClient(i)}
               // Пустой логотип (заготовка) кликом не открывается — ставить
               // некуда нечего показывать.
@@ -255,12 +275,18 @@ export default function About({ lang, t }: AboutProps) {
               aria-label={client.logo ? client.name : undefined}
             >
               {client.logo ? (
-                <Image
-                  src={client.logo}
-                  alt={client.name}
-                  fill
-                  sizes="140px"
+                // Логотип красится через CSS-маску (а не <img> + filter),
+                // потому что только так можно ПЕРЕКРАСИТЬ произвольную
+                // картинку (лого может быть SVG или PNG, любого исходного
+                // цвета) в конкретный цвет через CSS — обычный filter умеет
+                // только обесцвечивать/высветлять, но не заливать нужным
+                // оттенком. В покое залит белым (var(--text)), при
+                // наведении/когда карточка открыта — оранжевым (var(--accent)).
+                <span
                   className={styles.logoImg}
+                  style={{ WebkitMaskImage: `url(${client.logo})`, maskImage: `url(${client.logo})` }}
+                  role="img"
+                  aria-label={client.name}
                 />
               ) : (
                 <span className={styles.logoPlaceholder}>Logo</span>
@@ -280,36 +306,80 @@ export default function About({ lang, t }: AboutProps) {
             transition={{ duration: 0.3, ease: "easeOut" }}
             onClick={() => setOpenClient(null)}
           >
-            <motion.div
-              className={styles.clientCard}
-              initial={{ opacity: 0, y: 16, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 16, scale: 0.97 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              onClick={(e) => e.stopPropagation()}
-            >
+            {clickableCount > 1 && (
               <button
                 type="button"
-                className={styles.clientClose}
-                onClick={() => setOpenClient(null)}
-                aria-label="Close"
+                className={`${styles.clientNav} ${styles.clientPrev}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToClient(-1);
+                }}
+                aria-label="Previous"
               >
-                ✕
+                ‹
               </button>
+            )}
 
-              <div className={styles.clientLogoWrap}>
-                <Image
-                  src={CLIENTS[openClient].logo}
-                  alt={CLIENTS[openClient].name}
-                  fill
-                  sizes="120px"
-                  className={styles.clientLogoImg}
-                />
-              </div>
+            {/* Вложенный AnimatePresence — переключение между клиентами
+                свайпом переанимирует только саму карточку (mode="wait"),
+                а тёмная подложка остаётся на месте и не мигает заново. */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={openClient}
+                className={styles.clientCard}
+                initial={{ opacity: 0, scale: 0.97 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                onClick={(e) => e.stopPropagation()}
+                // Свайп/драг для перехода между клиентами — работает и
+                // пальцем на телефоне, и мышью на десктопе. Не дотянул до
+                // порога — карточка пружинит обратно на место (dragElastic).
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.6}
+                onDragEnd={(_e, info) => {
+                  if (info.offset.x < -80 || info.velocity.x < -500) goToClient(1);
+                  else if (info.offset.x > 80 || info.velocity.x > 500) goToClient(-1);
+                }}
+              >
+                <button
+                  type="button"
+                  className={styles.clientClose}
+                  onClick={() => setOpenClient(null)}
+                  aria-label="Close"
+                >
+                  ✕
+                </button>
 
-              <h3 className={styles.clientName}>{CLIENTS[openClient].name}</h3>
-              <p className={styles.clientDescription}>{CLIENTS[openClient].description[lang]}</p>
-            </motion.div>
+                <div className={styles.clientLogoWrap}>
+                  <Image
+                    src={CLIENTS[openClient].logo}
+                    alt={CLIENTS[openClient].name}
+                    fill
+                    sizes="120px"
+                    className={styles.clientLogoImg}
+                  />
+                </div>
+
+                <h3 className={styles.clientName}>{CLIENTS[openClient].name}</h3>
+                <p className={styles.clientDescription}>{CLIENTS[openClient].description[lang]}</p>
+              </motion.div>
+            </AnimatePresence>
+
+            {clickableCount > 1 && (
+              <button
+                type="button"
+                className={`${styles.clientNav} ${styles.clientNext}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToClient(1);
+                }}
+                aria-label="Next"
+              >
+                ›
+              </button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

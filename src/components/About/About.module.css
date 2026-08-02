@@ -170,8 +170,8 @@
 .logoSlot {
   position: relative;
   flex: 1;
-  min-width: 140px;
-  height: 76px;
+  min-width: 122px;
+  height: 66px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,24 +185,50 @@
      на наведение. Держим очень слабым (0.06), чтобы просто чуть "дышало",
      а не бросалось в глаза. */
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.03);
-  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  transition: transform var(--transition), background var(--transition), border-color var(--transition),
+    box-shadow var(--transition);
 }
 
-.logoSlot:hover:not(:disabled) {
+.logoSlot:hover:not(:disabled),
+.logoSlotActive {
   transform: scale(1.05);
-  border-color: rgba(255, 90, 31, 0.45);
-  box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.14) inset, 0 0 22px rgba(255, 90, 31, 0.28);
+  /* Подсветка не только по краю — лёгкий тёплый оттенок заливает всю
+     плашку изнутри, плюс более широкое внешнее свечение, чтобы светился
+     весь блок целиком, а не только его рамка. У .logoSlotActive та же
+     подсветка держится постоянно, пока открыта карточка этого клиента —
+     так видно, какой именно блок выбран, даже сквозь блюр фона. */
+  background: rgba(255, 90, 31, 0.1);
+  border-color: rgba(255, 90, 31, 0.5);
+  box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.18) inset, 0 0 30px rgba(255, 90, 31, 0.35);
 }
 
 .logoSlot:disabled {
   cursor: default;
 }
 
+/* Логотип красится через CSS-маску, а не через img+filter — так можно
+   залить произвольную картинку (SVG или PNG, любого исходного цвета)
+   ровно нужным цветом. В покое — белый (var(--text)), при наведении и
+   пока карточка клиента открыта — оранжевый (var(--accent)). */
 .logoImg {
-  object-fit: contain;
-  padding: 20px 24px;
-  filter: grayscale(2) brightness(100);
+  width: 68%;
+  height: 60%;
+  background-color: var(--text);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
   opacity: 0.8;
+  pointer-events: none;
+  transition: background-color var(--transition), opacity var(--transition);
+}
+
+.logoSlot:hover:not(:disabled) .logoImg,
+.logoSlotActive .logoImg {
+  background-color: var(--accent);
+  opacity: 1;
 }
 
 .logoPlaceholder {
@@ -232,25 +258,64 @@
 .clientCard {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 560px;
   background: var(--surface);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius);
   box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.6);
-  padding: 40px 36px 36px;
+  padding: 52px 44px 44px;
   text-align: center;
+}
+
+/* Стрелки навигации между клиентами — видны только на ПК (наведение
+   мышью подразумевает hover, которого на телефоне нет); на мобильном эта
+   же навигация — свайпом, кнопки там скрыты через медиа-запрос ниже. */
+.clientNav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 44px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity var(--transition), transform var(--transition);
+  padding: 12px;
+  z-index: 1;
+}
+
+.clientNav:hover {
+  opacity: 1;
+}
+
+.clientPrev {
+  left: 24px;
+}
+
+.clientPrev:hover {
+  transform: translateY(-50%) translateX(-2px);
+}
+
+.clientNext {
+  right: 24px;
+}
+
+.clientNext:hover {
+  transform: translateY(-50%) translateX(2px);
 }
 
 .clientClose {
   position: absolute;
-  top: 16px;
-  right: 18px;
+  top: 18px;
+  right: 20px;
   background: none;
   border: none;
   color: var(--text);
-  font-size: 18px;
+  font-size: 20px;
   cursor: pointer;
-  padding: 6px;
+  padding: 8px;
   opacity: 0.7;
   transition: opacity var(--transition);
 }
@@ -261,26 +326,31 @@
 
 .clientLogoWrap {
   position: relative;
-  width: 100px;
-  height: 56px;
-  margin: 0 auto 24px;
+  width: 130px;
+  height: 72px;
+  /* Больше воздуха между лого и текстом, чем было — было 24px */
+  margin: 0 auto 36px;
 }
 
 .clientLogoImg {
   object-fit: contain;
-  filter: grayscale(1) brightness(100);
+  filter: grayscale(1) brightness(100)
+    /* Мягкая тень под логотипом — визуально "приподнимает" его над
+       карточкой, будто он парит, а не просто лежит плоско на фоне. */
+    drop-shadow(0 10px 18px rgba(0, 0, 0, 0.45));
+  transform: translateY(-6px);
 }
 
 .clientName {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
   color: var(--text);
-  margin: 0 0 16px;
+  margin: 0 0 20px;
 }
 
 .clientDescription {
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: 15px;
+  line-height: 1.7;
   color: var(--muted);
   white-space: pre-line;
   text-align: left;
@@ -289,6 +359,10 @@
 @media (max-width: 768px) {
   .section {
     padding: 20px 0 70px;
+  }
+
+  .clientNav {
+    display: none;
   }
 
   .stats {
@@ -349,6 +423,10 @@
    калибровался под 720px, тут места сильно меньше). Дополнительный тёмный
    градиент под текстом гарантирует читаемость независимо от фона фото. */
 @media (orientation: landscape) and (max-height: 500px) {
+  .clientNav {
+    display: none;
+  }
+
   .photoBand {
     height: clamp(220px, 78vh, 380px);
     min-height: 0;
