@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { getProjectBySlug } from "@/content/projects";
 import { LocalizedText } from "@/types/project";
 import { Lang } from "@/content/lang";
 import styles from "./About.module.css";
@@ -10,7 +12,7 @@ import styles from "./About.module.css";
 interface AboutProps {
   lang: Lang;
   t: {
-    about: { label: string; text: string; clientsLabel: string };
+    about: { label: string; text: string; clientsLabel: string; viewProjects: string };
   };
 }
 
@@ -67,6 +69,14 @@ interface ClientInfo {
   logo: string;
   name: string;
   description: LocalizedText;
+  // Slug'и проектов (см. src/content/projects), которые были сделаны для
+  // этого клиента — по ним в карточке ниже описания рисуются мини-карточки
+  // со ссылкой на страницу проекта. Бери значение из поля slug у нужного
+  // проекта. Если проектов для клиента в списке нет (или ещё не добавлены)
+  // — просто оставь пустой массив [], блок мини-карточек тогда не покажется
+  // вообще, ничего не сломается. Достаточно 2-3 штук, необязательно
+  // перечислять все проекты клиента.
+  projectSlugs: string[];
 }
 
 // По клику на логотип открывается карточка с этим описанием — замени
@@ -87,6 +97,7 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for Energy Wind Moldova here — e.g. logo and brand identity design, presentation design, promotional materials. 4-5 sentences or a list, one item per line.",
       ro: "Descrie aici ce ai făcut pentru Energy Wind Moldova — de ex. design logo și identitate vizuală, design prezentare, materiale promoționale. 4-5 propoziții sau o listă, câte un punct pe linie.",
     },
+    projectSlugs: ["energywind_logo", "energywind_prezentation", "energywind_web_1"],
   },
   {
     logo: "/images/clients/ss.svg",
@@ -96,6 +107,7 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for Sport Spirit here.",
       ro: "Descrie aici ce ai făcut pentru Sport Spirit.",
     },
+    projectSlugs: ["SS_flaer", "sport_spirit_1", "sport_spirit_2"],
   },
   {
     logo: "/images/clients/puma.svg",
@@ -105,6 +117,7 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for PUMA here.",
       ro: "Descrie aici ce ai făcut pentru PUMA.",
     },
+    projectSlugs: ["PUMA_flaer", "puma_holder", "puma_rollup"],
   },
   {
     logo: "/images/clients/telemarket.png",
@@ -114,6 +127,9 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for Telemarket.md here.",
       ro: "Descrie aici ce ai făcut pentru Telemarket.md.",
     },
+    // Не нашёл среди текущих проектов ничего с этим клиентом — впиши сюда
+    // slug'и, если такие проекты у тебя есть в content/projects.
+    projectSlugs: [],
   },
   {
     // Замени "Cheton" на реальное название компании, если название файла
@@ -125,6 +141,9 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for this client here.",
       ro: "Descrie aici ce ai făcut pentru acest client.",
     },
+    // Не нашёл среди текущих проектов ничего с этим клиентом — впиши сюда
+    // slug'и, если такие проекты у тебя есть в content/projects.
+    projectSlugs: [],
   },
   {
     // Замени "Stip" на реальное название компании, если название файла
@@ -136,6 +155,9 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for this client here.",
       ro: "Descrie aici ce ai făcut pentru acest client.",
     },
+    // Не нашёл среди текущих проектов ничего с этим клиентом — впиши сюда
+    // slug'и, если такие проекты у тебя есть в content/projects.
+    projectSlugs: [],
   },
 ];
 
@@ -197,6 +219,14 @@ export default function About({ lang, t }: AboutProps) {
       if (CLIENTS[next].logo) break;
     }
     setOpenClient(next);
+  };
+
+  // Прокрутка ряда проектов внутри открытой карточки стрелками (только
+  // десктоп — на телефоне для этого свайп). Не переключает клиента —
+  // отдельный, вложенный скролл именно списка его проектов.
+  const relatedRowRef = useRef<HTMLDivElement>(null);
+  const scrollRelated = (direction: 1 | -1) => {
+    relatedRowRef.current?.scrollBy({ left: direction * 220, behavior: "smooth" });
   };
 
   return (
@@ -364,6 +394,79 @@ export default function About({ lang, t }: AboutProps) {
 
                 <h3 className={styles.clientName}>{CLIENTS[openClient].name}</h3>
                 <p className={styles.clientDescription}>{CLIENTS[openClient].description[lang]}</p>
+
+                {(() => {
+                  // Резолвим slug'и в реальные данные проекта (обложка,
+                  // заголовок) прямо тут — если какого-то slug'а не
+                  // существует (опечатка/проект удалили), он просто
+                  // пропускается, ничего не падает. Если валидных проектов
+                  // не осталось — блок не рендерится вообще. Ограничения на
+                  // количество нет — если их больше, чем влезает в ширину
+                  // карточки, ряд просто прокручивается вручную (см. CSS),
+                  // без автопрокрутки — она отвлекала бы от текста рядом.
+                  const relatedProjects = CLIENTS[openClient].projectSlugs
+                    .map((slug) => getProjectBySlug(slug))
+                    .filter((p): p is NonNullable<typeof p> => !!p);
+
+                  if (relatedProjects.length === 0) return null;
+
+                  return (
+                    <div className={styles.relatedProjects}>
+                      <span className={styles.relatedProjectsLabel}>{t.about.viewProjects}</span>
+                      <div className={styles.relatedProjectsWrap}>
+                        {relatedProjects.length > 3 && (
+                          <button
+                            type="button"
+                            className={`${styles.relatedNav} ${styles.relatedPrev}`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              scrollRelated(-1);
+                            }}
+                            aria-label="Previous"
+                          >
+                            ‹
+                          </button>
+                        )}
+
+                        <div className={styles.relatedProjectsRow} ref={relatedRowRef}>
+                          {relatedProjects.map((project) => (
+                            <Link
+                              key={project.slug}
+                              href={`/work/${project.slug}`}
+                              className={styles.relatedProjectCard}
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <div className={styles.relatedProjectImageWrap}>
+                                <Image
+                                  src={project.cover}
+                                  alt={project.title[lang]}
+                                  fill
+                                  sizes="180px"
+                                  className={styles.relatedProjectImage}
+                                />
+                              </div>
+                              <span className={styles.relatedProjectTitle}>{project.title[lang]}</span>
+                            </Link>
+                          ))}
+                        </div>
+
+                        {relatedProjects.length > 3 && (
+                          <button
+                            type="button"
+                            className={`${styles.relatedNav} ${styles.relatedNext}`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              scrollRelated(1);
+                            }}
+                            aria-label="Next"
+                          >
+                            ›
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })()}
               </motion.div>
             </AnimatePresence>
 

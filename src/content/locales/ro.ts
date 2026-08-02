@@ -29,6 +29,7 @@ export const ro = {
     // Înlocuiește cu textul tău
     text: "Mă numesc Dmitrii Socur și sunt designer grafic din Moldova. Lucrez cu logo-uri, identitate vizuală, materiale tipărite și digitale — mă ghidez după minimalism și atenție la detalii. Pentru mine contează nu doar o imagine frumoasă, ci un design memorabil, care rezolvă problemele reale ale clienților. Dacă vă regăsiți în această abordare, aș fi încântat să colaborăm!",
     clientsLabel: "Companii cu care am colaborat",
+    viewProjects: "Proiecte pentru această companie",
   },
   contact: {
     label: "Contact",

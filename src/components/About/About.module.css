@@ -196,10 +196,11 @@
      плашку изнутри, плюс более широкое внешнее свечение, чтобы светился
      весь блок целиком, а не только его рамка. У .logoSlotActive та же
      подсветка держится постоянно, пока открыта карточка этого клиента —
-     так видно, какой именно блок выбран, даже сквозь блюр фона. */
-  background: rgba(255, 90, 31, 0.1);
-  border-color: rgba(255, 90, 31, 0.5);
-  box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.18) inset, 0 0 30px rgba(255, 90, 31, 0.35);
+     так видно, какой именно блок выбран, даже сквозь блюр фона.
+     Интенсивность (альфа и радиус) уменьшена вдвое от изначальной версии. */
+  background: rgba(255, 90, 31, 0.05);
+  border-color: rgba(255, 90, 31, 0.25);
+  box-shadow: 0 0 0 1px rgba(255, 90, 31, 0.09) inset, 0 0 15px rgba(255, 90, 31, 0.175);
 }
 
 .logoSlot:disabled {
@@ -356,12 +357,200 @@
   text-align: left;
 }
 
+.relatedProjects {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+}
+
+.relatedProjectsLabel {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.relatedProjectsWrap {
+  position: relative;
+}
+
+.relatedProjectsRow {
+  display: flex;
+  gap: 10px;
+  /* Без ограничения на количество карточек ряд может не влезать в ширину —
+     тогда просто крутится вручную (стрелкой мыши/трекпадом или стрелками
+     .relatedNav на десктопе, свайпом на телефоне). Осознанно без
+     автопрокрутки — в этом маленьком блоке внутри уже открытой карточки
+     самопроизвольное движение скорее отвлекает от текста рядом, чем
+     помогает. */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.relatedProjectsRow::-webkit-scrollbar {
+  display: none;
+}
+
+.relatedProjectCard {
+  flex: 0 0 140px;
+  display: block;
+  text-decoration: none;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg);
+}
+
+.relatedProjectImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+/* Индикатор наведения — ровно та же логика, что и на превью в основной
+   галерее проектов (см. WorkGrid.module.css): мягкое белое свечение
+   изнутри превью + лёгкое приближение фото. Без оранжевой обводки — она
+   тут не к месту, раз в самой галерее её тоже нет. */
+.relatedProjectCard:hover .relatedProjectImageWrap {
+  box-shadow: inset 0 0 22px -6px rgba(255, 255, 255, 0.16);
+}
+
+.relatedProjectImage {
+  object-fit: cover;
+  transition: transform var(--transition);
+}
+
+.relatedProjectCard:hover .relatedProjectImage {
+  /* Лёгкое приближение — та же идея, что и на превью в общей галерее
+     проектов, только чуть скромнее (карточка тут заметно меньше). */
+  transform: scale(1.05);
+}
+
+/* Переливающийся блик по диагонали — точно тот же приём и тайминг, что и
+   на превью проектов в основной сетке (см. WorkGrid.module.css), чтобы
+   ощущалось частью одного и того же визуального языка сайта. */
+.relatedProjectImageWrap::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: -60%;
+  width: 45%;
+  height: 150%;
+  background: linear-gradient(100deg, transparent 25%, rgba(255, 255, 255, 0.14) 50%, transparent 75%);
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+}
+
+.relatedProjectCard:hover .relatedProjectImageWrap::after {
+  animation: relatedProjectShine 1.8s ease-in-out infinite;
+}
+
+@keyframes relatedProjectShine {
+  0% {
+    left: -60%;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    left: 160%;
+    opacity: 0;
+  }
+}
+
+.relatedProjectTitle {
+  display: block;
+  padding: 8px 10px;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color var(--transition);
+}
+
+.relatedProjectCard:hover .relatedProjectTitle {
+  color: var(--text);
+}
+
+/* Стрелки прокрутки внутри списка проектов — отдельные от .clientNav
+   (те переключают клиента целиком), скрыты по умолчанию и на мобильном:
+   там для этого свайп. Показываются только на десктопе, см. медиа-запрос
+   ниже, и только когда проектов больше 3 (см. условие в About.tsx). */
+.relatedNav {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(14, 14, 14, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  width: 28px;
+  height: 28px;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity var(--transition), border-color var(--transition);
+  z-index: 2;
+}
+
+.relatedNav:hover {
+  opacity: 1;
+  border-color: rgba(255, 90, 31, 0.5);
+}
+
+.relatedPrev {
+  left: -14px;
+}
+
+.relatedNext {
+  right: -14px;
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 20px 0 70px;
   }
 
   .clientNav {
+    display: none;
+  }
+
+  .clientCard {
+    padding: 40px 24px 28px;
+  }
+
+  /* На мобильном список проектов теперь листается свайпом вверх/вниз
+     (вертикальный список), а не вбок — карточки на всю ширину. */
+  .relatedProjectsRow {
+    flex-direction: column;
+    overflow-x: visible;
+    overflow-y: auto;
+    max-height: 300px;
+    touch-action: pan-y;
+  }
+
+  .relatedProjectCard {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .relatedNav {
     display: none;
   }
 
@@ -413,6 +602,42 @@
   }
 }
 
+/* Десктопная версия окна — карточка клиента и блок с проектами примерно
+   на 27% крупнее, чем базовые (мобильные) размеры выше. Масштабируются
+   только размеры/отступы самого окна и превью — размер шрифта нигде тут
+   не трогается, он остаётся тем же, что и на мобильном. */
+@media (min-width: 769px) {
+  .clientCard {
+    max-width: 710px;
+    padding: 66px 56px 56px;
+  }
+
+  .clientLogoWrap {
+    width: 165px;
+    height: 91px;
+    margin-bottom: 46px;
+  }
+
+  .relatedProjects {
+    margin-top: 36px;
+    padding-top: 30px;
+  }
+
+  .relatedProjectsRow {
+    gap: 13px;
+  }
+
+  .relatedProjectCard {
+    flex: 0 0 178px;
+  }
+
+  .relatedNav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 /* Телефон, повёрнутый горизонтально — определяем по низкой высоте экрана,
    а не по ширине (ширина в landscape у телефона обычно больше 768px).
    Полоса тут низкая и широкая — гораздо ближе по пропорциям к десктопной
@@ -425,6 +650,31 @@
 @media (orientation: landscape) and (max-height: 500px) {
   .clientNav {
     display: none;
+  }
+
+  /* Экран короткий по высоте — увеличенный десктопный размер карточки
+     (см. @media min-width:769px выше) тут не подойдёт, может не влезть по
+     высоте. Держим компактный размер, тот же принцип, что на портретной
+     мобильной версии: свайп вместо стрелок, список проектов вертикальный. */
+  .clientCard {
+    max-width: 480px;
+    padding: 28px 28px 24px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .clientLogoWrap {
+    width: 100px;
+    height: 56px;
+    margin-bottom: 20px;
+  }
+
+  .relatedNav {
+    display: none;
+  }
+
+  .relatedProjectCard {
+    flex: 0 0 110px;
   }
 
   .photoBand {
