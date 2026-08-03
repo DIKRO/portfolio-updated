@@ -91,6 +91,7 @@ export const projects: Project[] = [
   {
     id: "4",
     slug: "persistentmma_steclo",
+    client: "mma",
     title: { ru: "Оракал на стекло для додзё Persistent MMA в городе Кишинёв", en: "Oracle on glass for Persistent MMA dojo in Chișinău", ro: "Oracle pe sticlă pentru dojosul Persistent MMA în Chișinău" },
     categoryKey: "packaging",
     year: 2026,
@@ -141,6 +142,7 @@ export const projects: Project[] = [
   {
     id: "7",
     slug: "catedra_matinf_logo",
+    client: "usarb",
     title: { ru: "Логотип для кафедры математики и информатики факультета ȘREM, USARB", en: "Logo for the Department of Mathematics and Computer Science, ȘREM Faculty, USARB", ro: "Logotip pentru catedra de matematică și informatică a facultății ȘREM, USARB" },
     categoryKey: "branding",
     year: 2026,
@@ -199,6 +201,7 @@ export const projects: Project[] = [
   {
     id: "10",
     slug: "kreola_catalog",
+    client: "kreola",
     title: { ru: "Каталог - флаер для продукции (шоколадные плитки) Kreola",
               en: "Kreola Chocolate Bars Product Catalog Flyer",
               ro: "Pliant cu catalogul de produse pentru batoane de ciocolată Kreola" },
@@ -245,6 +248,7 @@ export const projects: Project[] = [
   {
     id: "12",
     slug: "HDL_logo",
+    client: "HDL",
     title: { ru: "Логотип для киберспортивной команды HDL (Hope Dies Last)",
             en: "Logo for the HDL (Hope Dies Last) esports team",
             ro: "Logo pentru echipa de e-sport HDL (Hope Dies Last)" },
@@ -571,6 +575,7 @@ export const projects: Project[] = [
    {
     id: "30",
     slug: "kreola_logo",
+    client: "kreola",
     title: { ru: "Логотип для шоколадной фрабрики Kreola в Румынии",
             en: "Logo for the Kreola Chocolate Factory in Romania",
             ro: "Logo pentru fabrica de ciocolată Kreola din România" },
@@ -611,6 +616,7 @@ export const projects: Project[] = [
   {
     id: "32",
     slug: "kreola_chocolate_packaging",
+    client: "kreola",
     title: { ru: "Дизайн упаковок шоколадных плиток Kreola",
               en: "Packaging Design for Kreola Chocolate Bars",
               ro: "Designul ambalajelor tabletelor de ciocolată Kreola" },
@@ -630,6 +636,7 @@ export const projects: Project[] = [
   {
     id: "33",
     slug: "corporatia_finantare",
+    client: "finantare",
     title: { ru: "Рекламные креативы для программы финансирования ODA, Corporatia de Finantare",
               en: "Advertising creative for ODA financing program, Corporatia de Finantare",
               ro: "Creativ publicitar pentru programul de finanțare ODA, Corporatia de Finantare" },
