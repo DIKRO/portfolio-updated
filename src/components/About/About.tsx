@@ -208,11 +208,20 @@ function RelatedProjectsDesktopCarousel({ items, lang }: { items: Project[]; lan
         ‹
       </button>
 
-      <div className={styles.relatedProjectsRow}>
-        {visible.map((project, i) => (
-          <RelatedProjectCard key={`${project.slug}-${i}`} project={project} lang={lang} />
-        ))}
-      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={start}
+          className={styles.relatedProjectsRow}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+        >
+          {visible.map((project, i) => (
+            <RelatedProjectCard key={`${project.slug}-${i}`} project={project} lang={lang} />
+          ))}
+        </motion.div>
+      </AnimatePresence>
 
       <button
         type="button"
