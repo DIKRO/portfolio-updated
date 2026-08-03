@@ -32,6 +32,7 @@ export const projects: Project[] = [
   {
     id: "2",
     slug: "energywind_prezentation",
+    client: "energy",
     title: { ru: "Презентация компании System Global Group в области ветроэнергетики (Energy Wind Moldova)",
             en: "System Global Group's Presentation on Wind Energy (Energy Wind Moldova)",
             ro: "Prezentarea companiei System Global Group în domeniul energiei eoliene (Energy Wind Moldova)" },
@@ -70,6 +71,7 @@ export const projects: Project[] = [
   {
     id: "3",
     slug: "PUMA_flaer",
+    client: "puma",
     title: { ru: "Подарочный флаер - ваучер, PUMA Moldova",
               en: "Gift flyer - voucher, PUMA Moldova",
               ro: "Flyer cadou – voucher, PUMA Moldova" },
@@ -105,6 +107,7 @@ export const projects: Project[] = [
   {
     id: "5",
     slug: "sport_spirit_1",
+    client: "ss",
     title: { ru: "Рекламный креатив для коллекции одежды Converse, Sport Spirit", en: "Advertising creative for Converse Sport Spirit collection", ro: "Creativ publicitar pentru colecția Converse Sport Spirit" },
     categoryKey: "web",
     year: 2025,
@@ -121,6 +124,7 @@ export const projects: Project[] = [
   {
     id: "6",
     slug: "sport_spirit_2",
+    client: "ss",
     title: { ru: "Рекламный креатив для сезонной акции Black Friday, PUMA Moldova", en: "Advertising creative for the Black Friday seasonal promotion, PUMA Moldova", ro: "Concept publicitar pentru campania sezonieră de Black Friday, PUMA Moldova" },
     categoryKey: "web",
     year: 2025,
@@ -160,6 +164,7 @@ export const projects: Project[] = [
   {
     id: "8",
     slug: "sport_spirit_3",
+    client: "ss",
     title: { ru: "Рекламный креатив для коллекции одежды Nike, Sport Spirit", en: "Advertising campaign for the Nike “Sport Spirit” clothing collection", ro: "Conceptul publicitar pentru colecția de îmbrăcăminte Nike, „Sport Spirit”" },
     categoryKey: "web",
     year: 2025,
@@ -176,6 +181,7 @@ export const projects: Project[] = [
   {
     id: "9",
     slug: "puma_holder",
+    client: "puma",
     title: { ru: "Рекламный креатив для продукции Puma в формате печатного постера (лист А4)",
               en: "Advertising creative for Puma products in the form of a print poster (A4 sheet)",
               ro: "Concept publicitar pentru produsele Puma sub forma unui poster tipărit (foaie A4)" },
@@ -212,6 +218,7 @@ export const projects: Project[] = [
   {
     id: "11",
     slug: "energywind_logo",
+    client: "energy",
     title: { ru: "Логотип для компании в области ветроэнергетики System Global Group (Energy Wind Moldova)",
             en: "Logo for System Global Group (Energy Wind Moldova), a company in the wind energy sector",
             ro: "Logo pentru compania din domeniul energiei eoliene System Global Group (Energy Wind Moldova)" },
@@ -276,6 +283,7 @@ export const projects: Project[] = [
   {
     id: "15",
     slug: "sport_spirit_4",
+    client: "ss",
     title: { ru: "Рекламный креатив для акции -30% extra sale Black Friday, Sport Spirit",
               en: "Advertising creative for the “-30% Extra Black Friday Sale” promotion, Sport Spirit",
               ro: "Conceptul publicitar pentru promoția „-30% extra sale Black Friday”, Sport Spirit"},
@@ -294,6 +302,7 @@ export const projects: Project[] = [
   {
     id: "16",
     slug: "sport_spirit_5",
+    client: "ss",
     title: { ru: "Рекламный креатив для продукции Crep Protect, Sport Spirit",
               en: "Advertising concepts for Crep Protect and Sport Spirit products",
               ro: "Concepte publicitare pentru produsele Crep Protect și Sport Spirit"},
@@ -312,6 +321,7 @@ export const projects: Project[] = [
    {
     id: "17",
     slug: "sport_spirit_6",
+    client: "ss",
     title: { ru: "Рекламный креатив для акции -70% Mega Sale, Sport Spirit",
               en: "Advertising creative for the “-70% Mega Sale” promotion, Sport Spirit",
               ro: "Conceptul publicitar pentru promoția „-70% Mega Sale”, Sport Spirit"},
@@ -329,6 +339,7 @@ export const projects: Project[] = [
   {
     id: "18",
     slug: "sport_spirit_7",
+    client: "ss",
     title: { ru: "Рекламный креатив для зимней коллекции одежды Adidas, Sport Spirit",
               en: "Advertising campaign for the Adidas winter clothing collection, “Sport Spirit”",
               ro: "Conceptul publicitar pentru colecția de iarnă de îmbrăcăminte Adidas, Sport Spirit"},
@@ -347,6 +358,7 @@ export const projects: Project[] = [
   {
     id: "19",
     slug: "sport_spirit_8",
+    client: "ss",
     title: { ru: "Рекламный креатив для коллекции лёгкой одежды Adidas, Sport Spirit",
               en: "Advertising campaign for the Adidas light clothing collection, “Sport Spirit”",
               ro: "Conceptul publicitar pentru colecția de îmbrăcăminte ușoară Adidas, Sport Spirit"},
@@ -365,6 +377,7 @@ export const projects: Project[] = [
   {
     id: "20",
     slug: "sport_spirit_9",
+    client: "ss",
     title: { ru: "Рекламный креатив для коллекции одежды Adidas, Sport Spirit",
               en: "Advertising campaign for the Adidas “Sport Spirit” clothing collection",
               ro: "Conceptul publicitar pentru colecția de îmbrăcăminte Adidas, Sport Spirit"},
@@ -383,6 +396,7 @@ export const projects: Project[] = [
   {
     id: "21",
     slug: "sport_spirit_10",
+    client: "ss",
     title: { ru: "Рекламный креатив для коллекции школьной атрибутики Back to School: рюкзаки от Sport Spirit",
               en: "Advertising campaign for the “Back to School” collection of school supplies: backpacks from Sport Spirit",
               ro: "Conceptul publicitar pentru colecția de articole școlare „Back to School”: rucsacuri de la Sport Spirit"},
@@ -401,6 +415,7 @@ export const projects: Project[] = [
   {
     id: "22",
     slug: "sport_spirit_11",
+    client: "ss",
     title: { ru: "Рекламный креатив для коллекции обуви Adidas, Sport Spirit",
               en: "Advertising campaign for the new collection of shoes from Sport Spirit",
               ro: "Conceptul publicitar pentru noua colecție de încălțăminte de la Sport Spirit"},
@@ -419,6 +434,7 @@ export const projects: Project[] = [
   {
     id: "23",
     slug: "sport_spirit_12",
+    client: "ss",
     title: { ru: "Рекламный креатив для коллекции спортивной обуви Adidas, Sport Spirit",
               en: "Advertising campaign for the new collection of athletic shoes from Sport Spirit",
               ro: "Conceptul publicitar pentru noua colecție de încălțăminte sportivă de la Sport Spirit"},
@@ -437,6 +453,7 @@ export const projects: Project[] = [
   {
     id: "24",
     slug: "sport_spirit_13",
+    client: "ss",
     title: { ru: "Рекламный креатив для новой коллекции Nike, Jordan и Yankees, Sport Spirit",
               en: "Advertising campaign for the new Nike, Jordan, and Yankees collection, Sport Spirit",
               ro: "Conceptul publicitar pentru noua colecție Nike, Jordan și Yankees, Sport Spirit"},
@@ -455,6 +472,7 @@ export const projects: Project[] = [
    {
     id: "25",
     slug: "sport_spirit_14",
+    client: "ss",
     title: { ru: "Рекламный креатив для новой коллекции легкой одежды Nike, Sport Spirit",
               en: "Advertising campaign for Nike's new lightweight clothing collection, Sport Spirit",
               ro: "Conceptul publicitar pentru noua colecție de îmbrăcăminte ușoară Nike, Sport Spirit"},
@@ -473,6 +491,7 @@ export const projects: Project[] = [
   {
     id: "26",
     slug: "sport_spirit_15",
+    client: "ss",
     title: { ru: "Рекламный креатив для сезонной акции Midseason Sale, PUMA Moldova",
               en: "Advertising creative for the Midseason Sale, PUMA Moldova",
               ro: "Conceptul publicitar pentru campania sezonieră „Midseason Sale”, PUMA Moldova"},
@@ -492,6 +511,7 @@ export const projects: Project[] = [
   {
     id: "27",
     slug: "sport_spirit_16",
+    client: "ss",
     title: { ru: "Рекламный креатив для сезонной акции Winter Sale, Sport Spirit",
               en: "Advertising creative for the Winter Sale, Sport Spirit",
               ro: "Conceptul publicitar pentru campania sezonieră Winter Sale, Sport Spirit"},
@@ -512,6 +532,7 @@ export const projects: Project[] = [
   {
     id: "28",
     slug: "SS_flaer",
+    client: "ss",
     title: { ru: "Подарочный флаер - ваучер, Sport Spirit",
               en: "Gift flyer - voucher, Sport Spirit",
               ro: "Flyer cadou – voucher, Sport Spirit" },
@@ -530,6 +551,7 @@ export const projects: Project[] = [
   {
     id: "29",
     slug: "puma_rollup",
+    client: "puma",
     title: { ru: "Роллап для сообщества Puma Moldova в Strava",
               en: "Rollup for the Puma Moldova Community on Strava",
               ro: "Roll-up pentru comunitatea Puma Moldova de pe Strava"},
@@ -627,6 +649,7 @@ export const projects: Project[] = [
   {
     id: "34",
     slug: "energywind_web_1",
+    client: "energy",
     title: { ru: "Рекламные креативы для производителей ветроэнергетического оборудования, Energy Wind Moldova",
               en: "Advertising creatives for wind energy equipment manufacturers, Energy Wind Moldova",
               ro: "Materiale publicitare pentru producătorii de echipamente eoliene, Energy Wind Moldova" },
@@ -650,6 +673,7 @@ export const projects: Project[] = [
   {
     id: "35",
     slug: "energywind_web_2",
+    client: "energy",
     title: { ru: "Рекламные креативы для систем хранения энергии BESS, Energy Wind Moldova",
               en: "Advertising creatives for BESS energy storage systems, Energy Wind Moldova",
               ro: "Materiale publicitare pentru sistemele de stocare a energiei BESS, Energy Wind Moldova" },

@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { getProjectBySlug } from "@/content/projects";
-import { LocalizedText } from "@/types/project";
+import { projects } from "@/content/projects";
+import { LocalizedText, Project } from "@/types/project";
 import { Lang } from "@/content/lang";
 import styles from "./About.module.css";
 
@@ -69,14 +69,12 @@ interface ClientInfo {
   logo: string;
   name: string;
   description: LocalizedText;
-  // Slug'и проектов (см. src/content/projects), которые были сделаны для
-  // этого клиента — по ним в карточке ниже описания рисуются мини-карточки
-  // со ссылкой на страницу проекта. Бери значение из поля slug у нужного
-  // проекта. Если проектов для клиента в списке нет (или ещё не добавлены)
-  // — просто оставь пустой массив [], блок мини-карточек тогда не покажется
-  // вообще, ничего не сломается. Достаточно 2-3 штук, необязательно
-  // перечислять все проекты клиента.
-  projectSlugs: string[];
+  // Ключ клиента — должен совпадать с полем client у нужных проектов в
+  // src/content/projects (см. комментарий там же). Все проекты с таким
+  // же client подтягиваются в карточку автоматически — ничего вручную
+  // перечислять не нужно, просто отметь клиента у проекта в его же
+  // объекте, и он сам появится тут при следующей сборке сайта.
+  key: string;
 }
 
 // По клику на логотип открывается карточка с этим описанием — замени
@@ -97,7 +95,7 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for Energy Wind Moldova here — e.g. logo and brand identity design, presentation design, promotional materials. 4-5 sentences or a list, one item per line.",
       ro: "Descrie aici ce ai făcut pentru Energy Wind Moldova — de ex. design logo și identitate vizuală, design prezentare, materiale promoționale. 4-5 propoziții sau o listă, câte un punct pe linie.",
     },
-    projectSlugs: ["energywind_logo", "energywind_prezentation", "energywind_web_1"],
+    key: "energy",
   },
   {
     logo: "/images/clients/ss.svg",
@@ -107,7 +105,9 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for Sport Spirit here.",
       ro: "Descrie aici ce ai făcut pentru Sport Spirit.",
     },
-    projectSlugs: ["SS_flaer", "sport_spirit_1", "sport_spirit_2"],
+    // Ключ "ss" — все проекты с client: "ss" в src/content/projects
+    // (сейчас это SS_flaer и sport_spirit_1..16) подтянутся сюда сами.
+    key: "ss",
   },
   {
     logo: "/images/clients/puma.svg",
@@ -117,7 +117,7 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for PUMA here.",
       ro: "Descrie aici ce ai făcut pentru PUMA.",
     },
-    projectSlugs: ["PUMA_flaer", "puma_holder", "puma_rollup"],
+    key: "puma",
   },
   {
     logo: "/images/clients/telemarket.png",
@@ -127,9 +127,10 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for Telemarket.md here.",
       ro: "Descrie aici ce ai făcut pentru Telemarket.md.",
     },
-    // Не нашёл среди текущих проектов ничего с этим клиентом — впиши сюда
-    // slug'и, если такие проекты у тебя есть в content/projects.
-    projectSlugs: [],
+    // Пока ни один проект не отмечен client: "telemarket" — как только
+    // проставишь этот ключ нужным проектам в content/projects, они сами
+    // появятся тут.
+    key: "telemarket",
   },
   {
     // Замени "Cheton" на реальное название компании, если название файла
@@ -141,9 +142,10 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for this client here.",
       ro: "Descrie aici ce ai făcut pentru acest client.",
     },
-    // Не нашёл среди текущих проектов ничего с этим клиентом — впиши сюда
-    // slug'и, если такие проекты у тебя есть в content/projects.
-    projectSlugs: [],
+    // Пока ни один проект не отмечен client: "cheton" — как только
+    // проставишь этот ключ нужным проектам в content/projects, они сами
+    // появятся тут.
+    key: "cheton",
   },
   {
     // Замени "Stip" на реальное название компании, если название файла
@@ -155,11 +157,77 @@ const CLIENTS: ClientInfo[] = [
       en: "Describe what you did for this client here.",
       ro: "Descrie aici ce ai făcut pentru acest client.",
     },
-    // Не нашёл среди текущих проектов ничего с этим клиентом — впиши сюда
-    // slug'и, если такие проекты у тебя есть в content/projects.
-    projectSlugs: [],
+    // Пока ни один проект не отмечен client: "stip" — как только
+    // проставишь этот ключ нужным проектам в content/projects, они сами
+    // появятся тут.
+    key: "stip",
   },
 ];
+
+// Одна карточка проекта внутри карточки клиента — используется и в
+// десктопной карусели ниже, и в обычном мобильном списке.
+function RelatedProjectCard({ project, lang }: { project: Project; lang: Lang }) {
+  return (
+    <Link
+      href={`/work/${project.slug}`}
+      className={styles.relatedProjectCard}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className={styles.relatedProjectImageWrap}>
+        <Image src={project.cover} alt={project.title[lang]} fill sizes="180px" className={styles.relatedProjectImage} />
+      </div>
+      <span className={styles.relatedProjectTitle}>{project.title[lang]}</span>
+    </Link>
+  );
+}
+
+// Десктопная карусель (только когда проектов больше 3) — вместо скролла
+// контейнера показывает "окно" из 3 проектов и сдвигает его индексом по
+// модулю длины массива. Из-за этого зацикливание получается по-настоящему
+// бесшовным: после последнего сразу первый, без видимой границы и без
+// "отскока" через весь список назад, как было при скролле контейнера.
+// Свой independent state — компонент целиком размонтируется/монтируется
+// заново при смене клиента (он вложен в <motion.div key={openClient}>
+// снаружи), поэтому окно всегда начинается с первых трёх проектов при
+// открытии новой карточки, без утечки состояния между клиентами.
+function RelatedProjectsDesktopCarousel({ items, lang }: { items: Project[]; lang: Lang }) {
+  const [start, setStart] = useState(0);
+  const visible = [0, 1, 2].map((i) => items[(start + i) % items.length]);
+
+  return (
+    <div className={styles.relatedProjectsWrap}>
+      <button
+        type="button"
+        className={`${styles.relatedNav} ${styles.relatedPrev}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          setStart((s) => (s - 1 + items.length) % items.length);
+        }}
+        aria-label="Previous"
+      >
+        ‹
+      </button>
+
+      <div className={styles.relatedProjectsRow}>
+        {visible.map((project, i) => (
+          <RelatedProjectCard key={`${project.slug}-${i}`} project={project} lang={lang} />
+        ))}
+      </div>
+
+      <button
+        type="button"
+        className={`${styles.relatedNav} ${styles.relatedNext}`}
+        onClick={(e) => {
+          e.stopPropagation();
+          setStart((s) => (s + 1) % items.length);
+        }}
+        aria-label="Next"
+      >
+        ›
+      </button>
+    </div>
+  );
+}
 
 export default function About({ lang, t }: AboutProps) {
   // Индекс открытой карточки клиента (null — ничего не открыто). По клику
@@ -219,14 +287,6 @@ export default function About({ lang, t }: AboutProps) {
       if (CLIENTS[next].logo) break;
     }
     setOpenClient(next);
-  };
-
-  // Прокрутка ряда проектов внутри открытой карточки стрелками (только
-  // десктоп — на телефоне для этого свайп). Не переключает клиента —
-  // отдельный, вложенный скролл именно списка его проектов.
-  const relatedRowRef = useRef<HTMLDivElement>(null);
-  const scrollRelated = (direction: 1 | -1) => {
-    relatedRowRef.current?.scrollBy({ left: direction * 220, behavior: "smooth" });
   };
 
   return (
@@ -396,73 +456,56 @@ export default function About({ lang, t }: AboutProps) {
                 <p className={styles.clientDescription}>{CLIENTS[openClient].description[lang]}</p>
 
                 {(() => {
-                  // Резолвим slug'и в реальные данные проекта (обложка,
-                  // заголовок) прямо тут — если какого-то slug'а не
-                  // существует (опечатка/проект удалили), он просто
-                  // пропускается, ничего не падает. Если валидных проектов
-                  // не осталось — блок не рендерится вообще. Ограничения на
-                  // количество нет — если их больше, чем влезает в ширину
-                  // карточки, ряд просто прокручивается вручную (см. CSS),
-                  // без автопрокрутки — она отвлекала бы от текста рядом.
-                  const relatedProjects = CLIENTS[openClient].projectSlugs
-                    .map((slug) => getProjectBySlug(slug))
-                    .filter((p): p is NonNullable<typeof p> => !!p);
+                  // Все проекты, у которых client совпадает с ключом этого
+                  // клиента (см. поле client в src/content/projects) —
+                  // подтягиваются автоматически, ничего не нужно вручную
+                  // перечислять. Порядок — тот же, что в самом списке
+                  // проектов. Если для клиента ни один проект не отмечен —
+                  // блок просто не рендерится.
+                  const relatedProjects = projects.filter((p) => p.client === CLIENTS[openClient].key);
 
                   if (relatedProjects.length === 0) return null;
 
+                  // 3 или меньше — влезает целиком, показываем как есть,
+                  // без стрелок и какой-либо карусели вообще (никогда не
+                  // потребуется скроллить/листать).
+                  if (relatedProjects.length <= 3) {
+                    return (
+                      <div className={styles.relatedProjects}>
+                        <span className={styles.relatedProjectsLabel}>{t.about.viewProjects}</span>
+                        <div className={styles.relatedProjectsRow}>
+                          {relatedProjects.map((project) => (
+                            <RelatedProjectCard key={project.slug} project={project} lang={lang} />
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  // Больше 3 — на десктопе показываем настоящую бесконечную
+                  // карусель (индекс по модулю, без видимой границы при
+                  // зацикливании — см. RelatedProjectsDesktopCarousel). На
+                  // телефоне вместо нее — обычный полный список со свайпом
+                  // вверх/вниз (там зацикливание не нужно, там просто
+                  // дочитываешь список до конца). Оба варианта в разметке
+                  // одновременно, переключаются чисто через CSS
+                  // (display:none/flex по медиа-запросу) — без определения
+                  // ширины экрана в JS, это исключает любое несовпадение
+                  // между сервером и браузером при первой отрисовке.
                   return (
                     <div className={styles.relatedProjects}>
                       <span className={styles.relatedProjectsLabel}>{t.about.viewProjects}</span>
-                      <div className={styles.relatedProjectsWrap}>
-                        {relatedProjects.length > 3 && (
-                          <button
-                            type="button"
-                            className={`${styles.relatedNav} ${styles.relatedPrev}`}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              scrollRelated(-1);
-                            }}
-                            aria-label="Previous"
-                          >
-                            ‹
-                          </button>
-                        )}
 
-                        <div className={styles.relatedProjectsRow} ref={relatedRowRef}>
+                      <div className={styles.relatedProjectsDesktopOnly}>
+                        <RelatedProjectsDesktopCarousel items={relatedProjects} lang={lang} />
+                      </div>
+
+                      <div className={styles.relatedProjectsMobileOnly}>
+                        <div className={styles.relatedProjectsRow}>
                           {relatedProjects.map((project) => (
-                            <Link
-                              key={project.slug}
-                              href={`/work/${project.slug}`}
-                              className={styles.relatedProjectCard}
-                              onClick={(e) => e.stopPropagation()}
-                            >
-                              <div className={styles.relatedProjectImageWrap}>
-                                <Image
-                                  src={project.cover}
-                                  alt={project.title[lang]}
-                                  fill
-                                  sizes="180px"
-                                  className={styles.relatedProjectImage}
-                                />
-                              </div>
-                              <span className={styles.relatedProjectTitle}>{project.title[lang]}</span>
-                            </Link>
+                            <RelatedProjectCard key={project.slug} project={project} lang={lang} />
                           ))}
                         </div>
-
-                        {relatedProjects.length > 3 && (
-                          <button
-                            type="button"
-                            className={`${styles.relatedNav} ${styles.relatedNext}`}
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              scrollRelated(1);
-                            }}
-                            aria-label="Next"
-                          >
-                            ›
-                          </button>
-                        )}
                       </div>
                     </div>
                   );
