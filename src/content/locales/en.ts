@@ -6,7 +6,8 @@ export const en = {
   },
   hero: {
     title: "Graphic Designer",
-    subtitle: "Brand identity / Visual design / Art direction",
+    subtitle:
+      "I help brands stand out with logos, identity systems and digital design that don't just look good — they work for the business.",
     badge: "Open for new projects",
     cta: "Start a project",
     ctaSecondary: "See the work",
@@ -40,7 +41,6 @@ export const en = {
       email: "Email",
       message: "Tell me about your project",
       submit: "Send",
-      note: "I'll reply within 1-2 days",
       close: "Collapse the form",
       sending: "Sending…",
       success: "Thanks! Your message is on its way, I'll reply soon.",

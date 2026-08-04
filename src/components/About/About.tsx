@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/content/projects";
@@ -190,9 +190,64 @@ function RelatedProjectCard({ project, lang }: { project: Project; lang: Lang })
 // заново при смене клиента (он вложен в <motion.div key={openClient}>
 // снаружи), поэтому окно всегда начинается с первых трёх проектов при
 // открытии новой карточки, без утечки состояния между клиентами.
+//
+// Дорожка с карточками ни разу не размонтируется между кликами по стрелкам —
+// раньше окно целиком пересоздавалось (AnimatePresence + key={start}), из-за
+// чего между исчезновением старого и появлением нового набора была
+// небольшая пауза с пустым местом. Теперь один и тот же track всегда виден:
+// на время шага в него временно добавляется 4-я карточка с той стороны,
+// куда едем, затем весь track анимированно сдвигается на её ширину, и по
+// завершении лишняя карточка убирается, а x мгновенно (без анимации)
+// возвращается к 0 — с тем же самым набором из 3 карточек на экране, без
+// видимого скачка.
 function RelatedProjectsDesktopCarousel({ items, lang }: { items: Project[]; lang: Lang }) {
   const [start, setStart] = useState(0);
-  const visible = [0, 1, 2].map((i) => items[(start + i) % items.length]);
+  // Пока не null — идёт шаг карусели: extra.dir — куда едем, extra.offsets —
+  // какие 4 карточки (по смещению от start) сейчас в DOM.
+  const [extra, setExtra] = useState<{ dir: 1 | -1; offsets: number[] } | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const controls = useAnimationControls();
+  const busyRef = useRef(false);
+
+  const offsets = extra ? extra.offsets : [0, 1, 2];
+  const visible = offsets.map((o) => items[(start + o + items.length) % items.length]);
+
+  const measureStep = () => {
+    const track = trackRef.current;
+    if (!track || track.children.length < 2) return 0;
+    const a = track.children[0] as HTMLElement;
+    const b = track.children[1] as HTMLElement;
+    return b.offsetLeft - a.offsetLeft;
+  };
+
+  const paginate = async (dir: 1 | -1) => {
+    if (busyRef.current) return;
+    busyRef.current = true;
+
+    setExtra({ dir, offsets: dir === 1 ? [0, 1, 2, 3] : [-1, 0, 1, 2] });
+    // Ждём кадр, чтобы 4-я карточка успела попасть в DOM перед замером и
+    // стартом анимации.
+    await new Promise((r) => requestAnimationFrame(r));
+    const step = measureStep();
+
+    if (dir === -1) {
+      // Новая карточка добавлена слева — сначала мгновенно (без анимации)
+      // прячем её за левый край, чтобы на экране ничего не изменилось,
+      // а затем едем вправо на шаг, раскрывая её.
+      controls.set({ x: -step });
+      await new Promise((r) => requestAnimationFrame(r));
+    }
+
+    await controls.start({
+      x: dir === 1 ? -step : 0,
+      transition: { duration: 0.32, ease: [0.22, 1, 0.36, 1] },
+    });
+
+    setStart((s) => (s + dir + items.length) % items.length);
+    setExtra(null);
+    controls.set({ x: 0 });
+    busyRef.current = false;
+  };
 
   return (
     <div className={styles.relatedProjectsWrap}>
@@ -201,34 +256,32 @@ function RelatedProjectsDesktopCarousel({ items, lang }: { items: Project[]; lan
         className={`${styles.relatedNav} ${styles.relatedPrev}`}
         onClick={(e) => {
           e.stopPropagation();
-          setStart((s) => (s - 1 + items.length) % items.length);
+          paginate(-1);
         }}
         aria-label="Previous"
       >
         ‹
       </button>
 
-      <AnimatePresence mode="wait">
+      <div className={styles.relatedProjectsViewport}>
         <motion.div
-          key={start}
+          ref={trackRef}
+          animate={controls}
+          initial={false}
           className={styles.relatedProjectsRow}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.25, ease: "easeOut" }}
         >
           {visible.map((project, i) => (
-            <RelatedProjectCard key={`${project.slug}-${i}`} project={project} lang={lang} />
+            <RelatedProjectCard key={`${project.slug}-${offsets[i]}`} project={project} lang={lang} />
           ))}
         </motion.div>
-      </AnimatePresence>
+      </div>
 
       <button
         type="button"
         className={`${styles.relatedNav} ${styles.relatedNext}`}
         onClick={(e) => {
           e.stopPropagation();
-          setStart((s) => (s + 1) % items.length);
+          paginate(1);
         }}
         aria-label="Next"
       >
@@ -242,6 +295,24 @@ export default function About({ lang, t }: AboutProps) {
   // Индекс открытой карточки клиента (null — ничего не открыто). По клику
   // на логотип показывается модалка с описанием на текущем языке сайта.
   const [openClient, setOpenClient] = useState<number | null>(null);
+
+  // Сколько клиентов реально кликабельны (с логотипом) — стрелки навигации
+  // показываем, только если есть, между чем переключаться.
+  const clickableCount = CLIENTS.filter((c) => c.logo).length;
+
+  // Переход к следующему/предыдущему клиенту внутри открытой карточки
+  // (свайпом на телефоне, стрелками или клавишами ← → на десктопе).
+  // Пропускает пустые заготовки без логотипа — у них нечего показывать,
+  // открывать их нельзя.
+  const goToClient = (direction: 1 | -1) => {
+    if (openClient === null) return;
+    let next = openClient;
+    for (let i = 0; i < CLIENTS.length; i++) {
+      next = (next + direction + CLIENTS.length) % CLIENTS.length;
+      if (CLIENTS[next].logo) break;
+    }
+    setOpenClient(next);
+  };
 
   // Блокировка скролла страницы, пока открыта карточка — тот же приём,
   // что и в лайтбоксе фото (см. Lightbox.tsx): фиксируем body на текущей
@@ -278,25 +349,8 @@ export default function About({ lang, t }: AboutProps) {
       window.scrollTo(0, scrollY);
       html.style.scrollBehavior = prevScrollBehavior;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openClient]);
-
-  // Сколько клиентов реально кликабельны (с логотипом) — стрелки навигации
-  // показываем, только если есть, между чем переключаться.
-  const clickableCount = CLIENTS.filter((c) => c.logo).length;
-
-  // Переход к следующему/предыдущему клиенту внутри открытой карточки
-  // (свайпом на телефоне, стрелками или клавишами ← → на десктопе).
-  // Пропускает пустые заготовки без логотипа — у них нечего показывать,
-  // открывать их нельзя.
-  const goToClient = (direction: 1 | -1) => {
-    if (openClient === null) return;
-    let next = openClient;
-    for (let i = 0; i < CLIENTS.length; i++) {
-      next = (next + direction + CLIENTS.length) % CLIENTS.length;
-      if (CLIENTS[next].logo) break;
-    }
-    setOpenClient(next);
-  };
 
   return (
     <section id="about" className={styles.section}>

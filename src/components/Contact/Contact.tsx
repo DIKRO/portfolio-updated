@@ -23,7 +23,6 @@ interface ContactProps {
         email: string;
         message: string;
         submit: string;
-        note: string;
         close: string;
         sending: string;
         success: string;
@@ -145,9 +144,7 @@ export default function Contact({ t }: ContactProps) {
                     <button type="submit" className={styles.formSubmit} disabled={status === "sending"}>
                       {status === "sending" ? t.contact.form.sending : `${t.contact.form.submit} →`}
                     </button>
-                    <p className={status === "error" ? styles.formNoteError : styles.formNote}>
-                      {status === "error" ? t.contact.form.error : t.contact.form.note}
-                    </p>
+                    {status === "error" && <p className={styles.formNoteError}>{t.contact.form.error}</p>}
                   </div>
                 </form>
               )}

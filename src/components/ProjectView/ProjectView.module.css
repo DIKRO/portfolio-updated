@@ -1,7 +1,8 @@
 .page {
-  max-width: 1100px;
+  width: 70vw;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 50px 90px 120px;
+  padding: 50px 0 120px;
 }
 
 .back {
@@ -59,12 +60,12 @@
   flex-direction: column;
   gap: 24px;
   margin-bottom: 56px;
-  /* Уже шире текстовой колонки, но на 30% уже, чем во весь экран */
-  width: 70vw;
-  max-width: 1300px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  /* Раньше галерея "выбивалась" за пределы .page (position:relative;
+     left:50%;transform:translateX(-50%)), чтобы быть шире текстовой
+     колонки. Теперь .page сама той же ширины (70vw, max 1300px — см. выше),
+     так что галерея просто занимает 100% родителя, без брейкаута — и топ-
+     ряд со ссылками, заголовок и описание автоматически той же ширины. */
+  width: 100%;
 }
 
 .imageWrap {
@@ -231,7 +232,6 @@
 }
 
 .description {
-  max-width: 800px;
   font-size: 15px;
   line-height: 1.6;
   font-weight: 300;
@@ -308,15 +308,9 @@
 
 @media (max-width: 768px) {
   .page {
-    padding: 30px 24px 80px;
-  }
-
-  .gallery {
     width: 100%;
     max-width: none;
-    position: static;
-    left: auto;
-    transform: none;
+    padding: 30px 24px 80px;
   }
 
   .pairRow {
@@ -345,5 +339,49 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+  }
+}
+
+/* Телефон, повёрнутый горизонтально — та же логика, что в Hero/Contact/
+   About: определяем по низкой высоте экрана, а не по ширине, потому что в
+   лендскейпе ширина телефона часто превышает 768px и попадает под
+   десктопный вид (70vw), из-за которого правая/левая часть галереи и
+   текста могла упираться в края или наоборот оставлять большие поля на
+   короткой широкой полосе. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .page {
+    width: 100%;
+    max-width: none;
+    padding: 20px 32px 60px;
+  }
+
+  .topRow {
+    margin-bottom: 24px;
+  }
+
+  .head {
+    margin-bottom: 28px;
+  }
+
+  .head h1 {
+    font-size: 26px;
+  }
+
+  .description {
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  .gallery {
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .cta p {
+    font-size: 17px;
+  }
+
+  .ctaRow {
+    gap: 12px;
   }
 }

@@ -97,9 +97,9 @@
 
 .formFooter {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 12px;
   margin-top: 4px;
 }
 
@@ -131,16 +131,11 @@
   box-shadow: none;
 }
 
-.formNote {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 0;
-}
-
 .formNoteError {
   font-size: 13px;
   color: #ff8a5c;
   margin: 0;
+  text-align: center;
 }
 
 .formStatus {
@@ -215,19 +210,33 @@
     flex-direction: column;
     gap: 12px;
   }
+}
 
-  .formFooter {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
+/* Портретная мобилка — почта в виде текста слишком длинная, чтобы вместе
+   с соцсетями красиво переноситься в несколько строк по центру, поэтому
+   контакты едут в одну строку со свайпом вбок — та же логика скролла со
+   скрытым скроллбаром, что и у фильтров категорий в WorkGrid. В лендскейпе
+   (медиа-запрос ниже) всё и так помещается без проблем, поэтому там
+   сознательно оставляем исходную обёртку с переносом строк без изменений. */
+@media (max-width: 768px) and (orientation: portrait) {
+  .row {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 10px;
+    margin: 36px -24px 0;
+    padding: 0 24px 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
 
-  .formSubmit {
-    justify-content: center;
+  .row::-webkit-scrollbar {
+    display: none;
   }
 
-  .formNote {
-    text-align: center;
+  .iconLink {
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 }
 

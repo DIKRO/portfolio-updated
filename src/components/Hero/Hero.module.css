@@ -82,11 +82,13 @@
 .contentWrap {
   position: relative;
   z-index: 1;
-  max-width: 560px;
+  max-width: 620px;
   transform: scale(1.08) translateX(var(--content-shift, 0px));
   transform-origin: left center;
-  /* Положительное значение — сдвиг вправо (ближе к центру), отрицательное — влево. */
-  --content-shift: 140px;
+  /* Положительное значение — сдвиг вправо (ближе к центру), отрицательное —
+     влево. 0 — левый край блока стоит на том же отступе (90px), что и лого
+     в шапке и карточки проектов ниже, вместо того чтобы плыть к центру. */
+  --content-shift: 0px;
 }
 
 .content {
@@ -114,18 +116,19 @@
 }
 
 .content h1 {
-  font-size: 60px;
+  font-size: clamp(34px, 4vw, 60px);
   font-weight: 600;
   letter-spacing: -1.7px;
   line-height: 1.05;
+  white-space: nowrap;
 }
 
 .subtitle {
   margin-top: 18px;
   font-size: 17px;
   color: var(--muted);
-  max-width: 440px;
-  line-height: 1.5;
+  max-width: 480px;
+  line-height: 1.55;
 }
 
 .ctaRow {
@@ -193,7 +196,7 @@
   }
 
   .content h1 {
-    font-size: 41px;
+    font-size: clamp(22px, 7vw, 41px);
   }
 
   .subtitle {
@@ -237,7 +240,7 @@
   }
 
   .content h1 {
-    font-size: 30px;
+    font-size: clamp(22px, 5vw, 30px);
   }
 
   .subtitle {

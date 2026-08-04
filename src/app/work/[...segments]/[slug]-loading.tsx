@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { en } from "@/content/locales/en";

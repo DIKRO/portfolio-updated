@@ -6,7 +6,8 @@ export const ro = {
   },
   hero: {
     title: "Designer Grafic",
-    subtitle: "Identitate vizuală / Design / Direcție artistică",
+    subtitle:
+      "Ajut brandurile să iasă în evidență: logo-uri, identitate vizuală și design digital care nu doar arată bine, ci chiar rezolvă obiectivele afacerii.",
     badge: "Disponibil pentru proiecte noi",
     cta: "Hai să discutăm",
     ctaSecondary: "Vezi lucrările",
@@ -41,7 +42,6 @@ export const ro = {
       email: "Email",
       message: "Spune-mi despre proiectul tău",
       submit: "Trimite",
-      note: "Îți răspund în 1-2 zile",
       close: "Restrânge formularul",
       sending: "Se trimite…",
       success: "Mulțumesc! Mesajul a fost trimis, îți răspund în curând.",

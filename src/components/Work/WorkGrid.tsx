@@ -246,7 +246,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
               >
                 <Link
                   href={
-                    filter === "all" ? `/work/${project.slug}` : `/work/${project.slug}?category=${filter}`
+                    filter === "all" ? `/work/${project.slug}` : `/work/${filter}/${project.slug}`
                   }
                   className={styles.card}
                   onTouchStart={(e) => e.currentTarget.classList.add(styles.cardActive)}

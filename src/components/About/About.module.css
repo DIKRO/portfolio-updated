@@ -377,6 +377,14 @@
   position: relative;
 }
 
+/* Обрезает окно карусели по бокам — на десктопе получает ещё и фиксированную
+   ширину ровно под 3 карточки (см. .relatedProjectsDesktopOnly ниже), чтобы
+   4-я карточка, временно добавляемая в DOM на время слайда (About.tsx),
+   была не видна до/после анимации, а не просто растягивала блок. */
+.relatedProjectsViewport {
+  overflow: hidden;
+}
+
 /* Больше 3 проектов — десктоп и телефон показывают разные варианты этого
    блока (десктоп: карусель-окно из 3 с бесшовным зацикливанием через
    стрелки; телефон: обычный полный список со свайпом). Переключение чисто
@@ -650,6 +658,20 @@
 
   .relatedProjectsDesktopOnly {
     display: block;
+  }
+
+  /* Ровно ширина трёх карточек + два зазора между ними — без этого браузер
+     просто растягивал бы .relatedProjectsViewport под содержимое, включая
+     временную 4-ю карточку во время слайда (см. About.tsx), и её не
+     обрезало бы overflow: hidden. Сама дорожка едет через animate({x}) в
+     JS, а не через нативный скролл — поэтому overflow: visible здесь. */
+  .relatedProjectsDesktopOnly .relatedProjectsViewport {
+    width: calc(3 * 178px + 2 * 13px);
+    overflow: hidden;
+  }
+
+  .relatedProjectsDesktopOnly .relatedProjectsRow {
+    overflow: visible;
   }
 
   .relatedProjectsMobileOnly {

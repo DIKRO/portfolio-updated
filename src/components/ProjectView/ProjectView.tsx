@@ -29,7 +29,7 @@ export default function ProjectView({ project, galleryRows, nextProject, categor
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const nextProjectHref = category
-    ? `/work/${nextProject.slug}?category=${category}`
+    ? `/work/${category}/${nextProject.slug}`
     : `/work/${nextProject.slug}`;
 
   const closeLightbox = () => {
