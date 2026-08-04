@@ -1,11 +1,19 @@
 import fs from "fs";
 import path from "path";
 
-export type GalleryImage = { src: string; ratio: number };
+export type GalleryImage = { src: string; ratio: number; width: number; height: number };
 
 export type GalleryRow =
-  | { type: "single"; src: string; isPortrait: boolean }
+  | { type: "single"; src: string; isPortrait: boolean; width: number; height: number }
   | { type: "pair"; items: [GalleryImage, GalleryImage] };
+
+// Фолбэк на случай, если реальные размеры прочитать не удалось (формат,
+// который readImageSize не разбирает — svg/webp/gif, либо файл не найден).
+// next/image ОБЯЗАТЕЛЬНО требует width/height (иначе не может посчитать
+// итоговый layout и предотвратить прыжок контента при загрузке), поэтому
+// совсем без чисел здесь не обойтись — берём разумное landscape-соотношение
+// 3:2, реальная картинка всё равно тянется по CSS через max-height/width:100%.
+const FALLBACK_SIZE = { width: 1500, height: 1000 };
 
 /**
  * Читает реальную ширину/высоту PNG или JPEG прямо из файла (без внешних
@@ -96,13 +104,14 @@ export function buildGalleryRows(images: string[]): GalleryRow[] {
       rows.push({
         type: "pair",
         items: [
-          { src: current, ratio: curSize.width / curSize.height },
-          { src: next, ratio: nextSize.width / nextSize.height },
+          { src: current, ratio: curSize.width / curSize.height, ...curSize },
+          { src: next, ratio: nextSize.width / nextSize.height, ...nextSize },
         ],
       });
       i += 2;
     } else {
-      rows.push({ type: "single", src: current, isPortrait: curIsPortrait });
+      const size = curSize ?? FALLBACK_SIZE;
+      rows.push({ type: "single", src: current, isPortrait: curIsPortrait, ...size });
       i += 1;
     }
   }

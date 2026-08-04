@@ -3,6 +3,14 @@ import { Montserrat } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
+import { getServerLang } from "@/lib/serverLang";
+import { ru } from "@/content/locales/ru";
+import { en } from "@/content/locales/en";
+import { ro } from "@/content/locales/ro";
+import { SOCIALS } from "@/content/socials";
+
+const BASE_URL = "https://socurdmitrii.com";
+const seoLocales = { ru, en, ro };
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -32,38 +40,84 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-// Замени title/description на своё имя и специализацию.
-// metadataBase уже указывает на реальный домен (socurdmitrii.com). Если
-// когда-нибудь сменишь домен — поменяй значение и тут, и в src/app/sitemap.ts
-// и src/app/robots.ts (там та же константа BASE_URL).
-// Не забудь также добавить /public/images/og-cover.jpg (рекомендуемый
-// размер 1200×630) — сейчас его нет, а без него превью сайта в соцсетях
-// будет без картинки.
-export const metadata: Metadata = {
-  metadataBase: new URL("https://socurdmitrii.com"),
-  title: "Socur Dmitrii - Graphic Designer",
-  description: "Brand identity, visual design and art direction portfolio.",
-  openGraph: {
-    title: "Socur Dmitrii - Graphic Designer",
-    description: "Brand identity, visual design and art direction portfolio.",
-    type: "website",
-    images: ["/images/og-cover.jpg"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Socur Dmitrii - Graphic Designer",
-    description: "Brand identity, visual design and art direction portfolio.",
-    images: ["/images/og-cover.jpg"],
-  },
-};
+// title/description теперь берутся из t.seo (см. src/content/locales/*.ts) —
+// один и тот же текст, что раньше был захардкожен здесь трижды, только уже
+// на 3 языках. Какой из них показать конкретному посетителю решает
+// getServerLang() по заголовку Accept-Language его браузера (подробности —
+// в комментарии самого хелпера). metadataBase указывает на реальный домен;
+// если сменишь домен — поменяй BASE_URL здесь и в src/app/sitemap.ts,
+// src/app/robots.ts (там та же константа).
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = await getServerLang();
+  const { seo } = seoLocales[lang];
 
-export default function RootLayout({
+  return {
+    metadataBase: new URL(BASE_URL),
+    title: seo.title,
+    description: seo.description,
+    alternates: {
+      // Сайт не разбит на отдельные /ru /en /ro URL (язык переключается на
+      // клиенте на одном и том же адресе) — поэтому все 3 варианта честно
+      // указывают на один и тот же canonical-URL, чтобы не путать поисковик
+      // дублирующимся контентом на разных языках под разными адресами.
+      languages: { ru: BASE_URL, en: BASE_URL, ro: BASE_URL },
+    },
+    openGraph: {
+      title: seo.title,
+      description: seo.description,
+      type: "website",
+      url: BASE_URL,
+      images: ["/images/og-cover.jpg"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.title,
+      description: seo.description,
+      images: ["/images/og-cover.jpg"],
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const lang = await getServerLang();
+
+  // JSON-LD: помогает поисковикам понять, что сайт — портфолио конкретного
+  // человека (а не безымянная компания), и показать это в rich snippets.
+  // Ссылки в sameAs берём из тех же соцсетей, что уже выведены в шапке/футере.
+  const personJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Socur Dmitrii",
+    jobTitle: "Graphic Designer",
+    url: BASE_URL,
+    // sameAs — только настоящие профильные URL (http/https); viber:// —
+    // deep-link на чат, а не публичный профиль, схема.org его не ждёт.
+    sameAs: SOCIALS.filter((s) => s.href.startsWith("http")).map((s) => s.href),
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Socur Dmitrii",
+    url: BASE_URL,
+  };
+
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang={lang} data-scroll-behavior="smooth">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+      </head>
       <body className={montserrat.className}>
         <div className="dotsBg" aria-hidden="true" />
         {children}

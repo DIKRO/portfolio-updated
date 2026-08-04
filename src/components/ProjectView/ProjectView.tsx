@@ -2,10 +2,12 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLang } from "@/content/lang";
 import { Project, CategoryKey } from "@/types/project";
 import { GalleryRow } from "@/lib/imageOrientation";
+import { shimmerBlurDataURL } from "@/lib/shimmer";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import GalleryLightbox from "../Work/Lightbox";
@@ -22,15 +24,35 @@ interface ProjectViewProps {
   // "Следующий проект", чтобы цепочка переходов оставалась внутри той же
   // категории и на следующей странице тоже.
   category?: CategoryKey;
+  // false, если в подборке (общей или внутри category) всего один проект —
+  // тогда "Следующий проект" вёл бы сам на себя, ссылку в этом случае
+  // просто не показываем.
+  hasMultipleProjects: boolean;
 }
 
-export default function ProjectView({ project, galleryRows, nextProject, category }: ProjectViewProps) {
+export default function ProjectView({
+  project,
+  galleryRows,
+  nextProject,
+  category,
+  hasMultipleProjects,
+}: ProjectViewProps) {
   const { lang, setLang, t } = useLang();
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const nextProjectHref = category
     ? `/work/${category}/${nextProject.slug}`
     : `/work/${nextProject.slug}`;
+
+  // Клик по категории в хлебных крошках возвращает не просто на главную,
+  // а с уже выбранным фильтром — так же, как если бы пользователь сам
+  // нажал на эту категорию в сетке работ. WorkGrid при монтировании читает
+  // именно этот ключ из sessionStorage (см. Work/WorkGrid.tsx).
+  const handleCategoryBreadcrumbClick = () => {
+    if (category) {
+      window.sessionStorage.setItem("workGridFilter", category);
+    }
+  };
 
   const closeLightbox = () => {
     setLightboxIndex(null);
@@ -66,14 +88,34 @@ export default function ProjectView({ project, galleryRows, nextProject, categor
         animate={{ opacity: 1 }}
         transition={{ duration: 0.25 }}
       >
+        <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
+          <ol>
+            <li>
+              <Link href="/">{t.breadcrumbs.home}</Link>
+            </li>
+            {category && (
+              <li>
+                <Link href="/#work" onClick={handleCategoryBreadcrumbClick}>
+                  {t.categories[category]}
+                </Link>
+              </li>
+            )}
+            <li aria-current="page">
+              <span>{project.title[lang]}</span>
+            </li>
+          </ol>
+        </nav>
+
         <div className={styles.topRow}>
           <Link href="/#work" className={styles.back}>
             {t.project.back}
           </Link>
 
-          <Link href={nextProjectHref} className={styles.next}>
-            {t.project.next} →
-          </Link>
+          {hasMultipleProjects && (
+            <Link href={nextProjectHref} className={styles.next}>
+              {t.project.next} →
+            </Link>
+          )}
         </div>
 
         <motion.header
@@ -111,32 +153,30 @@ export default function ProjectView({ project, galleryRows, nextProject, categor
                   className={styles.pairRow}
                 >
                   {row.items.map((item, itemIndex) => (
-                    <div
+                    <button
                       key={item.src}
+                      type="button"
                       className={styles.imageWrap}
                       style={{ "--ar": item.ratio } as React.CSSProperties}
                       onClick={() => setLightboxIndex(firstFlatIndex + itemIndex)}
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          setLightboxIndex(firstFlatIndex + itemIndex);
-                        }
-                      }}
+                      aria-label={`${project.title[lang]} ${index + 1}.${itemIndex + 1}`}
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <Image
                         src={item.src}
                         alt={`${project.title[lang]} ${index + 1}.${itemIndex + 1}`}
+                        width={item.width}
+                        height={item.height}
                         loading="lazy"
-                        decoding="async"
+                        placeholder="blur"
+                        blurDataURL={shimmerBlurDataURL(item.width, item.height)}
+                        sizes="(max-width: 768px) 90vw, 45vw"
                         className={styles.image}
                         onLoad={(e) => {
                           e.currentTarget.classList.add(styles.loaded);
                           e.currentTarget.parentElement?.classList.add(styles.wrapLoaded);
                         }}
                       />
-                    </div>
+                    </button>
                   ))}
                 </motion.div>
               );
@@ -145,7 +185,8 @@ export default function ProjectView({ project, galleryRows, nextProject, categor
             const singleFlatIndex = firstFlatIndex;
 
             return (
-              <motion.div
+              <motion.button
+                type="button"
                 key={row.src}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -154,28 +195,25 @@ export default function ProjectView({ project, galleryRows, nextProject, categor
                 className={styles.imageWrap}
                 style={{ alignSelf: row.isPortrait ? "center" : "stretch" }}
                 onClick={() => setLightboxIndex(singleFlatIndex)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    setLightboxIndex(singleFlatIndex);
-                  }
-                }}
+                aria-label={`${project.title[lang]} ${index + 1}`}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={row.src}
                   alt={`${project.title[lang]} ${index + 1}`}
+                  width={row.width}
+                  height={row.height}
                   loading="lazy"
-                  decoding="async"
+                  placeholder="blur"
+                  blurDataURL={shimmerBlurDataURL(row.width, row.height)}
+                  sizes="(max-width: 768px) 100vw, 70vw"
                   className={styles.image}
                   style={row.isPortrait ? undefined : { width: "100%", maxHeight: "none" }}
                   onLoad={(e) => {
-                          e.currentTarget.classList.add(styles.loaded);
-                          e.currentTarget.parentElement?.classList.add(styles.wrapLoaded);
-                        }}
+                    e.currentTarget.classList.add(styles.loaded);
+                    e.currentTarget.parentElement?.classList.add(styles.wrapLoaded);
+                  }}
                 />
-              </motion.div>
+              </motion.button>
             );
           })}
         </div>
@@ -198,9 +236,11 @@ export default function ProjectView({ project, galleryRows, nextProject, categor
             {t.project.back}
           </Link>
 
-          <Link href={nextProjectHref} className={styles.next}>
-            {t.project.next} →
-          </Link>
+          {hasMultipleProjects && (
+            <Link href={nextProjectHref} className={styles.next}>
+              {t.project.next} →
+            </Link>
+          )}
         </div>
 
         <motion.div
