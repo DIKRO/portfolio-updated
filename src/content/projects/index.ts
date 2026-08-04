@@ -626,7 +626,7 @@ export const projects: Project[] = [
     images: ["/images/work/print/kreola_chocolate_packaging/work1.jpg",
             "/images/work/print/kreola_chocolate_packaging/work2.jpg",
             "/images/work/print/kreola_chocolate_packaging/work3.jpg",
-          "/images/work/print/kreola_chocolate_packaging/work4.jpg"],
+          "/images/work/print/kreola_chocolate_packaging/work4.png"],
     description: {
       ru: "Разработка дизайна упаковки для плитки шоколада производителя Kreola. Основная задача заключалась в создании премиального образа продукта с акцентом на натуральность: прозрачное окно демонстрирует цельные орехи в молочном шоколаде, а крафтовый картон подчеркивает ручную работу и экологичность. Элегантная типографика и минималистичная композиция усиливают ощущение аутентичности бренда. Этот кейс иллюстрирует подход к айдентике шоколадных брендов, где упаковка становится важным элементом позиционирования и доверия к продукту.",
       en: "Development of packaging design for Kreola’s chocolate bars. The main objective was to create a premium product image with an emphasis on naturalness: a transparent window showcases whole nuts encased in milk chocolate, while the craft cardboard highlights the handcrafted nature and eco-friendliness of the product. Elegant typography and a minimalist composition reinforce the brand’s sense of authenticity. This case study illustrates an approach to the brand identity of chocolate brands, where packaging becomes a key element of positioning and building trust in the product.",

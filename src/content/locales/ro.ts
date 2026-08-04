@@ -4,9 +4,6 @@ export const ro = {
     about: "Despre mine",
     contact: "Contact",
   },
-  breadcrumbs: {
-    home: "Acasă",
-  },
   seo: {
     title: "Socur Dmitrii - Designer Grafic",
     description: "Portofoliu de identitate vizuală, design grafic și direcție de artă.",

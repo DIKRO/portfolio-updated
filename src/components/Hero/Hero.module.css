@@ -125,9 +125,9 @@
 
 .subtitle {
   margin-top: 18px;
-  font-size: 17px;
+  font-size: 16px;
   color: var(--muted);
-  max-width: 480px;
+  max-width: 620px;
   line-height: 1.55;
 }
 

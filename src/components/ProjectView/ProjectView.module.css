@@ -5,57 +5,6 @@
   padding: 50px 0 120px;
 }
 
-/* Хлебные крошки: Главная / Категория / Название проекта — показывают
-   пользователю, каким путём он попал на страницу, и позволяют вернуться
-   на уровень выше в один клик, а не только "назад ко всем работам". */
-.breadcrumbs {
-  margin-bottom: 16px;
-}
-
-.breadcrumbs ol {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  list-style: none;
-  font-size: 13px;
-  color: var(--muted);
-}
-
-.breadcrumbs li {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-}
-
-/* Разделитель "/" между пунктами через CSS, а не как отдельный элемент —
-   не идёт следующим за последним пунктом и не читается скринридером. */
-.breadcrumbs li:not(:first-child)::before {
-  content: "/";
-  color: rgba(255, 255, 255, 0.25);
-}
-
-.breadcrumbs a {
-  color: var(--muted);
-  text-decoration: none;
-  transition: color var(--transition);
-}
-
-.breadcrumbs a:hover {
-  color: var(--accent);
-}
-
-/* Текущая страница (название проекта) — не ссылка, обрезаем длинные
-   названия многоточием, чтобы не ломать раскладку на мобильном. */
-.breadcrumbs li[aria-current="page"] span {
-  color: var(--text);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 60vw;
-}
-
 .back {
   display: inline-block;
   font-size: 14px;
@@ -382,18 +331,6 @@
   .pairRow .imageWrap {
     flex: none;
     width: 100%;
-  }
-
-  .breadcrumbs {
-    margin-bottom: 12px;
-  }
-
-  .breadcrumbs ol {
-    font-size: 12px;
-  }
-
-  .breadcrumbs li[aria-current="page"] span {
-    max-width: 50vw;
   }
 
   .head h1 {

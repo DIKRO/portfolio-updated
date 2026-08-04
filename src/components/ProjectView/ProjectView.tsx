@@ -44,16 +44,6 @@ export default function ProjectView({
     ? `/work/${category}/${nextProject.slug}`
     : `/work/${nextProject.slug}`;
 
-  // Клик по категории в хлебных крошках возвращает не просто на главную,
-  // а с уже выбранным фильтром — так же, как если бы пользователь сам
-  // нажал на эту категорию в сетке работ. WorkGrid при монтировании читает
-  // именно этот ключ из sessionStorage (см. Work/WorkGrid.tsx).
-  const handleCategoryBreadcrumbClick = () => {
-    if (category) {
-      window.sessionStorage.setItem("workGridFilter", category);
-    }
-  };
-
   const closeLightbox = () => {
     setLightboxIndex(null);
   };
@@ -88,24 +78,6 @@ export default function ProjectView({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.25 }}
       >
-        <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
-          <ol>
-            <li>
-              <Link href="/">{t.breadcrumbs.home}</Link>
-            </li>
-            {category && (
-              <li>
-                <Link href="/#work" onClick={handleCategoryBreadcrumbClick}>
-                  {t.categories[category]}
-                </Link>
-              </li>
-            )}
-            <li aria-current="page">
-              <span>{project.title[lang]}</span>
-            </li>
-          </ol>
-        </nav>
-
         <div className={styles.topRow}>
           <Link href="/#work" className={styles.back}>
             {t.project.back}

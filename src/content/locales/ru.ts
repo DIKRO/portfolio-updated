@@ -4,9 +4,6 @@ export const ru = {
     about: "Обо мне",
     contact: "Контакты",
   },
-  breadcrumbs: {
-    home: "Главная",
-  },
   seo: {
     title: "Сокур Дмитрий — Графический дизайнер",
     description:

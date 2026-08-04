@@ -126,17 +126,19 @@ export default async function ProjectPage({ params }: PageProps) {
   const currentIndex = list.findIndex((p) => p.slug === project.slug);
   const nextProject = list[(currentIndex + 1) % list.length];
 
-  // JSON-LD для поисковиков: хлебные крошки (те же, что показываем в UI —
-  // см. Breadcrumbs в ProjectView) и сам проект как CreativeWork. Текст —
+  // JSON-LD для поисковиков: хлебные крошки (это только структурированные
+  // данные для краулеров, на сайте они визуально не показываются — см.
+  // обсуждение с пользователем) и сам проект как CreativeWork. Текст —
   // на языке, угаданном по Accept-Language (см. generateMetadata выше),
   // это не связано с тем, что реально увидит конкретный посетитель на
   // экране (тот выбор — целиком на клиенте), но для краулера этого
   // достаточно, чтобы не показывать всегда только английский.
   const lang = await getServerLang();
   const t = locales[lang];
+  const homeLabel = { ru: "Главная", en: "Home", ro: "Acasă" }[lang];
 
   const breadcrumbItems = [
-    { name: t.breadcrumbs.home, url: BASE_URL },
+    { name: homeLabel, url: BASE_URL },
     ...(activeCategory
       ? [{ name: t.categories[activeCategory], url: `${BASE_URL}/#work` }]
       : []),

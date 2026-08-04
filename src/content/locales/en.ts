@@ -4,9 +4,6 @@ export const en = {
     about: "About",
     contact: "Contact",
   },
-  breadcrumbs: {
-    home: "Home",
-  },
   seo: {
     title: "Socur Dmitrii - Graphic Designer",
     description: "Brand identity, visual design and art direction portfolio.",

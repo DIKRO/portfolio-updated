@@ -505,18 +505,20 @@ export default function About({ lang, t }: AboutProps) {
                   ✕
                 </button>
 
-                <div className={styles.clientLogoWrap}>
-                  <Image
-                    src={CLIENTS[openClient].logo}
-                    alt={CLIENTS[openClient].name}
-                    fill
-                    sizes="120px"
-                    className={styles.clientLogoImg}
-                  />
-                </div>
+                <div className={styles.clientInfo}>
+                  <div className={styles.clientLogoWrap}>
+                    <Image
+                      src={CLIENTS[openClient].logo}
+                      alt={CLIENTS[openClient].name}
+                      fill
+                      sizes="120px"
+                      className={styles.clientLogoImg}
+                    />
+                  </div>
 
-                <h3 className={styles.clientName}>{CLIENTS[openClient].name}</h3>
-                <p className={styles.clientDescription}>{CLIENTS[openClient].description[lang]}</p>
+                  <h3 className={styles.clientName}>{CLIENTS[openClient].name}</h3>
+                  <p className={styles.clientDescription}>{CLIENTS[openClient].description[lang]}</p>
+                </div>
 
                 {(() => {
                   // Все проекты, у которых client совпадает с ключом этого
