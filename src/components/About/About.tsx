@@ -294,8 +294,8 @@ function RelatedProjectsCarousel({ items, lang }: { items: Project[]; lang: Lang
           initial={false}
           className={styles.carouselTrack}
         >
-          {visible.map((project, i) => (
-            <RelatedProjectCard key={`${project.slug}-${offsets[i]}`} project={project} lang={lang} />
+          {visible.map((project) => (
+            <RelatedProjectCard key={project.slug} project={project} lang={lang} />
           ))}
         </motion.div>
       </div>
