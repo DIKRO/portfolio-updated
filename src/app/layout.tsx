@@ -38,6 +38,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  themeColor: "#0e0e0e",
 };
 
 // title/description теперь берутся из t.seo (см. src/content/locales/*.ts) —
@@ -51,10 +52,24 @@ export async function generateMetadata(): Promise<Metadata> {
   const lang = await getServerLang();
   const { seo } = seoLocales[lang];
 
+  // og:locale — какой язык фактически показан в этом конкретном ответе
+  // сервера (угадан по Accept-Language, см. getServerLang). Помогает
+  // соцсетям/мессенджерам правильно подписать превью ссылки, если у них
+  // это вообще поддерживается.
+  const ogLocale = { ru: "ru_RU", en: "en_US", ro: "ro_RO" }[lang];
+
   return {
     metadataBase: new URL(BASE_URL),
     title: seo.title,
     description: seo.description,
+    // TODO: коды подтверждения владения сайтом — вписать сюда, когда
+    // добавишь сайт в Google Search Console / Яндекс.Вебмастер (см.
+    // объяснение, как их получить, отдельно). Пока не заполнено —
+    // Next.js просто не выведет эти мета-теги, ничего не сломается.
+    // verification: {
+    //   google: "СЮДА_КОД_ИЗ_GOOGLE_SEARCH_CONSOLE",
+    //   yandex: "СЮДА_КОД_ИЗ_ЯНДЕКС_ВЕБМАСТЕРА",
+    // },
     alternates: {
       // Сайт не разбит на отдельные /ru /en /ro URL (язык переключается на
       // клиенте на одном и том же адресе) — поэтому все 3 варианта честно
@@ -67,7 +82,12 @@ export async function generateMetadata(): Promise<Metadata> {
       description: seo.description,
       type: "website",
       url: BASE_URL,
-      images: ["/images/og-cover.jpg"],
+      locale: ogLocale,
+      // width/height — рекомендованный Facebook/Telegram/VK размер обложки
+      // (1200×630). Если реальный файл og-cover.jpg другого размера,
+      // поменяй числа на настоящие — иначе некоторые площадки могут
+      // обрезать превью криво.
+      images: [{ url: "/images/og-cover.jpg", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
@@ -94,6 +114,14 @@ export default async function RootLayout({
     name: "Socur Dmitrii",
     jobTitle: "Graphic Designer",
     url: BASE_URL,
+    // Город/страна — помогает поисковику связать имя с локальными запросами
+    // ("графический дизайнер Кишинёв" и т.п.), а не только с общими.
+    // Поменяй, если фактическая локация другая.
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Chișinău",
+      addressCountry: "MD",
+    },
     // sameAs — только настоящие профильные URL (http/https); viber:// —
     // deep-link на чат, а не публичный профиль, схема.org его не ждёт.
     sameAs: SOCIALS.filter((s) => s.href.startsWith("http")).map((s) => s.href),

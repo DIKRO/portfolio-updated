@@ -5,13 +5,14 @@ export const ro = {
     contact: "Contact",
   },
   seo: {
-    title: "Socur Dmitrii - Designer Grafic",
-    description: "Portofoliu de identitate vizuală, design grafic și direcție de artă.",
+    title: "Socur Dmitrii — Designer Grafic în Chișinău",
+    description:
+      "Portofoliu de design grafic din Chișinău, Moldova: logo, identitate vizuală, design digital și puțină poligrafie pentru afaceri.",
   },
   hero: {
     title: "Designer Grafic",
     subtitle:
-      "Ajut brandurile să iasă în evidență: logo-uri, identitate vizuală și design digital care nu doar arată bine, ci chiar rezolvă obiectivele afacerii.",
+      "Ajut brandurile să iasă în evidență: logo la comandă, identitate vizuală și design digital care nu doar arată bine, ci chiar rezolvă obiectivele afacerii.",
     badge: "Disponibil pentru proiecte noi",
     cta: "Hai să discutăm",
     ctaSecondary: "Vezi lucrările",
@@ -33,7 +34,7 @@ export const ro = {
   about: {
     label: "Despre mine",
     // Înlocuiește cu textul tău
-    text: "Mă numesc Dmitrii Socur și sunt designer grafic din Moldova. Lucrez cu logo-uri, identitate vizuală, materiale tipărite și digitale — mă ghidez după minimalism și atenție la detalii. Pentru mine contează nu doar o imagine frumoasă, ci un design memorabil, care rezolvă problemele reale ale clienților. Dacă vă regăsiți în această abordare, aș fi încântat să colaborăm!",
+    text: "Mă numesc Dmitrii Socur și sunt designer grafic din Chișinău, Moldova. Creez logo la comandă, identitate vizuală și design digital, ocazional materiale tipărite — mă ghidez după minimalism și atenție la detalii. Pentru mine contează nu doar o imagine frumoasă, ci un design memorabil, care rezolvă problemele reale ale clienților. Dacă vă regăsiți în această abordare, aș fi încântat să colaborăm!",
     clientsLabel: "Companii cu care am colaborat",
     viewProjects: "Proiecte pentru această companie",
   },

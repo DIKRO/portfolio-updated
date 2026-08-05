@@ -5,13 +5,14 @@ export const en = {
     contact: "Contact",
   },
   seo: {
-    title: "Socur Dmitrii - Graphic Designer",
-    description: "Brand identity, visual design and art direction portfolio.",
+    title: "Socur Dmitrii — Graphic Designer in Chișinău, Moldova",
+    description:
+      "Graphic design portfolio based in Chișinău, Moldova: logo design, brand identity, digital design and a bit of print for businesses.",
   },
   hero: {
     title: "Graphic Designer",
     subtitle:
-      "I help brands stand out with logos, identity systems and digital design that don't just look good — they work for the business.",
+      "I help brands stand out with custom logo design, brand identity and digital design that don't just look good — they work for the business.",
     badge: "Open for new projects",
     cta: "Start a project",
     ctaSecondary: "See the work",
@@ -32,7 +33,7 @@ export const en = {
   },
   about: {
     label: "About",
-    text: "My name is Dmitrii Socur, and I’m a graphic designer from Moldova. I work with logos, brand identity, print, and digital materials — drawn to minimalism and attention to detail. For me it’s not just about a pretty picture, but design that’s memorable and solves real problems for clients. If this approach resonates with you, I’d love to work together!",
+    text: "My name is Dmitrii Socur, a graphic designer based in Chișinău, Moldova. I design custom logos, brand identity and digital design, occasionally print materials — drawn to minimalism and attention to detail. For me it's not just about a pretty picture, but design that's memorable and solves real problems for clients. If this approach resonates with you, I'd love to work together!",
     clientsLabel: "Companies I've worked with",
     viewProjects: "Projects for this company",
   },
