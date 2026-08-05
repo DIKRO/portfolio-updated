@@ -768,6 +768,44 @@ export const projects: Project[] = [
       ro: "Fluturașul în format A5 a fost conceput pentru compania EuroNet și conține informații despre tarifele și serviciile de internet și televiziune. În realizarea acestuia s-a utilizat paleta de culori specifică companiei (albastru, portocaliu, alb), care asigură recunoașterea mărcii și coerența vizuală. Designul este structurat astfel încât clientul să găsească rapid informațiile necesare: pe unul dintre fluturași sunt prezentate pașii de conectare și datele de contact, iar pe celălalt — avantajele companiei și lista planurilor tarifare cu prețurile aferente.",
     },
   },
+  {
+    id: "40",
+    slug: "placinte_banner",
+    client: "placinte",
+    title: { ru: "Широкоформатный баннер Plăcinte",
+            en: "Wide-format banner for Plăcinte",
+            ro: "Banner lat pentru Plăcinte" },
+    categoryKey: "packaging",
+    year: 2024,
+    cover: "/images/work/packaging/placinte_banner/cover-40.jpg",
+    images: ["/images/work/packaging/placinte_banner/1.jpg",
+            "/images/work/packaging/placinte_banner/2.jpg",],
+
+    description: {
+      ru: "Баннер для рекламы plăcinte выполнен в ярком и понятном стиле, чтобы привлечь внимание покупателей. Левая часть содержит список начинок, правая — аппетитные фотографии изделий, дополненные ценовым предложением. Визуальное решение сочетает крупную типографику и сочные изображения, что делает информацию доступной и одновременно вызывает желание попробовать продукт.",
+      en: "The banner advertising plăcinte is designed in a bright and straightforward style to attract customers’ attention. The left side features a list of fillings, while the right side displays appetizing photos of the products, accompanied by pricing information. The visual design combines large typography with vibrant images, making the information easy to understand while also sparking a desire to try the product.",
+      ro: "Bannerul publicitar pentru plăcinte este realizat într-un stil viu și ușor de înțelegere, pentru a atrage atenția cumpărătorilor. Partea stângă conține o listă cu umpluturi, iar cea dreaptă — fotografii apetisante ale produselor, însoțite de oferta de preț. Soluția vizuală combină un tipografic de dimensiuni mari cu imagini captivante, ceea ce face informația accesibilă și, în același timp, stârnește dorința de a încerca produsul.",
+    },
+  },
+  {
+    id: "41",
+    slug: "viorica_vizitka",
+    client: "viorica_vrancean",
+    title: { ru: "Визитка для Viorica Vrancean",
+              en: "Business card for Viorica Vrancean",
+              ro: "Card de vizită pentru Viorica Vrancean"},
+    categoryKey: "print",
+    year: 2024,
+    cover: "/images/work/print/viorica_vizitka/cover-41.jpg",
+    images: ["/images/work/print/viorica_vizitka/1.jpg",
+            "/images/work/print/viorica_vizitka/2.jpg",
+            "/images/work/print/viorica_vizitka/3.jpg"],
+    description: {
+      ru: "Визитка для Viorica Vrancean разработана с учетом фирменного стиля и содержит основную информацию о компании. Дизайн简洁 и профессиональный, что обеспечивает высокое впечатление от бренда.",
+      en: "The business card for Viorica Vrancean was designed with the company's brand style in mind and contains essential information about the company. The design is clean and professional, creating a strong impression of the brand.",
+      ro: "Cardul de vizită pentru Viorica Vrancean a fost conceput în conformitate cu stilul de brand al companiei și conține informații esențiale despre aceasta. Designul este simplu și profesional, ceea ce creează un impact puternic asupra brandului.",
+    },
+  },
 ];
 
 export function getProjectBySlug(slug: string) {
