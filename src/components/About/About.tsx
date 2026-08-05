@@ -91,9 +91,9 @@ const CLIENTS: ClientInfo[] = [
     logo: "/images/clients/energy.svg",
     name: "Energy Wind Moldova",
     description: {
-      ru: "Опиши здесь, что именно делал для Energy Wind Moldova — например: разработка логотипа и фирменного стиля, дизайн презентации, оформление рекламных материалов. 4-5 предложений или список, каждый пункт с новой строки.",
-      en: "Describe what you did for Energy Wind Moldova here — e.g. logo and brand identity design, presentation design, promotional materials. 4-5 sentences or a list, one item per line.",
-      ro: "Descrie aici ce ai făcut pentru Energy Wind Moldova — de ex. design logo și identitate vizuală, design prezentare, materiale promoționale. 4-5 propoziții sau o listă, câte un punct pe linie.",
+      ru: "Energy-Wind — молдавская компания, специализирующаяся на поставке, монтаже и обслуживании ветроэнергетических установок и систем накопления энергии. Для компании я разработал элементы фирменного стиля — логотип, цветовую палитру, типографику и визуальные метафоры бренда. Также готовил рекламные материалы: баннеры, постеры, наружную рекламу, POS-материалы и презентации, адаптируя визуал под Instagram, Facebook, LinkedIn и TikTok.",
+      en: "Energy-Wind is a Moldovan company specializing in the supply, installation and maintenance of wind turbines and energy storage systems. For the brand I developed its visual identity — logo, color palette, typography and visual metaphors — and produced advertising materials: banners, posters, outdoor ads, POS materials and presentations, adapting the visuals for Instagram, Facebook, LinkedIn and TikTok.",
+      ro: "Energy-Wind este o companie din Moldova specializată în furnizarea, instalarea și mentenanța turbinelor eoliene și a sistemelor de stocare a energiei. Pentru brand am dezvoltat identitatea vizuală — logo, paletă de culori, tipografie și metafore vizuale — și am realizat materiale publicitare: bannere, postere, publicitate exterioară, materiale POS și prezentări, adaptând vizualul pentru Instagram, Facebook, LinkedIn și TikTok.",
     },
     key: "energy",
   },
@@ -101,21 +101,19 @@ const CLIENTS: ClientInfo[] = [
     logo: "/images/clients/ss.svg",
     name: "Sport Spirit",
     description: {
-      ru: "Опиши здесь, что именно делал для Sport Spirit.",
-      en: "Describe what you did for Sport Spirit here.",
-      ro: "Descrie aici ce ai făcut pentru Sport Spirit.",
+      ru: "Sport Spirit — мультибрендовый магазин спортивной одежды и обуви в Кишинёве с оригинальной продукцией Nike, Adidas, Puma, Under Armour, New Balance и других мировых брендов. Для компании я делал рекламные материалы: баннеры, постеры, наружную рекламу, презентации и POS-материалы, а также готовил макеты к печати с контролем цветопередачи и технических параметров. Адаптировал дизайн под разные каналы — соцсети, печать, веб и точки продаж.",
+      en: "Sport Spirit is a multi-brand sportswear and footwear store in Chișinău, carrying original products from Nike, Adidas, Puma, Under Armour, New Balance and other global brands. For the company I created advertising materials — banners, posters, outdoor ads, presentations and POS materials — and prepared print-ready files with careful color and technical control. I also adapted the designs for different channels: social media, print, web and points of sale.",
+      ro: "Sport Spirit este un magazin multibrand de îmbrăcăminte și încălțăminte sportivă din Chișinău, cu produse originale de la Nike, Adidas, Puma, Under Armour, New Balance și alte branduri internaționale. Pentru companie am creat materiale publicitare — bannere, postere, publicitate exterioară, prezentări și materiale POS — și am pregătit fișiere pentru tipar cu control atent al culorilor și parametrilor tehnici. Am adaptat designul pentru diverse canale: rețele sociale, print, web și puncte de vânzare.",
     },
-    // Ключ "ss" — все проекты с client: "ss" в src/content/projects
-    // (сейчас это SS_flaer и sport_spirit_1..16) подтянутся сюда сами.
     key: "ss",
   },
   {
     logo: "/images/clients/puma.svg",
     name: "PUMA",
     description: {
-      ru: "Опиши здесь, что именно делал для PUMA.",
-      en: "Describe what you did for PUMA here.",
-      ro: "Descrie aici ce ai făcut pentru PUMA.",
+      ru: "PUMA Moldova — официальный дистрибьютор бренда PUMA в стране (компания GHS-COM SRL), работающий с 1996 года и представляющий фирменные магазины и онлайн-каталог оригинальной продукции. Для компании я делал макеты для рекламы в Google Ads с ресайзом под разные форматы, дизайн печатной продукции (флаеры, визитки, дисконтные карты) и наружной рекламы (оракал, световые короба, баннеры), а также визуализацию рекламной продукции и креативы для соцсетей.",
+      en: "PUMA Moldova is the brand's official distributor in the country (through GHS-COM SRL), operating since 1996 with flagship stores and an online catalog of original products. For the company I built Google Ads creatives resized for multiple formats, designed print materials (flyers, business cards, discount cards) and outdoor advertising (oracal vinyl, light boxes, banners), and produced visuals for advertising and social media.",
+      ro: "PUMA Moldova este distribuitorul oficial al brandului în țară (prin GHS-COM SRL), activ din 1996, cu magazine proprii și catalog online de produse originale. Pentru companie am realizat creative pentru Google Ads redimensionate pentru mai multe formate, design pentru materiale tipărite (fluturași, cărți de vizită, carduri de reducere) și publicitate exterioară (oracal, cutii luminoase, bannere), precum și vizualuri pentru publicitate și rețele sociale.",
     },
     key: "puma",
   },
@@ -123,43 +121,30 @@ const CLIENTS: ClientInfo[] = [
     logo: "/images/clients/telemarket.png",
     name: "Telemarket.md",
     description: {
-      ru: "Опиши здесь, что именно делал для Telemarket.md.",
-      en: "Describe what you did for Telemarket.md here.",
-      ro: "Descrie aici ce ai făcut pentru Telemarket.md.",
+      ru: "Telemarket.md — сеть магазинов и интернет-магазин товаров для дома в Молдове (бытовая химия, мелкая бытовая техника, косметика, товары для спорта), а также официальный дистрибьютор климатической техники Zanussi. Для бренда я формировал визуальный стиль — логотипы, цветовую гамму и типографику, — и производил рекламные визуалы: баннеры, постеры, наружную рекламу и презентационные материалы. Отдельно адаптировал креатив под соцплатформы и создавал иллюстрации, иконки и декоративные элементы.",
+      en: "Telemarket.md is a Moldovan retail chain and online store for household goods — cleaning products, small appliances, cosmetics and sports items — and the exclusive distributor of Zanussi climate equipment. For the brand I shaped its visual style — logos, color palette and typography — and produced advertising visuals: banners, posters, outdoor ads and presentation materials. I also adapted creatives for social platforms and designed illustrations, icons and decorative elements.",
+      ro: "Telemarket.md este un lanț de magazine și un magazin online de produse pentru casă din Moldova — chimie de uz casnic, electrocasnice mici, cosmetice și articole sportive — și distribuitor exclusiv al tehnicii de climatizare Zanussi. Pentru brand am format stilul vizual — logo-uri, paletă de culori și tipografie — și am realizat vizualuri publicitare: bannere, postere, publicitate exterioară și materiale de prezentare. Am adaptat, de asemenea, creative pentru platformele sociale și am creat ilustrații, iconițe și elemente decorative.",
     },
-    // Пока ни один проект не отмечен client: "telemarket" — как только
-    // проставишь этот ключ нужным проектам в content/projects, они сами
-    // появятся тут.
     key: "telemarket",
   },
   {
-    // Замени "Cheton" на реальное название компании, если название файла
-    // не совпадает с настоящим именем клиента.
     logo: "/images/clients/cheton.svg",
-    name: "Cheton",
+    name: "Cheton Grup",
     description: {
-      ru: "Опиши здесь, что именно делал для этого клиента.",
-      en: "Describe what you did for this client here.",
-      ro: "Descrie aici ce ai făcut pentru acest client.",
+      ru: "Cheton Grup — молдавская компания, основанная в 1997 году: изначально производитель растворителей и лакокрасочных материалов под собственными марками (Coloriks, Gama Color), сегодня — крупный дистрибьютор стройтоваров, поставляющий продукцию в большинство строительных магазинов страны. Для компании я разрабатывал этикетки для промышленной печати и дизайн упаковки продукции, а также занимался редизайном и адаптацией существующих макетов под новые форматы и требования печати.",
+      en: "Cheton Grup is a Moldovan company founded in 1997 — originally a manufacturer of solvents and paints under its own brands (Coloriks, Gama Color), now a major distributor supplying hardware and construction stores across the country. For the company I designed labels for industrial printing and product packaging, and reworked existing layouts to fit new formats and print requirements.",
+      ro: "Cheton Grup este o companie moldovenească fondată în 1997 — inițial producător de solvenți și vopsele sub mărci proprii (Coloriks, Gama Color), astăzi un distribuitor important de materiale de construcție, prezent în majoritatea magazinelor de profil din țară. Pentru companie am creat etichete pentru tipar industrial și design de ambalaj, precum și redesign și adaptare a machetelor existente pentru noi formate și cerințe de tipar.",
     },
-    // Пока ни один проект не отмечен client: "cheton" — как только
-    // проставишь этот ключ нужным проектам в content/projects, они сами
-    // появятся тут.
     key: "cheton",
   },
   {
-    // Замени "Stip" на реальное название компании, если название файла
-    // не совпадает с настоящим именем клиента.
     logo: "/images/clients/stip.svg",
     name: "Stip",
     description: {
-      ru: "Опиши здесь, что именно делал для этого клиента.",
-      en: "Describe what you did for this client here.",
-      ro: "Descrie aici ce ai făcut pentru acest client.",
+      ru: "Stip — крупнейший производитель мягких игрушек в Молдове, фабрика в Бельцах, работающая с 1998 года и поставляющая продукцию не только по стране, но и на экспорт в Германию и Румынию. Для компании я занимался обработкой и ретушью фотографий игрушек для сайта любой сложности, чтобы каждая позиция каталога выглядела аккуратно и единообразно. Также готовил печатную продукцию к печати — флаеры и буклеты.",
+      en: "Stip is the largest soft toy manufacturer in Moldova, based in Bălți since 1998, exporting its products to Germany and Romania in addition to the local market. For the company I retouched and prepared toy photography for the website at any level of complexity, so every catalog item looked clean and consistent. I also prepared print materials — flyers and brochures — for production.",
+      ro: "Stip este cel mai mare producător de jucării de pluș din Moldova, cu fabrica la Bălți, activă din 1998 și cu export în Germania și România, pe lângă piața locală. Pentru companie am retușat și pregătit fotografiile jucăriilor pentru site, indiferent de complexitate, pentru ca fiecare produs din catalog să arate îngrijit și unitar. Am pregătit, de asemenea, materiale tipărite — fluturași și broșuri — pentru producție.",
     },
-    // Пока ни один проект не отмечен client: "stip" — как только
-    // проставишь этот ключ нужным проектам в content/projects, они сами
-    // появятся тут.
     key: "stip",
   },
 ];
@@ -522,7 +507,6 @@ export default function About({ lang, t }: AboutProps) {
                     />
                   </div>
 
-                  <h3 className={styles.clientName}>{CLIENTS[openClient].name}</h3>
                   <p className={styles.clientDescription}>{CLIENTS[openClient].description[lang]}</p>
                 </div>
 

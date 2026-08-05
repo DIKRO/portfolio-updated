@@ -350,13 +350,6 @@
   transform: translateY(-6px);
 }
 
-.clientName {
-  font-size: 24px;
-  font-weight: 500;
-  color: var(--text);
-  margin: 0 0 20px;
-}
-
 .clientDescription {
   font-size: 15px;
   line-height: 1.7;
@@ -443,7 +436,7 @@
      родителя (см. подробное объяснение в WorkGrid.module.css и
      ProjectView.module.css, тот же паттерн), border же — собственная
      полоса пикселей снаружи контента, всегда видна поверх фото. */
-  border: 1.5px solid transparent;
+  border: 1px solid transparent;
   transition: box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
@@ -747,11 +740,6 @@
     margin: 0 0 14px;
   }
 
-  .clientName {
-    font-size: 17px;
-    margin: 0 0 8px;
-  }
-
   .clientDescription {
     font-size: 12px;
     line-height: 1.5;
@@ -793,19 +781,24 @@
     flex: 0 0 auto;
   }
 
-  /* Список работ — горизонтальный скролл, как и везде на сайте (та же
-     идея, что в портретной мобильной версии), но каждая карточка ровно
-     на всю ширину правой колонки — виден один проект целиком, свайп в
-     сторону показывает следующий, а не мелкая полоска превью. scroll-snap
-     останавливает прокрутку точно на границе карточки. */
+  /* Список работ — вертикальный скролл, НЕ горизонтальный: у самой
+     карточки клиента (см. drag="x" на .clientCard в About.tsx) горизонтальный
+     свайп уже занят — им переключаются компании. Если список проектов
+     тоже скроллить по горизонтали, оба жеста конфликтуют на одном и том
+     же пальце/направлении: свайп по превью то листает проекты, то
+     случайно уводит на соседнюю компанию. Вертикальный свайп для списка
+     проектов конфликта не создаёт — свободное направление. Каждая
+     карточка занимает всю высоту колонки — виден один проект целиком,
+     скролл вниз/вверх показывает следующий/предыдущий, scroll-snap
+     останавливает точно на границе карточки. */
   .relatedProjectsRow {
     flex: 1 1 auto;
     min-height: 0;
     height: 100%;
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
     padding-bottom: 0;
     gap: 0;
   }
@@ -813,7 +806,7 @@
   .relatedProjectCard {
     flex: 0 0 100%;
     scroll-snap-align: start;
-    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
