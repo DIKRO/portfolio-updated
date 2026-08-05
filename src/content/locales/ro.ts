@@ -23,9 +23,10 @@ export const ro = {
   categories: {
     all: "Toate",
     branding: "Logo / Branding",
-    web: "Web / Digital",
-    print: "Poligrafie / materiale tipărite",
+    digital: "Creativitate digitală",
+    print: "Poligrafie",
     packaging: "Publicitate exterior",
+    "ui-ux": "UI/UX",
     "video-editing": "Montaj video",
     "Motion design": "Animație",
   },

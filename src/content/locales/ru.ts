@@ -24,9 +24,10 @@ export const ru = {
   categories: {
     all: "Все",
     branding: "Лого / Брендинг",
-    web: "Web / Digital",
-    print: "Полиграфия / печатная продукция",
+    digital: "Digital-креативы",
+    print: "Полиграфия",
     packaging: "Наружная реклама",
+    "ui-ux": "UI/UX",
     "video-editing": "Монтаж видео",
     "Motion design": "Анимация",
   },

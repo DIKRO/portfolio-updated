@@ -174,7 +174,13 @@ function RelatedProjectCard({ project, lang }: { project: Project; lang: Lang })
       onClick={(e) => e.stopPropagation()}
     >
       <div className={styles.relatedProjectImageWrap}>
-        <Image src={project.cover} alt={project.title[lang]} fill sizes="180px" className={styles.relatedProjectImage} />
+        <Image
+          src={project.cover}
+          alt={project.title[lang]}
+          fill
+          sizes="(max-height: 500px) and (orientation: landscape) 50vw, 180px"
+          className={styles.relatedProjectImage}
+        />
       </div>
       <span className={styles.relatedProjectTitle}>{project.title[lang]}</span>
     </Link>

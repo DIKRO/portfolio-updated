@@ -23,9 +23,10 @@ export const en = {
   categories: {
     all: "All",
     branding: "Logo / Branding",
-    web: "Web / Digital",
-    print: "Print / print materials",
+    digital: "Digital Creatives",
+    print: "Print",
     packaging: "Outdoor advertising",
+    "ui-ux": "UI/UX",
     "video-editing": "Video editing",
     "Motion design": "Motion design",
   },

@@ -1,8 +1,9 @@
 export type CategoryKey =
   | "branding"
-  | "web"
+  | "digital"
   | "print"
   | "packaging"
+  | "ui-ux"
   | "video-editing"
   | "Motion design";
 
