@@ -749,6 +749,25 @@ export const projects: Project[] = [
       ro: "Descriere scurtă a proiectului: povestește ce ai făcut în acest proiect. Înlocuiește cu textul real.",
     },
   },
+  {
+    id: "39",
+    slug: "euronet_flaer",
+    title: { ru: "Ознакомительный флаер для компании EuroNet",
+              en: "Introductory flyer for EuroNet company",
+              ro: "Fluturaș de prezentare pentru compania EuroNet"},
+    categoryKey: "print",
+    year: 2024,
+    cover: "/images/work/print/euronet_flaer/cover-39.jpg",
+    images: ["/images/work/print/euronet_flaer/1.jpg",
+            "/images/work/print/euronet_flaer/2.jpg",
+            "/images/work/print/euronet_flaer/3.jpg",
+            "/images/work/print/euronet_flaer/4.png"],
+    description: {
+      ru: "Флаер формата А5 разработан для компании EuroNet и содержит информацию о тарифах и услугах интернет‑ и телевещания. В работе использована фирменная цветовая гамма (синий, оранжевый, белый), которая обеспечивает узнаваемость бренда и визуальную целостность. Дизайн структурирован так, чтобы клиент быстро находил нужные данные: на одном флаере представлены шаги подключения и контакты, на другом — преимущества компании и перечень тарифных планов с ценами.",
+      en: "This A5 flyer was designed for EuroNet and contains information about internet and television service plans and rates. The design incorporates the company’s brand colors (blue, orange, and white), which ensure brand recognition and visual consistency. The design is structured so that customers can quickly find the information they need: one flyer outlines the steps for signing up and provides contact information, while the other highlights the company’s advantages and lists the rate plans with prices.",
+      ro: "Fluturașul în format A5 a fost conceput pentru compania EuroNet și conține informații despre tarifele și serviciile de internet și televiziune. În realizarea acestuia s-a utilizat paleta de culori specifică companiei (albastru, portocaliu, alb), care asigură recunoașterea mărcii și coerența vizuală. Designul este structurat astfel încât clientul să găsească rapid informațiile necesare: pe unul dintre fluturași sunt prezentate pașii de conectare și datele de contact, iar pe celălalt — avantajele companiei și lista planurilor tarifare cu prețurile aferente.",
+    },
+  },
 ];
 
 export function getProjectBySlug(slug: string) {
