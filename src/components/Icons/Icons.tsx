@@ -6,6 +6,21 @@ export function StarIcon() {
   );
 }
 
+// Симметричная стрелка-шеврон для навигации (карусель проектов и т.п.) —
+// используется и как "назад" (как есть), и как "вперёд" (через CSS
+// transform: scaleX(-1) на самой кнопке), чтобы обе стрелки были
+// зеркально одинаковыми и одинаково центрированными — обычные текстовые
+// символы ‹ › для этого не годятся: у шрифтов их отрисовка часто немного
+// смещена/асимметрична, из-за чего стрелки визуально "не ровно" стоят
+// друг напротив друга.
+export function ChevronIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+      <path d="M15 5l-7 7 7 7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function PlayIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor">

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { projects } from "@/content/projects";
 import { LocalizedText, Project } from "@/types/project";
 import { Lang } from "@/content/lang";
+import { ChevronIcon } from "@/components/Icons/Icons";
 import styles from "./About.module.css";
 
 interface AboutProps {
@@ -172,35 +173,64 @@ function RelatedProjectCard({ project, lang }: { project: Project; lang: Lang })
   );
 }
 
-// Десктопная карусель (только когда проектов больше 3) — вместо скролла
-// контейнера показывает "окно" из 3 проектов и сдвигает его индексом по
-// модулю длины массива. Из-за этого зацикливание получается по-настоящему
-// бесшовным: после последнего сразу первый, без видимой границы и без
-// "отскока" через весь список назад, как было при скролле контейнера.
-// Свой independent state — компонент целиком размонтируется/монтируется
-// заново при смене клиента (он вложен в <motion.div key={openClient}>
-// снаружи), поэтому окно всегда начинается с первых трёх проектов при
-// открытии новой карточки, без утечки состояния между клиентами.
+// Сколько карточек показывать одновременно в окне карусели — 3 на
+// десктопе, 1 на телефоне (и в портретной, и в горизонтальной ориентации,
+// см. запрос в MOBILE_QUERY ниже). Проверяется через matchMedia, а не
+// через сам CSS, потому что JS нужно знать текущее число, чтобы правильно
+// строить offsets окна и добавлять/убирать временную карточку при шаге.
+const MOBILE_QUERY = "(max-width: 768px), (orientation: landscape) and (max-height: 500px)";
+
+function useCarouselVisibleCount() {
+  const [count, setCount] = useState(3);
+  useEffect(() => {
+    const mql = window.matchMedia(MOBILE_QUERY);
+    const update = () => setCount(mql.matches ? 1 : 3);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
+  return count;
+}
+
+// Карусель проектов внутри карточки клиента (используется только когда
+// проектов больше 3) — вместо скролла/свайпа показывает "окно" из N
+// проектов (N = 3 на десктопе, 1 на телефоне — см. useCarouselVisibleCount)
+// и сдвигает его по кнопкам-стрелкам, с индексом по модулю длины массива.
+// Один и тот же принцип — клик по стрелке — работает одинаково на ПК и на
+// телефоне (портретная и альбомная ориентация), никакого свайпа тут нет:
+// это единственное место в карточке клиента, где движение проектов должно
+// идти только по кнопкам, чтобы не путаться с горизонтальным свайпом,
+// которым переключаются сами клиенты (см. drag="x" на .clientCard ниже).
+//
+// Из-за окна по модулю зацикливание получается по-настоящему бесшовным:
+// после последнего сразу первый, без видимой границы и без "отскока" через
+// весь список назад. Свой independent state — компонент целиком
+// размонтируется/монтируется заново при смене клиента (он вложен в
+// <motion.div key={openClient}> снаружи), поэтому окно всегда начинается
+// с первых проектов при открытии новой карточки, без утечки состояния
+// между клиентами.
 //
 // Дорожка с карточками ни разу не размонтируется между кликами по стрелкам —
-// раньше окно целиком пересоздавалось (AnimatePresence + key={start}), из-за
-// чего между исчезновением старого и появлением нового набора была
-// небольшая пауза с пустым местом. Теперь один и тот же track всегда виден:
-// на время шага в него временно добавляется 4-я карточка с той стороны,
-// куда едем, затем весь track анимированно сдвигается на её ширину, и по
-// завершении лишняя карточка убирается, а x мгновенно (без анимации)
-// возвращается к 0 — с тем же самым набором из 3 карточек на экране, без
-// видимого скачка.
-function RelatedProjectsDesktopCarousel({ items, lang }: { items: Project[]; lang: Lang }) {
+// раньше окно целиком пересоздавалось, из-за чего между исчезновением
+// старого и появлением нового набора была небольшая пауза с пустым местом.
+// Теперь один и тот же track всегда виден: на время шага в него временно
+// добавляется ещё одна карточка с той стороны, куда едем, затем весь track
+// анимированно сдвигается на её ширину, и по завершении лишняя карточка
+// убирается, а x мгновенно (без анимации) возвращается к 0 — с тем же самым
+// набором карточек на экране, без видимого скачка.
+function RelatedProjectsCarousel({ items, lang }: { items: Project[]; lang: Lang }) {
+  const visibleCount = useCarouselVisibleCount();
   const [start, setStart] = useState(0);
   // Пока не null — идёт шаг карусели: extra.dir — куда едем, extra.offsets —
-  // какие 4 карточки (по смещению от start) сейчас в DOM.
+  // какие карточки (по смещению от start) сейчас в DOM (на одну больше
+  // обычного окна, см. paginate).
   const [extra, setExtra] = useState<{ dir: 1 | -1; offsets: number[] } | null>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const controls = useAnimationControls();
   const busyRef = useRef(false);
 
-  const offsets = extra ? extra.offsets : [0, 1, 2];
+  const baseOffsets = Array.from({ length: visibleCount }, (_, i) => i);
+  const offsets = extra ? extra.offsets : baseOffsets;
   const visible = offsets.map((o) => items[(start + o + items.length) % items.length]);
 
   const measureStep = () => {
@@ -215,8 +245,11 @@ function RelatedProjectsDesktopCarousel({ items, lang }: { items: Project[]; lan
     if (busyRef.current) return;
     busyRef.current = true;
 
-    setExtra({ dir, offsets: dir === 1 ? [0, 1, 2, 3] : [-1, 0, 1, 2] });
-    // Ждём кадр, чтобы 4-я карточка успела попасть в DOM перед замером и
+    setExtra({
+      dir,
+      offsets: dir === 1 ? [...baseOffsets, visibleCount] : [-1, ...baseOffsets],
+    });
+    // Ждём кадр, чтобы лишняя карточка успела попасть в DOM перед замером и
     // стартом анимации.
     await new Promise((r) => requestAnimationFrame(r));
     const step = measureStep();
@@ -251,7 +284,7 @@ function RelatedProjectsDesktopCarousel({ items, lang }: { items: Project[]; lan
         }}
         aria-label="Previous"
       >
-        ‹
+        <ChevronIcon />
       </button>
 
       <div className={styles.relatedProjectsViewport}>
@@ -259,7 +292,7 @@ function RelatedProjectsDesktopCarousel({ items, lang }: { items: Project[]; lan
           ref={trackRef}
           animate={controls}
           initial={false}
-          className={styles.relatedProjectsRow}
+          className={styles.carouselTrack}
         >
           {visible.map((project, i) => (
             <RelatedProjectCard key={`${project.slug}-${offsets[i]}`} project={project} lang={lang} />
@@ -276,7 +309,7 @@ function RelatedProjectsDesktopCarousel({ items, lang }: { items: Project[]; lan
         }}
         aria-label="Next"
       >
-        ›
+        <ChevronIcon />
       </button>
     </div>
   );
@@ -537,31 +570,15 @@ export default function About({ lang, t }: AboutProps) {
                     );
                   }
 
-                  // Больше 3 — на десктопе показываем настоящую бесконечную
-                  // карусель (индекс по модулю, без видимой границы при
-                  // зацикливании — см. RelatedProjectsDesktopCarousel). На
-                  // телефоне вместо нее — обычный полный список со свайпом
-                  // вверх/вниз (там зацикливание не нужно, там просто
-                  // дочитываешь список до конца). Оба варианта в разметке
-                  // одновременно, переключаются чисто через CSS
-                  // (display:none/flex по медиа-запросу) — без определения
-                  // ширины экрана в JS, это исключает любое несовпадение
-                  // между сервером и браузером при первой отрисовке.
+                  // Больше 3 — везде показываем одну и ту же бесконечную
+                  // карусель с окном по модулю (см. RelatedProjectsCarousel):
+                  // и на десктопе (окно из 3), и на телефоне — портретно и
+                  // горизонтально (окно из 1) — листается только кликом по
+                  // стрелкам, без свайпа.
                   return (
                     <div className={styles.relatedProjects}>
                       <span className={styles.relatedProjectsLabel}>{t.about.viewProjects}</span>
-
-                      <div className={styles.relatedProjectsDesktopOnly}>
-                        <RelatedProjectsDesktopCarousel items={relatedProjects} lang={lang} />
-                      </div>
-
-                      <div className={styles.relatedProjectsMobileOnly}>
-                        <div className={styles.relatedProjectsRow}>
-                          {relatedProjects.map((project) => (
-                            <RelatedProjectCard key={project.slug} project={project} lang={lang} />
-                          ))}
-                        </div>
-                      </div>
+                      <RelatedProjectsCarousel items={relatedProjects} lang={lang} />
                     </div>
                   );
                 })()}

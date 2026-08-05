@@ -845,6 +845,33 @@ export const projects: Project[] = [
       ro: "Fluturașul publicitar pentru DANVIC este conceput ca o prezentare cuprinzătoare a serviciilor digitale și inteligente. Structura vizuală este construită pe o combinație de pictograme și blocuri de text, transmițând clar beneficiile: internet de mare viteză, televiziune digitală, Wi-Fi puternic, minute gratuite de apel, camere CCTV și soluții inteligente pentru casă. Designul subliniază modernitatea și progresul tehnologic al mărcii, în timp ce accentul pus pe conexiunea gratuită sporește atractivitatea ofertei.",
     },
   },
+   {
+    id: "44",
+    slug: "grillkebab_logo",
+    client: "grillkebab",
+    title: { ru: "Логотип для шоколадной фрабрики Kreola в Румынии",
+            en: "Logo for the Kreola Chocolate Factory in Romania",
+            ro: "Logo pentru fabrica de ciocolată Kreola din România" },
+    categoryKey: "branding",
+    year: 2024,
+    cover: "/images/work/logo/grillkebab_logo/cover-44.jpg",
+    images: [
+      "/images/work/logo/grillkebab_logo/work1.jpg",
+      "/images/work/logo/grillkebab_logo/work2.png",
+      "/images/work/logo/grillkebab_logo/work3.jpg",
+      "/images/work/logo/grillkebab_logo/work4.jpg",
+      "/images/work/logo/grillkebab_logo/work5.jpg",
+      "/images/work/logo/grillkebab_logo/work6.jpg",
+      "/images/work/logo/grillkebab_logo/work7.jpg",
+      "/images/work/logo/grillkebab_logo/work8.png",
+      "/images/work/logo/grillkebab_logo/work9.jpg"
+            ],
+    description: {
+      ru: "Айдентика бренда KREOLA объединяет премиальную эстетику с духом настоящего ремесленного шоколада. Глубокие винные и теплые землистые оттенки в сочетании с элегантной антиквой подчеркивают благородство продукта. Тактильные паттерны на упаковке и открытое окно, демонстрирующее богатство натуральных ингредиентов, создают образ честного, но роскошного шоколада, который хочется попробовать прямо сейчас",
+      en: "A logo created for the Kreola Chocolate Factory in Romania. It combines premium aesthetics with the spirit of authentic artisanal chocolate. Deep wine and warm earthy tones, combined with elegant antiques, emphasize the nobility of the product. Textured patterns on the packaging and an open window showcasing the abundance of natural ingredients create an image of honest yet luxurious chocolate that you want to try right now.",
+      ro: "Identitatea de brand KREOLA combină estetica de premium cu spiritul ciocolăței artizanale autentice. Nuanțele adânci de vin și cele calde de pământ, combinate cu antici elegant, subliniază nobilățea produsului. Modelele tactil pe ambalaj și un spațiu deschis care arată bogăția ingredientelor naturale creează o imagine de ciocolată sinceră, dar luxuoasă, pe care o dorești să o încerci chiar acum.",
+    },
+  },
 ];
 
 export function getProjectBySlug(slug: string) {
