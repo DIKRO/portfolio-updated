@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useLang } from "@/content/lang";
 import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero/Hero";
+import Highlights from "@/components/Highlights/Highlights";
 import WorkGrid from "@/components/Work/WorkGrid";
 import About from "@/components/About/About";
 import Contact from "@/components/Contact/Contact";
@@ -46,6 +47,7 @@ export default function Home() {
           когда сохранённый язык подхватывается уже после монтирования) */}
       <motion.div key={lang} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
         <Hero t={t} />
+        <Highlights t={t} />
         <WorkGrid lang={lang} t={t} />
         <About lang={lang} t={t} />
         <Contact t={t} />

@@ -17,6 +17,24 @@ export const en = {
     cta: "Start a project",
     ctaSecondary: "See the work",
   },
+  highlights: [
+    {
+      title: "Tailored approach",
+      text: "No templates — every brand gets its own solution.",
+    },
+    {
+      title: "Digital-first",
+      text: "Logos, brand identity and digital design for web and social.",
+    },
+    {
+      title: "Multiple formats",
+      text: "From a logo to banners, presentations and POS materials.",
+    },
+    {
+      title: "On-time delivery",
+      text: "A clear process and steady communication throughout the project.",
+    },
+  ],
   work: {
     showAll: "See all work",
     showLess: "Show less",
@@ -33,7 +51,7 @@ export const en = {
   },
   about: {
     label: "About",
-    text: "My name is Dmitrii Socur, a graphic designer based in Chișinău, Moldova. I design custom logos, brand identity and digital design, occasionally print materials — drawn to minimalism and attention to detail. For me it's not just about a pretty picture, but design that's memorable and solves real problems for clients. If this approach resonates with you, I'd love to work together!",
+    text: "My name is Dmitrii Socur, a graphic designer based in Bălți, Moldova. I design custom logos, brand identity and digital design, occasionally print materials — drawn to minimalism and attention to detail. For me it's not just about a pretty picture, but design that's memorable and solves real problems for clients. If this approach resonates with you, I'd love to work together!",
     clientsLabel: "Companies I've worked with",
     viewProjects: "Projects for this company",
   },
