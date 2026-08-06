@@ -118,12 +118,13 @@
   padding: 12px 26px;
   border-radius: 999px;
   cursor: pointer;
-  transition: border-color var(--transition), color var(--transition);
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .showLessButton:hover {
-  color: var(--accent);
-  border-color: rgba(255, 90, 31, 0.5);
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16) inset, 0 0 18px rgba(255, 255, 255, 0.08);
 }
 
 .card {

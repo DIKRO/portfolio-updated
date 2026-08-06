@@ -221,18 +221,12 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
       </div>
 
       <div className={styles.gridWrap}>
-        <div
+        <motion.div
           ref={gridRef}
           className={styles.grid}
-          style={
-            canClip
-              ? {
-                  height: expanded ? heights!.full : heights!.clip,
-                  overflow: "hidden",
-                  transition: "height 0.8s cubic-bezier(0.22, 1, 0.36, 1)",
-                }
-              : undefined
-          }
+          style={canClip ? { overflow: "hidden" } : undefined}
+          animate={canClip ? { height: expanded ? heights!.full : heights!.clip } : undefined}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <AnimatePresence mode="popLayout">
             {filtered.map((project, index) => (
@@ -275,15 +269,31 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
               </motion.div>
             ))}
           </AnimatePresence>
-        </div>
+        </motion.div>
 
-        {canClip && !expanded && (
-          <div className={styles.fade}>
-            <button className={styles.showAllButton} onClick={() => setExpanded(true)}>
-              {t.work.showAll} →
-            </button>
-          </div>
-        )}
+        {/* Подложка-градиент и кнопка теперь исчезают/появляются плавным
+            fade (0.5s) одновременно с тем, как сетка растёт/сжимается
+            (0.8s) — раньше это был обычный React-условный рендер без
+            перехода, то есть подложка пропадала/появлялась за один кадр
+            прямо в момент клика, пока высота под ней ещё только начинала
+            меняться. Из-за этого мгновенного "скачка" в самый первый
+            момент разворачивание/сворачивание и ощущалось как резкое, хотя
+            сама сетка растягивалась плавно. */}
+        <AnimatePresence>
+          {canClip && !expanded && (
+            <motion.div
+              className={styles.fade}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <button className={styles.showAllButton} onClick={() => setExpanded(true)}>
+                {t.work.showAll} →
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       {canClip && expanded && (
