@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Lang } from "@/content/lang";
 import { projects } from "@/content/projects";
 import { CategoryKey } from "@/types/project";
 import { shimmerBlurDataURL } from "@/lib/shimmer";
+import TransitionLink from "@/components/Transition/TransitionLink";
 import styles from "./WorkGrid.module.css";
 
 type FilterKey = "all" | CategoryKey;
@@ -238,7 +238,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, delay: (index % 3) * 0.05 }}
               >
-                <Link
+                <TransitionLink
                   href={
                     filter === "all" ? `/work/${project.slug}` : `/work/${filter}/${project.slug}`
                   }
@@ -265,7 +265,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
                       {t.categories[project.categoryKey]} — {project.year}
                     </span>
                   </div>
-                </Link>
+                </TransitionLink>
               </motion.div>
             ))}
           </AnimatePresence>

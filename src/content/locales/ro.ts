@@ -2,6 +2,7 @@ export const ro = {
   nav: {
     work: "Lucrări",
     about: "Despre mine",
+    reviews: "Recenzii",
     contact: "Contact",
   },
   seo: {
@@ -55,6 +56,11 @@ export const ro = {
     text: "Mă numesc Dmitrii Socur și sunt designer grafic din Bălți, Moldova. Creez logo la comandă, identitate vizuală și design digital, ocazional materiale tipărite — mă ghidez după minimalism și atenție la detalii. Pentru mine contează nu doar o imagine frumoasă, ci un design memorabil, care rezolvă problemele reale ale clienților. Dacă vă regăsiți în această abordare, aș fi încântat să colaborăm!",
     clientsLabel: "Companii cu care am colaborat",
     viewProjects: "Proiecte pentru această companie",
+  },
+  reviews: {
+    label: "Recenzii",
+    title: "Ce spun clienții",
+    subtitle: "Câteva cuvinte de la cei cu care am colaborat deja",
   },
   contact: {
     label: "Contact",

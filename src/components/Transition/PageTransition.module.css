@@ -1,0 +1,54 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background:
+    radial-gradient(560px 560px at var(--ox) var(--oy), rgba(255, 90, 31, 0.16), transparent 62%),
+    var(--bg);
+  pointer-events: none;
+  will-change: clip-path;
+}
+
+/* Тонкое кольцо-индикатор в точке клика — появляется с небольшой
+   задержкой и только если переход и правда что-то ждёт (медленная сеть):
+   в обычном быстром случае круг успевает схлопнуться раньше, чем кольцо
+   вообще станет видимым (opacity анимируется отдельно от clip-path, но
+   задержка в 0.4s почти всегда длиннее, чем занимает весь переход). */
+.mark {
+  position: absolute;
+  top: var(--oy);
+  left: var(--ox);
+  width: 46px;
+  height: 46px;
+  margin: -23px 0 0 -23px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 90, 31, 0.55);
+  opacity: 0;
+  animation: markPulse 1.2s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+
+@keyframes markPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  18% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.3;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark {
+    animation: none;
+    display: none;
+  }
+}

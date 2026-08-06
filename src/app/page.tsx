@@ -7,6 +7,7 @@ import Hero from "@/components/Hero/Hero";
 import Highlights from "@/components/Highlights/Highlights";
 import WorkGrid from "@/components/Work/WorkGrid";
 import About from "@/components/About/About";
+import Reviews from "@/components/Reviews/Reviews";
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
 
@@ -50,6 +51,7 @@ export default function Home() {
         <Highlights t={t} />
         <WorkGrid lang={lang} t={t} />
         <About lang={lang} t={t} />
+        <Reviews lang={lang} t={t} />
         <Contact t={t} />
         <Footer />
       </motion.div>

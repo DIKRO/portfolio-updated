@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLang } from "@/content/lang";
@@ -11,6 +10,7 @@ import { shimmerBlurDataURL } from "@/lib/shimmer";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import GalleryLightbox from "../Work/Lightbox";
+import TransitionLink from "@/components/Transition/TransitionLink";
 import { EmailIcon } from "@/components/Icons/Icons";
 import { SOCIALS } from "@/content/socials";
 import styles from "./ProjectView.module.css";
@@ -79,14 +79,14 @@ export default function ProjectView({
         transition={{ duration: 0.25 }}
       >
         <div className={styles.topRow}>
-          <Link href="/#work" className={styles.back}>
+          <TransitionLink href="/#work" className={styles.back}>
             {t.project.back}
-          </Link>
+          </TransitionLink>
 
           {hasMultipleProjects && (
-            <Link href={nextProjectHref} className={styles.next}>
+            <TransitionLink href={nextProjectHref} className={styles.next}>
               {t.project.next} →
-            </Link>
+            </TransitionLink>
           )}
         </div>
 
@@ -204,14 +204,14 @@ export default function ProjectView({
         </AnimatePresence>
 
         <div className={styles.topRow}>
-          <Link href="/#work" className={styles.back}>
+          <TransitionLink href="/#work" className={styles.back}>
             {t.project.back}
-          </Link>
+          </TransitionLink>
 
           {hasMultipleProjects && (
-            <Link href={nextProjectHref} className={styles.next}>
+            <TransitionLink href={nextProjectHref} className={styles.next}>
               {t.project.next} →
-            </Link>
+            </TransitionLink>
           )}
         </div>
 
@@ -224,9 +224,9 @@ export default function ProjectView({
         >
           <p>{t.project.cta}</p>
           <div className={styles.ctaRow}>
-            <Link href="/#contact" className={styles.ctaButton}>
+            <TransitionLink href="/#contact" className={styles.ctaButton}>
               {t.project.ctaButton} →
-            </Link>
+            </TransitionLink>
 
             <div className={styles.ctaSocials}>
               <a

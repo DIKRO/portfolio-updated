@@ -12,7 +12,7 @@ interface HeaderProps {
   lang: Lang;
   setLang: (lang: Lang) => void;
   t: {
-    nav: { work: string; about: string; contact: string };
+    nav: { work: string; about: string; reviews: string; contact: string };
     contact: { email: string };
   };
 }
@@ -89,7 +89,7 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
     // перемонтируется при смене языка — старые DOM-узлы #work/#about/#contact
     // уничтожаются, создаются новые, поэтому эффект пересоздаёт всё заново
     // при каждой смене lang (см. зависимость ниже).
-    const ids = ["work", "about", "contact"];
+    const ids = ["work", "about", "reviews", "contact"];
     const elements = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -180,6 +180,13 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
               className={activeSection === "about" ? styles.activeNav : ""}
             >
               {t.nav.about}
+            </a>
+            <a
+              href={isHome ? "#reviews" : "/#reviews"}
+              onClick={goTo("reviews")}
+              className={activeSection === "reviews" ? styles.activeNav : ""}
+            >
+              {t.nav.reviews}
             </a>
             <a
               href={isHome ? "#contact" : "/#contact"}

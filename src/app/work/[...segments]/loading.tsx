@@ -1,0 +1,51 @@
+"use client";
+
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import { en } from "@/content/locales/en";
+import styles from "./loading.module.css";
+
+// Next.js подхватывает этот файл автоматически по имени loading.tsx — пока
+// грузится страница конкретного проекта (переход по ссылке с карточки,
+// либо кнопка "Следующий проект"), рендерится этот скелетон. Шапку рендерим
+// настоящим компонентом Header (а не отдельной заглушкой) — она не зависит
+// ни от каких данных проекта, поэтому просто продолжает работать как
+// обычно, и при переходе не возникает "мигания" — шапка остаётся на месте,
+// меняется только содержимое под ней.
+//
+// Само переключение теперь всегда идёт под непрозрачным оверлеем
+// (см. PageTransitionProvider) — этот скелетон в первую очередь подстраховка
+// на случай медленной сети (пока оверлей ждёт готовности страницы) и на
+// случай прямых переходов в обход оверлея (например, кнопка "Назад" браузера).
+export default function Loading() {
+  return (
+    <main>
+      <Header lang="en" setLang={() => {}} t={en} />
+
+      <div className={styles.page}>
+        <div className={styles.topRow}>
+          <div className={`${styles.skeleton} ${styles.link}`} />
+          <div className={`${styles.skeleton} ${styles.link}`} />
+        </div>
+
+        <div className={`${styles.skeleton} ${styles.title}`} />
+        <div className={`${styles.skeleton} ${styles.metaLine}`} />
+
+        <div className={`${styles.skeleton} ${styles.descLine}`} />
+        <div className={`${styles.skeleton} ${styles.descLine}`} style={{ width: "85%" }} />
+        <div className={`${styles.skeleton} ${styles.descLine}`} style={{ width: "60%", marginBottom: 56 }} />
+
+        <div className={styles.gallery}>
+          <div className={`${styles.skeleton} ${styles.block}`} />
+          <div className={styles.pairRow}>
+            <div className={`${styles.skeleton} ${styles.blockHalf}`} />
+            <div className={`${styles.skeleton} ${styles.blockHalf}`} />
+          </div>
+          <div className={`${styles.skeleton} ${styles.block}`} />
+        </div>
+      </div>
+
+      <Footer />
+    </main>
+  );
+}
