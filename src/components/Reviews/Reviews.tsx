@@ -36,16 +36,12 @@ export default function Reviews({ lang, t }: ReviewsProps) {
   const [heights, setHeights] = useState<{ clip: number; full: number } | null>(null);
   const [expanded, setExpanded] = useState(false);
 
-  // Замеряем реальную высоту первого ряда карточек (а не примерную vh),
-  // чтобы обрезка всегда приходилась на 40% высоты 2-го ряда (видно 40%,
-  // 60% тонет в фоне) — независимо от того, сколько колонок сейчас в сетке
-  // (3 на десктопе, 2 на планшете, 1 на телефоне) и сколько там строк
-  // текста у конкретных отзывов.
   useEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+
     function measure() {
-      const el = gridRef.current;
-      if (!el) return;
-      const items = Array.from(el.children) as HTMLElement[];
+      const items = Array.from(el!.children) as HTMLElement[];
       if (items.length === 0) return;
 
       const firstTop = items[0].offsetTop;
@@ -56,7 +52,7 @@ export default function Reviews({ lang, t }: ReviewsProps) {
       }
 
       const totalRows = Math.ceil(items.length / columns);
-      const full = el.scrollHeight;
+      const full = el!.scrollHeight;
 
       if (totalRows <= VISIBLE_ROWS) {
         setHeights({ clip: full, full });
@@ -73,10 +69,32 @@ export default function Reviews({ lang, t }: ReviewsProps) {
       setHeights({ clip: cutItem.offsetTop + cutItem.offsetHeight * 0.4, full });
     }
 
-    const raf = requestAnimationFrame(measure);
+    // Двойной requestAnimationFrame — на первом кадре браузер может ещё не
+    // успеть применить финальные стили (особенно с CSS-модулями), меряем
+    // только начиная со второго, когда раскладка точно устоялась.
+    let raf2 = 0;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(measure);
+    });
+
+    // Высота карточек отзывов целиком зависит от переноса текста, а он
+    // зависит от того, каким шрифтом текст на момент измерения отрисован.
+    // Если измерить до того, как догрузился основной шрифт (Montserrat),
+    // браузер в этот момент ещё рисует текст системным шрифтом — обычно с
+    // другими метриками и, соответственно, с другим переносом строк. Разница
+    // может быть небольшой, но она навсегда "застревает" в heights, потому
+    // что раньше измерение запускалось только один раз при монтировании и
+    // никогда не пересчитывалось. Именно из-за этого весь блок отзывов
+    // выглядел обрезанным до одной строки в каждой карточке даже в
+    // развёрнутом виде. Пересчитываем ещё раз, когда шрифты точно готовы.
+    if (typeof document !== "undefined" && "fonts" in document) {
+      document.fonts.ready.then(measure).catch(() => {});
+    }
+
     window.addEventListener("resize", measure);
     return () => {
-      cancelAnimationFrame(raf);
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
       window.removeEventListener("resize", measure);
     };
   }, []);
@@ -99,7 +117,10 @@ export default function Reviews({ lang, t }: ReviewsProps) {
       <div className={styles.gridWrap}>
         {/* animate.height всегда получает явную цель (число или "auto") —
             см. подробный комментарий в WorkGrid.tsx про баг с "залипающей"
-            высотой контейнера, когда canClip переключается в false. */}
+            высотой контейнера. Тут её вообще не бывает false→undefined,
+            так как фильтров нет и canClip не переключается туда-обратно —
+            но цель всё равно оставлена явной для единообразия и на случай,
+            если количество отзывов в будущем изменится с "много" на "мало". */}
         <motion.div
           ref={gridRef}
           className={styles.grid}
@@ -116,13 +137,11 @@ export default function Reviews({ lang, t }: ReviewsProps) {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (index % 3) * 0.08 }}
             >
-              <p className={styles.text}>{review.text[lang]}</p>
-
-              <footer className={styles.footer}>
+              <header className={styles.header}>
                 <span className={styles.avatar} aria-hidden="true">
                   {initials(review.clientName)}
                 </span>
-                <div className={styles.meta}>
+                <div className={styles.identity}>
                   <span className={styles.name}>{review.clientName}</span>
                   {(review.company || review.role) && (
                     <span className={styles.companyRole}>
@@ -131,18 +150,21 @@ export default function Reviews({ lang, t }: ReviewsProps) {
                       {review.company}
                     </span>
                   )}
-                  <span className={styles.bottomLine}>
-                    {review.country[lang]} · {review.year}
-                  </span>
                 </div>
-              </footer>
+              </header>
+
+              <p className={styles.text}>{review.text[lang]}</p>
+
+              <span className={styles.bottomLine}>
+                {review.country[lang]} · {review.year}
+              </span>
             </motion.article>
           ))}
         </motion.div>
 
-        {/* Подложка-градиент и кнопка "показать все" — та же анимация
-            появления/исчезновения, что и в WorkGrid (см. комментарий там же
-            про синхронизацию с ростом/сжатием сетки). */}
+        {/* Подложка-градиент и кнопка появляются/исчезают плавным fade
+            одновременно с тем, как сетка растёт/сжимается — см. подробный
+            комментарий у аналогичного места в WorkGrid.tsx. */}
         <AnimatePresence>
           {canClip && !expanded && (
             <motion.div

@@ -161,10 +161,25 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
       setHeights({ clip: cutItem.offsetTop + cutItem.offsetHeight * 0.4, full });
     }
 
-    const raf = requestAnimationFrame(measure);
+    // Двойной requestAnimationFrame — на первом кадре браузер может ещё не
+    // успеть применить финальные стили, меряем только начиная со второго.
+    let raf2 = 0;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(measure);
+    });
+
+    // Плюс пересчёт после того, как точно догрузился основной шрифт —
+    // до этого момента текст под превью (.title/.category) мог на долю
+    // секунды отрисоваться системным шрифтом с другими метриками, из-за
+    // чего первое измерение получалось неточным и больше не пересчитывалось.
+    if (typeof document !== "undefined" && "fonts" in document) {
+      document.fonts.ready.then(measure).catch(() => {});
+    }
+
     window.addEventListener("resize", measure);
     return () => {
-      cancelAnimationFrame(raf);
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
       window.removeEventListener("resize", measure);
     };
   }, [isAll, filtered.length]);

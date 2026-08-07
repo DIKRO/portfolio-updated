@@ -100,7 +100,7 @@
   background: var(--surface);
   border: 1.5px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius);
-  padding: 30px 28px 26px;
+  padding: 28px 26px 26px;
   overflow: hidden;
   /* Тот же принцип, что и у превью проектов в WorkGrid: в покое обводка
      прозрачная (место под неё зарезервировано заранее), при наведении
@@ -116,40 +116,51 @@
   box-shadow: inset 0 0 30px -10px rgba(255, 90, 31, 0.22), 0 16px 32px -18px rgba(0, 0, 0, 0.5);
 }
 
-.text {
-  flex: 1;
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.65;
-  color: var(--text);
-  margin-bottom: 26px;
+/* Тонкая градиентная полоса сверху — карточка без цитаты и рейтинга сама
+   по себе визуально небогатая, эта деталь добавляет фирменный акцент, не
+   отвлекая от текста и не требуя лишнего контента. */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, rgba(255, 90, 31, 0) 80%);
+  opacity: 0.85;
 }
 
-.footer {
+.header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 14px;
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .avatar {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: 0.5px;
   color: var(--accent);
   background: rgba(255, 90, 31, 0.12);
-  border: 1px solid rgba(255, 90, 31, 0.2);
+  border: 1px solid rgba(255, 90, 31, 0.25);
+  /* Лёгкое фирменное свечение вокруг аватара включено постоянно, а не
+     только при наведении на карточку — без цитаты/звёзд карточка была
+     визуально пустоватой, это немного "жизни" от бренда компенсирует,
+     не добавляя лишнего контента. */
+  box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.05), 0 0 18px -4px rgba(255, 90, 31, 0.4);
 }
 
-.meta {
+.identity {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -157,8 +168,8 @@
 }
 
 .name {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   color: var(--text);
   white-space: nowrap;
   overflow: hidden;
@@ -173,11 +184,24 @@
   text-overflow: ellipsis;
 }
 
+.text {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
 .bottomLine {
+  align-self: flex-start;
+  display: inline-flex;
   font-size: 11.5px;
   color: var(--muted);
-  opacity: 0.7;
-  margin-top: 1px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 @media (max-width: 1024px) {
@@ -201,7 +225,7 @@
   }
 
   .card {
-    padding: 26px 22px 22px;
+    padding: 24px 22px 22px;
   }
 
   .fade {
@@ -230,12 +254,23 @@
   }
 
   .card {
-    padding: 22px 20px 18px;
+    padding: 20px 18px 18px;
+  }
+
+  .header {
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 13px;
   }
 
   .text {
     font-size: 13.5px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
 
   .fade {
