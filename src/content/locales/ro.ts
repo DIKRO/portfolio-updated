@@ -59,8 +59,8 @@ export const ro = {
   },
   reviews: {
     label: "Recenzii",
-    title: "Ce spun clienții",
-    subtitle: "Câteva cuvinte de la cei cu care am colaborat deja",
+    showAll: "Vezi toate recenziile",
+    showLess: "Restrânge",
   },
   contact: {
     label: "Contact",

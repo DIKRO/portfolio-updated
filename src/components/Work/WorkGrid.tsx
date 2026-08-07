@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Lang } from "@/content/lang";
 import { projects } from "@/content/projects";
 import { CategoryKey } from "@/types/project";
 import { shimmerBlurDataURL } from "@/lib/shimmer";
-import TransitionLink from "@/components/Transition/TransitionLink";
 import styles from "./WorkGrid.module.css";
 
 type FilterKey = "all" | CategoryKey;
@@ -204,6 +204,52 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
 
   const filterSets = isMobile ? [0, 1, 2] : [0];
 
+  // Вынесено из JSX ниже, чтобы одна и та же разметка карточек
+  // переиспользовалась и внутри motion.div (фильтр "Все работы"), и
+  // внутри обычного div (любая конкретная категория) — см. комментарий
+  // у .gridWrap про то, почему это два разных типа контейнера.
+  const gridItems = (
+    <AnimatePresence mode="popLayout">
+      {filtered.map((project, index) => (
+        <motion.div
+          key={project.id}
+          layout
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.4, delay: (index % 3) * 0.05 }}
+        >
+          <Link
+            href={filter === "all" ? `/work/${project.slug}` : `/work/${filter}/${project.slug}`}
+            className={styles.card}
+            onTouchStart={(e) => e.currentTarget.classList.add(styles.cardActive)}
+            onTouchEnd={(e) => e.currentTarget.classList.remove(styles.cardActive)}
+            onTouchCancel={(e) => e.currentTarget.classList.remove(styles.cardActive)}
+          >
+            <div className={styles.imageWrap}>
+              <Image
+                src={project.cover}
+                alt={project.title[lang]}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className={styles.image}
+                placeholder="blur"
+                blurDataURL={shimmerBlurDataURL()}
+              />
+            </div>
+
+            <div className={styles.meta}>
+              <span className={styles.title}>{project.title[lang]}</span>
+              <span className={styles.category}>
+                {t.categories[project.categoryKey]} — {project.year}
+              </span>
+            </div>
+          </Link>
+        </motion.div>
+      ))}
+    </AnimatePresence>
+  );
+
   return (
     <section id="work" ref={sectionRef} className={styles.section}>
       <div className={styles.filters} ref={filtersRef}>
@@ -221,55 +267,35 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
       </div>
 
       <div className={styles.gridWrap}>
-        <motion.div
-          ref={gridRef}
-          className={styles.grid}
-          style={canClip ? { overflow: "hidden" } : undefined}
-          animate={canClip ? { height: expanded ? heights!.full : heights!.clip } : undefined}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <AnimatePresence mode="popLayout">
-            {filtered.map((project, index) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4, delay: (index % 3) * 0.05 }}
-              >
-                <TransitionLink
-                  href={
-                    filter === "all" ? `/work/${project.slug}` : `/work/${filter}/${project.slug}`
-                  }
-                  className={styles.card}
-                  onTouchStart={(e) => e.currentTarget.classList.add(styles.cardActive)}
-                  onTouchEnd={(e) => e.currentTarget.classList.remove(styles.cardActive)}
-                  onTouchCancel={(e) => e.currentTarget.classList.remove(styles.cardActive)}
-                >
-                  <div className={styles.imageWrap}>
-                    <Image
-                      src={project.cover}
-                      alt={project.title[lang]}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className={styles.image}
-                      placeholder="blur"
-                      blurDataURL={shimmerBlurDataURL()}
-                    />
-                  </div>
-
-                  <div className={styles.meta}>
-                    <span className={styles.title}>{project.title[lang]}</span>
-                    <span className={styles.category}>
-                      {t.categories[project.categoryKey]} — {project.year}
-                    </span>
-                  </div>
-                </TransitionLink>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        {/* Обрезка по высоте (анимация height через Framer Motion) нужна
+            ТОЛЬКО для фильтра "Все работы" — только там вообще может быть
+            больше 2 рядов. Раньше сетка всегда была motion.div, и когда
+            выбиралась конкретная категория, Framer Motion просто переставал
+            трогать height, но инлайн-стиль height (в пикселях), который он
+            уже успел выставить под фильтр "Все работы", оставался на
+            элементе — а CSS Grid с явно заданной высотой растягивает
+            пустые строки, чтобы её заполнить (align-content: stretch по
+            умолчанию). Внешне это выглядело как гигантские отступы между
+            рядами карточек в любой отдельной категории. Попытка чинить это
+            через animate={{height: "auto"}} не помогла до конца — Framer
+            Motion всё равно на секунду навязывает свой инлайн-стиль height
+            при каждом ре-рендере. Поэтому теперь для категорий (isAll ===
+            false) сетка — обычный <div> без Framer Motion вообще: она
+            физически не может выставить height, высота всегда чисто
+            браузерная (auto), и растягивать там нечего. */}
+        {isAll ? (
+          <motion.div
+            ref={gridRef}
+            className={styles.grid}
+            style={canClip ? { overflow: "hidden" } : undefined}
+            animate={{ height: canClip ? (expanded ? heights!.full : heights!.clip) : "auto" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {gridItems}
+          </motion.div>
+        ) : (
+          <div className={styles.grid}>{gridItems}</div>
+        )}
 
         {/* Подложка-градиент и кнопка теперь исчезают/появляются плавным
             fade (0.5s) одновременно с тем, как сетка растёт/сжимается

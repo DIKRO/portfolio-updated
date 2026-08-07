@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLang } from "@/content/lang";
@@ -9,11 +11,15 @@ import { GalleryRow } from "@/lib/imageOrientation";
 import { shimmerBlurDataURL } from "@/lib/shimmer";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import GalleryLightbox from "../Work/Lightbox";
-import TransitionLink from "@/components/Transition/TransitionLink";
 import { EmailIcon } from "@/components/Icons/Icons";
 import { SOCIALS } from "@/content/socials";
 import styles from "./ProjectView.module.css";
+
+// Лайтбокс нужен только после клика по фото в галерее — до этого момента
+// незачем грузить его JS вообще. ssr: false — это чисто клиентский модал
+// (клавиатурная навигация, скролл-блокировка), серверный рендер ему не
+// нужен и не помогает SEO.
+const GalleryLightbox = dynamic(() => import("../Work/Lightbox"), { ssr: false });
 
 interface ProjectViewProps {
   project: Project;
@@ -79,14 +85,14 @@ export default function ProjectView({
         transition={{ duration: 0.25 }}
       >
         <div className={styles.topRow}>
-          <TransitionLink href="/#work" className={styles.back}>
+          <Link href="/#work" className={styles.back}>
             {t.project.back}
-          </TransitionLink>
+          </Link>
 
           {hasMultipleProjects && (
-            <TransitionLink href={nextProjectHref} className={styles.next}>
+            <Link href={nextProjectHref} className={styles.next}>
               {t.project.next} →
-            </TransitionLink>
+            </Link>
           )}
         </div>
 
@@ -204,14 +210,14 @@ export default function ProjectView({
         </AnimatePresence>
 
         <div className={styles.topRow}>
-          <TransitionLink href="/#work" className={styles.back}>
+          <Link href="/#work" className={styles.back}>
             {t.project.back}
-          </TransitionLink>
+          </Link>
 
           {hasMultipleProjects && (
-            <TransitionLink href={nextProjectHref} className={styles.next}>
+            <Link href={nextProjectHref} className={styles.next}>
               {t.project.next} →
-            </TransitionLink>
+            </Link>
           )}
         </div>
 
@@ -224,9 +230,9 @@ export default function ProjectView({
         >
           <p>{t.project.cta}</p>
           <div className={styles.ctaRow}>
-            <TransitionLink href="/#contact" className={styles.ctaButton}>
+            <Link href="/#contact" className={styles.ctaButton}>
               {t.project.ctaButton} →
-            </TransitionLink>
+            </Link>
 
             <div className={styles.ctaSocials}>
               <a

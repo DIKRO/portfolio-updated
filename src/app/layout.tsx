@@ -3,7 +3,6 @@ import { Montserrat } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
-import PageTransitionProvider from "@/components/Transition/PageTransitionProvider";
 import { getServerLang } from "@/lib/serverLang";
 import { ru } from "@/content/locales/ru";
 import { en } from "@/content/locales/en";
@@ -149,7 +148,7 @@ export default async function RootLayout({
       </head>
       <body className={montserrat.className}>
         <div className="dotsBg" aria-hidden="true" />
-        <PageTransitionProvider>{children}</PageTransitionProvider>
+        {children}
         <ScrollToTop />
         <Analytics />
       </body>

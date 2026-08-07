@@ -3,40 +3,94 @@
   scroll-margin-top: 100px;
 }
 
-.head {
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto 56px;
-}
-
+/* Тот же стиль, что и у "С кем я сотрудничал" в About (.clientsLabel) —
+   маленький прописной лейбл вместо крупного заголовка с подзаголовком. */
 .label {
-  display: block;
+  text-align: center;
   font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 16px;
+  font-weight: 400;
+  margin-bottom: 32px;
 }
 
-.title {
-  font-size: 40px;
-  font-weight: 500;
-  letter-spacing: -0.5px;
-  color: var(--text);
-  margin-bottom: 14px;
-}
-
-.subtitle {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.6;
-  color: var(--muted);
+.gridWrap {
+  position: relative;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+}
+
+.fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 28px;
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 14, 14, 0) 0%,
+    rgba(14, 14, 14, 0.05) 14%,
+    rgba(14, 14, 14, 0.16) 30%,
+    rgba(14, 14, 14, 0.36) 48%,
+    rgba(14, 14, 14, 0.66) 68%,
+    rgba(14, 14, 14, 0.92) 86%,
+    rgba(14, 14, 14, 1) 100%
+  );
+  pointer-events: none;
+}
+
+.showAllButton {
+  pointer-events: auto;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  padding: 14px 28px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.showAllButton:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18) inset, 0 0 24px rgba(255, 90, 31, 0.24);
+}
+
+.collapseRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.showLessButton {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 12px 26px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.showLessButton:hover {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16) inset, 0 0 18px rgba(255, 255, 255, 0.08);
 }
 
 .card {
@@ -62,48 +116,9 @@
   box-shadow: inset 0 0 30px -10px rgba(255, 90, 31, 0.22), 0 16px 32px -18px rgba(0, 0, 0, 0.5);
 }
 
-.quoteMark {
-  position: absolute;
-  top: 22px;
-  right: 24px;
-  width: 42px;
-  height: 32px;
-  color: var(--accent);
-  opacity: 0.13;
-  pointer-events: none;
-  transition: opacity 0.4s ease;
-}
-
-.card:hover .quoteMark {
-  opacity: 0.22;
-}
-
-.stars {
-  display: flex;
-  gap: 3px;
-  margin-bottom: 16px;
-  position: relative;
-  z-index: 1;
-}
-
-.stars svg {
-  width: 13px;
-  height: 13px;
-}
-
-.starFilled {
-  color: var(--accent);
-}
-
-.starEmpty {
-  color: rgba(255, 255, 255, 0.14);
-}
-
 .text {
-  position: relative;
-  z-index: 1;
   flex: 1;
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 300;
   line-height: 1.65;
   color: var(--text);
@@ -111,8 +126,6 @@
 }
 
 .footer {
-  position: relative;
-  z-index: 1;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -178,12 +191,8 @@
     padding: 20px 24px 16px;
   }
 
-  .head {
-    margin-bottom: 36px;
-  }
-
-  .title {
-    font-size: 28px;
+  .label {
+    margin-bottom: 24px;
   }
 
   .grid {
@@ -193,6 +202,11 @@
 
   .card {
     padding: 26px 22px 22px;
+  }
+
+  .fade {
+    height: 150px;
+    padding-bottom: 16px;
   }
 }
 
@@ -206,12 +220,8 @@
     padding: 16px 24px 60px;
   }
 
-  .head {
-    margin-bottom: 28px;
-  }
-
-  .title {
-    font-size: 26px;
+  .label {
+    margin-bottom: 20px;
   }
 
   .grid {
@@ -226,5 +236,10 @@
   .text {
     font-size: 13.5px;
     margin-bottom: 18px;
+  }
+
+  .fade {
+    height: 130px;
+    padding-bottom: 14px;
   }
 }

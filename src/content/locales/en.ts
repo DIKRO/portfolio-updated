@@ -58,8 +58,8 @@ export const en = {
   },
   reviews: {
     label: "Reviews",
-    title: "What clients say",
-    subtitle: "A few words from people I've worked with",
+    showAll: "Show all reviews",
+    showLess: "Show less",
   },
   contact: {
     label: "Contact",

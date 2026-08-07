@@ -68,8 +68,8 @@ export const ru = {
   },
   reviews: {
     label: "Отзывы",
-    title: "Что говорят клиенты",
-    subtitle: "Несколько слов от тех, с кем я уже поработал",
+    showAll: "Показать все отзывы",
+    showLess: "Свернуть",
   },
   contact: {
     label: "Контакты",

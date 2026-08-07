@@ -1,15 +1,25 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { useLang } from "@/content/lang";
 import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero/Hero";
 import Highlights from "@/components/Highlights/Highlights";
-import WorkGrid from "@/components/Work/WorkGrid";
-import About from "@/components/About/About";
-import Reviews from "@/components/Reviews/Reviews";
-import Contact from "@/components/Contact/Contact";
-import Footer from "@/components/Footer/Footer";
+
+// Hero/Highlights — первый экран, грузятся сразу и обычным импортом.
+// Всё, что ниже, пользователь физически не видит до скролла, поэтому
+// незачем тащить их JS в основной бандл с первой секунды: next/dynamic
+// выносит каждый компонент в отдельный чанк, который браузер догружает
+// параллельно, не блокируя парсинг и выполнение основного скрипта.
+// HTML при этом всё равно рендерится на сервере как обычно (ssr не
+// отключаем) — контент виден сразу, ускоряется только момент, когда
+// страница становится интерактивной на слабых устройствах.
+const WorkGrid = dynamic(() => import("@/components/Work/WorkGrid"));
+const About = dynamic(() => import("@/components/About/About"));
+const Reviews = dynamic(() => import("@/components/Reviews/Reviews"));
+const Contact = dynamic(() => import("@/components/Contact/Contact"));
+const Footer = dynamic(() => import("@/components/Footer/Footer"));
 
 export default function Home() {
   const { lang, setLang, t } = useLang();
