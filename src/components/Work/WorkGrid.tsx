@@ -161,26 +161,35 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
       setHeights({ clip: cutItem.offsetTop + cutItem.offsetHeight * 0.4, full });
     }
 
-    // Двойной requestAnimationFrame — на первом кадре браузер может ещё не
-    // успеть применить финальные стили, меряем только начиная со второго.
-    let raf2 = 0;
-    const raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(measure);
-    });
-
-    // Плюс пересчёт после того, как точно догрузился основной шрифт —
-    // до этого момента текст под превью (.title/.category) мог на долю
-    // секунды отрисоваться системным шрифтом с другими метриками, из-за
-    // чего первое измерение получалось неточным и больше не пересчитывалось.
-    if (typeof document !== "undefined" && "fonts" in document) {
-      document.fonts.ready.then(measure).catch(() => {});
+    let frame = 0;
+    function scheduleMeasure() {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(measure);
     }
 
-    window.addEventListener("resize", measure);
+    scheduleMeasure();
+
+    // ResizeObserver подписан на КАЖДУЮ карточку по отдельности, а не на
+    // сам .grid — как только у контейнера появляется explicit height +
+    // overflow:hidden (canClip), его собственный размер с точки зрения
+    // браузера зафиксирован (мы сами его выставляем через animate), поэтому
+    // ResizeObserver на самом контейнере не поймает изменение контента
+    // внутри (например, более поздний догруз шрифта на медленной мобильной
+    // сети, из-за которого текст переносится иначе и карточка меняет
+    // высоту уже ПОСЛЕ первого измерения). Слежка за самими карточками —
+    // у них высоту никто не фиксирует — ловит такие изменения при любых
+    // условиях сети и устройства.
+    const el = gridRef.current;
+    const observer = el ? new ResizeObserver(() => scheduleMeasure()) : null;
+    if (el && observer) {
+      Array.from(el.children).forEach((child) => observer.observe(child));
+    }
+
+    window.addEventListener("resize", scheduleMeasure);
     return () => {
-      cancelAnimationFrame(raf1);
-      cancelAnimationFrame(raf2);
-      window.removeEventListener("resize", measure);
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+      window.removeEventListener("resize", scheduleMeasure);
     };
   }, [isAll, filtered.length]);
 

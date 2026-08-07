@@ -59,7 +59,7 @@ export const ro = {
   },
   reviews: {
     label: "Recenzii",
-    showAll: "Vezi toate recenziile",
+    showAll: "Vezi toate",
     showLess: "Restrânge",
   },
   contact: {

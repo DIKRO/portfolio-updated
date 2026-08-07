@@ -489,7 +489,7 @@
 
 @keyframes relatedProjectShine {
   0% {
-    left: -60%;
+    transform: translateX(0%) skewX(-20deg);
     opacity: 0;
   }
   12% {
@@ -499,7 +499,10 @@
     opacity: 1;
   }
   100% {
-    left: 160%;
+    /* Тот же расчёт, что и в WorkGrid.module.css (см. подробный
+       комментарий там): элемент шириной 45% от родителя, путь 220% —
+       220/45×100 ≈ 488.89% в translateX() вместо анимации left. */
+    transform: translateX(488.89%) skewX(-20deg);
     opacity: 0;
   }
 }

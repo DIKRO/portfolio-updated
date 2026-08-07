@@ -68,7 +68,7 @@ export const ru = {
   },
   reviews: {
     label: "Отзывы",
-    showAll: "Показать все отзывы",
+    showAll: "Посмотреть все",
     showLess: "Свернуть",
   },
   contact: {

@@ -14,7 +14,21 @@ export interface Review {
   // выглядело естественно ("Молдова" / "Moldova" / "Moldova", но для
   // других стран текст может отличаться сильнее, ru/en/ro).
   country: LocalizedText;
+  // Код страны ISO 3166-1 alpha-2 (например "MD" для Молдовы, "RO" для
+  // Румынии, "UA" для Украины) — по нему рисуется маленький флаг слева от
+  // названия страны в карточке отзыва.
+  countryCode: string;
   text: LocalizedText;
+}
+
+// Превращает код страны ("MD") в эмодзи-флаг (🇲🇩) — Unicode-символы
+// "regional indicator" идут в алфавитном порядке сразу после обычных
+// букв A-Z со смещением 127397, поэтому флаг собирается из двух таких
+// символов без каких-либо файлов/иконок под конкретные страны.
+export function flagEmoji(countryCode: string): string {
+  return countryCode
+    .toUpperCase()
+    .replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
 }
 
 // Отзывы клиентов — карточки в разделе "Отзывы" перед контактами.
@@ -38,6 +52,7 @@ export const reviews: Review[] = [
     },
     year: 2025,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
+    countryCode: "MD",
     text: {
       ru: "Дмитрий разработал фирменный стиль с нуля и попал точно в то, как мы хотели выглядеть в глазах клиентов — современно и по делу. Материалы для соцсетей и наружной рекламы готовит быстро, без лишних правок, всегда предлагает несколько вариантов на выбор.",
       en: "Dmitrii built our brand identity from scratch and nailed exactly how we wanted to look to our clients — modern and to the point. He delivers social media and outdoor advertising materials quickly, with minimal revisions, and always offers a few options to choose from.",
@@ -55,6 +70,7 @@ export const reviews: Review[] = [
     },
     year: 2024,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
+    countryCode: "MD",
     text: {
       ru: "Сотрудничаем уже не первый сезон: баннеры, постеры, POS-материалы — всё приходит в срок и готово к печати без доработок. Отдельно ценю, что Дмитрий сам следит за цветопередачей перед типографией, нам не приходится это контролировать.",
       en: "We've been working together for several seasons now: banners, posters, POS materials — everything arrives on time and print-ready without extra fixes. I especially value that Dmitrii checks the color accuracy himself before printing, so we don't have to.",
@@ -72,6 +88,7 @@ export const reviews: Review[] = [
     },
     year: 2024,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
+    countryCode: "MD",
     text: {
       ru: "Обращались за фирменным стилем и остались адаптировать его под соцсети на регулярной основе — качество стабильное от макета к макету. Дмитрий легко подстраивается под наши правки и объясняет решения, а не просто присылает финальный файл.",
       en: "We came for the brand identity and stayed for ongoing social media adaptations — the quality stays consistent from one layout to the next. Dmitrii adapts easily to our feedback and explains his decisions instead of just sending a final file.",
@@ -89,6 +106,7 @@ export const reviews: Review[] = [
     },
     year: 2023,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
+    countryCode: "MD",
     text: {
       ru: "Работа с международным брендом требует точного соблюдения гайдлайнов — Дмитрий с этим справляется без единого замечания от головного офиса. Ресайзы под Google Ads и наружку под световые короба готовит быстро и аккуратно.",
       en: "Working with an international brand means strict guideline compliance — Dmitrii handles this without a single note back from headquarters. He delivers Google Ads resizes and light box outdoor formats quickly and cleanly.",
@@ -106,6 +124,7 @@ export const reviews: Review[] = [
     },
     year: 2023,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
+    countryCode: "MD",
     text: {
       ru: "Этикетки для промышленной печати — задача с кучей технических нюансов (вылеты, цветовые профили, форматы под конкретное оборудование), и Дмитрий разобрался в них сам, без долгих объяснений с нашей стороны. Результат — макеты уходят в печать с первого раза.",
       en: "Labels for industrial printing come with plenty of technical nuances — bleed, color profiles, formats tied to specific equipment — and Dmitrii figured them out himself without needing lengthy explanations from us. The result: layouts go to print right the first time.",
@@ -123,6 +142,7 @@ export const reviews: Review[] = [
     },
     year: 2022,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
+    countryCode: "MD",
     text: {
       ru: "У нас сотни позиций в каталоге, и каждую нужно было привести к одному виду — Дмитрий сделал ретушь единообразной по всей линейке, без потери деталей на светлых игрушках. Сроки всегда соблюдены, даже при больших партиях фото.",
       en: "We have hundreds of items in our catalog, and each one needed to match a single look — Dmitrii kept the retouching consistent across the whole range, without losing detail on light-colored toys. Deadlines were always met, even with large photo batches.",

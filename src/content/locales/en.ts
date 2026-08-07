@@ -58,7 +58,7 @@ export const en = {
   },
   reviews: {
     label: "Reviews",
-    showAll: "Show all reviews",
+    showAll: "See all",
     showLess: "Show less",
   },
   contact: {

@@ -116,9 +116,12 @@
   box-shadow: inset 0 0 30px -10px rgba(255, 90, 31, 0.22), 0 16px 32px -18px rgba(0, 0, 0, 0.5);
 }
 
-/* Тонкая градиентная полоса сверху — карточка без цитаты и рейтинга сама
-   по себе визуально небогатая, эта деталь добавляет фирменный акцент, не
-   отвлекая от текста и не требуя лишнего контента. */
+/* Тонкая градиентная полоса в верхнем левом углу — карточка без цитаты и
+   рейтинга сама по себе визуально небогатая, эта деталь добавляет
+   фирменный акцент, не отвлекая от текста. Два псевдоэлемента образуют
+   единый уголок: верхний идёт направо и гаснет к правому краю, левый идёт
+   вниз (на всю высоту карточки) и гаснет примерно к середине — оба растут
+   из одной и той же точки в левом верхнем углу. */
 .card::before {
   content: "";
   position: absolute;
@@ -128,6 +131,44 @@
   height: 3px;
   background: linear-gradient(90deg, var(--accent) 0%, rgba(255, 90, 31, 0) 80%);
   opacity: 0.85;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(255, 90, 31, 0) 55%);
+  opacity: 0.85;
+}
+
+/* Скруглённый стык между верхней (::before) и левой (::after) линиями.
+   Обе линии сами по себе прямые прямоугольники толщиной 3px — если просто
+   скруглить их собственный угол под радиус карточки (16px), на такой
+   тонкой полоске это даёт не дугу, а острый диагональный срез, и в самом
+   углу всё равно остаётся тёмный разрыв между линиями. Вместо этого здесь
+   рисуется отдельное кольцо ровно той же толщины (3px), чей border-radius
+   честно совпадает с радиусом самой карточки — стандартный приём
+   "рамка-кольцо" через padding + mask-composite: exclude (вырезает из
+   закрашенного квадрата его же внутреннюю часть, оставляя только контур).
+   Лежит поверх линий и визуально продолжает их дугой, без обрубленного
+   угла. */
+.cornerAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius) 0 0 0;
+  padding: 3px;
+  background: var(--accent);
+  opacity: 0.85;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 .header {
@@ -161,10 +202,11 @@
 }
 
 .identity {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 2px;
-  min-width: 0;
 }
 
 .name {
@@ -184,6 +226,29 @@
   text-overflow: ellipsis;
 }
 
+/* Небольшие кавычки в углу карточки, напротив имени — чисто декоративная
+   деталь (не иллюстрирует конкретный отзыв), поэтому размер и прозрачность
+   держим скромными, чтобы не спорить с текстом. */
+.quoteMark {
+  flex-shrink: 0;
+  align-self: flex-start;
+  width: 26px;
+  height: 19px;
+  color: var(--accent);
+  opacity: 0.32;
+  transition: opacity 0.4s ease;
+}
+
+.quoteMark svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.card:hover .quoteMark {
+  opacity: 0.55;
+}
+
 .text {
   flex: 1;
   font-size: 15px;
@@ -193,8 +258,14 @@
   margin-bottom: 20px;
 }
 
+.footerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .bottomLine {
-  align-self: flex-start;
   display: inline-flex;
   font-size: 11.5px;
   color: var(--muted);
@@ -202,6 +273,30 @@
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.03);
+}
+
+/* Пять звёзд напротив страны/года — не привязаны к данным конкретного
+   отзыва (см. комментарий в Reviews.tsx), фирменный оранжевый с лёгким
+   свечением, усиливающимся при наведении — простой интерактивный акцент,
+   а не индикатор рейтинга. */
+.stars {
+  flex-shrink: 0;
+  display: flex;
+  gap: 3px;
+  color: var(--accent);
+  filter: drop-shadow(0 0 3px rgba(255, 90, 31, 0.5));
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.stars svg {
+  width: 13px;
+  height: 13px;
+  display: block;
+}
+
+.card:hover .stars {
+  filter: drop-shadow(0 0 7px rgba(255, 90, 31, 0.85));
+  transform: scale(1.06);
 }
 
 @media (max-width: 1024px) {
