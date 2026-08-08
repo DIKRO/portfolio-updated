@@ -15,20 +15,14 @@ export interface Review {
   // других стран текст может отличаться сильнее, ru/en/ro).
   country: LocalizedText;
   // Код страны ISO 3166-1 alpha-2 (например "MD" для Молдовы, "RO" для
-  // Румынии, "UA" для Украины) — по нему рисуется маленький флаг слева от
-  // названия страны в карточке отзыва.
+  // Румынии, "US" для США, "US"/"DE"/"FR" и т.д. для любой другой страны)
+  // — по нему подгружается маленький SVG-флаг слева от названия страны в
+  // карточке отзыва (см. Reviews.tsx, flagcdn.com). Поддерживаются все
+  // страны мира по этому же коду, поэтому для нового клиента из любой
+  // точки мира достаточно просто указать его код — рисовать/добавлять
+  // иконку флага вручную не нужно.
   countryCode: string;
   text: LocalizedText;
-}
-
-// Превращает код страны ("MD") в эмодзи-флаг (🇲🇩) — Unicode-символы
-// "regional indicator" идут в алфавитном порядке сразу после обычных
-// букв A-Z со смещением 127397, поэтому флаг собирается из двух таких
-// символов без каких-либо файлов/иконок под конкретные страны.
-export function flagEmoji(countryCode: string): string {
-  return countryCode
-    .toUpperCase()
-    .replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
 }
 
 // Отзывы клиентов — карточки в разделе "Отзывы" перед контактами.
@@ -43,7 +37,7 @@ export function flagEmoji(countryCode: string): string {
 export const reviews: Review[] = [
   {
     id: "energy-wind",
-    clientName: "Ana Rusu",
+    clientName: "Nicolai",
     company: "Energy Wind Moldova",
     role: {
       ru: "Маркетинг-менеджер",

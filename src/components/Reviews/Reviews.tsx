@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Lang } from "@/content/lang";
-import { reviews, flagEmoji } from "@/content/reviews";
+import { reviews } from "@/content/reviews";
 import { QuoteIcon, StarIcon } from "@/components/Icons/Icons";
 import styles from "./Reviews.module.css";
 
@@ -14,10 +14,32 @@ interface ReviewsProps {
   };
 }
 
-// Сколько рядов отзывов видно без разворачивания — та же логика обрезки,
-// что и в сетке работ (WorkGrid), только на 1 ряд вместо 2: карточки
-// отзывов компактнее, двух рядов сразу для "затравки" много.
-const VISIBLE_ROWS = 1;
+// Раньше высота "видимой без разворачивания" части сетки вычислялась в
+// пикселях через JS (offsetTop/offsetHeight карточек) — идея была в том,
+// чтобы обрезать ровно на границе ряда. На практике это оказалось слишком
+// хрупко: стоило замеру случайно сработать на кадр раньше, чем к сетке
+// применились стили (Fast Refresh, медленное устройство/сеть), как высота
+// фиксировалась заниженной — и вместо целого первого ряда карточек
+// оставалась видна половина одной. Такого не должно случаться в принципе,
+// а не просто "реже" — поэтому здесь вообще нет измерения в пикселях.
+//
+// Вместо этого — обычный CSS max-height с overflow:hidden поверх ЕСТЕСТВЕННО
+// отрисованной сетки (все карточки всегда полностью отрендерены, ни одна
+// карточка никогда не обрезается посередине текста). Значение подобрано с
+// запасом, чтобы гарантированно вмещать самую длинную карточку целиком
+// (заголовок + до 6 строк текста + нижняя строка) на любой ширине экрана
+// (на мобильном в сетке одна колонка, поэтому "ряд" — это одна карточка;
+// сама карточка не становится выше от того, что колонок меньше). Плюс
+// градиентная подложка снизу — она визуально "съедает" точную границу
+// обрезки, поэтому не обязательно попадать пиксель в пиксель, важно лишь
+// не обрезать ряд раньше, чем он закончился.
+const COLLAPSED_MAX_HEIGHT = 560;
+
+// Кнопку "Показать все" показываем, если отзывов заведомо больше, чем
+// помещается в один ряд на самой широкой раскладке (3 колонки на десктопе).
+// На более узких раскладках (планшет/телефон) колонок ещё меньше, поэтому
+// это условие остаётся верным и там.
+const canClip = reviews.length > 3;
 
 // Инициалы клиента для круглого "аватара" в подписи — фото клиентов
 // собирать не нужно (не все готовы их присылать), инициалы на фирменном
@@ -32,121 +54,8 @@ function initials(name: string): string {
 }
 
 export default function Reviews({ lang, t }: ReviewsProps) {
-  const gridRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const [heights, setHeights] = useState<{ clip: number; full: number } | null>(null);
   const [expanded, setExpanded] = useState(false);
-
-  useEffect(() => {
-    const el = gridRef.current;
-    if (!el) return;
-
-    function measure() {
-      const grid = gridRef.current;
-      if (!grid) return;
-      const items = Array.from(grid.children) as HTMLElement[];
-      if (items.length === 0) return;
-
-      const computedStyle = window.getComputedStyle(grid);
-
-      // Сетка ещё не стала настоящим CSS Grid в глазах браузера — класс из
-      // Reviews.module.css в разметке уже есть, а сами стили применились на
-      // кадр позже (бывает при Fast Refresh/HMR или на медленном
-      // устройстве/сети). Замерять раскладку в этот момент бессмысленно:
-      // подсчёт колонок будет случайным, потому что элементы ещё стоят
-      // блочным потоком друг под другом. Раньше это приводило к тому, что
-      // вместо целого первого ряда карточек с плашкой на пол-второго ряда
-      // оставалась видна едва ли половина одной карточки — высота "видимой
-      // без разворачивания" части считалась по одной строке блочного
-      // потока, а не по целому ряду сетки. Вместо того чтобы зафиксировать
-      // этот неверный замер, просто ждём следующий кадр.
-      if (computedStyle.display !== "grid") {
-        scheduleMeasure();
-        return;
-      }
-
-      // Число колонок читаем напрямую из вычисленного grid-template-columns
-      // — это уже итог применения стилей и медиа-запросов (3 на десктопе,
-      // 2 на планшете, 1 на телефоне), а не эвристика по offsetTop соседних
-      // карточек.
-      const columns = Math.max(
-        1,
-        Math.min(
-          computedStyle.gridTemplateColumns.split(" ").filter(Boolean).length,
-          items.length
-        )
-      );
-
-      const totalRows = Math.ceil(items.length / columns);
-      const full = grid.scrollHeight;
-
-      if (totalRows <= VISIBLE_ROWS) {
-        setHeights({ clip: full, full });
-        return;
-      }
-
-      const cutRowIndex = columns * VISIBLE_ROWS;
-      const cutItem = items[cutRowIndex];
-      if (!cutItem) {
-        setHeights({ clip: full, full });
-        return;
-      }
-
-      setHeights({ clip: cutItem.offsetTop + cutItem.offsetHeight * 0.4, full });
-    }
-
-    let frame = 0;
-    function scheduleMeasure() {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(measure);
-    }
-
-    scheduleMeasure();
-
-    // Дополнительные отложенные пере-измерения (не только rAF сразу после
-    // монтирования) — подстраховка на случай, если шрифт (Montserrat грузится
-    // через next/font) применяется на клиенте на кадр позже, чем успевает
-    // отработать первый rAF: тогда самое первое измерение "full" ловит ещё
-    // не до конца устаканившуюся высоту карточек (например, до подгрузки
-    // шрифта текст переносится по-другому), а без повторного измерения эта
-    // заниженная высота остаётся в heights.full навсегда — именно так
-    // разворачивание "Показать все" могло обрезать текст карточек, хотя он
-    // есть в разметке. document.fonts.ready и два setTimeout перекрывают
-    // и шрифты, и любые другие поздние сдвиги раскладки.
-    document.fonts?.ready?.then(() => scheduleMeasure());
-    const t1 = window.setTimeout(scheduleMeasure, 300);
-    const t2 = window.setTimeout(scheduleMeasure, 1000);
-
-    // ВАЖНО: ResizeObserver подписан на КАЖДУЮ карточку по отдельности, а
-    // не на сам .grid-контейнер. Причина: как только у контейнера
-    // появляется canClip (explicit height + overflow:hidden), его
-    // СОБСТВЕННЫЙ размер с точки зрения браузера становится
-    // зафиксированным — мы сами его задаём через animate. ResizeObserver на
-    // самом контейнере в этом случае просто перестаёт срабатывать на
-    // изменения текста внутри (карточка стала выше/ниже из-за переноса
-    // строк), потому что снаружи размер .grid не меняется — меняется
-    // только то, что физически обрезано внутри него через overflow. Именно
-    // поэтому предыдущая версия (только requestAnimationFrame +
-    // document.fonts.ready) иногда всё равно ловила неправильную высоту —
-    // не хватало триггера на реальные изменения контента уже ПОСЛЕ первого
-    // измерения (например, шрифт на мобильном интернете догружается позже,
-    // чем успевают отработать оба rAF). Слежка за самими карточками
-    // (у которых высоту никто не фиксирует) работает при любых условиях
-    // сети и устройства.
-    const observer = new ResizeObserver(() => scheduleMeasure());
-    Array.from(el.children).forEach((child) => observer.observe(child));
-
-    window.addEventListener("resize", scheduleMeasure);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.clearTimeout(t1);
-      window.clearTimeout(t2);
-      observer.disconnect();
-      window.removeEventListener("resize", scheduleMeasure);
-    };
-  }, []);
-
-  const canClip = heights !== null && heights.clip < heights.full - 1;
 
   const collapse = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.blur();
@@ -162,30 +71,13 @@ export default function Reviews({ lang, t }: ReviewsProps) {
       <h2 className={styles.label}>{t.reviews.label}</h2>
 
       <div className={styles.gridWrap}>
-        {/* animate.height всегда получает явную цель (число или "auto") —
-            см. подробный комментарий в WorkGrid.tsx про баг с "залипающей"
-            высотой контейнера. Тут её вообще не бывает false→undefined,
-            так как фильтров нет и canClip не переключается туда-обратно —
-            но цель всё равно оставлена явной для единообразия и на случай,
-            если количество отзывов в будущем изменится с "много" на "мало".
-
-            В развёрнутом состоянии цель — именно "auto", а не заранее
-            измеренный heights.full: Framer Motion умеет анимировать высоту
-            и до, и из "auto" самостоятельно, каждый раз заново измеряя
-            реальную высоту контента в момент анимации. Если использовать
-            свой собственный heights.full (замеренный один раз через
-            offsetTop/offsetHeight), при любом рассинхроне с реальной
-            высотой карточек (например, из-за более позднего дозагруза
-            шрифта) текст и нижняя часть карточек оставались обрезанными
-            даже после разворачивания — с "auto" такой класс багов
-            исключён в принципе, а не просто залатан лишними
-            пере-измерениями выше. */}
-        <motion.div
-          ref={gridRef}
+        <div
           className={styles.grid}
-          style={canClip ? { overflow: "hidden" } : undefined}
-          animate={{ height: canClip ? (expanded ? "auto" : heights!.clip) : "auto" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          style={
+            canClip && !expanded
+              ? { maxHeight: COLLAPSED_MAX_HEIGHT, overflow: "hidden" }
+              : { maxHeight: "none" }
+          }
         >
           {reviews.map((review, index) => (
             <motion.article
@@ -196,15 +88,41 @@ export default function Reviews({ lang, t }: ReviewsProps) {
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (index % 3) * 0.08 }}
             >
-              {/* Скруглённый стык в левом верхнем углу — отдельный элемент
-                  поверх линий-акцентов (::before/::after в CSS). Сами линии
-                  скруглить своим border-radius нельзя красиво: на полоске
-                  толщиной 3px радиус в 16px даёт не дугу, а острый срез.
-                  Этот элемент — кольцо той же толщины, но с border-radius,
-                  который честно повторяет скругление самой карточки, поэтому
-                  верхняя и левая линии визуально перетекают одна в другую
-                  без обрубленного угла. */}
-              <span className={styles.cornerAccent} aria-hidden="true" />
+              {/* Скруглённый уголок в левом верхнем углу — единая SVG-обводка
+                  (верхняя сторона + дуга + левая сторона одной линией), а не
+                  отдельные CSS-полоски с closed border-radius: на полоске
+                  толщиной 3px border-radius не даёт аккуратной дуги, только
+                  острый срез, а предыдущая попытка через mask-composite
+                  местами рендерилась сплошным квадратом вместо тонкого
+                  кольца. SVG-обводка со stroke-linecap:round не зависит от
+                  таких браузерных нюансов и всегда рисуется одной сплошной
+                  линией. Сама обводка сплошная (без градиента) — угасание
+                  "в никуда" обеспечивают идущие от неё дальше градиентные
+                  полоски (::before / ::after в CSS), которые начинаются
+                  сразу за пределами этого SVG и подхватывают тот же цвет. */}
+              {/* Толщина обводки и полосок задаётся ОДНИМ параметром —
+                  переменной --corner-thickness в Reviews.module.css (ищи
+                  её в самом верху файла, в блоке .card). Меняешь там — сразу
+                  меняется и дуга здесь (stroke-width наследуется от .card
+                  через CSS, см. правило ".cornerAccent" в модуле), и обе
+                  прямые линии (::before/::after). Единственное, что задано
+                  именно тут, в разметке — это геометрия дуги (радиус 14 и
+                  сама форма пути), трогать её для регулировки толщины не
+                  нужно. */}
+              <svg
+                className={styles.cornerAccent}
+                width="28"
+                height="28"
+                viewBox="0 0 28 28"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M 28 1 L 15 1 A 14 14 0 0 0 1 15 L 1 28"
+                  stroke="var(--accent)"
+                  strokeLinecap="round"
+                />
+              </svg>
 
               <header className={styles.header}>
                 <span className={styles.avatar} aria-hidden="true">
@@ -229,7 +147,42 @@ export default function Reviews({ lang, t }: ReviewsProps) {
 
               <div className={styles.footerRow}>
                 <span className={styles.bottomLine}>
-                  {flagEmoji(review.countryCode)} {review.country[lang]} · {review.year}
+                  {/* Раньше здесь был эмодзи-флаг (Unicode "regional
+                      indicator" символы) — красиво в теории, но
+                      Windows и многие Linux-окружения не умеют рисовать
+                      составной emoji-флаг и вместо него честно показывают
+                      две буквы кода страны подряд ("MD"), что и было видно
+                      на скриншоте. Настоящий SVG-флаг с flagcdn.com
+                      выглядит одинаково везде и не зависит от того, какие
+                      emoji-шрифты стоят у посетителя. Сервис бесплатный,
+                      публичный, покрывает все страны по тому же коду ISO
+                      3166-1 alpha-2, что уже хранится в countryCode —
+                      добавление клиента из любой страны (США, Европа и
+                      т.д.) не требует ничего, кроме указания её кода.
+
+                      Обычный <img>, а не next/image: next/image требует
+                      заранее разрешить домен flagcdn.com в next.config.ts
+                      (images.remotePatterns) — это конфиг уровня всего
+                      сервера, а не компонента, и он перечитывается только
+                      при (пере)старте dev-сервера. Если .next-кеш от
+                      предыдущего запуска не удалить перед стартом, новый
+                      конфиг иногда не подхватывается и Next падает с
+                      "hostname is not configured" — именно это и
+                      произошло. Для маленькой SVG-иконки флага выгода от
+                      next/image (ресайз/оптимизация) околонулевая, а вот
+                      риск такого падения на ровном месте — вполне
+                      реальный, поэтому здесь надёжнее и проще обычный
+                      img: работает всегда, без обязательного перезапуска
+                      сервера и настроек в конфиге. */}
+                  <img
+                    className={styles.flag}
+                    src={`https://flagcdn.com/${review.countryCode.toLowerCase()}.svg`}
+                    alt=""
+                    width={18}
+                    height={13}
+                    loading="lazy"
+                  />
+                  {review.country[lang]} · {review.year}
                 </span>
                 {/* Рейтинг не привязан к конкретному отзыву — здесь всегда
                     показываются проекты, которыми доволен клиент (см.
@@ -245,26 +198,20 @@ export default function Reviews({ lang, t }: ReviewsProps) {
               </div>
             </motion.article>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Подложка-градиент и кнопка появляются/исчезают плавным fade
-            одновременно с тем, как сетка растёт/сжимается — см. подробный
-            комментарий у аналогичного места в WorkGrid.tsx. */}
-        <AnimatePresence>
-          {canClip && !expanded && (
-            <motion.div
-              className={styles.fade}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <button className={styles.showAllButton} onClick={() => setExpanded(true)}>
-                {t.reviews.showAll} →
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Подложка-градиент и кнопка — только когда есть что скрывать и
+            сейчас свёрнутое состояние. Никакого fade-анимирования по высоте
+            контейнера: сама сетка меняет max-height через обычный CSS
+            transition (см. .grid в модуле), а этот блок просто появляется
+            и исчезает вместе с ней. */}
+        {canClip && !expanded && (
+          <div className={styles.fade}>
+            <button className={styles.showAllButton} onClick={() => setExpanded(true)}>
+              {t.reviews.showAll} →
+            </button>
+          </div>
+        )}
       </div>
 
       {canClip && expanded && (
