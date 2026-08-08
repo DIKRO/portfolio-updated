@@ -185,12 +185,17 @@
   .hero {
     padding: 50px 24px;
     min-height: 70vh;
-    align-items: flex-end;
+    /* Раньше был flex-end с отдельным padding-bottom у .contentWrap —
+       блок стоял у самого низа секции, а сверху оставалось заметно
+       больше пустого пространства (высота бейджа/заголовка/кнопок почти
+       никогда не совпадает с высотой хиро). center вместо этого держит
+       блок ровно посередине между шапкой сверху (она вне .hero, фиксед)
+       и следующей секцией снизу — визуально её и центрируем. */
+    align-items: center;
   }
 
   .contentWrap {
     max-width: none;
-    padding-bottom: 20px;
     --content-shift: 0px;
     transform: none;
   }

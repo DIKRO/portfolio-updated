@@ -271,35 +271,51 @@
     pointer-events: auto;
   }
 
+  /* Раньше пункты меню шли одной узкой колонкой слева, а вся правая
+     половина панели оставалась пустой (ширина панели = ширина всей
+     шапки, а не ширина списка ссылок). Сетка 2×2 занимает ту же ширину,
+     что и остальные ряды панели (langSwitch/mobileContacts), плюс
+     крупнее шрифт — пунктов мало (4), и раз места теперь достаточно,
+     их можно сделать заметнее, а не просто "растянуть". */
   .nav {
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
     justify-content: flex-start;
     justify-self: auto;
-    gap: 18px;
+    row-gap: 22px;
+    column-gap: 16px;
     margin: 0;
-    padding: 24px 24px 20px;
-    font-size: 16px;
+    padding: 28px 24px 22px;
+    font-size: 19px;
   }
 
   .nav a {
     min-width: auto;
+    text-align: left;
   }
 
   .langSwitch {
     justify-self: auto;
+    justify-content: space-between;
     margin: 0;
-    padding: 16px 24px 20px;
+    padding: 18px 24px;
     border-left: none;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     gap: 16px;
   }
 
+  .langSwitch button {
+    flex: 1;
+    font-size: 14px;
+  }
+
   .mobileContacts {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
-    padding: 16px 24px 24px;
+    padding: 18px 24px 26px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 

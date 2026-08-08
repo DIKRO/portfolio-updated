@@ -66,6 +66,18 @@ const PHOTO_SRC = "/images/22222-cutout.png";
 // он подхватится сам через <picture> ниже, десктопное фото трогать не надо.
 const PHOTO_SRC_MOBILE = "/images/22222-mobile.jpg";
 
+// Та же идея, что в Hero.tsx (см. подробный комментарий там): фото ниже
+// грузится обычным <img> внутри <picture> из-за art-direction (разные
+// файлы под мобилку/десктоп), поэтому обращаемся к встроенному
+// эндпоинту оптимизации Next.js напрямую, чтобы не терять пересжатие
+// и конвертацию в AVIF/WebP. Раньше файлы отдавались как есть — это
+// одна из основных причин "Improve image delivery" в отчёте
+// PageSpeed. Ширина ниже desktop-широкой полосы (photoBand, max-height
+// 700px) редко нуждается в исходном разрешении фото.
+function optimizedSrc(path: string, width: number, quality = 75): string {
+  return `/_next/image?url=${encodeURIComponent(path)}&w=${width}&q=${quality}`;
+}
+
 interface ClientInfo {
   logo: string;
   name: string;
@@ -390,10 +402,9 @@ export default function About({ lang, t }: AboutProps) {
                 десктопный PHOTO_SRC ниже (через <img> — сработает как
                 обычный fallback <picture>, раз ни один <source> не подошёл)
                 — там кадрирование лица уже подобрано под широкую полосу. */}
-            <source media="(max-width: 768px)" srcSet={PHOTO_SRC_MOBILE} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <source media="(max-width: 768px)" srcSet={optimizedSrc(PHOTO_SRC_MOBILE, 828)} />
             <img
-              src={PHOTO_SRC}
+              src={optimizedSrc(PHOTO_SRC, 1920)}
               alt="Portrait"
               loading="lazy"
               decoding="async"
