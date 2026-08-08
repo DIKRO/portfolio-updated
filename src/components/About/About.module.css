@@ -1,6 +1,6 @@
 .section {
   width: 100%;
-  padding: 40px 0 70px;
+  padding: 40px 0 28px;
   margin: 0 auto;
   scroll-margin-top: 100px;
 }
@@ -570,7 +570,7 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: 20px 0 70px;
+    padding: 20px 0 24px;
   }
 
   .clientNav {
@@ -705,6 +705,10 @@
    калибровался под 720px, тут места сильно меньше). Дополнительный тёмный
    градиент под текстом гарантирует читаемость независимо от фона фото. */
 @media (orientation: landscape) and (max-height: 500px) {
+  .section {
+    padding-bottom: 16px;
+  }
+
   .clientNav {
     display: none;
   }

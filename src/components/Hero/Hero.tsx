@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { StarIcon, PlayIcon } from "@/components/Icons/Icons";
 import styles from "./Hero.module.css";
 
@@ -23,6 +22,21 @@ const PHOTO_SRC = "/images/11111-cutout.png";
 // Отдельное фото для мобилки — положи файл с таким именем в public/images,
 // подхватится само через <picture> ниже, десктопное фото трогать не надо.
 const PHOTO_SRC_MOBILE = "/images/11111-mobile.jpg";
+
+// Программы, с которыми работаешь — колонка справа в Hero (только
+// десктоп, см. .toolsColumn в CSS: на мобильном/лендскейпе-телефоне
+// места под неё нет, там она скрыта). Порядок в массиве = порядок
+// отображения сверху вниз. Поменяй label/name, если набор инструментов
+// другой — короткие монограммы вместо оригинальных лого специально,
+// чтобы не тащить в тёмно-оранжевую палитру сайта чужие фирменные цвета
+// брендов (синий Photoshop, жёлтый Illustrator и т.д.).
+const TOOLS: { label: string; name: string }[] = [
+  { label: "Ps", name: "Photoshop" },
+  { label: "Ai", name: "Illustrator" },
+  { label: "Cd", name: "CorelDRAW" },
+  { label: "Ae", name: "After Effects" },
+  { label: "Cc", name: "CapCut" },
+];
 
 // Это самое крупное изображение на первом экране (LCP-элемент почти на
 // каждой странице), но оно грузится обычным <img>, а не компонентом
@@ -73,12 +87,7 @@ export default function Hero({ t }: HeroProps) {
       </div>
 
       <div className={styles.contentWrap}>
-        <motion.div
-          className={styles.content}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-        >
+        <div className={styles.content}>
           <span className={styles.badge}>
             <StarIcon />
             {t.hero.badge}
@@ -96,7 +105,15 @@ export default function Hero({ t }: HeroProps) {
               {t.hero.ctaSecondary}
             </a>
           </div>
-        </motion.div>
+        </div>
+      </div>
+
+      <div className={styles.toolsColumn} aria-hidden="true">
+        {TOOLS.map((tool) => (
+          <span key={tool.name} className={styles.toolBadge} title={tool.name}>
+            {tool.label}
+          </span>
+        ))}
       </div>
     </section>
   );

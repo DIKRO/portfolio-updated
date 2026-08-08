@@ -93,6 +93,29 @@
 
 .content {
   width: 100%;
+  /* Раньше это делал framer-motion (motion.div, opacity 0→1 + y 20→0)
+     — тот же визуальный эффект, но чистым CSS: стартует, как только
+     стили применились, не дожидаясь загрузки/выполнения JS. Так как
+     это, скорее всего, LCP-элемент страницы, разница напрямую влияет
+     на итоговое время LCP. */
+  animation: heroContentIn 0.7s ease-out both;
+}
+
+@keyframes heroContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content {
+    animation: none;
+  }
 }
 
 .badge {
@@ -181,6 +204,60 @@
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16) inset, 0 0 18px rgba(255, 255, 255, 0.08);
 }
 
+/* Колонка программ у правого края — заполняет пустое пространство справа
+   от фото на широких десктопных экранах. Только десктоп: на мобильном/
+   лендскейпе-телефоне (media ниже) скрыта совсем, там и без того тесно. */
+.toolsColumn {
+  position: absolute;
+  z-index: 2;
+  right: clamp(24px, 4vw, 56px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toolBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  color: var(--muted);
+  background: rgba(20, 20, 20, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  cursor: default;
+  transition: color var(--transition), border-color var(--transition), box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.toolBadge:hover {
+  color: var(--text);
+  border-color: rgba(255, 90, 31, 0.45);
+  box-shadow: 0 0 16px rgba(255, 90, 31, 0.22);
+  transform: translateX(-2px);
+}
+
+@media (max-width: 1200px) {
+  .toolsColumn {
+    right: 20px;
+  }
+
+  .toolBadge {
+    width: 38px;
+    height: 38px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+}
+
 @media (max-width: 900px) {
   .hero {
     padding: 50px 24px;
@@ -192,6 +269,10 @@
        блок ровно посередине между шапкой сверху (она вне .hero, фиксед)
        и следующей секцией снизу — визуально её и центрируем. */
     align-items: center;
+  }
+
+  .toolsColumn {
+    display: none;
   }
 
   .contentWrap {
@@ -229,6 +310,10 @@
     min-height: 100vh;
     padding: 20px 48px;
     align-items: center;
+  }
+
+  .toolsColumn {
+    display: none;
   }
 
   .contentWrap {

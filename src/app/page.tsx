@@ -1,7 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
 import { useLang } from "@/content/lang";
 import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero/Hero";
@@ -55,8 +54,17 @@ export default function Home() {
 
       {/* key={lang} плавно перерисовывает контент при смене языка вместо
           мгновенного "мигания" (актуально и при самом первом рендере,
-          когда сохранённый язык подхватывается уже после монтирования) */}
-      <motion.div key={lang} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }}>
+          когда сохранённый язык подхватывается уже после монтирования).
+          Раньше тут был motion.div из framer-motion с initial={{opacity:0}}
+          — из-за этого браузер не мог закрасить контент (включая Hero,
+          LCP-элемент почти на каждой странице), пока framer-motion не
+          подгрузится и не выполнится на клиенте: JS ещё грузится —
+          пиксели уже физически нарисованы сервером, но невидимы. Обычный
+          div + CSS-анимация (см. .pageFadeIn в globals.css) даёт тот же
+          плавный fade, но запускается сразу через CSS, без ожидания
+          гидратации — LCP считается по первому реальному пикселю, а не
+          по моменту, когда JS решит его показать. */}
+      <div key={lang} className="pageFadeIn">
         <Hero t={t} />
         <Highlights t={t} />
         <WorkGrid lang={lang} t={t} />
@@ -64,7 +72,7 @@ export default function Home() {
         <Reviews lang={lang} t={t} />
         <Contact t={t} />
         <Footer />
-      </motion.div>
+      </div>
     </main>
   );
 }

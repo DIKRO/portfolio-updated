@@ -52,3 +52,27 @@ textarea:focus-visible {
   pointer-events: none;
   background: var(--bg);
 }
+
+/* Плавное появление контента страницы (см. src/app/page.tsx) — обычный
+   CSS вместо framer-motion: анимация стартует сразу же, как только
+   браузер построил стили, а не после того, как загрузится и выполнится
+   JS. LCP-элемент (обычно фото/заголовок в Hero) благодаря этому красится
+   на экране в разы раньше, чем при JS-анимации с initial opacity:0. */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pageFadeIn {
+  animation: pageFadeIn 0.25s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pageFadeIn {
+    animation: none;
+  }
+}
