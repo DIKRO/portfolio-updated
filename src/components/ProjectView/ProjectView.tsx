@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
@@ -49,6 +49,23 @@ export default function ProjectView({
   const nextProjectHref = category
     ? `/work/${category}/${nextProject.slug}`
     : `/work/${nextProject.slug}`;
+
+  // Страница проекта должна всегда открываться сверху (с заголовка и
+  // описания), а не там, где предыдущая страница была прокручена. Обычно
+  // об этом заботится сам Next.js при переходе по ссылке, но если ссылка
+  // на проект была нажата ИЗ открытого модального окна (карточка клиента
+  // в "Обо мне" или лайтбокс фото в галерее — см. About.tsx/Lightbox.tsx),
+  // при закрытии того окна восстанавливается позиция скролла СТАРОЙ
+  // страницы, причём это может случиться уже после того, как эта, новая,
+  // страница отрисовалась — и тогда именно эта, чужая, позиция "перебивает"
+  // нормальный переход наверх. Явный scrollTo(0, 0) при каждом заходе на
+  // страницу проекта (в том числе при переходе "Следующий проект" между
+  // двумя такими страницами, поэтому — зависимость от project.slug, а не
+  // пустой массив) гарантированно решает это независимо от того, что там
+  // творится на предыдущей странице.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [project.slug]);
 
   const closeLightbox = () => {
     setLightboxIndex(null);
