@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -332,6 +333,14 @@ export default function About({ lang, t }: AboutProps) {
   // на логотип показывается модалка с описанием на текущем языке сайта.
   const [openClient, setOpenClient] = useState<number | null>(null);
 
+  // Модалка клиента рендерится через портал прямо в document.body (см.
+  // createPortal ниже) — так она гарантированно оказывается поверх шапки,
+  // а не "зажата" контекстом позиционирования секции About из-за
+  // анимаций framer-motion на родительских блоках. document.body
+  // доступен только на клиенте, поэтому портал включаем после монтирования.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   // Сколько клиентов реально кликабельны (с логотипом) — стрелки навигации
   // показываем, только если есть, между чем переключаться.
   const clickableCount = CLIENTS.filter((c) => c.logo).length;
@@ -484,134 +493,138 @@ export default function About({ lang, t }: AboutProps) {
         </div>
       </motion.div>
 
-      <AnimatePresence>
-        {openClient !== null && (
-          <motion.div
-            className={styles.clientBackdrop}
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(16px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            onClick={() => setOpenClient(null)}
-          >
-            {clickableCount > 1 && (
-              <button
-                type="button"
-                className={`${styles.clientNav} ${styles.clientPrev}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToClient(-1);
-                }}
-                aria-label="Previous"
-              >
-                ‹
-              </button>
-            )}
-
-            {/* Вложенный AnimatePresence — переключение между клиентами
-                свайпом переанимирует только саму карточку (mode="wait"),
-                а тёмная подложка остаётся на месте и не мигает заново. */}
-            <AnimatePresence mode="wait">
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {openClient !== null && (
               <motion.div
-                key={openClient}
-                className={styles.clientCard}
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.97 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                onClick={(e) => e.stopPropagation()}
-                // Свайп/драг для перехода между клиентами — работает и
-                // пальцем на телефоне, и мышью на десктопе. Не дотянул до
-                // порога — карточка пружинит обратно на место (dragElastic).
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.6}
-                onDragEnd={(_e, info) => {
-                  if (info.offset.x < -80 || info.velocity.x < -500) goToClient(1);
-                  else if (info.offset.x > 80 || info.velocity.x > 500) goToClient(-1);
-                }}
+                className={styles.clientBackdrop}
+                initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+                animate={{ opacity: 1, backdropFilter: "blur(16px)" }}
+                exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                onClick={() => setOpenClient(null)}
               >
-                <button
-                  type="button"
-                  className={styles.clientClose}
-                  onClick={() => setOpenClient(null)}
-                  aria-label="Close"
-                >
-                  ✕
-                </button>
+                {clickableCount > 1 && (
+                  <button
+                    type="button"
+                    className={`${styles.clientNav} ${styles.clientPrev}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      goToClient(-1);
+                    }}
+                    aria-label="Previous"
+                  >
+                    ‹
+                  </button>
+                )}
 
-                <div className={styles.clientInfo}>
-                  <div className={styles.clientLogoWrap}>
-                    <Image
-                      src={CLIENTS[openClient].logo}
-                      alt={CLIENTS[openClient].name}
-                      fill
-                      sizes="120px"
-                      className={styles.clientLogoImg}
-                    />
-                  </div>
+                {/* Вложенный AnimatePresence — переключение между клиентами
+                    свайпом переанимирует только саму карточку (mode="wait"),
+                    а тёмная подложка остаётся на месте и не мигает заново. */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={openClient}
+                    className={styles.clientCard}
+                    initial={{ opacity: 0, scale: 0.97 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.97 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    onClick={(e) => e.stopPropagation()}
+                    // Свайп/драг для перехода между клиентами — работает и
+                    // пальцем на телефоне, и мышью на десктопе. Не дотянул до
+                    // порога — карточка пружинит обратно на место (dragElastic).
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.6}
+                    onDragEnd={(_e, info) => {
+                      if (info.offset.x < -80 || info.velocity.x < -500) goToClient(1);
+                      else if (info.offset.x > 80 || info.velocity.x > 500) goToClient(-1);
+                    }}
+                  >
+                    <button
+                      type="button"
+                      className={styles.clientClose}
+                      onClick={() => setOpenClient(null)}
+                      aria-label="Close"
+                    >
+                      ✕
+                    </button>
 
-                  <p className={styles.clientDescription}>{CLIENTS[openClient].description[lang]}</p>
-                </div>
-
-                {(() => {
-                  // Все проекты, у которых client совпадает с ключом этого
-                  // клиента (см. поле client в src/content/projects) —
-                  // подтягиваются автоматически, ничего не нужно вручную
-                  // перечислять. Порядок — тот же, что в самом списке
-                  // проектов. Если для клиента ни один проект не отмечен —
-                  // блок просто не рендерится.
-                  const relatedProjects = projects.filter((p) => p.client === CLIENTS[openClient].key);
-
-                  if (relatedProjects.length === 0) return null;
-
-                  // 3 или меньше — влезает целиком, показываем как есть,
-                  // без стрелок и какой-либо карусели вообще (никогда не
-                  // потребуется скроллить/листать).
-                  if (relatedProjects.length <= 3) {
-                    return (
-                      <div className={styles.relatedProjects}>
-                        <span className={styles.relatedProjectsLabel}>{t.about.viewProjects}</span>
-                        <div className={styles.relatedProjectsRow}>
-                          {relatedProjects.map((project) => (
-                            <RelatedProjectCard key={project.slug} project={project} lang={lang} />
-                          ))}
-                        </div>
+                    <div className={styles.clientInfo}>
+                      <div className={styles.clientLogoWrap}>
+                        <Image
+                          src={CLIENTS[openClient].logo}
+                          alt={CLIENTS[openClient].name}
+                          fill
+                          sizes="120px"
+                          className={styles.clientLogoImg}
+                        />
                       </div>
-                    );
-                  }
 
-                  // Больше 3 — везде показываем одну и ту же бесконечную
-                  // карусель с окном по модулю (см. RelatedProjectsCarousel):
-                  // и на десктопе (окно из 3), и на телефоне — портретно и
-                  // горизонтально (окно из 1) — листается только кликом по
-                  // стрелкам, без свайпа.
-                  return (
-                    <div className={styles.relatedProjects}>
-                      <span className={styles.relatedProjectsLabel}>{t.about.viewProjects}</span>
-                      <RelatedProjectsCarousel items={relatedProjects} lang={lang} />
+                      <p className={styles.clientDescription}>{CLIENTS[openClient].description[lang]}</p>
                     </div>
-                  );
-                })()}
-              </motion.div>
-            </AnimatePresence>
 
-            {clickableCount > 1 && (
-              <button
-                type="button"
-                className={`${styles.clientNav} ${styles.clientNext}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToClient(1);
-                }}
-                aria-label="Next"
-              >
-                ›
-              </button>
+                    {(() => {
+                      // Все проекты, у которых client совпадает с ключом этого
+                      // клиента (см. поле client в src/content/projects) —
+                      // подтягиваются автоматически, ничего не нужно вручную
+                      // перечислять. Порядок — тот же, что в самом списке
+                      // проектов. Если для клиента ни один проект не отмечен —
+                      // блок просто не рендерится.
+                      const relatedProjects = projects.filter((p) => p.client === CLIENTS[openClient].key);
+
+                      if (relatedProjects.length === 0) return null;
+
+                      // 3 или меньше — влезает целиком, показываем как есть,
+                      // без стрелок и какой-либо карусели вообще (никогда не
+                      // потребуется скроллить/листать).
+                      if (relatedProjects.length <= 3) {
+                        return (
+                          <div className={styles.relatedProjects}>
+                            <span className={styles.relatedProjectsLabel}>{t.about.viewProjects}</span>
+                            <div className={styles.relatedProjectsRow}>
+                              {relatedProjects.map((project) => (
+                                <RelatedProjectCard key={project.slug} project={project} lang={lang} />
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      }
+
+                      // Больше 3 — везде показываем одну и ту же бесконечную
+                      // карусель с окном по модулю (см. RelatedProjectsCarousel):
+                      // и на десктопе (окно из 3), и на телефоне — портретно и
+                      // горизонтально (окно из 1) — листается только кликом по
+                      // стрелкам, без свайпа.
+                      return (
+                        <div className={styles.relatedProjects}>
+                          <span className={styles.relatedProjectsLabel}>{t.about.viewProjects}</span>
+                          <RelatedProjectsCarousel items={relatedProjects} lang={lang} />
+                        </div>
+                      );
+                    })()}
+                  </motion.div>
+                </AnimatePresence>
+
+                {clickableCount > 1 && (
+                  <button
+                    type="button"
+                    className={`${styles.clientNav} ${styles.clientNext}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      goToClient(1);
+                    }}
+                    aria-label="Next"
+                  >
+                    ›
+                  </button>
+                )}
+              </motion.div>
             )}
-          </motion.div>
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </section>
   );
 }

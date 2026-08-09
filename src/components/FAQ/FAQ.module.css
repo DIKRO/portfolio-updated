@@ -1,0 +1,174 @@
+/* Та же визуальная логика, что и у карточки клиента в About.module.css
+   (.clientBackdrop/.clientCard) — тёмная размытая подложка + карточка по
+   центру в фирменном стиле сайта. Здесь просто отдельный компонент, а не
+   переиспользование тех классов — это разные вещи по смыслу, а копия
+   пары CSS-правил дешевле, чем тащить кросс-компонентную зависимость. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(14, 14, 14, 0.75);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 950px;
+  max-height: calc(100dvh - 48px);
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 32px 44px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+.title::before {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(255, 90, 31, 0.6);
+  flex-shrink: 0;
+}
+
+.close {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px;
+  opacity: 0.7;
+  transition: opacity var(--transition), color var(--transition);
+  flex-shrink: 0;
+}
+
+.close:hover {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.scrollArea {
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+  padding: 24px 44px 40px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+
+.scrollArea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+.item {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.item:first-child {
+  padding-top: 0;
+}
+
+.item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.question {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+  transition: color var(--transition), text-shadow var(--transition);
+}
+
+/* Наведение на весь блок вопроса подсвечивает сам текст вопроса
+   фирменным оранжевым с еле заметным свечением — вместо прежней
+   полоски слева. */
+.item:hover .question {
+  color: var(--accent);
+  text-shadow: 0 0 12px rgba(255, 90, 31, 0.35);
+}
+
+/* Краткое пояснение "о чём этот вопрос" — сознательно меньше и глуше
+   основного ответа, чтобы визуально не спорить с ним за внимание, но и не
+   теряться совсем (это не сноска, это первое, что читают). Курсив мягко
+   отделяет его от самого ответа по тону, не прибегая к рамкам/фону. */
+.description {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.answer {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.65;
+}
+
+@media (max-width: 768px), (orientation: landscape) and (max-height: 500px) {
+  .header {
+    padding: 24px 24px 16px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .scrollArea {
+    padding: 16px 24px 28px;
+  }
+
+  .item {
+    padding: 16px 0;
+  }
+
+  .question {
+    font-size: 16px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .answer {
+    font-size: 12px;
+  }
+}

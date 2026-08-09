@@ -6,14 +6,16 @@ import Image from "next/image";
 import { Lang } from "@/content/lang";
 import { SOCIALS } from "@/content/socials";
 import { EmailIcon } from "@/components/Icons/Icons";
+import FAQ from "@/components/FAQ/FAQ";
 import styles from "./Header.module.css";
 
 interface HeaderProps {
   lang: Lang;
   setLang: (lang: Lang) => void;
   t: {
-    nav: { work: string; about: string; reviews: string; contact: string };
+    nav: { faq: string; work: string; about: string; reviews: string; contact: string };
     contact: { email: string };
+    faq: { title: string; items: { question: string; description: string; answer: string }[] };
   };
 }
 
@@ -35,6 +37,11 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
   // На десктопе не используется вообще — там нав и языки всегда видны
   // в строке шапки как обычно.
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // FAQ-модалка (см. FAQ.tsx) — открывается по клику на пункт "FAQ" в
+  // шапке, независимо от того, десктоп это или мобильное выпадающее меню
+  // (в последнем случае сама панель меню тоже закрывается — незачем
+  // держать открытыми оба слоя сразу).
+  const [faqOpen, setFaqOpen] = useState(false);
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
@@ -167,6 +174,22 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
             обёртка превращается в выпадающую панель под шапкой (см. CSS). */}
         <div className={styles.menuPanel} data-open={mobileMenuOpen}>
           <nav className={styles.nav}>
+            <button
+              type="button"
+              className={styles.faqLink}
+              onClick={() => {
+                setFaqOpen(true);
+                setMobileMenuOpen(false);
+              }}
+            >
+              {t.nav.faq}
+            </button>
+            {/* Вертикальная палка — та же идея, что разделяет языки и
+                соцсети в мобильном меню (border-left у .langSwitch), тут
+                просто отдельным элементом, а не групповой рамкой, потому
+                что делит два соседних пункта одного списка, а не два
+                разных блока. */}
+            <span className={styles.navDivider} aria-hidden="true" />
             <a
               href={isHome ? "#work" : "/#work"}
               onClick={goTo("work")}
@@ -254,6 +277,8 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
       {/* Спейсер: занимает место, которое раньше занимал header в потоке
           документа до перехода на position: fixed */}
       <div style={{ height: headerHeight }} aria-hidden="true" />
+
+      <FAQ open={faqOpen} onClose={() => setFaqOpen(false)} t={t.faq} />
     </>
   );
 }

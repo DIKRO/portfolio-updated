@@ -99,6 +99,34 @@
   text-shadow: 0 0 12px rgba(255, 255, 255, 0.14);
 }
 
+/* Кнопка (а не <a> — не переход по ссылке, а открытие модалки), но
+   визуально должна вести себя как остальные пункты меню рядом. */
+.faqLink {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+  padding: 0;
+  transition: color var(--transition);
+}
+
+.faqLink:hover {
+  color: var(--text);
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.14);
+}
+
+/* Вертикальная палка между FAQ и остальными пунктами — тот же приём, что
+   border-left у .langSwitch ниже (граница между языками и соцсетями), но
+   отдельным элементом: делит два соседних пункта ОДНОГО списка (.nav
+   держит их через flex+gap), а не два разных блока рядом. */
+.navDivider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+}
+
 .activeNav {
   color: var(--accent) !important;
   text-shadow: 0 0 12px rgba(255, 90, 31, 0.25);
@@ -106,6 +134,8 @@
 
 .langSwitch {
   display: flex;
+  align-items: center;
+  height: 24px;
   gap: 10px;
   justify-self: end;
   margin-left: 0;
@@ -286,8 +316,18 @@
     min-width: auto;
   }
 
+  /* В десктопной строке это узкая вертикальная палка между соседними
+     пунктами одной строки. В вертикальном списке мобильного меню та же
+     идея разделения — горизонтальная линия во всю ширину, отдельным
+     "рядом" сразу под FAQ, а не тонкая палка где-то сбоку. */
+  .navDivider {
+    width: 100%;
+    height: 1px;
+  }
+
   .langSwitch {
     justify-self: auto;
+    height: auto;
     margin: 0;
     padding: 16px 24px 20px;
     border-left: none;

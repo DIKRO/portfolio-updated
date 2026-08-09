@@ -1,5 +1,6 @@
 export const ro = {
   nav: {
+    faq: "FAQ",
     work: "Lucrări",
     about: "Despre mine",
     reviews: "Recenzii",
@@ -84,5 +85,58 @@ export const ro = {
     next: "Proiectul următor",
     cta: "Îți place? Hai să discutăm proiectul tău",
     ctaButton: "Contactează-mă",
+  },
+  faq: {
+    title: "FAQ",
+    items: [
+      {
+        question: "Ce tipuri de design faceți?",
+        description: "Portofoliul poate lăsa impresia că activitatea se limitează la un singur domeniu — de fapt e mai variată.",
+        answer:
+          "Logo și identitate vizuală, design digital (site-uri, social media, prezentări), poligrafie, publicitate exterioară, UI/UX pentru web și mobil, plus motion design și montaj video. Setul exact de servicii pentru un proiect se stabilește individual, în funcție de ce are nevoie clientul.",
+      },
+      {
+        question: "Ce primesc la finalul unui proiect?",
+        description: "Setul de fișiere depinde de tipul proiectului — iată principiul general.",
+        answer:
+          "Materiale finite în formatele potrivite sarcinii: pentru logo și identitate vizuală — fișiere vectoriale sursă (AI/EPS/SVG) plus versiuni pentru print și web; pentru design digital și poligrafie — fișiere dimensionate și formatate pentru suportul respectiv; pentru video și motion design — clipuri exportate în formatul stabilit. La cerere — recomandări de bază pentru utilizare.",
+      },
+      {
+        question: "Câte revizuiri sunt incluse?",
+        description: "Revizuirile sunt o parte normală a procesului — întrebarea reală e câte sunt planificate din start.",
+        answer:
+          "Numărul de runde de revizuire se discută individual înainte de începerea proiectului și se stabilește dinainte — ca ambele părți să aibă o imagine clară a procesului, fără surprize pe parcurs.",
+      },
+      {
+        question: "Cât durează un proiect?",
+        description: "Termenele sunt de obicei prima întrebare, mai ales dacă proiectul e legat de o lansare sau un deadline.",
+        answer:
+          "Depinde de volum și tipul proiectului: o sarcină simplă (un banner sau un logo, de exemplu) durează de obicei mai puțin decât un proiect complex, precum o identitate de brand completă cu ghid sau o serie de montaje video. Dau un termen exact după o scurtă discuție despre sarcină — de obicei în aceeași zi cu primul contact.",
+      },
+      {
+        question: "Lucrați și cu clienți din afara Moldovei?",
+        description: "O întrebare des întâlnită e dacă activitatea e limitată la piața locală.",
+        answer:
+          "Da, totul se desfășoară de la distanță — mesaje, apeluri și livrarea fișierelor au loc online, așa că locația clientului nu contează.",
+      },
+      {
+        question: "Trebuie să pregătesc un brief înainte să începem?",
+        description: "Nu e mereu clar ce ar trebui pregătit din timp ca lucrurile să înceapă mai repede.",
+        answer:
+          "Nu, un brief detaliat nu e obligatoriu — e suficient să descrii afacerea, publicul țintă și eventualele preferințe într-un mesaj sau apel. Pe baza acestora formulez sarcina și propun o direcție.",
+      },
+      {
+        question: "Ce se întâmplă dacă nu-mi place rezultatul?",
+        description: "Posibilitatea de a interveni asupra direcției e parte din încrederea în proces, nu doar o formalitate.",
+        answer:
+          "Lucrul e împărțit în etape, cu verificări pe parcurs — există loc pentru ajustarea direcției înainte de aprobarea finală, nu doar retușuri mici la final.",
+      },
+      {
+        question: "Lucrați doar la proiecte noi sau vă ocupați și de actualizarea/redesign-ul materialelor existente?",
+        description: "Nu orice proiect pornește de la zero — uneori e vorba despre actualizarea a ceva ce există deja.",
+        answer:
+          "Ambele — fie că e vorba de rebranding, actualizarea unui site existent sau regândirea materialelor publicitare deja folosite. Pentru acest tip de lucru mă uit și la ce există deja: ce merită păstrat (de exemplu, dacă publicul recunoaște deja logo-ul sau stilul) și ce merită regândit.",
+      },
+    ],
   },
 };
