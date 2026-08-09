@@ -143,4 +143,22 @@ export const reviews: Review[] = [
       ro: "Avem sute de produse în catalog, iar fiecare trebuia adus la un aspect unitar — Dmitrii a păstrat retușul consecvent pe toată gama, fără a pierde detalii la jucăriile deschise la culoare. Termenele au fost respectate mereu, chiar și la loturi mari de fotografii.",
     },
   },
+  {
+    id: "stip2",
+    clientName: "Elena Josanu",
+    company: "Stip",
+    role: {
+      ru: "Менеджер по продукту",
+      en: "Product Manager",
+      ro: "Manager de produs",
+    },
+    year: 2022,
+    country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
+    countryCode: "MD",
+    text: {
+      ru: "У нас сотни позиций в каталоге, и каждую нужно было привести к одному виду — Дмитрий сделал ретушь единообразной по всей линейке, без потери деталей на светлых игрушках. Сроки всегда соблюдены, даже при больших партиях фото.",
+      en: "We have hundreds of items in our catalog, and each one needed to match a single look — Dmitrii kept the retouching consistent across the whole range, without losing detail on light-colored toys. Deadlines were always met, even with large photo batches.",
+      ro: "Avem sute de produse în catalog, iar fiecare trebuia adus la un aspect unitar — Dmitrii a păstrat retușul consecvent pe toată gama, fără a pierde detalii la jucăriile deschise la culoare. Termenele au fost respectate mereu, chiar și la loturi mari de fotografii.",
+    },
+  },
 ];
