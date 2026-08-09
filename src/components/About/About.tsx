@@ -402,9 +402,9 @@ export default function About({ lang, t }: AboutProps) {
                 десктопный PHOTO_SRC ниже (через <img> — сработает как
                 обычный fallback <picture>, раз ни один <source> не подошёл)
                 — там кадрирование лица уже подобрано под широкую полосу. */}
-            <source media="(max-width: 768px)" srcSet={optimizedSrc(PHOTO_SRC_MOBILE, 828)} />
+            <source media="(max-width: 768px)" srcSet={optimizedSrc(PHOTO_SRC_MOBILE, 828, 85)} />
             <img
-              src={optimizedSrc(PHOTO_SRC, 1920)}
+              src={optimizedSrc(PHOTO_SRC, 1920, 95)}
               alt="Portrait"
               loading="lazy"
               decoding="async"

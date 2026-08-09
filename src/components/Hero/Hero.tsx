@@ -23,21 +23,6 @@ const PHOTO_SRC = "/images/11111-cutout.png";
 // подхватится само через <picture> ниже, десктопное фото трогать не надо.
 const PHOTO_SRC_MOBILE = "/images/11111-mobile.jpg";
 
-// Программы, с которыми работаешь — колонка справа в Hero (только
-// десктоп, см. .toolsColumn в CSS: на мобильном/лендскейпе-телефоне
-// места под неё нет, там она скрыта). Порядок в массиве = порядок
-// отображения сверху вниз. Поменяй label/name, если набор инструментов
-// другой — короткие монограммы вместо оригинальных лого специально,
-// чтобы не тащить в тёмно-оранжевую палитру сайта чужие фирменные цвета
-// брендов (синий Photoshop, жёлтый Illustrator и т.д.).
-const TOOLS: { label: string; name: string }[] = [
-  { label: "Ps", name: "Photoshop" },
-  { label: "Ai", name: "Illustrator" },
-  { label: "Cd", name: "CorelDRAW" },
-  { label: "Ae", name: "After Effects" },
-  { label: "Cc", name: "CapCut" },
-];
-
 // Это самое крупное изображение на первом экране (LCP-элемент почти на
 // каждой странице), но оно грузится обычным <img>, а не компонентом
 // next/image — из-за art-direction через <picture> (на мобильном это
@@ -52,6 +37,15 @@ const TOOLS: { label: string; name: string }[] = [
 // (никакого двойного скачивания), но каждое из них едет по сети уже
 // сжатым, а не как есть. Ширины (1920/828) — стандартные "deviceSizes" из
 // конфига Next.js по умолчанию, специально ничего не настраивали.
+//
+// Качество (88 десктоп / 85 мобилка) сознательно выше дефолтных 75 —
+// это единственное фото, которое видит вообще каждый посетитель первым,
+// плюс оно уже наполовину прозрачное PNG-вырезка с тонкими деталями
+// (волосы, край лица), где на 75 сильнее заметны артефакты сжатия.
+// Разница в весе файла небольшая (JPEG/AVIF-подобные кодеки почти не
+// увеличивают размер линейно от 75 до 88-90 — основной прирост веса
+// происходит уже после 90-92), а на LCP это не влияет: тяжелее не сама
+// загрузка деталей чёткости, а разрешение/формат, которые не менялись.
 function optimizedSrc(path: string, width: number, quality = 75): string {
   return `/_next/image?url=${encodeURIComponent(path)}&w=${width}&q=${quality}`;
 }
@@ -66,7 +60,7 @@ export default function Hero({ t }: HeroProps) {
     <section id="top" className={styles.hero}>
       <div className={styles.bgWrap}>
         <picture style={{ display: "contents" }}>
-          <source media="(max-width: 768px)" srcSet={optimizedSrc(PHOTO_SRC_MOBILE, 828)} />
+          <source media="(max-width: 768px)" srcSet={optimizedSrc(PHOTO_SRC_MOBILE, 828, 85)} />
           {/* next/image не поддерживает art-direction через <picture> с
               разными файлами под разные media-запросы (тут ниже — другое
               фото для мобилки, а не просто уменьшенная версия того же). ESLint
@@ -75,7 +69,7 @@ export default function Hero({ t }: HeroProps) {
               современный формат) всё равно применяется — см. optimizedSrc()
               выше, обращаемся к встроенному эндпоинту Next.js напрямую. */}
           <img
-            src={optimizedSrc(PHOTO_SRC, 1920)}
+            src={optimizedSrc(PHOTO_SRC, 1920, 88)}
             alt="Portrait"
             fetchPriority="high"
             loading="eager"
@@ -106,14 +100,6 @@ export default function Hero({ t }: HeroProps) {
             </a>
           </div>
         </div>
-      </div>
-
-      <div className={styles.toolsColumn} aria-hidden="true">
-        {TOOLS.map((tool) => (
-          <span key={tool.name} className={styles.toolBadge} title={tool.name}>
-            {tool.label}
-          </span>
-        ))}
       </div>
     </section>
   );

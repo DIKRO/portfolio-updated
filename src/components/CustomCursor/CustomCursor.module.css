@@ -1,0 +1,31 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  will-change: transform;
+  opacity: 0;
+  /* Только opacity анимируется через transition — сам transform (позиция)
+     применяется мгновенно в JS, без CSS-задержки, поэтому курсор не
+     отстаёт при движении. */
+  transition: opacity 0.2s ease;
+  fill: #fff;
+  /* drop-shadow — в отличие от обычного blur, размывает именно силуэт
+     фигуры (контур стрелки), а не прямоугольную область вокруг неё —
+     поэтому свечение действительно выглядит как отсвет формы курсора,
+     а не как круглое пятно позади него. */
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.55)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.25));
+}
+
+.cursor.visible {
+  opacity: 1;
+}
+
+/* На тач-устройствах курсора нет физически — на всякий случай (если
+   JS-проверка pointer:fine почему-то не сработала) прячем и по CSS. */
+@media (hover: none), (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}

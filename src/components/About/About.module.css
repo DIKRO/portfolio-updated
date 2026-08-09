@@ -1,6 +1,12 @@
 .section {
   width: 100%;
-  padding: 40px 0 28px;
+  /* Низ подобран так, чтобы совпадать с отступом СВЕРХУ (.stats
+     margin-bottom ниже) — тогда блок "С кем я сотрудничал" стоит ровно
+     посередине между статистикой и "Отзывами", а не ближе к одному из
+     них. padding-bottom секции (50) + padding-top секции Reviews (40,
+     см. Reviews.module.css) = 90, столько же, сколько margin-bottom у
+     .stats. */
+  padding: 40px 0 50px;
   margin: 0 auto;
   scroll-margin-top: 100px;
 }
@@ -91,7 +97,7 @@
   flex-wrap: wrap;
   gap: clamp(32px, 6vw, 90px);
   padding: 0 clamp(24px, 6vw, 90px);
-  margin-bottom: 64px;
+  margin-bottom: 90px;
 }
 
 .statItem {
@@ -570,7 +576,7 @@
 
 @media (max-width: 768px) {
   .section {
-    padding: 20px 0 24px;
+    padding: 20px 0 44px;
   }
 
   .clientNav {
@@ -609,7 +615,7 @@
 
   .stats {
     gap: 28px;
-    margin-bottom: 48px;
+    margin-bottom: 64px;
   }
 
   .statValue {
@@ -706,7 +712,7 @@
    градиент под текстом гарантирует читаемость независимо от фона фото. */
 @media (orientation: landscape) and (max-height: 500px) {
   .section {
-    padding-bottom: 16px;
+    padding-bottom: 20px;
   }
 
   .clientNav {
@@ -892,7 +898,7 @@
 
   .stats {
     gap: 24px;
-    margin-bottom: 28px;
+    margin-bottom: 36px;
     padding: 0 24px;
   }
 

@@ -76,3 +76,12 @@ textarea:focus-visible {
     animation: none;
   }
 }
+
+/* Класс добавляется/убирается через JS в CustomCursor.tsx (только для
+   мыши/трекпада, без prefers-reduced-motion — см. комментарий там).
+   Обычный курсор скрыт по всему сайту, включая ссылки/кнопки/поля
+   ввода — вместо него нарисованная стрелка из CustomCursor. */
+.hideNativeCursor,
+.hideNativeCursor * {
+  cursor: none !important;
+}
