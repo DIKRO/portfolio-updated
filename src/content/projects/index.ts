@@ -864,7 +864,8 @@ export const projects: Project[] = [
       "/images/work/logo/grillkebab_logo/work6.jpg",
       "/images/work/logo/grillkebab_logo/work7.jpg",
       "/images/work/logo/grillkebab_logo/work8.png",
-      "/images/work/logo/grillkebab_logo/work10.png"
+      "/images/work/logo/grillkebab_logo/work10.png",
+      "/images/work/logo/grillkebab_logo/work11.jpg"
             ],
     description: {
       ru: "Редизайн логотипа для сети быстрого питания Grill Kebab выполнен с акцентом на современность и универсальность использования. Визуальная концепция основана на сочетании динамичной типографики и графики пламени, что подчёркивает специфику бренда и его связь с приготовлением на гриле. Логотип адаптирован для разных носителей — упаковки, рекламных материалов и наружной рекламы, обеспечивая единый фирменный стиль. Такой подход усиливает узнаваемость бренда и формирует целостный образ сети питания.",
