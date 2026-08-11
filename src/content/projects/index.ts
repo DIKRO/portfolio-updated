@@ -873,6 +873,34 @@ export const projects: Project[] = [
       ro: "Redesenarea logo-ului pentru lanțul de restaurante fast-food Grill Kebab a fost realizată punând accentul pe modernitate și versatilitate. Conceptul vizual se bazează pe combinația dintre tipografia dinamică și elementele grafice reprezentând flăcările, ceea ce subliniază specificul mărcii și legătura acesteia cu prepararea la grătar. Logo-ul a fost adaptat pentru diverse suporturi — ambalaje, materiale publicitare și publicitate exterioară — asigurând un stil corporativ unitar. Această abordare sporește gradul de recunoaștere a mărcii și creează o imagine coerentă a lanțului de restaurante.",
     },
   },
+  {
+    id: "45",
+    slug: "GreenHills_logo",
+    client: "GreenHills",
+    title: { ru: "Логотип для сети супермаркетов Green Hills",
+            en: "Logo Redesign and Branding Concept for Green Hills",
+            ro: "Concept de redizain al logoului și brandingului pentru Green Hills" },
+    categoryKey: "branding",
+    year: 2025,
+    cover: "/images/work/logo/GreenHills_logo/cover-45.jpg",
+    images: [
+      "/images/work/logo/GreenHills_logo/1.jpg",
+      "/images/work/logo/GreenHills_logo/2.jpg",
+      "/images/work/logo/GreenHills_logo/3.png",
+      "/images/work/logo/GreenHills_logo/4.jpg",
+      "/images/work/logo/GreenHills_logo/5.jpg",
+      "/images/work/logo/GreenHills_logo/6.jpg",
+      "/images/work/logo/GreenHills_logo/7.jpg",
+      "/images/work/logo/GreenHills_logo/8.jpg",
+      "/images/work/logo/GreenHills_logo/9.jpg",
+      "/images/work/logo/GreenHills_logo/10.jpg"
+            ],
+    description: {
+      ru: "Разработан комбинированный логотип для сети супермаркетов «Green Hills», графический знак которого визуально объединяет контуры покупательской корзины и зеленого холма. Использование насыщенного монохромного зеленого цвета в сочетании с мягким, округлым шрифтом без засечек формирует прямую ассоциацию со свежестью, натуральностью продуктов и экологичностью. Благодаря лаконичной геометрии и отсутствию мелких деталей, фирменный знак обладает высокой контрастностью, легко считывается и масштабируется для использования на любых рекламных и физических носителях.",
+      en: "A combined logo has been developed for the “Green Hills” supermarket chain, whose graphic symbol visually combines the outlines of a shopping cart and a green hill. The use of a rich monochromatic green color, combined with a soft, rounded sans-serif font, creates a direct association with the freshness and naturalness of the products, as well as environmental friendliness. Thanks to its clean geometry and lack of fine details, the logo has high contrast, is easily legible, and can be scaled for use on any advertising or physical media.",
+      ro: "A fost creat un logo combinat pentru lanțul de supermarketuri „Green Hills”, al cărui simbol grafic îmbină vizual contururile unui coș de cumpărături și ale unui deal verde. Utilizarea unei nuanțe intense de verde monocrom, în combinație cu un font rotunjit, fără serife, creează o asociere directă cu prospețimea, naturalețea produselor și caracterul ecologic. Datorită geometriei concise și absenței detaliilor mici, sigla prezintă un contrast ridicat, este ușor de citit și poate fi redimensionată pentru a fi utilizată pe orice suport publicitar sau fizic.",
+    },
+  },
 ];
 
 export function getProjectBySlug(slug: string) {
