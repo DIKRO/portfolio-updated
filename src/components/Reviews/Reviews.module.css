@@ -242,9 +242,16 @@
 .companyRole {
   font-size: 12.5px;
   color: var(--muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* Раньше строка должности+компании обрезалась многоточием в одну
+     строку — длинные значения (например, "Senior Marketing Manager"
+     + длинное название компании) теряли часть текста. Теперь при
+     нехватке ширины текст переносится на вторую строку по границам
+     слов, без разрыва слова посередине и без дефисов. */
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  line-height: 1.35;
 }
 
 /* Небольшие кавычки в углу карточки, напротив имени — чисто декоративная
