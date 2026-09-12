@@ -12,6 +12,31 @@ interface GalleryLightboxProps {
   onNavigate: (index: number) => void;
 }
 
+// Раньше <img> в лайтбоксе указывал прямо на файл в public/images — то есть
+// при открытии "посмотреть в полном размере" посетитель скачивал исходник
+// как есть (у части фото это десятки мегабайт), без сжатия и конвертации в
+// современный формат. Сетка превью (WorkGrid/ProjectView) уже идёт через
+// next/image и этой проблемы не имеет — а лайтбокс рисуется обычным <img>
+// из-за drag/свайпа между фото, поэтому здесь обращаемся к тому же
+// встроенному эндпоинту оптимизации Next.js напрямую (тот же приём, что и
+// в Hero/About.tsx для art-direction картинок).
+function optimizedSrc(path: string, width: number, quality = 90): string {
+  return `/_next/image?url=${encodeURIComponent(path)}&w=${width}&q=${quality}`;
+}
+
+// Оптимизатор Next.js генерирует и кэширует картинку под конкретную ширину
+// только из этого списка (deviceSizes по умолчанию) — поэтому здесь берём
+// ближайшее БОЛЬШЕЕ значение под реальный экран посетителя (с учётом
+// плотности пикселей), а не произвольное число. Так лайтбокс переиспользует
+// уже закэшированный на CDN вариант, если кто-то до этого открывал ту же
+// фотографию на экране похожего размера.
+const DEVICE_SIZES = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
+
+function pickWidth(viewportWidth: number, dpr: number): number {
+  const target = viewportWidth * dpr;
+  return DEVICE_SIZES.find((size) => size >= target) ?? DEVICE_SIZES[DEVICE_SIZES.length - 1];
+}
+
 export default function GalleryLightbox({
   images,
   index,
@@ -21,6 +46,18 @@ export default function GalleryLightbox({
 }: GalleryLightboxProps) {
   const [direction, setDirection] = useState(0);
   const total = images.length;
+
+  // Ширина под конкретный экран посетителя — пересчитывается один раз при
+  // открытии и при изменении размера окна (поворот телефона и т.п.).
+  // 1920 по умолчанию — разумное значение на случай самого первого рендера
+  // до того, как эффект ниже успел измерить реальный viewport.
+  const [imgWidth, setImgWidth] = useState(1920);
+  useEffect(() => {
+    const update = () => setImgWidth(pickWidth(window.innerWidth, window.devicePixelRatio || 1));
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   // index/total дублируем в ref, чтобы goNext/goPrev не пересоздавались
   // при каждой навигации — это важно для эффекта блокировки скролла ниже.
@@ -127,7 +164,7 @@ export default function GalleryLightbox({
         <AnimatePresence mode="wait" custom={direction}>
           <motion.img
             key={src}
-            src={src}
+            src={optimizedSrc(src, imgWidth, 90)}
             alt={alt}
             className={styles.image}
             custom={direction}
