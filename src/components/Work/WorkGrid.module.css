@@ -6,23 +6,21 @@
 .filters {
   display: flex;
   flex-wrap: wrap;
-  /* space-between вместо center — количество категорий на десктопе всегда
-     помещается в одну строку без прокрутки (см. мобильные версии ниже,
-     там она есть), так что крайние кнопки слева и справа теперь стоят
-     ровно на тех же границах, что и крайние карточки сетки работ ниже, и
-     лого/языки в шапке (тот же padding: 90px у .section). Раньше вся
-     группа кнопок была по центру секции, с неиспользуемым воздухом по
-     краям шире, чем у остального контента. */
-  justify-content: space-between;
-  gap: 35px;
+  /* Раньше space-between растягивал группу на всю ширину секции, из-за
+     чего расстояние между кнопками "плавало" в зависимости от их
+     количества и ширины текста — не одинаковое. Теперь фиксированный
+     gap + center: кнопки идут плотной группой с равным расстоянием
+     друг от друга и стоят по центру секции. */
+  justify-content: center;
+  gap: 14px;
   margin-bottom: 40px;
 }
 
 .filter,
 .filterActive {
   font-family: inherit;
-  font-size: 15px;
-  padding: 12px 25px;
+  font-size: 14px;
+  padding: 10px 20px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: transparent;
@@ -236,8 +234,38 @@
   transition: transform 0.5s ease;
 }
 
+/* Видео-превью по наведению (см. WorkCard в WorkGrid.tsx) — лежит поверх
+   .image в той же рамке 4/3 (.imageWrap уже position:relative + overflow:
+   hidden выше). object-fit: cover — та же логика, что и у фото: видео
+   любого формата (квадрат/портрет/альбом) обрезается точно под карточку,
+   без искажений и без чёрных полос. В покое прозрачно (opacity: 0) — под
+   ним всегда виден статичный .image, поэтому пока видео буферизуется,
+   пользователь просто видит обложку, а не пустоту/чёрный кадр.
+   pointer-events: none — клик должен уходить на сам <Link>-контейнер
+   карточки (переход на страницу кейса), а не на видео-элемент. */
+.previewVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.5s ease;
+}
+
+.previewVideoActive {
+  opacity: 1;
+}
+
 .card:hover .image,
 .card.cardActive .image {
+  transform: scale(1.05);
+}
+
+.card:hover .previewVideoActive,
+.card.cardActive .previewVideoActive {
   transform: scale(1.05);
 }
 

@@ -22,6 +22,7 @@ interface ContactProps {
         name: string;
         email: string;
         message: string;
+        consent: string;
         submit: string;
         close: string;
         sending: string;
@@ -36,10 +37,16 @@ interface ContactProps {
 type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact({ t }: ContactProps) {
-  const [formOpen, setFormOpen] = useState(false);
+  // Раньше форма была скрыта за кнопкой (useState(false)) — по фидбеку это
+  // создавало риск, что посетитель решит, что формы вообще нет, и уйдёт в
+  // соцсети, даже не кликнув. Теперь форма открыта сразу; сама кнопка
+  // (ниже) остаётся как переключатель — можно свернуть форму вручную,
+  // просто по умолчанию она уже видна.
+  const [formOpen, setFormOpen] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [consent, setConsent] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -58,6 +65,7 @@ export default function Contact({ t }: ContactProps) {
         setName("");
         setEmail("");
         setMessage("");
+        setConsent(false);
       } else {
         setStatus("error");
       }
@@ -87,7 +95,10 @@ export default function Contact({ t }: ContactProps) {
             if (status === "success" || status === "error") setStatus("idle");
           }}
         >
-          {t.contact.cta} {formOpen ? "×" : "→"}
+          {/* В закрытом состоянии — со стрелкой, в открытом — просто текст,
+              без крестика. */}
+          {t.contact.cta}
+          {formOpen ? "" : " →"}
         </button>
 
         <AnimatePresence initial={false}>
@@ -101,6 +112,7 @@ export default function Contact({ t }: ContactProps) {
               transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
               className={styles.formWrap}
             >
+              <div className={styles.formPanel}>
               {status === "success" ? (
                 <div className={styles.formStatus}>
                   <p>{t.contact.form.success}</p>
@@ -115,39 +127,65 @@ export default function Contact({ t }: ContactProps) {
               ) : (
                 <form className={styles.form} onSubmit={handleSubmit}>
                   <div className={styles.formRow}>
-                    <input
-                      type="text"
-                      required
-                      placeholder={t.contact.form.name}
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className={styles.formInput}
-                    />
-                    <input
-                      type="email"
-                      required
-                      placeholder={t.contact.form.email}
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className={styles.formInput}
-                    />
+                    <label className={styles.formField}>
+                      <span className={styles.formLabel}>{t.contact.form.name}</span>
+                      <input
+                        type="text"
+                        required
+                        placeholder={t.contact.form.name}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className={styles.formInput}
+                      />
+                    </label>
+                    <label className={styles.formField}>
+                      <span className={styles.formLabel}>{t.contact.form.email}</span>
+                      <input
+                        type="email"
+                        required
+                        placeholder={t.contact.form.email}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className={styles.formInput}
+                      />
+                    </label>
                   </div>
-                  <textarea
-                    required
-                    rows={4}
-                    placeholder={t.contact.form.message}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    className={styles.formTextarea}
-                  />
+                  <label className={styles.formField}>
+                    <span className={styles.formLabel}>{t.contact.form.message}</span>
+                    <textarea
+                      required
+                      rows={4}
+                      placeholder={t.contact.form.message}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className={styles.formTextarea}
+                    />
+                  </label>
+                  <div className={styles.formConsent}>
+                    <label className={styles.consent}>
+                      <input
+                        type="checkbox"
+                        checked={consent}
+                        onChange={(e) => setConsent(e.target.checked)}
+                        required
+                        className={styles.consentCheckbox}
+                      />
+                      <span>{t.contact.form.consent}</span>
+                    </label>
+                  </div>
                   <div className={styles.formFooter}>
-                    <button type="submit" className={styles.formSubmit} disabled={status === "sending"}>
+                    <button
+                      type="submit"
+                      className={styles.formSubmit}
+                      disabled={status === "sending" || !consent}
+                    >
                       {status === "sending" ? t.contact.form.sending : `${t.contact.form.submit} →`}
                     </button>
                     {status === "error" && <p className={styles.formNoteError}>{t.contact.form.error}</p>}
                   </div>
                 </form>
               )}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

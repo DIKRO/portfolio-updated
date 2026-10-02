@@ -14,8 +14,14 @@ interface HeaderProps {
   setLang: (lang: Lang) => void;
   t: {
     nav: { faq: string; work: string; about: string; reviews: string; contact: string };
-    contact: { email: string };
-    faq: { title: string; items: { question: string; description: string; answer: string }[] };
+    contact: { email: string; emailLabel: string };
+    faq: {
+      title: string;
+      generalTab: string;
+      note: { text: string; cta: string; direct: string };
+      items: { question: string; description?: string; answer: string }[];
+      services: { tab: string; items: { question: string; description?: string; answer: string }[] }[];
+    };
   };
 }
 
@@ -42,6 +48,21 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
   // (в последнем случае сама панель меню тоже закрывается — незачем
   // держать открытыми оба слоя сразу).
   const [faqOpen, setFaqOpen] = useState(false);
+  // Вкладка FAQ при открытии: 0 — «Общие», 1..N — раздел из «Чем я занимаюсь».
+  const [faqTab, setFaqTab] = useState(0);
+
+  // Карточки из блока «Чем я занимаюсь» (Services.tsx) открывают FAQ сразу
+  // на своей вкладке через window-событие — так не нужно протаскивать
+  // состояние через страницу, а Header остаётся единственным владельцем FAQ.
+  useEffect(() => {
+    const onOpenFaq = (e: Event) => {
+      const tab = (e as CustomEvent<{ tab?: number }>).detail?.tab ?? 0;
+      setFaqTab(tab);
+      setFaqOpen(true);
+    };
+    window.addEventListener("faq:open", onOpenFaq);
+    return () => window.removeEventListener("faq:open", onOpenFaq);
+  }, []);
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
@@ -178,6 +199,7 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
               type="button"
               className={styles.faqLink}
               onClick={() => {
+                setFaqTab(0);
                 setFaqOpen(true);
                 setMobileMenuOpen(false);
               }}
@@ -211,13 +233,39 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
             >
               {t.nav.reviews}
             </a>
-            <a
-              href={isHome ? "#contact" : "/#contact"}
-              onClick={goTo("contact")}
-              className={activeSection === "contact" ? styles.activeNav : ""}
-            >
-              {t.nav.contact}
-            </a>
+            {/* «Контакты» — главный пункт шапки: обычный текстовый пункт
+                (без рамки), у которого само слово периодически слегка
+                покачивается и вспыхивает белым (см. .navContactBtn в CSS),
+                плюс выпадающая панель с почтой и соцсетями по наведению/фокусу. Так
+                ссылки на соцсети доступны сразу из шапки, но не занимают
+                в ней места и не перегружают её вид. Клик по самой пилюле,
+                как раньше, ведёт к разделу «Контакты». На мобильной
+                версии панель скрыта: там те же ссылки уже есть внутри
+                бургер-меню (.mobileContacts). */}
+            <span className={styles.contactWrap}>
+              <a
+                href={isHome ? "#contact" : "/#contact"}
+                onClick={goTo("contact")}
+                className={`${styles.navContactBtn} ${activeSection === "contact" ? styles.navContactBtnActive : ""}`}
+              >
+                {t.nav.contact}
+              </a>
+
+              <div className={styles.contactPop}>
+                <div className={styles.contactPopInner}>
+                  <a href={`mailto:${t.contact.email}`}>
+                    <EmailIcon />
+                    <span>{t.contact.emailLabel}</span>
+                  </a>
+                  {SOCIALS.map(({ key, href, icon: Icon, label }) => (
+                    <a key={key} href={href} target="_blank" rel="noopener noreferrer">
+                      <Icon />
+                      <span>{label}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </span>
           </nav>
 
           <div className={styles.langSwitch}>
@@ -278,7 +326,26 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
           документа до перехода на position: fixed */}
       <div style={{ height: headerHeight }} aria-hidden="true" />
 
-      <FAQ open={faqOpen} onClose={() => setFaqOpen(false)} t={t.faq} />
+      <FAQ
+        open={faqOpen}
+        onClose={() => setFaqOpen(false)}
+        initialTab={faqTab}
+        contact={t.contact}
+        onContact={() => {
+          setFaqOpen(false);
+          // FAQ при закрытии возвращает страницу на прежнюю позицию
+          // скролла (см. FAQ.tsx) — переходим к контактам чуть позже,
+          // чтобы это восстановление не перебило наш скролл.
+          if (isHome) {
+            window.setTimeout(() => {
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+            }, 120);
+          } else {
+            router.push("/#contact");
+          }
+        }}
+        t={t.faq}
+      />
     </>
   );
 }

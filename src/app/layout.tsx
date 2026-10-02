@@ -113,7 +113,7 @@ export default async function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Socur Dmitrii",
-    jobTitle: "Graphic Designer",
+    jobTitle: "Graphic Designer & Motion Designer",
     url: BASE_URL,
     // Город/страна — помогает поисковику связать имя с локальными запросами
     // ("графический дизайнер Кишинёв" и т.п.), а не только с общими.

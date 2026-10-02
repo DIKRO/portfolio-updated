@@ -123,6 +123,12 @@ export default async function ProjectPage({ params }: PageProps) {
     }
   }
 
+  // Сортировка по order (см. src/types/project.ts и ту же сортировку в
+  // WorkGrid.tsx) — иначе "Следующий проект" листал бы по порядку файла/id
+  // (сплошными блоками по категориям), а не по тому порядку, в котором
+  // человек только что видел карточки на самой странице со списком работ.
+  list = [...list].sort((a, b) => a.order - b.order);
+
   const currentIndex = list.findIndex((p) => p.slug === project.slug);
   const nextProject = list[(currentIndex + 1) % list.length];
 

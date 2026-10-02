@@ -46,6 +46,22 @@
   filter: blur(0);
 }
 
+/* Видео в лайтбоксе (см. LightboxMedia в Lightbox.tsx) — тот же размер и
+   вписывание в экран, что и у .image, но без blur-up (у видео сразу
+   показывается первый кадр из потока, дожидаться отдельной загрузки не
+   нужно) и без grab-курсора (драг-перелистывание для видео отключено —
+   см. draggable в Lightbox.tsx, — здесь курсор ведёт себя как обычно,
+   чтобы не намекать на несуществующий свайп поверх нативных controls). */
+.video {
+  max-width: 90vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  border-radius: var(--radius);
+  display: block;
+  background: #000;
+}
+
 .close {
   position: absolute;
   top: 24px;

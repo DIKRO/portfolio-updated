@@ -4,8 +4,10 @@ import { useEffect, useCallback, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Lightbox.module.css";
 
+export type LightboxMedia = { kind: "image"; src: string } | { kind: "video"; src: string };
+
 interface GalleryLightboxProps {
-  images: string[];
+  media: LightboxMedia[];
   index: number;
   alt: string;
   onClose: () => void;
@@ -38,14 +40,14 @@ function pickWidth(viewportWidth: number, dpr: number): number {
 }
 
 export default function GalleryLightbox({
-  images,
+  media,
   index,
   alt,
   onClose,
   onNavigate,
 }: GalleryLightboxProps) {
   const [direction, setDirection] = useState(0);
-  const total = images.length;
+  const total = media.length;
 
   // Ширина под конкретный экран посетителя — пересчитывается один раз при
   // открытии и при изменении размера окна (поворот телефона и т.п.).
@@ -126,7 +128,14 @@ export default function GalleryLightbox({
 
   if (total === 0) return null;
 
-  const src = images[index];
+  const current = media[index];
+  const isVideo = current.kind === "video";
+  // Драг-свайп для перелистывания фото мышью/пальцем — для видео его
+  // отключаем: иначе перетаскивание конфликтовало бы с попыткой посетителя
+  // просто нажать play или потянуть за шкалу перемотки на нативных controls.
+  // Переключаться между слайдами с видео по-прежнему можно стрелками
+  // ‹ › и клавиатурой — драг остаётся только удобным бонусом для фото.
+  const draggable = total > 1 && !isVideo;
 
   return (
     <motion.div
@@ -162,37 +171,55 @@ export default function GalleryLightbox({
 
       <div className={styles.stage} onClick={(e) => e.stopPropagation()}>
         <AnimatePresence mode="wait" custom={direction}>
-          <motion.img
-            key={src}
-            src={optimizedSrc(src, imgWidth, 90)}
-            alt={alt}
-            className={styles.image}
-            custom={direction}
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.97 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            // Свайп/драг для перелистывания — актуально в первую очередь на
-            // телефоне (палец), но точно так же работает мышью на десктопе.
-            // dragElastic тянет картинку за курсором/пальцем, а если отпустили,
-            // не дотянув до порога — плавно пружинит обратно на место.
-            drag={total > 1 ? "x" : false}
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.7}
-            onDragEnd={(_e, info) => {
-              const { offset, velocity } = info;
-              if (offset.x < -80 || velocity.x < -500) {
-                goNext();
-              } else if (offset.x > 80 || velocity.x > 500) {
-                goPrev();
-              }
-            }}
-            // Blur-up: пока полноразмерное фото ещё грузится по сети, оно
-            // показывается смазанным, и резко проявляется в момент полной
-            // загрузки — без этого на медленном интернете можно на секунду
-            // увидеть пустое/битое место вместо картинки.
-            onLoad={(e) => e.currentTarget.classList.add(styles.loaded)}
-          />
+          {isVideo ? (
+            <motion.video
+              key={current.src}
+              src={current.src}
+              className={styles.video}
+              custom={direction}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              controls
+              controlsList="nodownload"
+              playsInline
+              autoPlay
+              onContextMenu={(e) => e.preventDefault()}
+            />
+          ) : (
+            <motion.img
+              key={current.src}
+              src={optimizedSrc(current.src, imgWidth, 90)}
+              alt={alt}
+              className={styles.image}
+              custom={direction}
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.97 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              // Свайп/драг для перелистывания — актуально в первую очередь на
+              // телефоне (палец), но точно так же работает мышью на десктопе.
+              // dragElastic тянет картинку за курсором/пальцем, а если отпустили,
+              // не дотянув до порога — плавно пружинит обратно на место.
+              drag={draggable ? "x" : false}
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.7}
+              onDragEnd={(_e, info) => {
+                const { offset, velocity } = info;
+                if (offset.x < -80 || velocity.x < -500) {
+                  goNext();
+                } else if (offset.x > 80 || velocity.x > 500) {
+                  goPrev();
+                }
+              }}
+              // Blur-up: пока полноразмерное фото ещё грузится по сети, оно
+              // показывается смазанным, и резко проявляется в момент полной
+              // загрузки — без этого на медленном интернете можно на секунду
+              // увидеть пустое/битое место вместо картинки.
+              onLoad={(e) => e.currentTarget.classList.add(styles.loaded)}
+            />
+          )}
         </AnimatePresence>
       </div>
 

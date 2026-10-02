@@ -1,0 +1,194 @@
+/* Нижний отступ (60px) отделяет блок «Чем я занимаюсь» от категорий
+     и сетки проектов ниже — раньше было 0, и он сливался с ними. */
+.section {
+  padding: 40px 90px 60px;
+  scroll-margin-top: 100px;
+}
+
+/* Тот же стиль лейбла, что в Reviews/About — маленький прописной текст
+   вместо крупного заголовка, визуальный язык секций один и тот же по
+   всему сайту. */
+.label {
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Карточки-поверхности с тем же эффектом обводки, что у отзывов:
+   оранжевый уголок (SVG-дуга + градиентные полоски сверху и слева) и
+   тёплое внутреннее свечение по ховеру. Карточка — <button>: клик
+   открывает FAQ по этому разделу, поэтому сбрасываем нативные стили. */
+.card {
+  /* Толщина оранжевого уголка — как у отзывов (там тоже 2px). */
+  --corner-thickness: 2px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  font-family: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  /* Карточка стала ниже: меньше вертикальные отступы, иконка и название
+     в одной строке, описание сразу под ними. */
+  padding: 24px 22px 18px;
+  box-shadow: inset 0 0 0 0 rgba(255, 90, 31, 0);
+  transition: border-color 0.4s ease, box-shadow 0.5s ease, transform 0.4s ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(255, 90, 31, 0.32);
+  box-shadow: inset 0 0 30px -10px rgba(255, 90, 31, 0.22), 0 16px 32px -18px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 28px;
+  right: 0;
+  height: var(--corner-thickness);
+  background: linear-gradient(90deg, var(--accent) 0%, rgba(255, 90, 31, 0) 80%);
+  opacity: 0.85;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  left: 0;
+  bottom: 0;
+  width: var(--corner-thickness);
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(255, 90, 31, 0) 55%);
+  opacity: 0.85;
+}
+
+.cornerAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  stroke-width: var(--corner-thickness);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.badge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: rgba(255, 90, 31, 0.14);
+  /* Иконка стоит ровно, без наклона. */
+  transition: background var(--transition);
+}
+
+.card:hover .badge {
+  background: rgba(255, 90, 31, 0.22);
+}
+
+.badge svg {
+  width: 19px;
+  height: 19px;
+  color: var(--accent);
+}
+
+.title {
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  /* Обычно название в одну строку; если оно длинное (например, на другом
+     языке) — переносится на вторую, балансируя длину строк. */
+  text-wrap: balance;
+  min-width: 0;
+}
+
+.text {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Подсказка «Частые вопросы →» внизу карточки: прижата книзу, чтобы в
+   ряду карточек разной высоты стоять на одной линии; при наведении
+   становится оранжевой, стрелка чуть сдвигается. */
+.hint {
+  margin-top: auto;
+  padding-top: 2px;
+  font-size: 12.5px;
+  color: var(--muted);
+  opacity: 0.8;
+  transition: color 0.4s ease, opacity 0.4s ease;
+}
+
+.card:hover .hint,
+.card:focus-visible .hint {
+  color: var(--accent);
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 20px 24px 40px;
+  }
+
+  .label {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .card {
+    padding: 22px 20px 16px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .section {
+    padding: 16px 24px 30px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}

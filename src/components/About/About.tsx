@@ -14,7 +14,7 @@ import styles from "./About.module.css";
 interface AboutProps {
   lang: Lang;
   t: {
-    about: { label: string; text: string; clientsLabel: string; viewProjects: string };
+    about: { label: string; text: string; text2: string; clientsLabel: string; viewProjects: string };
   };
 }
 
@@ -152,14 +152,14 @@ const CLIENTS: ClientInfo[] = [
     key: "cheton",
   },
   {
-    logo: "/images/clients/stip.svg",
-    name: "Stip",
+    logo: "/images/clients/DOOH.png",
+    name: "DOOH",
     description: {
-      ru: "Stip — крупнейший производитель мягких игрушек в Молдове, фабрика в Бельцах, работающая с 1998 года и поставляющая продукцию не только по стране, но и на экспорт в Германию и Румынию. Для компании я занимался обработкой и ретушью фотографий игрушек для сайта любой сложности, чтобы каждая позиция каталога выглядела аккуратно и единообразно. Также готовил печатную продукцию к печати — флаеры и буклеты.",
-      en: "Stip is the largest soft toy manufacturer in Moldova, based in Bălți since 1998, exporting its products to Germany and Romania in addition to the local market. For the company I retouched and prepared toy photography for the website at any level of complexity, so every catalog item looked clean and consistent. I also prepared print materials — flyers and brochures — for production.",
-      ro: "Stip este cel mai mare producător de jucării de pluș din Moldova, cu fabrica la Bălți, activă din 1998 și cu export în Germania și România, pe lângă piața locală. Pentru companie am retușat și pregătit fotografiile jucăriilor pentru site, indiferent de complexitate, pentru ca fiecare produs din catalog să arate îngrijit și unitar. Am pregătit, de asemenea, materiale tipărite — fluturași și broșuri — pentru producție.",
+      ru: "DOOH House — сеть LED-экранов для наружной цифровой рекламы в Молдове, охватывающая магазины сети Kaufland по всей стране: от Бельц и Кишинёва до Оргеева и Унген, а также уникальный 4-сторонний экран в центре Комрата. Сеть даёт более 700 000 контактов и свыше 32 000 показов рекламы ежемесячно, а единый формат экранов упрощает подготовку материалов и запуск кампании сразу на нескольких локациях. Среди брендов, которые уже используют LED-сеть для повышения узнаваемости и продвижения акций, — Moldcell, Kaufland, SOLOVOV, Step IT Academy, CIP и TEZ Tour.",
+      en: "DOOH House runs a network of LED screens for digital out-of-home advertising across Moldova — covering Kaufland stores nationwide, from Bălți and Chișinău to Orhei and Ungheni, plus a unique four-sided screen in central Comrat. The network delivers over 700,000 contacts and more than 32,000 ad impressions a month, with a single screen format that makes it easy to prepare materials and launch campaigns across several locations at once. Brands already using the LED network to boost recognition and promotions include Moldcell, Kaufland, SOLOVOV, Step IT Academy, CIP and TEZ Tour.",
+      ro: "DOOH House operează o rețea de ecrane LED pentru publicitate digitală exterioară în Moldova — acoperind magazinele Kaufland din toată țara, de la Bălți și Chișinău până la Orhei și Ungheni, plus un ecran unic cu patru fețe în centrul Comratului. Rețeaua oferă peste 700 000 de contacte și peste 32 000 de afișări publicitare lunar, iar formatul unic al ecranelor simplifică pregătirea materialelor și lansarea campaniilor pe mai multe locații simultan. Printre brandurile care folosesc deja rețeaua LED pentru a-și crește vizibilitatea și a-și promova ofertele se numără Moldcell, Kaufland, SOLOVOV, Step IT Academy, CIP și TEZ Tour.",
     },
-    key: "stip",
+    key: "dooh",
   },
 ];
 
@@ -432,6 +432,7 @@ export default function About({ lang, t }: AboutProps) {
           >
             <h2 className={styles.label}>{t.about.label}</h2>
             <p className={styles.text}>{t.about.text}</p>
+            <p className={`${styles.text} ${styles.textSecond}`}>{t.about.text2}</p>
           </motion.div>
         </div>
       </div>

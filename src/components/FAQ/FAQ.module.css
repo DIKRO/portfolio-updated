@@ -77,6 +77,50 @@
   color: var(--accent);
 }
 
+/* Вкладки: «Общие» + по одной на каждый раздел из «Чем я занимаюсь».
+   На узких экранах ряд прокручивается вбок (скроллбар скрыт). */
+.tabs {
+  display: flex;
+  gap: 8px;
+  padding: 16px 44px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  flex: 0 0 auto;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--transition), border-color var(--transition), background var(--transition),
+    box-shadow var(--transition);
+}
+
+.tab:hover {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.tabActive,
+.tabActive:hover {
+  color: var(--accent);
+  border-color: rgba(255, 90, 31, 0.55);
+  background: rgba(255, 90, 31, 0.08);
+  box-shadow: 0 0 14px rgba(255, 90, 31, 0.2);
+}
+
 .scrollArea {
   overflow-y: auto;
   flex: 1;
@@ -143,7 +187,87 @@
   line-height: 1.65;
 }
 
+/* Заметка в конце каждой вкладки: тёплая подложка в фирменном стиле,
+   текст приглушённый (это пояснение, а не ответ), кнопка — пилюля. */
+.note {
+  margin-top: 28px;
+  padding: 22px 24px;
+  border: 1px solid rgba(255, 90, 31, 0.28);
+  border-radius: calc(var(--radius) - 4px);
+  background: rgba(255, 90, 31, 0.05);
+}
+
+.note p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.noteButton {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid rgba(255, 90, 31, 0.5);
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition), box-shadow var(--transition),
+    background var(--transition);
+}
+
+.noteDirect {
+  display: block;
+  margin: 20px 0 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.noteLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.noteLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.noteLink svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.noteLink:hover {
+  color: var(--accent);
+  border-color: rgba(255, 90, 31, 0.5);
+  box-shadow: 0 0 14px rgba(255, 90, 31, 0.25);
+}
+
+.noteButton:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: rgba(255, 90, 31, 0.12);
+  box-shadow: 0 0 16px rgba(255, 90, 31, 0.3);
+}
+
 @media (max-width: 768px), (orientation: landscape) and (max-height: 500px) {
+  .tabs {
+    padding: 12px 24px;
+  }
+
   .header {
     padding: 24px 24px 16px;
   }
@@ -169,6 +293,14 @@
   }
 
   .answer {
+    font-size: 12px;
+  }
+
+  .note {
+    padding: 18px 18px;
+  }
+
+  .note p {
     font-size: 12px;
   }
 }

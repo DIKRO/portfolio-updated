@@ -50,13 +50,24 @@
   overflow: hidden;
 }
 
-.form {
+/* Панель-подложка под всей формой — тот же язык поверхностей, что у
+   карточек отзывов/работ (var(--surface) + тонкая рамка + радиус),
+   чтобы форма читалась как цельный, законченный блок, а не голые поля
+   на фоне страницы. */
+.formPanel {
   max-width: 640px;
   margin: 32px auto 0;
+  padding: 32px;
+  background: var(--surface);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+}
+
+.form {
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 .formRow {
@@ -64,10 +75,24 @@
   gap: 14px;
 }
 
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.formLabel {
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 .formInput,
 .formTextarea {
   width: 100%;
-  background: var(--surface);
+  background: var(--bg);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 12px;
   padding: 14px 16px;
@@ -79,7 +104,12 @@
 
 .formInput::placeholder,
 .formTextarea::placeholder {
-  color: var(--muted);
+  /* Подсказка, а не «уже введённый текст»: мельче (13px против 15px у
+     вводимого текста) и очень бледная. opacity: 1 — чтобы Firefox не
+     гасил цвет ещё раз своим значением по умолчанию. */
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.26);
+  opacity: 1;
 }
 
 .formInput:focus,
@@ -101,6 +131,64 @@
   align-items: center;
   gap: 12px;
   margin-top: 4px;
+}
+
+.formConsent {
+  display: flex;
+  /* По левому краю — на одной линии с левым краем полей ввода выше. */
+  justify-content: flex-start;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+  /* Приглушённее и мельче, чем раньше (было 13px / --muted), чтобы
+     согласие не спорило с полями формы и кнопкой. */
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: left;
+  transition: color var(--transition);
+}
+
+.consent:hover {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Кастомный чекбокс вместо нативного: скруглённый квадрат с тонкой
+   рамкой, при выборе заливается фирменным оранжевым и показывает галочку
+   (SVG зашит прямо в CSS как data-URI — без лишних файлов и запросов).
+   Сам <input> остаётся настоящим, поэтому клавиатура, required и
+   доступность работают как раньше. */
+.consentCheckbox {
+  -webkit-appearance: none;
+  appearance: none;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  border-radius: 5px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px 12px;
+  cursor: pointer;
+  transition: background-color var(--transition), border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.consent:hover .consentCheckbox {
+  border-color: rgba(255, 90, 31, 0.6);
+}
+
+.consentCheckbox:checked {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(255, 90, 31, 0.35);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%230e0e0e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 6.4 5 8.9l4.5-5.3'/%3E%3C/svg%3E");
 }
 
 .formSubmit {
@@ -138,12 +226,12 @@
   text-align: center;
 }
 
+/* Раньше formStatus был отдельной панелью (своя рамка/фон) прямо на фоне
+   страницы. Теперь он, как и сама форма, живёт внутри .formPanel — своя
+   рамка больше не нужна, только небольшой акцентный фон поверх панели. */
 .formStatus {
-  max-width: 640px;
-  margin: 32px auto 0;
-  padding: 28px 24px;
-  border: 1px solid rgba(255, 90, 31, 0.3);
-  border-radius: var(--radius);
+  padding: 12px;
+  border-radius: calc(var(--radius) - 8px);
   background: rgba(255, 90, 31, 0.06);
   text-align: center;
 }
@@ -201,8 +289,12 @@
     display: none;
   }
 
-  .form {
+  .formPanel {
     margin-top: 24px;
+    padding: 22px 18px;
+  }
+
+  .form {
     gap: 12px;
   }
 
@@ -268,8 +360,12 @@
     font-size: 12px;
   }
 
-  .form {
+  .formPanel {
     margin-top: 18px;
+    padding: 18px 16px;
+  }
+
+  .form {
     gap: 10px;
   }
 

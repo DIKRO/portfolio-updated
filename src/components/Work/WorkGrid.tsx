@@ -6,11 +6,38 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Lang } from "@/content/lang";
 import { projects } from "@/content/projects";
-import { CategoryKey } from "@/types/project";
+import { CategoryKey, Project } from "@/types/project";
+
+// Видео для превью по наведению (см. WorkCard ниже) может лежать в двух
+// разных местах данных проекта (см. src/types/project.ts): в отдельном
+// поле project.video ("главный" ролик), либо прямо элементом внутри
+// project.images (если видео должно вести себя как фото и влиять на
+// раскладку в самом кейсе — см. buildGalleryRows). Для превью в сетке
+// разницы нет, откуда оно взято — берём первое найденное.
+function getPreviewVideoSrc(project: Project): string | undefined {
+  if (project.video) return project.video;
+  const inlineVideo = project.images.find((item) => typeof item !== "string");
+  return inlineVideo?.video;
+}
 import { shimmerBlurDataURL } from "@/lib/shimmer";
 import styles from "./WorkGrid.module.css";
 
 type FilterKey = "all" | CategoryKey;
+
+// Желаемый порядок фильтров — "Все", затем эти категории именно в этом
+// порядке (если по ним есть хотя бы одна работа), а всё остальное — следом,
+// в порядке первого появления в данных (как было раньше). Так порядок не
+// зависит от того, в каком порядке лежат проекты в файле — и не ломается,
+// когда добавляешь новые работы.
+const PINNED_CATEGORY_ORDER: CategoryKey[] = [
+  "branding",
+  "motion-design",
+  "digital",
+  "video-editing",
+  "packaging",
+  "print",
+  "ui-ux",
+];
 
 interface WorkGridProps {
   lang: Lang;
@@ -35,6 +62,127 @@ const VISIBLE_ROWS = 2;
 //    обычный клиентский рендер без сверки с HTML сервера, тут сверяться
 //    не с чем, поэтому можно и нужно сразу читать sessionStorage.
 let hasHydratedOnce = false;
+
+// Карточка проекта в сетке — вынесена в отдельный компонент, чтобы у
+// каждой карточки было своё независимое состояние наведения/видео (иначе
+// пришлось бы городить Map<id, ...> состояний на уровне всей сетки).
+//
+// Превью по наведению: пока курсор не на карточке — обычное фото (как и
+// раньше). При наведении (только если canHoverPreview и у проекта вообще
+// есть поле video, см. src/types/project.ts) поверх фото запускается то
+// же видео, что показано на странице кейса — специально не требуем
+// отдельного короткого ролика под превью, чтобы не удваивать работу по
+// каждому проекту.
+//
+// Формат видео может быть любым — квадрат, портрет, альбомная ориентация,
+// не важно: у .previewVideo тот же object-fit: cover, что и у .image
+// (см. WorkGrid.module.css), поэтому видео обрезается точно под рамку
+// карточки без искажений и чёрных полос, ровно как обложка.
+//
+// Тег <video> монтируется в DOM только при первом реальном наведении
+// (hasHovered), а не сразу для всех карточек сетки — иначе на фильтре
+// "Все работы" браузер начал бы одновременно тянуть с R2 десятки видео.
+// После первого наведения элемент остаётся в DOM (просто на паузе) —
+// повторное наведение уже не requestует файл заново.
+function WorkCard({
+  project,
+  lang,
+  href,
+  categoryLabel,
+  canHoverPreview,
+}: {
+  project: Project;
+  lang: Lang;
+  href: string;
+  categoryLabel: string;
+  canHoverPreview: boolean;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [hasHovered, setHasHovered] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const previewVideoSrc = getPreviewVideoSrc(project);
+  const showPreview = canHoverPreview && Boolean(previewVideoSrc);
+
+  const handleEnter = () => {
+    if (!showPreview) return;
+    if (!hasHovered) {
+      // Первое наведение — монтируем <video> ниже с autoPlay, он сам
+      // начнёт играть, как только браузер сможет (см. onPlaying).
+      setHasHovered(true);
+    } else {
+      // Повторное наведение — элемент уже смонтирован и на паузе.
+      videoRef.current?.play().catch(() => {});
+    }
+  };
+
+  const handleLeave = () => {
+    if (!showPreview) return;
+    setIsPlaying(false);
+    const v = videoRef.current;
+    if (v) {
+      v.pause();
+      v.currentTime = 0;
+    }
+  };
+
+  return (
+    <Link
+      href={href}
+      className={styles.card}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+      onTouchStart={(e) => e.currentTarget.classList.add(styles.cardActive)}
+      onTouchEnd={(e) => e.currentTarget.classList.remove(styles.cardActive)}
+      onTouchCancel={(e) => e.currentTarget.classList.remove(styles.cardActive)}
+    >
+      <div className={styles.imageWrap}>
+        <Image
+          src={project.cover}
+          alt={project.title[lang]}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          // См. комментарий в ProjectView.tsx у quality={90} — та же
+          // причина. Тут ставим 85, а не 90: это только превью-обложка
+          // в сетке (не тот же файл, что открывают в лайтбоксе крупно),
+          // поэтому чуть меньше можно сэкономить на трафике, разница
+          // на маленьком превью не так заметна.
+          quality={85}
+          className={styles.image}
+          placeholder="blur"
+          blurDataURL={shimmerBlurDataURL()}
+        />
+
+        {showPreview && hasHovered && (
+          <video
+            ref={videoRef}
+            className={isPlaying ? `${styles.previewVideo} ${styles.previewVideoActive}` : styles.previewVideo}
+            src={previewVideoSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            // Пока видео реально не начало играть (буферизация/сеть),
+            // остаётся видна статичная обложка под ним — плавный переход
+            // только когда есть что показать, без чёрного кадра-вспышки.
+            onPlaying={() => setIsPlaying(true)}
+            // Убирает "Сохранить видео как" из правого клика — та же
+            // защита, что и у видео на самой странице кейса (ProjectView).
+            onContextMenu={(e) => e.preventDefault()}
+          />
+        )}
+      </div>
+
+      <div className={styles.meta}>
+        <span className={styles.title}>{project.title[lang]}</span>
+        <span className={styles.category}>
+          {categoryLabel} — {project.year}
+        </span>
+      </div>
+    </Link>
+  );
+}
 
 export default function WorkGrid({ lang, t }: WorkGridProps) {
   const [filter, setFilter] = useState<FilterKey>(() => {
@@ -70,6 +218,25 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
+  // Превью-видео по наведению на карточку (см. WorkCard ниже) должно
+  // работать только там, где наведение вообще осмысленно — на устройстве
+  // с настоящей мышью/трекпадом. isMobile выше завязан на ШИРИНУ экрана
+  // (768px) и для этого не годится: у широкого планшета/ноутбука с
+  // тачскрином ширина может быть больше 768px, но hover там всё равно
+  // "залипающий" и работает через долгий тап, а не реальное наведение —
+  // на таких устройствах видео лучше не запускать вообще, чтобы не ловить
+  // случайный автоплей от касания. (hover: hover) и (pointer: fine) вместе
+  // как раз и означают "есть настоящий указатель с наведением".
+  const [canHoverPreview, setCanHoverPreview] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    setCanHoverPreview(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setCanHoverPreview(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
   useEffect(() => {
     sessionStorage.setItem("workGridExpanded", expanded ? "1" : "0");
   }, [expanded]);
@@ -97,13 +264,21 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
     setExpanded(false);
   };
 
-  // Показываем только те фильтры, для которых реально есть работы,
-  // в порядке первого появления в данных.
+  // Показываем только те фильтры, для которых реально есть работы.
+  // Сначала — закреплённый порядок (см. PINNED_CATEGORY_ORDER выше), затем
+  // любые остальные категории — в порядке первого появления в данных
+  // (например, новая категория, которую забыли добавить в список выше).
   const availableFilters = useMemo<FilterKey[]>(() => {
+    const present = new Set(projects.map((p) => p.categoryKey));
     const keys: FilterKey[] = ["all"];
+
+    for (const key of PINNED_CATEGORY_ORDER) {
+      if (present.has(key)) keys.push(key);
+    }
     for (const project of projects) {
       if (!keys.includes(project.categoryKey)) keys.push(project.categoryKey);
     }
+
     return keys;
   }, []);
 
@@ -117,8 +292,17 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [availableFilters]);
 
-  const filtered =
-    filter === "all" ? projects : projects.filter((p) => p.categoryKey === filter);
+  // Порядок показа — по полю order (см. src/types/project.ts), а не по
+  // тому, в каком порядке проекты лежат в файле/массиве. Раньше, когда
+  // проекты выстроили по категориям (сплошными блоками id — см. комментарии
+  // в src/content/projects/index.ts), вкладка "Все работы" стала показывать
+  // их теми же сплошными блоками по категориям подряд, а не вперемешку.
+  // .slice() перед .sort() — projects это общий модульный массив (импорт
+  // из content/projects), .sort() мутирует на месте, без копии он бы менял
+  // порядок и внутри самого исходного массива на будущие рендеры.
+  const filtered = (filter === "all" ? projects : projects.filter((p) => p.categoryKey === filter))
+    .slice()
+    .sort((a, b) => a.order - b.order);
 
   const isAll = filter === "all";
 
@@ -202,6 +386,43 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   // (без анимации) перепрыгиваем ровно на ширину одного комплекта в
   // противоположную сторону — глаз этого не замечает, а прокрутка кажется
   // бесконечной в обе стороны.
+  // Ширина группы кнопок-фильтров (от левого края первой до правого края
+  // последней) публикуется в CSS-переменную --filters-width на <html>:
+  // ряд логотипов клиентов в «Обо мне» (About.module.css, .logoRow) берёт
+  // её как свою ширину, чтобы края обоих рядов совпадали. Контейнер
+  // .filters сам занимает всю ширину секции (кнопки внутри центрированы),
+  // поэтому его собственную ширину брать нельзя — меряем именно кнопки.
+  // На телефоне переменная не используется (там своя раскладка).
+  useEffect(() => {
+    const el = filtersRef.current;
+    if (!el || isMobile) return;
+
+    const root = document.documentElement;
+    const measure = () => {
+      const kids = Array.from(el.children) as HTMLElement[];
+      if (kids.length === 0) return;
+      let left = Infinity;
+      let right = -Infinity;
+      kids.forEach((kid) => {
+        const rect = kid.getBoundingClientRect();
+        left = Math.min(left, rect.left);
+        right = Math.max(right, rect.right);
+      });
+      root.style.setProperty("--filters-width", `${Math.round(right - left)}px`);
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    // Шрифт мог догрузиться после первого замера — ширины кнопок изменятся.
+    document.fonts?.ready.then(measure);
+
+    return () => {
+      observer.disconnect();
+      root.style.removeProperty("--filters-width");
+    };
+  }, [isMobile, availableFilters, t.categories]);
+
   useEffect(() => {
     if (!isMobile) return;
     const el = filtersRef.current;
@@ -243,32 +464,13 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.4, delay: (index % 3) * 0.05 }}
         >
-          <Link
+          <WorkCard
+            project={project}
+            lang={lang}
             href={filter === "all" ? `/work/${project.slug}` : `/work/${filter}/${project.slug}`}
-            className={styles.card}
-            onTouchStart={(e) => e.currentTarget.classList.add(styles.cardActive)}
-            onTouchEnd={(e) => e.currentTarget.classList.remove(styles.cardActive)}
-            onTouchCancel={(e) => e.currentTarget.classList.remove(styles.cardActive)}
-          >
-            <div className={styles.imageWrap}>
-              <Image
-                src={project.cover}
-                alt={project.title[lang]}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className={styles.image}
-                placeholder="blur"
-                blurDataURL={shimmerBlurDataURL()}
-              />
-            </div>
-
-            <div className={styles.meta}>
-              <span className={styles.title}>{project.title[lang]}</span>
-              <span className={styles.category}>
-                {t.categories[project.categoryKey]} — {project.year}
-              </span>
-            </div>
-          </Link>
+            categoryLabel={t.categories[project.categoryKey]}
+            canHoverPreview={canHoverPreview}
+          />
         </motion.div>
       ))}
     </AnimatePresence>

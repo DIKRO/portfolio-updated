@@ -27,6 +27,7 @@ a {
   font-family: inherit;
 }
 
+
 /* Заметный фокус при навигации с клавиатуры (Tab), не мешает мыши/тачу */
 a:focus-visible,
 button:focus-visible,

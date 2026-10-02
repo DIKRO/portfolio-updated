@@ -12,9 +12,9 @@ import type { MetadataRoute } from "next";
 // sizes на настоящий, иначе браузер может неправильно выбрать иконку.
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Socur Dmitrii — Graphic Designer",
+    name: "Socur Dmitrii — Graphic & Motion Designer",
     short_name: "Socur Dmitrii",
-    description: "Портфолио графического дизайнера в Кишинёве, Молдова.",
+    description: "Портфолио графического и моушн-дизайнера в Кишинёве, Молдова.",
     start_url: "/",
     display: "standalone",
     background_color: "#0e0e0e",

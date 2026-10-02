@@ -132,6 +132,150 @@
   text-shadow: 0 0 12px rgba(255, 90, 31, 0.25);
 }
 
+/* «Контакты» — главный пункт шапки, но без рамки и заливки: выделяется
+   только само слово. Оно периодически чуть качается (±2°) и мягко
+   вспыхивает белым — тот же принцип «дыхания», что у плашки «Открыт для
+   новых проектов» в Hero, только белым. Две независимые анимации разной
+   длины: покачивание (6s) и вспышка (4s) — так они не совпадают в лоб и
+   выглядят естественнее.
+   Селекторы с «.nav .navContactBtn» (специфичнее, чем «.nav a» выше), чтобы
+   перебить цвет/тень обычных пунктов меню. */
+.nav .navContactBtn {
+  min-width: auto !important;
+  display: inline-block;
+  transform-origin: center;
+  animation: contactWobble 6s ease-in-out infinite, contactPulse 4s ease-in-out infinite;
+}
+
+@keyframes contactWobble {
+  0%,
+  60%,
+  100% {
+    transform: rotate(0deg);
+  }
+  65% {
+    transform: rotate(-2deg);
+  }
+  71% {
+    transform: rotate(2deg);
+  }
+  78% {
+    transform: rotate(-1.4deg);
+  }
+  85% {
+    transform: rotate(0.8deg);
+  }
+  92% {
+    transform: rotate(-0.3deg);
+  }
+}
+
+@keyframes contactPulse {
+  0%,
+  100% {
+    color: var(--muted);
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Наведение (на слово или на выпавшую панель): анимации выключаются, слово
+   горит белым, пока курсор на нём. */
+.contactWrap:hover .navContactBtn,
+.contactWrap:focus-within .navContactBtn {
+  animation: none;
+  color: var(--text);
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.5);
+}
+
+/* Раздел «Контакты» сейчас на экране — слово оранжевое (индикатор, как у
+   остальных пунктов меню), без покачивания и вспышек. */
+.nav .navContactBtnActive,
+.contactWrap:hover .navContactBtnActive,
+.contactWrap:focus-within .navContactBtnActive {
+  animation: none;
+  color: var(--accent);
+  text-shadow: 0 0 12px rgba(255, 90, 31, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav .navContactBtn {
+    animation: none;
+  }
+}
+
+/* Выпадающая панель с почтой и соцсетями под словом. padding-top —
+   «мостик» между словом и панелью, чтобы курсор не терял наведение,
+   пока переезжает с одного на другое. */
+.contactWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.contactPop {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding-top: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  z-index: 60;
+}
+
+.contactWrap:hover .contactPop,
+.contactWrap:focus-within .contactPop {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.contactPopInner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px;
+  background: rgba(23, 23, 23, 0.98);
+  border: 1px solid rgba(255, 90, 31, 0.28);
+  border-radius: var(--radius);
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 90, 31, 0.12);
+}
+
+/* Селектор длиннее, чем у «.nav a» выше, чтобы перебить его min-width,
+   text-align и цвет для ссылок внутри панели. */
+.nav .contactPop a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 13.5px;
+  color: var(--muted);
+  text-shadow: none;
+  transition: color var(--transition), background var(--transition);
+}
+
+.nav .contactPop a:hover {
+  color: var(--text);
+  background: rgba(255, 90, 31, 0.1);
+  text-shadow: none;
+}
+
+.contactPop svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
 .langSwitch {
   display: flex;
   align-items: center;
@@ -322,6 +466,16 @@
 
   .nav a {
     min-width: auto;
+  }
+
+  /* На мобильном те же ссылки уже есть в самом меню (.mobileContacts) —
+     выпадающая панель и покачивание тут не нужны. */
+  .contactPop {
+    display: none;
+  }
+
+  .nav .navContactBtn {
+    animation: none;
   }
 
   /* В десктопной строке это узкая вертикальная палка между соседними

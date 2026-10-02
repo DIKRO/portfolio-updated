@@ -26,11 +26,13 @@ export default function Highlights({ t }: HighlightsProps) {
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.5, delay: i * 0.05 }}
           >
-            <Icon />
-            <div>
+            <div className={styles.head}>
+              <span className={styles.badge}>
+                <Icon />
+              </span>
               <strong>{item.title}</strong>
-              <span>{item.text}</span>
             </div>
+            <span className={styles.text}>{item.text}</span>
           </motion.div>
         );
       })}

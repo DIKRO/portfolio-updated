@@ -1831,7 +1831,6 @@
 \src\components\Footer
 \src\components\Header
 \src\components\Hero
-\src\components\Highlights
 \src\components\Icons
 \src\components\ProjectView
 \src\components\ScrollToTop
@@ -1846,8 +1845,6 @@
 \src\components\Header\Header.tsx
 \src\components\Hero\Hero.module.css
 \src\components\Hero\Hero.tsx
-\src\components\Highlights\Highlights.module.css
-\src\components\Highlights\Highlights.tsx
 \src\components\Icons\Icons.tsx
 \src\components\ProjectView\ProjectView.module.css
 \src\components\ProjectView\ProjectView.tsx

@@ -1,11 +1,33 @@
 import fs from "fs";
 import path from "path";
 
-export type GalleryImage = { src: string; ratio: number; width: number; height: number };
+// Видео в галерее задаётся не просто ссылкой, а с явными шириной/высотой —
+// сам файл лежит на внешнем хостинге (R2 и т.п.), а не в public/, поэтому
+// прочитать реальные пропорции из файла на сервере при сборке (как для
+// фото ниже) не получится. Значения width/height нужны ИСКЛЮЧИТЕЛЬНО для
+// решения "с кем из соседних фото это видео можно поставить в пару" — на
+// итоговый визуальный размер (чтобы видео не растягивалось/не искажалось)
+// они не влияют, тот вопрос решает чистый CSS (см. .galleryVideo).
+export interface GalleryVideoItem {
+  video: string;
+  width: number;
+  height: number;
+}
+
+export type GalleryItem = string | GalleryVideoItem;
+
+interface GalleryMedia {
+  item: GalleryItem;
+  kind: "image" | "video";
+  key: string;
+  ratio: number;
+  width: number;
+  height: number;
+}
 
 export type GalleryRow =
-  | { type: "single"; src: string; isPortrait: boolean; width: number; height: number }
-  | { type: "pair"; items: [GalleryImage, GalleryImage] };
+  | ({ type: "single"; isPortrait: boolean } & GalleryMedia)
+  | { type: "pair"; items: [GalleryMedia, GalleryMedia] };
 
 // Фолбэк на случай, если реальные размеры прочитать не удалось (формат,
 // который readImageSize не разбирает — svg/webp/gif, либо файл не найден).
@@ -65,53 +87,66 @@ function readImageSize(absPath: string): { width: number; height: number } | nul
   return null;
 }
 
-function getSize(src: string): { width: number; height: number } | null {
+function getImageSize(src: string): { width: number; height: number } | null {
   // src в данных проекта всегда вида "/images/...", а реальный файл
   // лежит в public/images/... — поэтому просто добавляем "public".
   const absPath = path.join(process.cwd(), "public", src);
   return readImageSize(absPath);
 }
 
+function describe(item: GalleryItem): GalleryMedia {
+  if (typeof item === "string") {
+    const size = getImageSize(item) ?? FALLBACK_SIZE;
+    return { item, kind: "image", key: item, ratio: size.width / size.height, ...size };
+  }
+  return {
+    item,
+    kind: "video",
+    key: item.video,
+    ratio: item.width / item.height,
+    width: item.width,
+    height: item.height,
+  };
+}
+
 /**
- * Раскладывает список фото проекта на строки: два портретных (или
- * квадратных) фото подряд становятся парой (рядом, на десктопе), всё
- * остальное — одно фото в строке, как раньше. Не больше 2 в ряд, работает
- * полностью автоматически — ничего в данных проекта указывать не нужно.
+ * Раскладывает список фото (и, если есть, видео) проекта на строки: два
+ * портретных (или квадратных) элемента подряд становятся парой (рядом, на
+ * десктопе), всё остальное — один элемент в строке, как раньше. Видео
+ * участвует в этой же раскладке наравне с фото — если видео портретное и
+ * соседний с ним элемент тоже портретный, они встанут в пару; если нет —
+ * видео просто займёт свою строку целиком, как обычное широкое фото. Не
+ * больше 2 в ряд, работает полностью автоматически по порядку элементов в
+ * data-файле проекта.
  *
  * Внутри пары ширина делится не поровну 50/50, а пропорционально
- * соотношению сторон (width/height) каждого фото — если у одной картинки
- * пропорции чуть другие, чем у соседней (например, 1080×1080 рядом с
- * 1080×1078), при равном делении 50/50 получались бы едва заметные зазоры
- * по высоте между ними. Пропорциональное деление через flex-grow даёт
- * обеим картинкам ОДИНАКОВУЮ итоговую высоту без единого пикселя обрезки —
- * это просто следствие геометрии (ширина каждой ∝ её же ratio), без CSS
- * object-fit:cover и без JS-вычислений на клиенте.
+ * соотношению сторон (width/height) каждого элемента — если у одного
+ * элемента пропорции чуть другие, чем у соседнего (например, 1080×1080
+ * рядом с 1080×1078), при равном делении 50/50 получались бы едва заметные
+ * зазоры по высоте между ними. Пропорциональное деление через flex-grow
+ * даёт обоим элементам ОДИНАКОВУЮ итоговую высоту без единого пикселя
+ * обрезки — это просто следствие геометрии (ширина каждого ∝ его же
+ * ratio), без CSS object-fit:cover и без JS-вычислений на клиенте. Для
+ * видео с чуть неточно указанными вручную width/height (не читаем их из
+ * файла, см. GalleryVideoItem выше) это может дать долю пикселя
+ * расхождения по высоте — не критично на глаз.
  */
-export function buildGalleryRows(images: string[]): GalleryRow[] {
+export function buildGalleryRows(items: GalleryItem[]): GalleryRow[] {
   const rows: GalleryRow[] = [];
   let i = 0;
 
-  while (i < images.length) {
-    const current = images[i];
-    const next = images[i + 1];
+  while (i < items.length) {
+    const current = describe(items[i]);
+    const next = items[i + 1] ? describe(items[i + 1]) : null;
 
-    const curSize = getSize(current);
-    const nextSize = next ? getSize(next) : null;
-    const curIsPortrait = curSize ? curSize.height >= curSize.width : false;
-    const nextIsPortrait = nextSize ? nextSize.height >= nextSize.width : false;
+    const curIsPortrait = current.height >= current.width;
+    const nextIsPortrait = next ? next.height >= next.width : false;
 
-    if (next && curIsPortrait && nextIsPortrait && curSize && nextSize) {
-      rows.push({
-        type: "pair",
-        items: [
-          { src: current, ratio: curSize.width / curSize.height, ...curSize },
-          { src: next, ratio: nextSize.width / nextSize.height, ...nextSize },
-        ],
-      });
+    if (next && curIsPortrait && nextIsPortrait) {
+      rows.push({ type: "pair", items: [current, next] });
       i += 2;
     } else {
-      const size = curSize ?? FALLBACK_SIZE;
-      rows.push({ type: "single", src: current, isPortrait: curIsPortrait, ...size });
+      rows.push({ type: "single", isPortrait: curIsPortrait, ...current });
       i += 1;
     }
   }

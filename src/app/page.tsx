@@ -4,9 +4,9 @@ import dynamic from "next/dynamic";
 import { useLang } from "@/content/lang";
 import Header from "@/components/Header/Header";
 import Hero from "@/components/Hero/Hero";
-import Highlights from "@/components/Highlights/Highlights";
+import Services from "@/components/Services/Services";
 
-// Hero/Highlights — первый экран, грузятся сразу и обычным импортом.
+// Hero — первый экран, грузятся сразу и обычным импортом.
 // Всё, что ниже, пользователь физически не видит до скролла, поэтому
 // незачем тащить их JS в основной бандл с первой секунды: next/dynamic
 // выносит каждый компонент в отдельный чанк, который браузер догружает
@@ -66,7 +66,7 @@ export default function Home() {
           по моменту, когда JS решит его показать. */}
       <div key={lang} className="pageFadeIn">
         <Hero t={t} />
-        <Highlights t={t} />
+        <Services t={t} />
         <WorkGrid lang={lang} t={t} />
         <About lang={lang} t={t} />
         <Reviews lang={lang} t={t} />

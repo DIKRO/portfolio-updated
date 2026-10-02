@@ -91,6 +91,11 @@
   color: var(--text);
 }
 
+/* Второй абзац «Обо мне» — небольшой отступ от первого. */
+.textSecond {
+  margin-top: 14px;
+}
+
 .stats {
   display: flex;
   justify-content: center;
@@ -169,15 +174,26 @@
 
 .logoRow {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* Общая ширина ряда равна ширине группы кнопок-фильтров в «Работах»
+     (--filters-width, её публикует WorkGrid.tsx), поэтому края обоих
+     рядов совпадают на любом языке. Пока значение не измерено (до
+     гидратации) — на всю ширину контейнера. Расстояние между плашками
+     (gap) — 19px: было 16 → 17 → 19. */
+  width: var(--filters-width, 100%);
+  max-width: 100%;
+  margin: 0 auto;
+  gap: 19px;
 }
 
 .logoSlot {
   position: relative;
-  flex: 1;
-  min-width: 122px;
-  height: 66px;
+  /* Плашки делят ширину ряда поровну (flex: 1 1 0), высота +5% к
+     прежней (56 → 59px). */
+  flex: 1 1 0;
+  min-width: 0;
+  height: 59px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,8 +234,9 @@
    ровно нужным цветом. В покое — белый (var(--text)), при наведении и
    пока карточка клиента открыта — оранжевый (var(--accent)). */
 .logoImg {
-  width: 68%;
-  height: 60%;
+  /* Сам логотип внутри плашки на 5% крупнее прежнего (было 68% × 60%). */
+  width: 71%;
+  height: 63%;
   background-color: var(--text);
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
@@ -684,9 +701,17 @@
     font-size: 11px;
   }
 
+  /* На телефоне прежняя раскладка: плашки фиксированного размера с
+     переносом строк, ширина ряда не привязана к фильтрам. */
+  .logoRow {
+    width: auto;
+    flex-wrap: wrap;
+  }
+
   .logoSlot {
-    min-width: 100px;
-    height: 64px;
+    flex: 0 0 auto;
+    width: 100px;
+    height: 54px;
   }
 }
 
@@ -742,6 +767,19 @@
 @media (orientation: landscape) and (max-height: 500px) {
   .section {
     padding-bottom: 20px;
+  }
+
+  /* Телефон в лендскейпе: фильтры там — прокручиваемая лента, их ширина
+     не годится как ориентир, поэтому ряд логотипов остаётся прежним. */
+  .logoRow {
+    width: auto;
+    flex-wrap: wrap;
+  }
+
+  .logoSlot {
+    flex: 0 0 auto;
+    width: 100px;
+    height: 54px;
   }
 
   .clientNav {
