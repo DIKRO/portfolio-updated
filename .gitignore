@@ -1,12 +1,12 @@
 # dependencies
-/node_modules
+node_modules/
 
 # next.js build output
-/.next/
-/out/
+.next/
+out/
 
 # production
-/build
+build/
 
 # misc
 .DS_Store
@@ -22,3 +22,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# vercel
+.vercel

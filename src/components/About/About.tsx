@@ -50,7 +50,7 @@ const STATS: { value: string; label: LocalizedText }[] = [
   {
     value: "20+",
     label: {
-      ru: "Напрвлений клиентов",
+      ru: "Направлений клиентов",
       en: "Market segments",
       ro: "Segmente de piață",
     },
@@ -155,9 +155,9 @@ const CLIENTS: ClientInfo[] = [
     logo: "/images/clients/DOOH.png",
     name: "DOOH",
     description: {
-      ru: "DOOH House — сеть LED-экранов для наружной цифровой рекламы в Молдове, охватывающая магазины сети Kaufland по всей стране: от Бельц и Кишинёва до Оргеева и Унген, а также уникальный 4-сторонний экран в центре Комрата. Сеть даёт более 700 000 контактов и свыше 32 000 показов рекламы ежемесячно, а единый формат экранов упрощает подготовку материалов и запуск кампании сразу на нескольких локациях. Среди брендов, которые уже используют LED-сеть для повышения узнаваемости и продвижения акций, — Moldcell, Kaufland, SOLOVOV, Step IT Academy, CIP и TEZ Tour.",
-      en: "DOOH House runs a network of LED screens for digital out-of-home advertising across Moldova — covering Kaufland stores nationwide, from Bălți and Chișinău to Orhei and Ungheni, plus a unique four-sided screen in central Comrat. The network delivers over 700,000 contacts and more than 32,000 ad impressions a month, with a single screen format that makes it easy to prepare materials and launch campaigns across several locations at once. Brands already using the LED network to boost recognition and promotions include Moldcell, Kaufland, SOLOVOV, Step IT Academy, CIP and TEZ Tour.",
-      ro: "DOOH House operează o rețea de ecrane LED pentru publicitate digitală exterioară în Moldova — acoperind magazinele Kaufland din toată țara, de la Bălți și Chișinău până la Orhei și Ungheni, plus un ecran unic cu patru fețe în centrul Comratului. Rețeaua oferă peste 700 000 de contacte și peste 32 000 de afișări publicitare lunar, iar formatul unic al ecranelor simplifică pregătirea materialelor și lansarea campaniilor pe mai multe locații simultan. Printre brandurile care folosesc deja rețeaua LED pentru a-și crește vizibilitatea și a-și promova ofertele se numără Moldcell, Kaufland, SOLOVOV, Step IT Academy, CIP și TEZ Tour.",
+      ru: "DOOH House — сеть LED-экранов для наружной цифровой рекламы в Молдове, охватывающая магазины сети Kaufland по всей стране: от Кишинёва до Оргеева и Унген, а также уникальный 4-сторонний экран в центре Комрата. Сеть даёт более 700 000 контактов и свыше 32 000 показов рекламы ежемесячно, а единый формат экранов упрощает подготовку материалов и запуск кампании сразу на нескольких локациях. Среди брендов, которые уже используют LED-сеть для повышения узнаваемости и продвижения акций, — Moldcell, Kaufland, SOLOVOV, Step IT Academy, CIP и TEZ Tour.",
+      en: "DOOH House runs a network of LED screens for digital out-of-home advertising across Moldova — covering Kaufland stores nationwide, from Chișinău to Orhei and Ungheni, plus a unique four-sided screen in central Comrat. The network delivers over 700,000 contacts and more than 32,000 ad impressions a month, with a single screen format that makes it easy to prepare materials and launch campaigns across several locations at once. Brands already using the LED network to boost recognition and promotions include Moldcell, Kaufland, SOLOVOV, Step IT Academy, CIP and TEZ Tour.",
+      ro: "DOOH House operează o rețea de ecrane LED pentru publicitate digitală exterioară în Moldova — acoperind magazinele Kaufland din toată țara, de la Chișinău până la Orhei și Ungheni, plus un ecran unic cu patru fețe în centrul Comratului. Rețeaua oferă peste 700 000 de contacte și peste 32 000 de afișări publicitare lunar, iar formatul unic al ecranelor simplifică pregătirea materialelor și lansarea campaniilor pe mai multe locații simultan. Printre brandurile care folosesc deja rețeaua LED pentru a-și crește vizibilitatea și a-și promova ofertele se numără Moldcell, Kaufland, SOLOVOV, Step IT Academy, CIP și TEZ Tour.",
     },
     key: "dooh",
   },

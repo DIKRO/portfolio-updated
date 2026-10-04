@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { EmailIcon } from "@/components/Icons/Icons";
 import { SOCIALS } from "@/content/socials";
+import CopyEmailLink from "@/components/CopyEmailLink/CopyEmailLink";
 import styles from "./Contact.module.css";
 
 // Форма отправляет данные напрямую в Formspree (без своего бэкенда) —
@@ -18,6 +19,8 @@ interface ContactProps {
       label: string;
       cta: string;
       email: string;
+      emailLabel: string;
+      copied: string;
       form: {
         name: string;
         email: string;
@@ -191,10 +194,24 @@ export default function Contact({ t }: ContactProps) {
         </AnimatePresence>
 
         <div className={styles.row}>
-          <a href={`mailto:${t.contact.email}`} className={styles.iconLink} aria-label="Email">
-            <EmailIcon />
-            <span>{t.contact.email}</span>
-          </a>
+          {/* Вместо полного адреса — короткая подпись «Gmail», как у остальных
+              ссылок. Клик открывает письмо в Gmail (в браузере, в новой вкладке) и заодно
+              копирует адрес в буфер обмена: подпись на пару секунд меняется на «Адрес скопирован».
+              Сам адрес виден во всплывающей подсказке. */}
+          <CopyEmailLink
+            email={t.contact.email}
+            copiedLabel={t.contact.copied}
+            className={styles.iconLink}
+            ariaLabel={`Email: ${t.contact.email}`}
+            title={t.contact.email}
+          >
+            {(copied) => (
+              <>
+                <EmailIcon />
+                <span>{copied ? t.contact.copied : t.contact.emailLabel}</span>
+              </>
+            )}
+          </CopyEmailLink>
 
           {SOCIALS.map(({ key, href, icon: Icon, label }) => (
             <a

@@ -148,7 +148,6 @@ export default async function RootLayout({
         />
       </head>
       <body className={montserrat.className}>
-        <div className="dotsBg" aria-hidden="true" />
         {children}
         <ScrollToTop />
         <CustomCursor />

@@ -45,15 +45,6 @@ textarea:focus-visible {
   }
 }
 
-.dotsBg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-  background: var(--bg);
-}
-
 /* Плавное появление контента страницы (см. src/app/page.tsx) — обычный
    CSS вместо framer-motion: анимация стартует сразу же, как только
    браузер построил стили, а не после того, как загрузится и выполнится

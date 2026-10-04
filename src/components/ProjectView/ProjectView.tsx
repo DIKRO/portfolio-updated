@@ -13,6 +13,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { EmailIcon, ExpandIcon } from "@/components/Icons/Icons";
 import { SOCIALS } from "@/content/socials";
+import CopyEmailLink from "@/components/CopyEmailLink/CopyEmailLink";
 import styles from "./ProjectView.module.css";
 import type { LightboxMedia } from "@/components/Work/Lightbox";
 
@@ -429,13 +430,16 @@ export default function ProjectView({
             </Link>
 
             <div className={styles.ctaSocials}>
-              <a
-                href={`mailto:${t.contact.email}`}
+              <CopyEmailLink
+                email={t.contact.email}
+                copiedLabel={t.contact.copied}
                 className={styles.iconCircle}
-                aria-label="Email"
+                ariaLabel={t.contact.emailLabel}
+                title={t.contact.emailLabel}
+                badge
               >
                 <EmailIcon />
-              </a>
+              </CopyEmailLink>
               {SOCIALS.map(({ key, href, icon: Icon, label }) => (
                 <a
                   key={key}

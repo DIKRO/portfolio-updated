@@ -56,7 +56,8 @@
 .logo {
   font-size: 18px;
   letter-spacing: 2px;
-  font-weight: 500;
+  /* Было 500, стало 600 — чуть жирнее (шрифт Montserrat 600 подключён). */
+  font-weight: 600;
   color: var(--text);
   transition: text-shadow 0.3s ease;
 }

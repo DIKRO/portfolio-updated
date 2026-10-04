@@ -68,16 +68,6 @@ export function PenIcon() {
   );
 }
 
-export function LayersIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-      <path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M3 12l9 4.5 9-4.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M3 16.5l9 4.5 9-4.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 export function PrinterIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
@@ -97,15 +87,6 @@ export function MonitorIcon() {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
       <rect x="3" y="4" width="18" height="13" rx="2" />
       <path d="M8 21h8M12 17v4" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-export function ClockIcon() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3.5 2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }

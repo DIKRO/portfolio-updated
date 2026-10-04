@@ -57,7 +57,7 @@ export const en = {
   },
   about: {
     label: "About",
-    text: "My name is Dmitrii Socur, a graphic and motion designer based in Bălți, Moldova. I create design that solves the client's problem, not just something that looks nice — from the first sketch to final files ready for print, web, or social media.",
+    text: "My name is Dmitrii Socur, a graphic and motion designer based in Moldova. I create design that solves the client's problem, not just something that looks nice — from the first sketch to final files ready for print, web, or social media.",
     // Второй абзац — подтверждение экспертности (опирается на реальные проекты
     // из портфолио). Правь текст под себя, когда захочешь.
     text2: "I work with companies from different fields and quickly get to grips with the specifics of each business. It matters to me that design doesn't just look good, but solves the client's task and helps the brand look cohesive on any medium. Many clients come back with new projects — to me, that's the best proof of the quality of my work.",
@@ -77,6 +77,8 @@ export const en = {
     // Подпись у почты в выпадающей панели «Контакты» в шапке (вместо самого
     // адреса). Если сменишь почту не на Gmail — поменяй и подпись.
     emailLabel: "Gmail",
+    // Подтверждение после клика по почте (адрес скопирован в буфер обмена).
+    copied: "Address copied",
     form: {
       name: "Name",
       email: "Email",
@@ -104,7 +106,6 @@ export const en = {
     note: {
       text: "* The answers above are general guidelines. Every project has its own details: an unusual task, special file requirements, tight deadlines, reworking someone else's materials, or a case that isn't covered here. For a more precise answer or to discuss specific situations, get in touch: tell me about your task and I'll suggest the options and the best way forward for your case.",
       cta: "Discuss the details",
-      direct: "Or message me directly:",
     },
     // FAQ по разделам блока «Чем я занимаюсь»: порядок = порядок карточек
     // в services.items. Клик по карточке открывает FAQ на нужной вкладке.

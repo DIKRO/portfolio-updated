@@ -14,7 +14,7 @@ export const ro = {
   hero: {
     title: "Designer Grafic și Motion Designer",
     subtitle:
-      "Ajut brandurile să iasă în evidență: logo la comandă, identitate vizuală, design digital și motion design care nu doar arată bine, ci chiar rezolvă obiectivele afacerii.",
+      "Ajut brandurile să iasă în evidență: logo la comandă, identitate vizuală, design digital și motion design care nu doar arată bine, ci și ajută afacerea să-și atingă obiectivele.",
     badge: "Disponibil pentru proiecte noi",
     cta: "Hai să discutăm",
     ctaSecondary: "Vezi lucrările",
@@ -50,7 +50,7 @@ export const ro = {
     branding: "Logo / Identitate",
     digital: "Creativitate digitală",
     print: "Poligrafie",
-    packaging: "Publicitate exterior",
+    packaging: "Publicitate exterioară",
     "ui-ux": "UI/UX",
     "video-editing": "Montaj video",
     "motion-design": "Animație",
@@ -58,7 +58,7 @@ export const ro = {
   about: {
     label: "Despre mine",
     // Înlocuiește cu textul tău
-    text: "Mă numesc Dmitrii Socur și sunt designer grafic și motion designer din Bălți, Moldova. Creez design care rezolvă problema clientului, nu doar ceva frumos — de la prima schiță până la fișierele finale, gata pentru print, web sau social media.",
+    text: "Mă numesc Dmitrii Socur și sunt designer grafic și motion designer din Moldova. Creez design care rezolvă problema clientului, nu doar ceva frumos — de la prima schiță până la fișierele finale, gata pentru print, web sau social media.",
     // Второй абзац — подтверждение экспертности (опирается на реальные проекты
     // из портфолио). Правь текст под себя, когда захочешь.
     text2: "Lucrez cu companii din domenii diferite și mă familiarizez rapid cu specificul fiecărei afaceri. Pentru mine este important ca designul să nu arate doar bine, ci să rezolve sarcina clientului și să ajute brandul să arate unitar pe orice suport. Mulți clienți revin cu proiecte noi — pentru mine, aceasta este cea mai bună confirmare a calității muncii mele.",
@@ -78,6 +78,8 @@ export const ro = {
     // Подпись у почты в выпадающей панели «Контакты» в шапке (вместо самого
     // адреса). Если сменишь почту не на Gmail — поменяй и подпись.
     emailLabel: "Gmail",
+    // Подтверждение после клика по почте (адрес скопирован в буфер обмена).
+    copied: "Adresă copiată",
     form: {
       name: "Nume",
       email: "Email",
@@ -105,7 +107,6 @@ export const ro = {
     note: {
       text: "* Răspunsurile de mai sus sunt repere generale. Fiecare proiect are particularitățile lui: o sarcină atipică, cerințe speciale pentru fișiere, termene strânse, refacerea unor materiale existente sau un caz care nu apare aici. Pentru un răspuns mai precis și pentru a discuta cazuri particulare, contactați-mă: povestiți-mi despre sarcină și vă voi spune ce variante există și cum ar fi cel mai bine în situația dumneavoastră.",
       cta: "Discută detaliile",
-      direct: "Sau scrieți-mi direct:",
     },
     // FAQ по разделам блока «Чем я занимаюсь»: порядок = порядок карточек
     // в services.items. Клик по карточке открывает FAQ на нужной вкладке.
@@ -214,7 +215,7 @@ export const ro = {
         question: "Cât durează un proiect?",
         description: "Termenele sunt de obicei prima întrebare, mai ales dacă proiectul e legat de o lansare sau un deadline.",
         answer:
-          "Depinde de volum și tipul proiectului: o sarcină simplă (un banner sau un logo, de exemplu) durează de obicei mai puțin decât un proiect complex, precum o identitate de brand completă cu ghid sau o serie de montaje video. Dau un termen exact după o scurtă discuție despre sarcină — de obicei în aceeași zi cu primul contact.",
+          "Depinde de volumul și tipul proiectului: o sarcină simplă (un banner sau un logo, de exemplu) durează de obicei mai puțin decât un proiect complex, precum o identitate de brand completă cu ghid sau o serie de montaje video. Dau un termen exact după o scurtă discuție despre sarcină — de obicei în decurs de o zi de la primul contact.",
       },
       {
         question: "Lucrați și cu clienți din afara Moldovei?",

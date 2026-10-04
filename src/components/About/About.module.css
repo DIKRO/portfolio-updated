@@ -697,8 +697,10 @@
     transform: none;
   }
 
+  /* Было 11px — слишком мелко, текст занимал мало места по вертикали. */
   .text {
-    font-size: 11px;
+    font-size: 13px;
+    line-height: 1.6;
   }
 
   /* На телефоне прежняя раскладка: плашки фиксированного размера с
@@ -712,6 +714,8 @@
     flex: 0 0 auto;
     width: 100px;
     height: 54px;
+    /* Меньше скругление плашек на телефоне (было 16px). */
+    border-radius: 10px;
   }
 }
 
@@ -780,6 +784,7 @@
     flex: 0 0 auto;
     width: 100px;
     height: 54px;
+    border-radius: 10px;
   }
 
   .clientNav {
@@ -976,5 +981,103 @@
   .statLabel {
     font-size: 10px;
     margin-top: 4px;
+  }
+}
+
+/* ===== Растворение краёв фото «Обо мне» в фон сайта =====
+   ПК: только НИЗ, маска на всём .bgWrap — оранжевое свечение (оно
+   прижато к нижнему краю) тоже обрывалось там швом, а маска на одной
+   картинке его не скрывала. Фото, свечение и т.д. вместе становятся
+   прозрачными книзу, и проступает цвет страницы.
+   --fade-bottom — высота зоны в % высоты полосы (0% — выключить;
+   больше — переход длиннее и незаметнее). */
+@media (min-width: 769px) {
+  .bgWrap {
+    /* Зона растворения 32% высоты полосы (было 20%) и сглаженная кривая
+       вместо линейной: у линейного градиента заметный «излом» там, где
+       растворение начинается, глаз читает его как границу. Здесь альфа
+       меняется по S-образной кривой (smoothstep), начало и конец
+       перехода мягкие. */
+    --fade-bottom: 32%;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      rgba(0, 0, 0, 1) calc(100% - var(--fade-bottom)),
+      rgba(0, 0, 0, 0.972) calc(100% - var(--fade-bottom) * 0.9),
+      rgba(0, 0, 0, 0.896) calc(100% - var(--fade-bottom) * 0.8),
+      rgba(0, 0, 0, 0.784) calc(100% - var(--fade-bottom) * 0.7),
+      rgba(0, 0, 0, 0.648) calc(100% - var(--fade-bottom) * 0.6),
+      rgba(0, 0, 0, 0.5) calc(100% - var(--fade-bottom) * 0.5),
+      rgba(0, 0, 0, 0.352) calc(100% - var(--fade-bottom) * 0.4),
+      rgba(0, 0, 0, 0.216) calc(100% - var(--fade-bottom) * 0.3),
+      rgba(0, 0, 0, 0.104) calc(100% - var(--fade-bottom) * 0.2),
+      rgba(0, 0, 0, 0.028) calc(100% - var(--fade-bottom) * 0.1),
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      rgba(0, 0, 0, 1) calc(100% - var(--fade-bottom)),
+      rgba(0, 0, 0, 0.972) calc(100% - var(--fade-bottom) * 0.9),
+      rgba(0, 0, 0, 0.896) calc(100% - var(--fade-bottom) * 0.8),
+      rgba(0, 0, 0, 0.784) calc(100% - var(--fade-bottom) * 0.7),
+      rgba(0, 0, 0, 0.648) calc(100% - var(--fade-bottom) * 0.6),
+      rgba(0, 0, 0, 0.5) calc(100% - var(--fade-bottom) * 0.5),
+      rgba(0, 0, 0, 0.352) calc(100% - var(--fade-bottom) * 0.4),
+      rgba(0, 0, 0, 0.216) calc(100% - var(--fade-bottom) * 0.3),
+      rgba(0, 0, 0, 0.104) calc(100% - var(--fade-bottom) * 0.2),
+      rgba(0, 0, 0, 0.028) calc(100% - var(--fade-bottom) * 0.1),
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+}
+
+/* Телефон: как было (и вас устраивает) — маска на самом фото, верх и низ
+   по 14% высоты. Настройка: --fade-top / --fade-bottom. */
+@media (max-width: 768px) {
+  .bgPhoto {
+    --fade-top: 14%;
+    --fade-bottom: 14%;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      #000 var(--fade-top),
+      #000 calc(100% - var(--fade-bottom)),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      #000 var(--fade-top),
+      #000 calc(100% - var(--fade-bottom)),
+      transparent 100%
+    );
+  }
+}
+
+/* Телефон (и телефон в лендскейпе): убираем оранжевое пятно справа-снизу
+   в блоке «Обо мне». На ПК пятно остаётся как было. Фон блока становится
+   прозрачным — под фото виден обычный цвет страницы. */
+@media (max-width: 768px), (orientation: landscape) and (max-height: 500px) {
+  .bgWrap {
+    background: none;
+  }
+}
+
+/* Телефон в портрете: фото-полоса растёт вместе с текстом. Раньше высота
+   была жёстко равна ширине экрана (100vw, не больше 480px) — при более
+   крупном шрифте текст не помещался бы. Теперь это минимальная высота:
+   короткий текст по-прежнему даёт квадратную полосу, длинный (или на
+   другом языке) растягивает её. Только портрет: в лендскейпе у полосы
+   своя высота (см. блок выше). */
+@media (max-width: 768px) and (orientation: portrait) {
+  .photoBand {
+    height: auto;
+    min-height: 100vw;
+    max-height: none;
+  }
+
+  .contentWrap {
+    min-height: 100vw;
   }
 }

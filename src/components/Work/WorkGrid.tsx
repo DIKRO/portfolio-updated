@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
@@ -62,6 +62,55 @@ const VISIBLE_ROWS = 2;
 //    обычный клиентский рендер без сверки с HTML сервера, тут сверяться
 //    не с чем, поэтому можно и нужно сразу читать sessionStorage.
 let hasHydratedOnce = false;
+
+// ===== Восстановление после обновления страницы (F5) =====
+// Категория, раскрытие сетки и позиция прокрутки лежат в sessionStorage, но
+// при загрузке страницы мы не читаем их при создании state (сервер всегда
+// отдаёт "all"/свёрнуто — расхождение вызвало бы ошибку гидратации), а
+// применяем уже после гидратации (см. useLayoutEffect в компоненте).
+// Важная деталь: WorkGrid при загрузке создаётся ДВАЖДЫ. В page.tsx секции
+// обёрнуты в <div key={lang}>, а язык стартует с "en" и лишь потом
+// подхватывается сохранённый из localStorage — смена key полностью
+// перемонтирует секции. Первый экземпляр к этому моменту уже успевает
+// перезаписать sessionStorage значениями по умолчанию ("all"), и второй
+// экземпляр читал бы уже затёртые данные. Поэтому сохранённое состояние
+// читаем ОДИН раз на уровне модуля (до любых записей) и применяем в
+// каждом экземпляре, но только в первые секунды после загрузки — иначе
+// позднее перемонтирование (например, при ручной смене языка) откатывало
+// бы текущий выбор человека к тому, что было до обновления.
+// Только для перезагрузки и возврата кнопкой «назад» (navigation type):
+// при обычном заходе по ссылке / в новой вкладке всё начинается с «Все».
+type RestoredState = { filter: string | null; expanded: boolean; scrollY: number; expiresAt: number };
+let restoredState: RestoredState | null | undefined = undefined;
+
+function getRestoredState(): RestoredState | null {
+  if (typeof window === "undefined") return null;
+
+  if (restoredState === undefined) {
+    let navType: string | undefined;
+    try {
+      navType = (performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined)?.type;
+    } catch {
+      navType = undefined;
+    }
+    const shouldRestore = !hasHydratedOnce && (navType === "reload" || navType === "back_forward");
+    try {
+      restoredState = shouldRestore
+        ? {
+            filter: sessionStorage.getItem("workGridFilter"),
+            expanded: sessionStorage.getItem("workGridExpanded") === "1",
+            scrollY: Number(sessionStorage.getItem("workGridScrollY")) || 0,
+            expiresAt: Date.now() + 3000,
+          }
+        : null;
+    } catch {
+      restoredState = null;
+    }
+  }
+
+  if (restoredState && Date.now() > restoredState.expiresAt) return null;
+  return restoredState;
+}
 
 // Карточка проекта в сетке — вынесена в отдельный компонент, чтобы у
 // каждой карточки было своё независимое состояние наведения/видео (иначе
@@ -199,6 +248,65 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
     hasHydratedOnce = true;
   }, []);
 
+  // Применяем сохранённые категорию и раскрытие. useLayoutEffect срабатывает
+  // до первой отрисовки (так «Все» на экране не мелькает) и раньше любых
+  // useEffect — записи в sessionStorage ниже ещё не успели ничего затереть.
+  useLayoutEffect(() => {
+    const saved = getRestoredState();
+    if (!saved) return;
+    if (saved.filter) setFilter(saved.filter as FilterKey);
+    setExpanded(saved.expanded);
+  }, []);
+
+  // Позиция прокрутки: запоминаем при уходе/перезагрузке страницы и, после
+  // восстановления категории (высота страницы могла измениться), возвращаем
+  // на то же место. Браузер и сам пытается вернуть прокрутку, но делает это
+  // раньше, чем сетка перестроится, поэтому добавляем подстраховку: несколько
+  // попыток в первые ~1.2 с и отмена, если человек сам начал прокручивать.
+  // behavior "instant" — в globals.css включён smooth-scroll, а нам нужен
+  // мгновенный возврат без «доезжания».
+  useEffect(() => {
+    const save = () => {
+      try {
+        sessionStorage.setItem("workGridScrollY", String(Math.round(window.scrollY)));
+      } catch {
+        // sessionStorage недоступен (приватный режим и т.п.) — не страшно
+      }
+    };
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") save();
+    };
+    window.addEventListener("pagehide", save);
+    document.addEventListener("visibilitychange", onVisibility);
+
+    const targetY = getRestoredState()?.scrollY ?? 0;
+    const timers: number[] = [];
+    let userMoved = false;
+    const stop = () => {
+      userMoved = true;
+    };
+    const stopEvents = ["wheel", "touchstart", "keydown", "mousedown"] as const;
+
+    if (targetY > 0) {
+      stopEvents.forEach((ev) => window.addEventListener(ev, stop, { passive: true }));
+      const jump = () => {
+        if (userMoved) return;
+        if (Math.abs(window.scrollY - targetY) > 40) {
+          window.scrollTo({ top: targetY, behavior: "instant" as ScrollBehavior });
+        }
+      };
+      requestAnimationFrame(() => requestAnimationFrame(jump));
+      timers.push(window.setTimeout(jump, 300), window.setTimeout(jump, 800), window.setTimeout(jump, 1200));
+    }
+
+    return () => {
+      window.removeEventListener("pagehide", save);
+      document.removeEventListener("visibilitychange", onVisibility);
+      stopEvents.forEach((ev) => window.removeEventListener(ev, stop));
+      timers.forEach((t) => window.clearTimeout(t));
+    };
+  }, []);
+
   const gridRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const filtersRef = useRef<HTMLDivElement>(null);
@@ -260,6 +368,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   };
 
   const selectFilter = (key: FilterKey) => {
+    restoredState = null; // человек выбрал сам — восстановление больше не нужно
     setFilter(key);
     setExpanded(false);
   };

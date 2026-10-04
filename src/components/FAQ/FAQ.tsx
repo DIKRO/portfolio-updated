@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { EmailIcon } from "@/components/Icons/Icons";
+import CopyEmailLink from "@/components/CopyEmailLink/CopyEmailLink";
 import { SOCIALS } from "@/content/socials";
 import styles from "./FAQ.module.css";
 
@@ -22,11 +23,11 @@ interface FAQProps {
   onContact?: () => void;
   // Почта для блока прямых контактов в заметке внизу (соцсети берутся
   // из SOCIALS — те же, что в шапке и в разделе «Контакты»).
-  contact?: { email: string; emailLabel: string };
+  contact?: { email: string; emailLabel: string; copied: string };
   t: {
     title: string;
     generalTab: string;
-    note: { text: string; cta: string; direct: string };
+    note: { text: string; cta: string };
     items: FaqItem[];
     services: { tab: string; items: FaqItem[] }[];
   };
@@ -149,32 +150,42 @@ export default function FAQ({ open, onClose, initialTab = 0, onContact, contact,
 
               <div className={styles.note}>
                 <p>{t.note.text}</p>
-                {onContact && (
-                  <button type="button" className={styles.noteButton} onClick={onContact}>
-                    {t.note.cta} →
-                  </button>
-                )}
-
-                <span className={styles.noteDirect}>{t.note.direct}</span>
-                <div className={styles.noteLinks}>
-                  {contact && (
-                    <a href={`mailto:${contact.email}`} className={styles.noteLink}>
-                      <EmailIcon />
-                      <span>{contact.emailLabel}</span>
-                    </a>
+                {/* Кнопка и иконки связи — в одной строке на одном уровне
+                    (как блок CTA в конце страницы проекта). */}
+                <div className={styles.noteActions}>
+                  {onContact && (
+                    <button type="button" className={styles.noteButton} onClick={onContact}>
+                      {t.note.cta} →
+                    </button>
                   )}
-                  {SOCIALS.map(({ key, href, icon: Icon, label }) => (
-                    <a
-                      key={key}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.noteLink}
-                    >
-                      <Icon />
-                      <span>{label}</span>
-                    </a>
-                  ))}
+
+                  <div className={styles.noteSocials}>
+                    {contact && (
+                      <CopyEmailLink
+                        email={contact.email}
+                        copiedLabel={contact.copied}
+                        className={styles.iconCircle}
+                        ariaLabel={contact.emailLabel}
+                        title={contact.emailLabel}
+                        badge
+                      >
+                        <EmailIcon />
+                      </CopyEmailLink>
+                    )}
+                    {SOCIALS.map(({ key, href, icon: Icon, label }) => (
+                      <a
+                        key={key}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.iconCircle}
+                        aria-label={label}
+                        title={label}
+                      >
+                        <Icon />
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

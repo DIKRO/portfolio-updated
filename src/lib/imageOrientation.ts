@@ -94,15 +94,20 @@ function getImageSize(src: string): { width: number; height: number } | null {
   return readImageSize(absPath);
 }
 
-function describe(item: GalleryItem): GalleryMedia {
+// index добавляется к key, чтобы ключ был уникальным, даже если один и тот
+// же файл (или видео) случайно указан в данных проекта дважды: иначе React
+// ругается «two children with the same key» и может задвоить/потерять
+// элементы галереи. Ключ используется только как React-key и ключ в Map
+// с видео-элементами — на сами пути к файлам он не влияет.
+function describe(item: GalleryItem, index: number): GalleryMedia {
   if (typeof item === "string") {
     const size = getImageSize(item) ?? FALLBACK_SIZE;
-    return { item, kind: "image", key: item, ratio: size.width / size.height, ...size };
+    return { item, kind: "image", key: `${item}#${index}`, ratio: size.width / size.height, ...size };
   }
   return {
     item,
     kind: "video",
-    key: item.video,
+    key: `${item.video}#${index}`,
     ratio: item.width / item.height,
     width: item.width,
     height: item.height,
@@ -136,8 +141,8 @@ export function buildGalleryRows(items: GalleryItem[]): GalleryRow[] {
   let i = 0;
 
   while (i < items.length) {
-    const current = describe(items[i]);
-    const next = items[i + 1] ? describe(items[i + 1]) : null;
+    const current = describe(items[i], i);
+    const next = items[i + 1] ? describe(items[i + 1], i + 1) : null;
 
     const curIsPortrait = current.height >= current.width;
     const nextIsPortrait = next ? next.height >= next.width : false;

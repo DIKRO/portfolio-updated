@@ -7,6 +7,7 @@ import { Lang } from "@/content/lang";
 import { SOCIALS } from "@/content/socials";
 import { EmailIcon } from "@/components/Icons/Icons";
 import FAQ from "@/components/FAQ/FAQ";
+import CopyEmailLink, { gmailComposeUrl } from "@/components/CopyEmailLink/CopyEmailLink";
 import styles from "./Header.module.css";
 
 interface HeaderProps {
@@ -14,11 +15,11 @@ interface HeaderProps {
   setLang: (lang: Lang) => void;
   t: {
     nav: { faq: string; work: string; about: string; reviews: string; contact: string };
-    contact: { email: string; emailLabel: string };
+    contact: { email: string; emailLabel: string; copied: string };
     faq: {
       title: string;
       generalTab: string;
-      note: { text: string; cta: string; direct: string };
+      note: { text: string; cta: string };
       items: { question: string; description?: string; answer: string }[];
       services: { tab: string; items: { question: string; description?: string; answer: string }[] }[];
     };
@@ -253,10 +254,14 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
 
               <div className={styles.contactPop}>
                 <div className={styles.contactPopInner}>
-                  <a href={`mailto:${t.contact.email}`}>
-                    <EmailIcon />
-                    <span>{t.contact.emailLabel}</span>
-                  </a>
+                  <CopyEmailLink email={t.contact.email} copiedLabel={t.contact.copied}>
+                    {(copied) => (
+                      <>
+                        <EmailIcon />
+                        <span>{copied ? t.contact.copied : t.contact.emailLabel}</span>
+                      </>
+                    )}
+                  </CopyEmailLink>
                   {SOCIALS.map(({ key, href, icon: Icon, label }) => (
                     <a key={key} href={href} target="_blank" rel="noopener noreferrer">
                       <Icon />
@@ -288,7 +293,9 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
               не ломать 2-колоночный грид шапки). */}
           <div className={styles.mobileContacts}>
             <a
-              href={`mailto:${t.contact.email}`}
+              href={gmailComposeUrl(t.contact.email)}
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Email"
               onClick={() => setMobileMenuOpen(false)}
             >
