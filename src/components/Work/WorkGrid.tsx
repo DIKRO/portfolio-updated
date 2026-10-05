@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
@@ -233,11 +233,50 @@ function WorkCard({
   );
 }
 
+// Подписка на media query без setState в эффекте: на сервере и при гидратации
+// значение false (как и раньше), на клиенте — актуальное, с реакцией на
+// resize/поворот экрана.
+function useMediaQuery(query: string): boolean {
+  return useSyncExternalStore(
+    (onChange) => {
+      const mq = window.matchMedia(query);
+      mq.addEventListener("change", onChange);
+      return () => mq.removeEventListener("change", onChange);
+    },
+    () => window.matchMedia(query).matches,
+    () => false,
+  );
+}
+
 export default function WorkGrid({ lang, t }: WorkGridProps) {
-  const [filter, setFilter] = useState<FilterKey>(() => {
+  // Показываем только те фильтры, для которых реально есть работы.
+  // Сначала — закреплённый порядок (см. PINNED_CATEGORY_ORDER выше), затем
+  // любые остальные категории — в порядке первого появления в данных
+  // (например, новая категория, которую забыли добавить в список выше).
+  const availableFilters = useMemo<FilterKey[]>(() => {
+    const present = new Set(projects.map((p) => p.categoryKey));
+    const keys: FilterKey[] = ["all"];
+
+    for (const key of PINNED_CATEGORY_ORDER) {
+      if (present.has(key)) keys.push(key);
+    }
+    for (const project of projects) {
+      if (!keys.includes(project.categoryKey)) keys.push(project.categoryKey);
+    }
+
+    return keys;
+  }, []);
+
+  const [rawFilter, setFilter] = useState<FilterKey>(() => {
     if (typeof window === "undefined" || !hasHydratedOnce) return "all";
     return (sessionStorage.getItem("workGridFilter") as FilterKey) || "all";
   });
+
+  // Если сохранённая категория больше не существует (например, её
+  // переименовали или удалили в данных проектов) — используем "all", чтобы
+  // не остаться на пустом несуществующем фильтре. Считаем прямо при
+  // рендере, без эффекта.
+  const filter: FilterKey = availableFilters.includes(rawFilter) ? rawFilter : "all";
 
   const [expanded, setExpanded] = useState(() => {
     if (typeof window === "undefined" || !hasHydratedOnce) return false;
@@ -254,8 +293,12 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   useLayoutEffect(() => {
     const saved = getRestoredState();
     if (!saved) return;
+    // Намеренно: восстановление из sessionStorage только на клиенте и до
+    // первой отрисовки (иначе серверная разметка разойдётся с клиентской).
+    /* eslint-disable react-hooks/set-state-in-effect */
     if (saved.filter) setFilter(saved.filter as FilterKey);
     setExpanded(saved.expanded);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
   // Позиция прокрутки: запоминаем при уходе/перезагрузке страницы и, после
@@ -316,15 +359,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   // они и так все помещаются без скролла) — определяем по той же ширине,
   // на которой уже переключается вёрстка в CSS (768px), и переслушиваем
   // resize/поворот экрана.
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 768px)");
-    setIsMobile(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   // Превью-видео по наведению на карточку (см. WorkCard ниже) должно
   // работать только там, где наведение вообще осмысленно — на устройстве
@@ -335,15 +370,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   // на таких устройствах видео лучше не запускать вообще, чтобы не ловить
   // случайный автоплей от касания. (hover: hover) и (pointer: fine) вместе
   // как раз и означают "есть настоящий указатель с наведением".
-  const [canHoverPreview, setCanHoverPreview] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
-    setCanHoverPreview(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setCanHoverPreview(e.matches);
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
+  const canHoverPreview = useMediaQuery("(hover: hover) and (pointer: fine)");
 
   useEffect(() => {
     sessionStorage.setItem("workGridExpanded", expanded ? "1" : "0");
@@ -368,38 +395,12 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   };
 
   const selectFilter = (key: FilterKey) => {
+    // Модульная переменная меняется намеренно (не React-состояние).
+    // eslint-disable-next-line react-hooks/globals
     restoredState = null; // человек выбрал сам — восстановление больше не нужно
     setFilter(key);
     setExpanded(false);
   };
-
-  // Показываем только те фильтры, для которых реально есть работы.
-  // Сначала — закреплённый порядок (см. PINNED_CATEGORY_ORDER выше), затем
-  // любые остальные категории — в порядке первого появления в данных
-  // (например, новая категория, которую забыли добавить в список выше).
-  const availableFilters = useMemo<FilterKey[]>(() => {
-    const present = new Set(projects.map((p) => p.categoryKey));
-    const keys: FilterKey[] = ["all"];
-
-    for (const key of PINNED_CATEGORY_ORDER) {
-      if (present.has(key)) keys.push(key);
-    }
-    for (const project of projects) {
-      if (!keys.includes(project.categoryKey)) keys.push(project.categoryKey);
-    }
-
-    return keys;
-  }, []);
-
-  // Если сохранённая категория больше не существует (например, её
-  // переименовали или удалили в данных проектов) — откатываемся на "all",
-  // чтобы не остаться на пустом несуществующем фильтре.
-  useEffect(() => {
-    if (!availableFilters.includes(filter)) {
-      setFilter("all");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [availableFilters]);
 
   // Порядок показа — по полю order (см. src/types/project.ts), а не по
   // тому, в каком порядке проекты лежат в файле/массиве. Раньше, когда

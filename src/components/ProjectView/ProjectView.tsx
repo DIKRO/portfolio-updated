@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
@@ -88,17 +88,19 @@ export default function ProjectView({
   // ref-ов, потому что коллбэк-реф у React вызывается заново на каждый
   // ре-рендер (пересоздание инлайн-функции), а Map с ключом по media.key
   // просто перезаписывает ту же запись вместо накопления дублей.
-  const galleryVideoRefs = useRef(new Map<string, HTMLVideoElement>());
+  // Map лежит в useState (а не в useRef): значение создаётся один раз и не
+  // меняется, а линтер не считает обращение к нему «чтением ref в рендере».
+  const [galleryVideos] = useState(() => new Map<string, HTMLVideoElement>());
   const registerGalleryVideo = (key: string) => (el: HTMLVideoElement | null) => {
-    if (el) galleryVideoRefs.current.set(key, el);
-    else galleryVideoRefs.current.delete(key);
+    if (el) galleryVideos.set(key, el);
+    else galleryVideos.delete(key);
   };
 
   useEffect(() => {
     if (lightboxIndex !== null) {
-      galleryVideoRefs.current.forEach((v) => v.pause());
+      galleryVideos.forEach((v) => v.pause());
     }
-  }, [lightboxIndex]);
+  }, [lightboxIndex, galleryVideos]);
 
   // Плоский список ВСЕХ элементов галереи в порядке отображения — и фото,
   // и видео (раньше видео сюда не попадало вообще: у него, мол, уже есть

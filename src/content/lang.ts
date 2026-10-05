@@ -32,7 +32,6 @@ export function useLang() {
     // берём только первые 2 буквы.
     const browserLang = window.navigator.language.slice(0, 2).toLowerCase();
     if (browserLang === "ru" || browserLang === "ro") {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLangState(browserLang);
     }
     // Для любого другого языка браузера (включая en) — оставляем "en" по

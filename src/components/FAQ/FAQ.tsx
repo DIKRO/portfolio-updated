@@ -45,9 +45,14 @@ export default function FAQ({ open, onClose, initialTab = 0, onContact, contact,
 
   // При каждом открытии показываем ту вкладку, с которой пришли (из шапки —
   // «Общие», из карточки раздела — соответствующий раздел).
-  useEffect(() => {
+  // Делаем это прямо во время рендера (а не в useEffect): React сразу
+  // перерисует компонент с новым значением, без лишнего «мигания».
+  const openKey = open ? initialTab : -1;
+  const [prevOpenKey, setPrevOpenKey] = useState(openKey);
+  if (openKey !== prevOpenKey) {
+    setPrevOpenKey(openKey);
     if (open) setActiveTab(initialTab);
-  }, [open, initialTab]);
+  }
 
   const tabs = [
     { label: t.generalTab, items: t.items },

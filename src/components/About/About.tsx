@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
@@ -338,8 +338,13 @@ export default function About({ lang, t }: AboutProps) {
   // а не "зажата" контекстом позиционирования секции About из-за
   // анимаций framer-motion на родительских блоках. document.body
   // доступен только на клиенте, поэтому портал включаем после монтирования.
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  // useSyncExternalStore: на сервере и при гидратации — false, на клиенте
+  // сразу после — true (без setState внутри эффекта).
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   // Сколько клиентов реально кликабельны (с логотипом) — стрелки навигации
   // показываем, только если есть, между чем переключаться.

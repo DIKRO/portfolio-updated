@@ -153,3 +153,22 @@ export function LinkIcon() {
     </svg>
   );
 }
+
+export function LayersIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <path d="M12 3.5 3 8.5l9 5 9-5-9-5z" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M3 12.5l9 5 9-5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M3 16.5l9 5 9-5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function ClockIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3.2 2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
