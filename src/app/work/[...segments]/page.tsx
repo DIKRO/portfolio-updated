@@ -5,6 +5,7 @@ import { buildGalleryRows } from "@/lib/imageOrientation";
 import { CategoryKey } from "@/types/project";
 import ProjectView from "@/components/ProjectView/ProjectView";
 import { getServerLang } from "@/lib/serverLang";
+import { sortProjects } from "@/lib/sortProjects";
 import { ru } from "@/content/locales/ru";
 import { en } from "@/content/locales/en";
 import { ro } from "@/content/locales/ro";
@@ -127,7 +128,7 @@ export default async function ProjectPage({ params }: PageProps) {
   // WorkGrid.tsx) — иначе "Следующий проект" листал бы по порядку файла/id
   // (сплошными блоками по категориям), а не по тому порядку, в котором
   // человек только что видел карточки на самой странице со списком работ.
-  list = [...list].sort((a, b) => a.order - b.order);
+  list = sortProjects(list, { useFeatured: !activeCategory });
 
   const currentIndex = list.findIndex((p) => p.slug === project.slug);
   const nextProject = list[(currentIndex + 1) % list.length];

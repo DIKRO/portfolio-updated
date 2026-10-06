@@ -43,6 +43,7 @@ export const ro = {
   },
   work: {
     showAll: "Vezi toate lucrările",
+    showMore: "Arată mai multe",
     showLess: "Restrânge",
   },
   categories: {

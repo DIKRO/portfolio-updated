@@ -202,7 +202,7 @@
   padding: 14px 28px;
   font-family: inherit;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 550;
   cursor: pointer;
   transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
 }

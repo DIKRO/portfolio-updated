@@ -43,6 +43,7 @@ export const en = {
   },
   work: {
     showAll: "See all work",
+    showMore: "Show more",
     showLess: "Show less",
   },
   categories: {

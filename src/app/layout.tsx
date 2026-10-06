@@ -13,9 +13,11 @@ import { SOCIALS } from "@/content/socials";
 const BASE_URL = "https://socurdmitrii.com";
 const seoLocales = { ru, en, ro };
 
+// Без явного weight Next.js подключает вариативную версию Montserrat
+// (100–900), поэтому доступны и промежуточные значения вроде 550 — они
+// используются на оранжевых кнопках.
 const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
 });
 
 // Без этого экспорта Next.js вообще не добавляет <meta name="viewport">

@@ -40,6 +40,7 @@
   color: var(--bg);
   background: var(--accent);
   border-color: var(--accent);
+  font-weight: 550;
 }
 
 .gridWrap {
@@ -50,11 +51,16 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  /* max-height выставляется из WorkGrid.tsx (см. useLayoutEffect с
+     measure): CSS-переход даёт плавное раскрытие при «Показать ещё». */
+  overflow: hidden;
+  transition: max-height 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Запасная высота до первого замера (серверная разметка и первый кадр):
+   сетка сразу обрезана, а не вываливается целиком. */
 .gridClipped {
   max-height: 68vh;
-  overflow: hidden;
 }
 
 .fade {
@@ -67,7 +73,10 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 32px;
+  /* Кнопка стоит на самом низу подложки, там где градиент уже почти
+     полностью тёмный (раньше был отступ 32px — кнопка попадала на ещё
+     светлую часть градиента поверх карточек и хуже читалась). */
+  padding-bottom: 0;
   background: linear-gradient(
     to bottom,
     rgba(14, 14, 14, 0) 0%,
@@ -85,7 +94,7 @@
   pointer-events: auto;
   font-family: inherit;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 550;
   color: var(--bg);
   background: var(--accent);
   border: none;
@@ -95,9 +104,96 @@
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
+/* Блок «счётчик + кнопки» на градиенте. Небольшой вынос за нижнюю границу
+   сетки уводит кнопки на сплошной тёмный фон. Снизу у секции есть padding,
+   поэтому на соседние блоки это не наезжает. */
+.moreActions {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: -12px;
+}
+
+.counter {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.moreRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Вторичная кнопка рядом с «Показать ещё» — контурная, чтобы не
+   конкурировать с оранжевой. Высота совпадает с ней (padding 13px + рамка). */
+.fadeCollapse {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  background: rgba(14, 14, 14, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 13px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.fadeCollapse:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16) inset, 0 0 18px rgba(255, 255, 255, 0.08);
+}
+
 .showAllButton:hover {
   transform: translateY(-2px) scale(1.02);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18) inset, 0 0 24px rgba(255, 90, 31, 0.24);
+}
+
+/* Плавающая «Свернуть»: висит внизу экрана, пока листаешь раскрытую
+   галерею (рендерится порталом в body — см. WorkGrid.tsx). */
+.floatingCollapse {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  background: rgba(22, 22, 22, 0.82);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 11px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.floatingCollapse:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45), 0 0 18px rgba(255, 255, 255, 0.08);
+}
+
+.floatingArrow {
+  color: var(--accent);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.endSentinel {
+  height: 1px;
 }
 
 .collapseRow {
@@ -332,7 +428,20 @@
 
   .fade {
     height: 160px;
-    padding-bottom: 16px;
+    padding-bottom: 0;
+  }
+
+  .moreActions {
+    gap: 10px;
+    margin-bottom: -6px;
+  }
+
+  .fadeCollapse {
+    padding: 13px 20px;
+  }
+
+  .floatingCollapse {
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   }
 }
 

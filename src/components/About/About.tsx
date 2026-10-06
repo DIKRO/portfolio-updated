@@ -193,16 +193,20 @@ function RelatedProjectCard({ project, lang }: { project: Project; lang: Lang })
 // строить offsets окна и добавлять/убирать временную карточку при шаге.
 const MOBILE_QUERY = "(max-width: 768px), (orientation: landscape) and (max-height: 500px)";
 
+// Через useSyncExternalStore: на клиенте правильное число известно уже в
+// самом первом рендере. Раньше стартовое значение было 3 и лишь потом, в
+// эффекте, менялось на 1 — на телефоне с 2 проектами за этот первый рендер
+// окно из 3 карточек брало один и тот же проект дважды (дубли key).
 function useCarouselVisibleCount() {
-  const [count, setCount] = useState(3);
-  useEffect(() => {
-    const mql = window.matchMedia(MOBILE_QUERY);
-    const update = () => setCount(mql.matches ? 1 : 3);
-    update();
-    mql.addEventListener("change", update);
-    return () => mql.removeEventListener("change", update);
-  }, []);
-  return count;
+  return useSyncExternalStore(
+    (onChange) => {
+      const mql = window.matchMedia(MOBILE_QUERY);
+      mql.addEventListener("change", onChange);
+      return () => mql.removeEventListener("change", onChange);
+    },
+    () => (window.matchMedia(MOBILE_QUERY).matches ? 1 : 3),
+    () => 3,
+  );
 }
 
 // Карусель проектов внутри карточки клиента (используется только когда
@@ -232,7 +236,10 @@ function useCarouselVisibleCount() {
 // убирается, а x мгновенно (без анимации) возвращается к 0 — с тем же самым
 // набором карточек на экране, без видимого скачка.
 function RelatedProjectsCarousel({ items, lang }: { items: Project[]; lang: Lang }) {
-  const visibleCount = useCarouselVisibleCount();
+  // Окно не может быть больше, чем проектов минус один: на шаг карусели в
+  // DOM добавляется ещё одна карточка, и все они должны быть разными
+  // проектами (иначе повторяются key).
+  const visibleCount = Math.min(useCarouselVisibleCount(), items.length - 1);
   const [start, setStart] = useState(0);
   // Пока не null — идёт шаг карусели: extra.dir — куда едем, extra.offsets —
   // какие карточки (по смещению от start) сейчас в DOM (на одну больше
@@ -332,6 +339,8 @@ export default function About({ lang, t }: AboutProps) {
   // Индекс открытой карточки клиента (null — ничего не открыто). По клику
   // на логотип показывается модалка с описанием на текущем языке сайта.
   const [openClient, setOpenClient] = useState<number | null>(null);
+  // 3 на десктопе, 1 на телефоне — от этого зависит, когда включается карусель.
+  const carouselWindow = useCarouselVisibleCount();
 
   // Модалка клиента рендерится через портал прямо в document.body (см.
   // createPortal ниже) — так она гарантированно оказывается поверх шапки,
@@ -582,10 +591,13 @@ export default function About({ lang, t }: AboutProps) {
 
                       if (relatedProjects.length === 0) return null;
 
-                      // 3 или меньше — влезает целиком, показываем как есть,
-                      // без стрелок и какой-либо карусели вообще (никогда не
-                      // потребуется скроллить/листать).
-                      if (relatedProjects.length <= 3) {
+                      // Влезает в окно целиком (на десктопе — до 3 проектов,
+                      // на телефоне — 1 проект) — показываем как есть, без
+                      // стрелок. Если проектов больше размера окна, включается
+                      // карусель: на телефоне это значит, что даже 2 проекта
+                      // показываются так же, как у остальных клиентов (один
+                      // под описанием + стрелки), а не столбиком.
+                      if (relatedProjects.length <= carouselWindow) {
                         return (
                           <div className={styles.relatedProjects}>
                             <span className={styles.relatedProjectsLabel}>{t.about.viewProjects}</span>
@@ -598,7 +610,7 @@ export default function About({ lang, t }: AboutProps) {
                         );
                       }
 
-                      // Больше 3 — везде показываем одну и ту же бесконечную
+                      // Больше окна — везде показываем одну и ту же бесконечную
                       // карусель с окном по модулю (см. RelatedProjectsCarousel):
                       // и на десктопе (окно из 3), и на телефоне — портретно и
                       // горизонтально (окно из 1) — листается только кликом по

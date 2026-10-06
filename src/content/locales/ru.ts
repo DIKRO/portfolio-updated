@@ -45,6 +45,7 @@ export const ru = {
   },
   work: {
     showAll: "Посмотреть все",
+    showMore: "Показать ещё",
     showLess: "Свернуть",
   },
   categories: {

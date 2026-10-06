@@ -19,6 +19,7 @@ export const projects: Project[] = [
   {
     id: "1",
     order: 1,
+    featuredOrder: 1, // закреплено в начале «Все»
     slug: "socurdmitrii_logo",
     title: { ru: "Логотип для дизайнера Socur Dmitrii",
             en: "Logo for designer Socur Dmitrii",
@@ -70,6 +71,7 @@ export const projects: Project[] = [
   {
     id: "3",
     order: 3,
+    featuredOrder: 8,
     slug: "energywind_logo",
     client: "energy",
     title: { ru: "Логотип для компании в области ветроэнергетики System Global Group (Energy Wind Moldova)",
@@ -124,6 +126,7 @@ export const projects: Project[] = [
   {
     id: "5",
     order: 5,
+    featuredOrder: 5, // закреплено в начале «Все»
     slug: "kreola_logo",
     client: "kreola",
     title: { ru: "Логотип для шоколадной фабрики Kreola в Румынии",
@@ -212,6 +215,7 @@ export const projects: Project[] = [
   {
     id: "22",
     order: 8,
+    featuredOrder: 2, // закреплено в начале «Все»
     slug: "sushi_ro_logo_animation",
     client: "Sushiro",
     title: { ru: "Анимация логотипа для суши‑заведения SushiRO", en: "Logo Animation for Sushi Restaurant SushiRO", ro: "Animația logo-ului pentru restaurantul de sushi SushiRO" },
@@ -251,6 +255,7 @@ export const projects: Project[] = [
   {
     id: "23",
     order: 8.1,
+    featuredOrder: 6,
     slug: "modus_vivendi_adv",
     client: "dooh",
     title: { ru: "Коммерческая анимация для Modus Vivendi", en: "Commercial Animation for Modus Vivendi", ro: "Animație comercială pentru Modus Vivendi" },
@@ -278,6 +283,7 @@ export const projects: Project[] = [
   {
     id: "24",
     order: 8.2,
+    featuredOrder: 7,
     slug: "phucket_fishing",
     title: { ru: "Анимация логотипа для Phuket Fishing", en: "Logo Animation for Phuket Fishing", ro: "Animație de logo Phuket Fishing" },
     categoryKey: "motion-design",
@@ -482,6 +488,7 @@ export const projects: Project[] = [
   {
     id: "40",
     order: 11,
+    featuredOrder: 3, // закреплено в начале «Все»
     slug: "PUMA_web_1",
     client: "puma",
     title: { ru: "Рекламный креатив для сезонной акции Black Friday, PUMA Moldova", en: "Advertising creative for the Black Friday seasonal promotion, PUMA Moldova", ro: "Concept publicitar pentru campania sezonieră de Black Friday, PUMA Moldova" },
@@ -847,6 +854,7 @@ export const projects: Project[] = [
   {
     id: "72",
     order: 29,
+    featuredOrder: 4,
     slug: "Atlantida_adv_wedding",
     client: "dooh",
     title: { ru: "Монтаж промо-ролика для ресторана «Atlantida» (г. Комрат, Молдова)", en: "Editing of a promotional video for the “Atlantida” restaurant (Comrat, Moldova)", ro: "Realizarea unui spot promoțional pentru restaurantul „Atlantida” (Comrat, Moldova)" },
@@ -897,6 +905,7 @@ export const projects: Project[] = [
   {
     id: "87",
     order: 30,
+    featuredOrder: 9,
     slug: "persistentmma_steclo",
     client: "mma",
     title: { ru: "Оракал на стекло для додзё Persistent MMA в городе Кишинёв", en: "Oracal vinyl on glass for Persistent MMA dojo in Chișinău", ro: "Folie autocolantă Oracal pe sticlă pentru dojo-ul Persistent MMA din Chișinău" },

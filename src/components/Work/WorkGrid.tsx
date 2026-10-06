@@ -3,9 +3,11 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Lang } from "@/content/lang";
 import { projects } from "@/content/projects";
+import { sortProjects } from "@/lib/sortProjects";
 import { CategoryKey, Project } from "@/types/project";
 
 // Видео для превью по наведению (см. WorkCard ниже) может лежать в двух
@@ -42,12 +44,20 @@ const PINNED_CATEGORY_ORDER: CategoryKey[] = [
 interface WorkGridProps {
   lang: Lang;
   t: {
-    work: { showAll: string; showLess: string };
+    work: { showMore: string; showLess: string };
     categories: Record<FilterKey, string>;
   };
 }
 
-const VISIBLE_ROWS = 2;
+// Сколько карточек добавляет каждое нажатие «Показать ещё». 6 делится и на 3
+// колонки (десктоп), и на 2 (планшет), и на 1 (телефон), поэтому последний
+// ряд всегда получается полным. На телефоне карточки идут в одну колонку и
+// занимают много высоты, поэтому там порция меньше.
+const PAGE_SIZE_DESKTOP = 6;
+const PAGE_SIZE_MOBILE = 4;
+// Сколько карточек сверх видимых рисуем «про запас»: первый скрытый ряд
+// выглядывает из-под градиента на 40% высоты. Колонок максимум 3.
+const TEASER_EXTRA = 3;
 
 // Флаг на уровне модуля (не React state) — переживает переходы между
 // страницами внутри одной вкладки (модуль не перевыполняется заново при
@@ -80,7 +90,7 @@ let hasHydratedOnce = false;
 // бы текущий выбор человека к тому, что было до обновления.
 // Только для перезагрузки и возврата кнопкой «назад» (navigation type):
 // при обычном заходе по ссылке / в новой вкладке всё начинается с «Все».
-type RestoredState = { filter: string | null; expanded: boolean; scrollY: number; expiresAt: number };
+type RestoredState = { filter: string | null; pages: number; scrollY: number; expiresAt: number };
 let restoredState: RestoredState | null | undefined = undefined;
 
 function getRestoredState(): RestoredState | null {
@@ -98,7 +108,7 @@ function getRestoredState(): RestoredState | null {
       restoredState = shouldRestore
         ? {
             filter: sessionStorage.getItem("workGridFilter"),
-            expanded: sessionStorage.getItem("workGridExpanded") === "1",
+            pages: Math.max(1, Math.floor(Number(sessionStorage.getItem("workGridPages")) || 1)),
             scrollY: Number(sessionStorage.getItem("workGridScrollY")) || 0,
             expiresAt: Date.now() + 3000,
           }
@@ -278,9 +288,10 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   // рендере, без эффекта.
   const filter: FilterKey = availableFilters.includes(rawFilter) ? rawFilter : "all";
 
-  const [expanded, setExpanded] = useState(() => {
-    if (typeof window === "undefined" || !hasHydratedOnce) return false;
-    return sessionStorage.getItem("workGridExpanded") === "1";
+  // Сколько «порций» карточек сейчас раскрыто (1 — только первая).
+  const [pages, setPages] = useState(() => {
+    if (typeof window === "undefined" || !hasHydratedOnce) return 1;
+    return Math.max(1, Math.floor(Number(sessionStorage.getItem("workGridPages")) || 1));
   });
 
   useEffect(() => {
@@ -297,7 +308,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
     // первой отрисовки (иначе серверная разметка разойдётся с клиентской).
     /* eslint-disable react-hooks/set-state-in-effect */
     if (saved.filter) setFilter(saved.filter as FilterKey);
-    setExpanded(saved.expanded);
+    setPages(saved.pages);
     /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
@@ -353,7 +364,6 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   const gridRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const filtersRef = useRef<HTMLDivElement>(null);
-  const [heights, setHeights] = useState<{ clip: number; full: number } | null>(null);
 
   // "Бесконечная" прокрутка фильтров нужна только на телефоне (на десктопе
   // они и так все помещаются без скролла) — определяем по той же ширине,
@@ -373,8 +383,8 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   const canHoverPreview = useMediaQuery("(hover: hover) and (pointer: fine)");
 
   useEffect(() => {
-    sessionStorage.setItem("workGridExpanded", expanded ? "1" : "0");
-  }, [expanded]);
+    sessionStorage.setItem("workGridPages", String(pages));
+  }, [pages]);
 
   useEffect(() => {
     sessionStorage.setItem("workGridFilter", filter);
@@ -391,7 +401,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
     // и текущую позицию резко тянет вниз, к футеру, пока наш scrollIntoView
     // это не перебьёт — отсюда и рывок.
     sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.setTimeout(() => setExpanded(false), 400);
+    window.setTimeout(() => setPages(1), 400);
   };
 
   const selectFilter = (key: FilterKey) => {
@@ -399,95 +409,143 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
     // eslint-disable-next-line react-hooks/globals
     restoredState = null; // человек выбрал сам — восстановление больше не нужно
     setFilter(key);
-    setExpanded(false);
+    setPages(1);
+  };
+
+  const showMore = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.blur();
+    setPages((n) => n + 1);
   };
 
   // Порядок показа — по полю order (см. src/types/project.ts), а не по
-  // тому, в каком порядке проекты лежат в файле/массиве. Раньше, когда
-  // проекты выстроили по категориям (сплошными блоками id — см. комментарии
-  // в src/content/projects/index.ts), вкладка "Все работы" стала показывать
-  // их теми же сплошными блоками по категориям подряд, а не вперемешку.
-  // .slice() перед .sort() — projects это общий модульный массив (импорт
-  // из content/projects), .sort() мутирует на месте, без копии он бы менял
-  // порядок и внутри самого исходного массива на будущие рендеры.
-  const filtered = (filter === "all" ? projects : projects.filter((p) => p.categoryKey === filter))
-    .slice()
-    .sort((a, b) => a.order - b.order);
+  // тому, в каком порядке проекты лежат в файле/массиве. .slice() перед
+  // .sort() — projects это общий модульный массив, .sort() мутирует на месте.
+  // useMemo — чтобы массив не создавался заново при каждом рендере (от него
+  // зависят эффекты ниже).
+  const filtered = useMemo(
+    () =>
+      sortProjects(filter === "all" ? projects : projects.filter((p) => p.categoryKey === filter), {
+        useFeatured: filter === "all",
+      }),
+    [filter],
+  );
 
-  const isAll = filter === "all";
+  const pageSize = isMobile ? PAGE_SIZE_MOBILE : PAGE_SIZE_DESKTOP;
+  const shownCount = Math.min(pages * pageSize, filtered.length);
+  const hasMore = shownCount < filtered.length;
+  // Раскрыто больше первой порции — есть что сворачивать.
+  const canCollapse = shownCount > pageSize;
+  // В DOM — видимые карточки + «выглядывающий» ряд. Остальные проекты не
+  // рендерятся вовсе (меньше картинок и видео на странице, пока их не
+  // попросили).
+  const rendered = useMemo(() => filtered.slice(0, shownCount + TEASER_EXTRA), [filtered, shownCount]);
 
-  // Замеряем реальную высоту строк сетки (а не примерную vh), чтобы обрезка
-  // всегда приходилась на 40% высоты 3-го ряда (видно 40%, 60% тонет в фоне),
-  // независимо от того, сколько колонок сейчас в сетке (3 на десктопе, 2 на планшете, 1 на телефоне).
-  useEffect(() => {
-    if (!isAll) return;
+  // Высоту сетки задаём напрямую в DOM (max-height), а не через React-состояние
+  // или Framer Motion: React этим свойством не управляет, повторные рендеры
+  // его не сбрасывают, а плавность даёт CSS-переход на .grid. max-height (а не
+  // height) не растягивает строки сетки — старая проблема с огромными
+  // отступами между рядами здесь невозможна.
+  //  • есть ещё карточки — высота до 40% первого скрытого ряда (он тонет в
+  //    градиенте, как и раньше);
+  //  • показано всё — высота ровно по последней карточке.
+  // Ищем карточки по data-project-id, а не по индексу среди детей: во время
+  // анимации ухода (AnimatePresence) в сетке ещё лежат старые карточки, и
+  // индексы съезжали бы.
+  useLayoutEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
 
-    function measure() {
-      const el = gridRef.current;
-      if (!el) return;
-      const items = Array.from(el.children) as HTMLElement[];
+    const measure = () => {
+      const items = rendered
+        .map((p) => el.querySelector<HTMLElement>(`[data-project-id="${p.id}"]`))
+        .filter((n): n is HTMLElement => n !== null);
       if (items.length === 0) return;
 
-      const firstTop = items[0].offsetTop;
-      let columns = 1;
-      for (let i = 1; i < items.length; i++) {
-        if (Math.abs(items[i].offsetTop - firstTop) < 1) columns++;
-        else break;
+      let target: number;
+      if (hasMore) {
+        const cut = items[shownCount];
+        if (!cut) return;
+        target = cut.offsetTop + cut.offsetHeight * 0.4;
+      } else {
+        const last = items[items.length - 1];
+        target = last.offsetTop + last.offsetHeight;
       }
 
-      const totalRows = Math.ceil(items.length / columns);
-      const full = el.scrollHeight;
+      const value = `${Math.round(target)}px`;
+      if (el.style.maxHeight === value) return;
 
-      if (totalRows <= VISIBLE_ROWS) {
-        setHeights({ clip: full, full });
-        return;
+      if (!el.dataset.measured) {
+        // Самое первое измерение — без анимации, чтобы сетка не «доезжала»
+        // с запасной высоты (.gridClipped) при загрузке страницы.
+        el.style.transition = "none";
+        el.style.maxHeight = value;
+        void el.offsetHeight; // применить стиль до возврата перехода
+        el.style.transition = "";
+        el.dataset.measured = "1";
+      } else {
+        el.style.maxHeight = value;
       }
-
-      const cutRowIndex = columns * VISIBLE_ROWS; // первый элемент обрезаемого ряда
-      const cutItem = items[cutRowIndex];
-      if (!cutItem) {
-        setHeights({ clip: full, full });
-        return;
-      }
-
-      // Третий ряд должен на 60% "утопать" в фон — обрезаем на уровне
-      // 40% его высоты, оставшиеся 60% скрываются под градиентом-фейдом.
-      setHeights({ clip: cutItem.offsetTop + cutItem.offsetHeight * 0.4, full });
-    }
+    };
 
     let frame = 0;
-    function scheduleMeasure() {
+    const scheduleMeasure = () => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(measure);
-    }
+    };
 
-    scheduleMeasure();
+    measure();
 
-    // ResizeObserver подписан на КАЖДУЮ карточку по отдельности, а не на
-    // сам .grid — как только у контейнера появляется explicit height +
-    // overflow:hidden (canClip), его собственный размер с точки зрения
-    // браузера зафиксирован (мы сами его выставляем через animate), поэтому
-    // ResizeObserver на самом контейнере не поймает изменение контента
-    // внутри (например, более поздний догруз шрифта на медленной мобильной
-    // сети, из-за которого текст переносится иначе и карточка меняет
-    // высоту уже ПОСЛЕ первого измерения). Слежка за самими карточками —
-    // у них высоту никто не фиксирует — ловит такие изменения при любых
-    // условиях сети и устройства.
-    const el = gridRef.current;
-    const observer = el ? new ResizeObserver(() => scheduleMeasure()) : null;
-    if (el && observer) {
-      Array.from(el.children).forEach((child) => observer.observe(child));
-    }
-
+    // ResizeObserver — на каждой карточке: у самой сетки высота зафиксирована
+    // нами, поэтому изменение контента внутри (например, шрифт догрузился и
+    // заголовок перенёсся иначе) через неё не поймать.
+    const observer = new ResizeObserver(scheduleMeasure);
+    Array.from(el.children).forEach((child) => observer.observe(child));
     window.addEventListener("resize", scheduleMeasure);
+    document.fonts?.ready.then(scheduleMeasure);
+
     return () => {
       cancelAnimationFrame(frame);
-      observer?.disconnect();
+      observer.disconnect();
       window.removeEventListener("resize", scheduleMeasure);
     };
-  }, [isAll, filtered.length]);
+  }, [rendered, shownCount, hasMore]);
 
-  const canClip = isAll && heights !== null && heights.clip < heights.full - 1;
+  // Плавающая кнопка «Свернуть»: пока человек листает раскрытую галерею, она
+  // висит внизу экрана, чтобы можно было свернуть в любой момент, а не
+  // докручивать до конца. Показываем, только когда сама галерея на экране, а
+  // её нижний край (где уже есть обычные кнопки) ещё далеко.
+  const gridWrapRef = useRef<HTMLDivElement>(null);
+  const endRef = useRef<HTMLDivElement>(null);
+  const [gridInView, setGridInView] = useState(false);
+  const [endNear, setEndNear] = useState(false);
+
+  useEffect(() => {
+    const wrap = gridWrapRef.current;
+    const end = endRef.current;
+    if (!wrap || !end) return;
+
+    const wrapObserver = new IntersectionObserver(([entry]) => setGridInView(entry.isIntersecting));
+    // Запас 220px снизу: плавающая кнопка прячется заранее, до того как
+    // нижние кнопки окажутся с ней на одном уровне.
+    const endObserver = new IntersectionObserver(([entry]) => setEndNear(entry.isIntersecting), {
+      rootMargin: "0px 0px 220px 0px",
+    });
+    wrapObserver.observe(wrap);
+    endObserver.observe(end);
+    return () => {
+      wrapObserver.disconnect();
+      endObserver.disconnect();
+    };
+  }, []);
+
+  // На сервере и при гидратации document недоступен — портал рисуем только
+  // на клиенте.
+  const canPortal = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+  const showFloating = canPortal && canCollapse && gridInView && !endNear;
 
   // Бесконечная прокрутка: рисуем список категорий трижды подряд (три
   // одинаковых "комплекта") и всегда стартуем со среднего комплекта — тогда
@@ -565,9 +623,10 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   // у .gridWrap про то, почему это два разных типа контейнера.
   const gridItems = (
     <AnimatePresence mode="popLayout">
-      {filtered.map((project, index) => (
+      {rendered.map((project, index) => (
         <motion.div
           key={project.id}
+          data-project-id={project.id}
           layout
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -602,47 +661,16 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
         )}
       </div>
 
-      <div className={styles.gridWrap}>
-        {/* Обрезка по высоте (анимация height через Framer Motion) нужна
-            ТОЛЬКО для фильтра "Все работы" — только там вообще может быть
-            больше 2 рядов. Раньше сетка всегда была motion.div, и когда
-            выбиралась конкретная категория, Framer Motion просто переставал
-            трогать height, но инлайн-стиль height (в пикселях), который он
-            уже успел выставить под фильтр "Все работы", оставался на
-            элементе — а CSS Grid с явно заданной высотой растягивает
-            пустые строки, чтобы её заполнить (align-content: stretch по
-            умолчанию). Внешне это выглядело как гигантские отступы между
-            рядами карточек в любой отдельной категории. Попытка чинить это
-            через animate={{height: "auto"}} не помогла до конца — Framer
-            Motion всё равно на секунду навязывает свой инлайн-стиль height
-            при каждом ре-рендере. Поэтому теперь для категорий (isAll ===
-            false) сетка — обычный <div> без Framer Motion вообще: она
-            физически не может выставить height, высота всегда чисто
-            браузерная (auto), и растягивать там нечего. */}
-        {isAll ? (
-          <motion.div
-            ref={gridRef}
-            className={styles.grid}
-            style={canClip ? { overflow: "hidden" } : undefined}
-            animate={{ height: canClip ? (expanded ? heights!.full : heights!.clip) : "auto" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {gridItems}
-          </motion.div>
-        ) : (
-          <div className={styles.grid}>{gridItems}</div>
-        )}
+      <div className={styles.gridWrap} ref={gridWrapRef}>
+        <div ref={gridRef} className={`${styles.grid} ${hasMore ? styles.gridClipped : ""}`}>
+          {gridItems}
+        </div>
 
-        {/* Подложка-градиент и кнопка теперь исчезают/появляются плавным
-            fade (0.5s) одновременно с тем, как сетка растёт/сжимается
-            (0.8s) — раньше это был обычный React-условный рендер без
-            перехода, то есть подложка пропадала/появлялась за один кадр
-            прямо в момент клика, пока высота под ней ещё только начинала
-            меняться. Из-за этого мгновенного "скачка" в самый первый
-            момент разворачивание/сворачивание и ощущалось как резкое, хотя
-            сама сетка растягивалась плавно. */}
+        {/* Подложка-градиент и кнопки плавно появляются/исчезают (0.5s), пока
+            есть что показать ещё. Сам градиент не ловит клики
+            (pointer-events: none) — кнопки внутри включают их себе обратно. */}
         <AnimatePresence>
-          {canClip && !expanded && (
+          {hasMore && (
             <motion.div
               className={styles.fade}
               initial={{ opacity: 0 }}
@@ -650,21 +678,61 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              <button className={styles.showAllButton} onClick={() => setExpanded(true)}>
-                {t.work.showAll} →
-              </button>
+              <div className={styles.moreActions}>
+                <span className={styles.counter}>
+                  {shownCount} / {filtered.length}
+                </span>
+                <div className={styles.moreRow}>
+                  <button className={styles.showAllButton} onClick={showMore}>
+                    {t.work.showMore} →
+                  </button>
+                  {canCollapse && (
+                    <button className={styles.fadeCollapse} onClick={collapse}>
+                      {t.work.showLess}
+                    </button>
+                  )}
+                </div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {canClip && expanded && (
+      {/* Показано всё — обычная кнопка «Свернуть» под сеткой. */}
+      {!hasMore && canCollapse && (
         <div className={styles.collapseRow}>
           <button className={styles.showLessButton} onClick={collapse}>
             {t.work.showLess}
           </button>
         </div>
       )}
+
+      {/* Метка конца галереи — по ней прячем плавающую кнопку. */}
+      <div ref={endRef} aria-hidden="true" className={styles.endSentinel} />
+
+      {canPortal &&
+        createPortal(
+          <AnimatePresence>
+            {showFloating && (
+              <motion.button
+                key="floating-collapse"
+                type="button"
+                className={styles.floatingCollapse}
+                onClick={collapse}
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 14 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <span aria-hidden="true" className={styles.floatingArrow}>
+                  ↑
+                </span>
+                {t.work.showLess}
+              </motion.button>
+            )}
+          </AnimatePresence>,
+          document.body,
+        )}
     </section>
   );
 }
