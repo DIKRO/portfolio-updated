@@ -37,14 +37,14 @@ export interface Review {
 export const reviews: Review[] = [
   {
     id: "energy-wind",
-    clientName: "Nicolai",
+    clientName: "Nicolai Gheorghian",
     company: "Energy Wind Moldova",
     role: {
       ru: "Исполнительный директор",
       en: "Executive Director",
       ro: "Director executiv",
     },
-    year: 2025,
+    year: 2026,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
     countryCode: "MD",
     text: {
@@ -62,7 +62,7 @@ export const reviews: Review[] = [
       en: "Store Owner",
       ro: "Proprietar magazin",
     },
-    year: 2024,
+    year: 2025,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
     countryCode: "MD",
     text: {
@@ -80,7 +80,7 @@ export const reviews: Review[] = [
       en: "Head of Marketing",
       ro: "Șef departament marketing",
     },
-    year: 2024,
+    year: 2025,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
     countryCode: "MD",
     text: {
@@ -98,7 +98,7 @@ export const reviews: Review[] = [
       en: "Advertising Specialist",
       ro: "Specialist publicitate",
     },
-    year: 2023,
+    year: 2025,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
     countryCode: "MD",
     text: {
@@ -116,7 +116,7 @@ export const reviews: Review[] = [
       en: "Technical Director",
       ro: "Director tehnic",
     },
-    year: 2023,
+    year: 2025,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
     countryCode: "MD",
     text: {
@@ -126,21 +126,21 @@ export const reviews: Review[] = [
     },
   },
   {
-    id: "stip",
-    clientName: "Elena Josanu",
-    company: "Stip",
+    id: "vitrum-letale",
+    clientName: "Vladislav Gudkov",
+    company: "Vitrum Letale",
     role: {
-      ru: "Менеджер по продукту",
-      en: "Product Manager",
-      ro: "Manager de produs",
+      ru: "Основатель бренда одежды",
+      en: "Clothing Brand Founder",
+      ro: "Fondatorul brandului de îmbrăcăminte",
     },
-    year: 2022,
+    year: 2026,
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
     countryCode: "MD",
     text: {
-      ru: "У нас сотни позиций в каталоге, и каждую нужно было привести к одному виду — Дмитрий сделал ретушь единообразной по всей линейке, без потери деталей на светлых игрушках. Сроки всегда соблюдены, даже при больших партиях фото.",
-      en: "We have hundreds of items in our catalog, and each one needed to match a single look — Dmitrii kept the retouching consistent across the whole range, without losing detail on light-colored toys. Deadlines were always met, even with large photo batches.",
-      ro: "Avem sute de produse în catalog, iar fiecare trebuia adus la un aspect unitar — Dmitrii a păstrat retușul consecvent pe toată gama, fără a pierde detalii la jucăriile deschise la culoare. Termenele au fost respectate mereu, chiar și la loturi mari de fotografii.",
+      ru: "Работой Дмитрия очень доволен: он быстро понял идею бренда и передал её в визуале. Для Vitrum Letale он сделал карточки товара, сертификат подлинности и стикеры для дропа, и всё выглядит цельно и соответствует нашей эстетике. Отдельно ценю чёткие сроки и спокойную коммуникацию — с удовольствием продолжим сотрудничество.",
+      en: "I'm very happy with Dmitrii's work: he quickly understood the brand's idea and translated it into visuals. For Vitrum Letale he created product cards, a certificate of authenticity and stickers for our drop, and everything looks cohesive and true to our aesthetic. I especially value the clear deadlines and smooth communication — I'm glad to keep working together.",
+      ro: "Sunt foarte mulțumit de munca lui Dmitrii: a înțeles rapid ideea brandului și a transpus-o vizual. Pentru Vitrum Letale a realizat fișe de produs, certificat de autenticitate și autocolante pentru colecție, iar totul arată unitar și în spiritul esteticii noastre. Apreciez în special termenele clare și comunicarea fluidă — continuăm colaborarea cu plăcere.",
     },
   },
   {

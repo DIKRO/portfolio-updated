@@ -258,6 +258,81 @@ function useMediaQuery(query: string): boolean {
   );
 }
 
+// Плавающая «Свернуть»: пока человек листает раскрытую галерею, она висит
+// внизу экрана, чтобы можно было свернуть в любой момент, а не докручивать до
+// конца. Показываем, только когда сама галерея на экране, а её нижний край
+// (где уже есть обычные кнопки) ещё далеко. Рендерится порталом в body — у
+// предков секции могут быть transform'ы, которые ломают position: fixed.
+function FloatingCollapse({
+  enabled,
+  wrapRef,
+  endRef,
+  label,
+  onCollapse,
+}: {
+  enabled: boolean;
+  wrapRef: React.RefObject<HTMLElement | null>;
+  endRef: React.RefObject<HTMLElement | null>;
+  label: string;
+  onCollapse: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}) {
+  const [gridInView, setGridInView] = useState(false);
+  const [endNear, setEndNear] = useState(false);
+
+  // На сервере и при гидратации document недоступен — портал только на клиенте.
+  const canPortal = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const end = endRef.current;
+    if (!wrap || !end) return;
+
+    const wrapObserver = new IntersectionObserver(([entry]) => setGridInView(entry.isIntersecting));
+    // Запас 220px снизу: кнопка прячется заранее, до того как нижние кнопки
+    // окажутся с ней на одном уровне.
+    const endObserver = new IntersectionObserver(([entry]) => setEndNear(entry.isIntersecting), {
+      rootMargin: "0px 0px 220px 0px",
+    });
+    wrapObserver.observe(wrap);
+    endObserver.observe(end);
+    return () => {
+      wrapObserver.disconnect();
+      endObserver.disconnect();
+    };
+  }, [wrapRef, endRef]);
+
+  if (!canPortal) return null;
+
+  const show = enabled && gridInView && !endNear;
+
+  return createPortal(
+    <AnimatePresence>
+      {show && (
+        <motion.button
+          key="floating-collapse"
+          type="button"
+          className={styles.floatingCollapse}
+          onClick={onCollapse}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 14 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span aria-hidden="true" className={styles.floatingArrow}>
+            ↑
+          </span>
+          {label}
+        </motion.button>
+      )}
+    </AnimatePresence>,
+    document.body,
+  );
+}
+
 export default function WorkGrid({ lang, t }: WorkGridProps) {
   // Показываем только те фильтры, для которых реально есть работы.
   // Сначала — закреплённый порядок (см. PINNED_CATEGORY_ORDER выше), затем
@@ -392,16 +467,32 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
 
   const collapse = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.blur();
-    // Важен порядок: сначала долистываем к началу секции (пока грид ещё
-    // полной высоты — ничего не схлопывается, скроллу ничего не мешает),
-    // и только когда страница уже встала на место, запускаем схлопывание.
-    // Если делать это одновременно — пока высота грида на лету уменьшается
-    // CSS-переходом (0.8s), браузер за это же время постоянно урезает
-    // максимально доступный скролл под ещё-уменьшающуюся высоту страницы,
-    // и текущую позицию резко тянет вниз, к футеру, пока наш scrollIntoView
-    // это не перебьёт — отсюда и рывок.
+    // Важен порядок: сначала долистываем к началу секции, и только когда
+    // скролл ОСТАНОВИЛСЯ — убираем лишние карточки. Если убрать их во время
+    // плавной прокрутки, страница мгновенно становится короче, браузер
+    // урезает текущую позицию под новую высоту — отсюда рывок (особенно
+    // заметно на телефоне, где листать вверх приходится далеко и долго).
+    // Фиксированной задержки (раньше 400мс) недостаточно: длина прокрутки
+    // зависит от того, как глубоко человек ушёл вниз. Поэтому следим за
+    // самим скроллом: «стоим» ~6 кадров подряд (~100мс) — сворачиваем.
+    // Страховка по времени — на случай, если скролл не остановился.
     sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.setTimeout(() => setPages(1), 400);
+
+    const startedAt = performance.now();
+    let lastY = window.scrollY;
+    let stillFrames = 0;
+    const tick = () => {
+      const y = window.scrollY;
+      stillFrames = Math.abs(y - lastY) < 1 ? stillFrames + 1 : 0;
+      lastY = y;
+      const elapsed = performance.now() - startedAt;
+      if ((stillFrames >= 6 && elapsed > 150) || elapsed > 2500) {
+        setPages(1);
+        return;
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   };
 
   const selectFilter = (key: FilterKey) => {
@@ -493,6 +584,17 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
       frame = requestAnimationFrame(measure);
     };
 
+    // На телефоне событие resize приходит и когда во время прокрутки
+    // прячется/появляется адресная строка браузера (меняется только высота).
+    // Раскладка карточек от высоты окна не зависит, а лишние замеры во время
+    // скролла — это принудительные пересчёты layout и подёргивания.
+    let lastWidth = window.innerWidth;
+    const onResize = () => {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      scheduleMeasure();
+    };
+
     measure();
 
     // ResizeObserver — на каждой карточке: у самой сетки высота зафиксирована
@@ -500,52 +602,22 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
     // заголовок перенёсся иначе) через неё не поймать.
     const observer = new ResizeObserver(scheduleMeasure);
     Array.from(el.children).forEach((child) => observer.observe(child));
-    window.addEventListener("resize", scheduleMeasure);
+    window.addEventListener("resize", onResize);
     document.fonts?.ready.then(scheduleMeasure);
 
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
-      window.removeEventListener("resize", scheduleMeasure);
+      window.removeEventListener("resize", onResize);
     };
   }, [rendered, shownCount, hasMore]);
 
-  // Плавающая кнопка «Свернуть»: пока человек листает раскрытую галерею, она
-  // висит внизу экрана, чтобы можно было свернуть в любой момент, а не
-  // докручивать до конца. Показываем, только когда сама галерея на экране, а
-  // её нижний край (где уже есть обычные кнопки) ещё далеко.
+  // Плавающая «Свернуть» — отдельный компонент (см. FloatingCollapse выше),
+  // у него своё состояние: появление/исчезновение кнопки при прокрутке не
+  // перерисовывает всю сетку (а вместе с ней — замеры Framer Motion по всем
+  // карточкам), иначе на телефоне это даёт подёргивания.
   const gridWrapRef = useRef<HTMLDivElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
-  const [gridInView, setGridInView] = useState(false);
-  const [endNear, setEndNear] = useState(false);
-
-  useEffect(() => {
-    const wrap = gridWrapRef.current;
-    const end = endRef.current;
-    if (!wrap || !end) return;
-
-    const wrapObserver = new IntersectionObserver(([entry]) => setGridInView(entry.isIntersecting));
-    // Запас 220px снизу: плавающая кнопка прячется заранее, до того как
-    // нижние кнопки окажутся с ней на одном уровне.
-    const endObserver = new IntersectionObserver(([entry]) => setEndNear(entry.isIntersecting), {
-      rootMargin: "0px 0px 220px 0px",
-    });
-    wrapObserver.observe(wrap);
-    endObserver.observe(end);
-    return () => {
-      wrapObserver.disconnect();
-      endObserver.disconnect();
-    };
-  }, []);
-
-  // На сервере и при гидратации document недоступен — портал рисуем только
-  // на клиенте.
-  const canPortal = useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false,
-  );
-  const showFloating = canPortal && canCollapse && gridInView && !endNear;
 
   // Бесконечная прокрутка: рисуем список категорий трижды подряд (три
   // одинаковых "комплекта") и всегда стартуем со среднего комплекта — тогда
@@ -680,7 +752,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
             >
               <div className={styles.moreActions}>
                 <span className={styles.counter}>
-                  {shownCount} / {filtered.length}
+                  <span className={styles.counterShown}>{shownCount}</span> / {filtered.length}
                 </span>
                 <div className={styles.moreRow}>
                   <button className={styles.showAllButton} onClick={showMore}>
@@ -710,29 +782,13 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
       {/* Метка конца галереи — по ней прячем плавающую кнопку. */}
       <div ref={endRef} aria-hidden="true" className={styles.endSentinel} />
 
-      {canPortal &&
-        createPortal(
-          <AnimatePresence>
-            {showFloating && (
-              <motion.button
-                key="floating-collapse"
-                type="button"
-                className={styles.floatingCollapse}
-                onClick={collapse}
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 14 }}
-                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <span aria-hidden="true" className={styles.floatingArrow}>
-                  ↑
-                </span>
-                {t.work.showLess}
-              </motion.button>
-            )}
-          </AnimatePresence>,
-          document.body,
-        )}
+      <FloatingCollapse
+        enabled={canCollapse}
+        wrapRef={gridWrapRef}
+        endRef={endRef}
+        label={t.work.showLess}
+        onCollapse={collapse}
+      />
     </section>
   );
 }

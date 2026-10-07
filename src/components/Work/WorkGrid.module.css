@@ -116,11 +116,24 @@
   margin-bottom: -12px;
 }
 
+/* Счётчик в «таблетке» с тёмной подложкой и рамкой: поверх пёстрых
+   карточек голый серый текст терялся. Без backdrop-filter — он тяжёлый
+   для мобильного GPU при прокрутке, плотный тёмный фон справляется сам. */
 .counter {
+  padding: 6px 14px;
   font-size: 13px;
+  font-weight: 600;
   letter-spacing: 0.06em;
-  color: var(--muted);
+  color: var(--text);
+  background: rgba(14, 14, 14, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
   font-variant-numeric: tabular-nums;
+}
+
+.counterShown {
+  color: var(--accent);
 }
 
 .moreRow {
@@ -159,9 +172,14 @@
    галерею (рендерится порталом в body — см. WorkGrid.tsx). */
 .floatingCollapse {
   position: fixed;
-  left: 50%;
+  /* Центрируем без transform: Framer Motion сам пишет inline-transform
+     (для появления/исчезновения) и перебивает translateX(-50%) — кнопка
+     уезжала вправо. */
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
   bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%);
   z-index: 60;
   display: inline-flex;
   align-items: center;
@@ -170,9 +188,10 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--text);
-  background: rgba(22, 22, 22, 0.82);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  /* Без backdrop-filter: на телефоне он пересчитывается каждый кадр
+     прокрутки (кнопка висит поверх движущейся страницы) — это давало
+     подёргивания. Плотный фон вместо размытия. */
+  background: rgba(22, 22, 22, 0.94);
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 11px 22px;
   border-radius: 999px;
