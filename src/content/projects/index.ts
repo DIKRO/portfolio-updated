@@ -425,6 +425,34 @@ export const projects: Project[] = [
       ro: "O animație 2D de logo creată pentru emisiunea culinară „Coolinart”. În centrul conceptului se află un element grafic original, în care cele două litere „o” din denumire sunt stilizate sub formă de ochi cu bonetă de bucătar și mustață. La începutul clipului, ochii se mișcă dinamic privind în jur și clipesc, după care simbolul se transformă fluid în denumirea completă a brandului.",
     },
   },
+  {
+    id: "30",
+    order: 8.8,
+    slug: "halloween_animation",
+    title: { ru: "Бесшовная зацикленная 2D-моушн анимация для ультраширокого LED-экрана (Halloween Edition)",
+            en: "Seamless Looped 2D Motion Design for Ultrawide LED Displays (Halloween Edition)",
+            ro: "Animație 2D în buclă continuă pentru ecran LED Ultra-Wide (Halloween Edition)" },
+    categoryKey: "motion-design",
+    year: 2026,
+    cover: "/images/work/animation/halloween_animation/halloween_animation-cover.jpg",
+    images: [
+      { video: "https://pub-733e8c8d30a74425ba9f6703c99fb798.r2.dev/halloween.mp4", width: 1920, height: 1080 },
+      "/images/work/animation/halloween_animation/1.jpg",
+      "/images/work/animation/halloween_animation/2.jpg",
+    ],
+    // Пример необязательного лейбла-контекста (см. комментарий у поля
+    // context в src/types/project.ts):
+    //context: {
+       //ru: "Выполнено в рамках сотрудничества с DOOH house",
+       //en: "Completed in collaboration with DOOH house",
+       //ro: "Realizat în cadrul colaborării cu DOOH house",
+    //},
+    description: {
+      ru: "Профессиональная бесшовная зацикленная 2D-анимация (Seamless Loop), созданная для фонового сопровождения и трансляции на панорамном LED-экране боулинг-клуба в рамках праздника Хеллоуин. Видеоарт спроектирован под нестандартные ультраширокие пропорции кадра и включает синхронную анимацию тематических элементов: мерцающего полнолуния, летучих мышей, замка с привидениями, катящихся тыкв и атрибутики боулинга (кеглей). Ролик дополнен неоновой типографикой «Happy Halloween» и точным совпадением начального и финального кадров, что обеспечивает идеальный непрерывный цикл воспроизведения без видимых стыков и пауз.",
+      en: "Professional 2D seamless looped motion design created for ambient visual broadcasting on an ultrawide panoramic LED display in a bowling venue during Halloween. Specially rendered for extreme ultra-wide aspect ratios, the animation smoothly loops custom-crafted Halloween visuals (glowing full moon, flying bats, haunted mansion, rolling jack-o'-lanterns) alongside bowling pin motifs. Featuring animated glowing neon typography (Happy Halloween) and flawless frame-matching for infinite playback without noticeable transitions or cuts.",
+      ro: "Proiect profesional de animație 2D în buclă continuă (Seamless Loop), creat pentru difuzare ambientală pe un ecran LED panoramic ultra-wide în cadrul unui club de bowling de Halloween. Conceptul vizual este adaptat pentru formate ecran atipice și îmbină grafica tematică (lună plină, lilieci, castel bântuit, dovleci sculptați) cu simbolurile din bowling (popice). Materialul include tipografie animată cu efecte neon („Happy Halloween”) și o potrivire perfectă a cadrelor, permițând rularea infinită a videoclipului fără întreruperi vizibile.",
+    },
+  },
   
   // ── DIGITAL-КРЕАТИВЫ — id 38–71 (занято: см. ниже, остальное — резерв под новые работы) ──
   {

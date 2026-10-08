@@ -37,7 +37,7 @@ export interface Review {
 export const reviews: Review[] = [
   {
     id: "energy-wind",
-    clientName: "Nicolai Gheorghian",
+    clientName: "Cezar Russo",
     company: "Energy Wind Moldova",
     role: {
       ru: "Исполнительный директор",
