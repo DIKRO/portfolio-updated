@@ -140,6 +140,17 @@ export function ViberIcon() {
   );
 }
 
+// Товары для дома, домашний ассортимент
+export function HomeIcon() {
+  return (
+    <svg {...sphereProps}>
+      <path d="M3 11.5 12 4l9 7.5" />
+      <path d="M5.5 10v10h13V10" />
+      <path d="M10 20v-5h4v5" />
+    </svg>
+  );
+}
+
 // Универсальная иконка для соцсетей, для которых не завели отдельную —
 // используй как заготовку для «других» ссылок (LinkedIn и т.д.)
 export function LinkIcon() {
@@ -169,6 +180,93 @@ export function ClockIcon() {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
       <circle cx="12" cy="12" r="9" />
       <path d="M12 7v5l3.2 2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// Иконки сфер деятельности клиентов для аватаров в карточках отзывов (см.
+// Reviews.tsx и поле icon в content/reviews.ts). Контурные, на сетке 24×24,
+// stroke берётся из currentColor — цвет и толщину линии задаёт CSS карточки
+// (.avatar в Reviews.module.css), поэтому здесь они не прописаны.
+const sphereProps = {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
+
+// Ветроэнергетика
+export function WindTurbineIcon() {
+  return (
+    <svg {...sphereProps}>
+      <circle cx="12" cy="9" r="1.4" />
+      <path d="M12 7.6V2.5M10.8 9.7 6.4 12.3M13.2 9.7l4.4 2.6M12 10.4V21M8.5 21h7" />
+    </svg>
+  );
+}
+
+// Спорт, спортивная одежда и обувь
+export function SneakerIcon() {
+  return (
+    <svg {...sphereProps}>
+      <path d="M3 17V9.2c0-.7.5-1.2 1.2-1.2H7c.1 1.6 1.3 2.6 2.7 2.6H11l2.3-2.6 1.7 1.6c1.1 1.1 2.6 1.9 4.2 2.3l1.4.4c1 .3 1.7 1.1 1.7 2.1V17z" />
+      <path d="M3 19.5h19M10.8 10.6l1.5 1.5M13.2 8.4l1.5 1.5" />
+    </svg>
+  );
+}
+
+// Одежда, fashion-бренды
+export function ShirtIcon() {
+  return (
+    <svg {...sphereProps}>
+      <path d="M8 3 3.5 5.5l2 4L8 8.5V20h8V8.5l2.5 1 2-4L16 3c-.5 1.5-2.1 2.2-4 2.2S8.5 4.5 8 3z" />
+    </svg>
+  );
+}
+
+// Розничная торговля, магазины
+export function CartIcon() {
+  return (
+    <svg {...sphereProps}>
+      <path d="M3 4h2.5l2.2 11h10.3l1.8-8H6" />
+      <circle cx="9" cy="19" r="1.4" />
+      <circle cx="17" cy="19" r="1.4" />
+    </svg>
+  );
+}
+
+// Стройматериалы, краски, ремонт
+export function PaintRollerIcon() {
+  return (
+    <svg {...sphereProps}>
+      <rect x="4" y="3" width="14" height="5" rx="1.5" />
+      <path d="M18 5.5h2v5h-8v3" />
+      <rect x="10.5" y="13.5" width="3" height="7.5" rx="1" />
+    </svg>
+  );
+}
+
+// Дроны, сервис техники
+export function DroneIcon() {
+  return (
+    <svg {...sphereProps}>
+      <rect x="9.5" y="10" width="5" height="4" rx="1" />
+      <path d="M9.5 10 6.4 6.4M14.5 10l3.1-3.6M9.5 14l-3.1 3.6M14.5 14l3.1 3.6" />
+      <circle cx="5" cy="5" r="2" />
+      <circle cx="19" cy="5" r="2" />
+      <circle cx="5" cy="19" r="2" />
+      <circle cx="19" cy="19" r="2" />
+    </svg>
+  );
+}
+
+// Универсальная иконка — когда для сферы клиента отдельной нет
+export function BriefcaseIcon() {
+  return (
+    <svg {...sphereProps}>
+      <rect x="3" y="7" width="18" height="13" rx="2" />
+      <path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3 13h18" />
     </svg>
   );
 }

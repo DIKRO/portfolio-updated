@@ -205,21 +205,24 @@
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  border-radius: 50%;
+  /* Квадрат со скруглёнными углами вместо круга — внутри иконка сферы
+     деятельности клиента (см. ICONS в Reviews.tsx). Радиус углов меняется
+     одним значением здесь. */
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
   color: var(--accent);
   background: rgba(255, 90, 31, 0.12);
   border: 1px solid rgba(255, 90, 31, 0.25);
-  /* Лёгкое фирменное свечение вокруг аватара включено постоянно, а не
-     только при наведении на карточку — без цитаты/звёзд карточка была
-     визуально пустоватой, это немного "жизни" от бренда компенсирует,
-     не добавляя лишнего контента. */
-  box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.05), 0 0 18px -4px rgba(255, 90, 31, 0.4);
+}
+
+/* Размер иконки внутри аватара и толщина её линии — здесь же. */
+.avatar svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  stroke-width: 1.6;
 }
 
 .identity {
@@ -240,18 +243,24 @@
 }
 
 .companyRole {
+  /* Должность и компания — две строки друг под другом (см. Reviews.tsx):
+     компания всегда начинается с новой строки. Каждая строка при нехватке
+     ширины по-прежнему переносится по границам слов, без разрыва слова
+     посередине и без дефисов. */
+  display: flex;
+  flex-direction: column;
   font-size: 12.5px;
   color: var(--muted);
-  /* Раньше строка должности+компании обрезалась многоточием в одну
-     строку — длинные значения (например, "Senior Marketing Manager"
-     + длинное название компании) теряли часть текста. Теперь при
-     нехватке ширины текст переносится на вторую строку по границам
-     слов, без разрыва слова посередине и без дефисов. */
   white-space: normal;
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
   line-height: 1.35;
+}
+
+.role,
+.company {
+  display: block;
 }
 
 /* Небольшие кавычки в углу карточки, напротив имени — чисто декоративная
@@ -407,7 +416,12 @@
   .avatar {
     width: 40px;
     height: 40px;
-    font-size: 13px;
+    border-radius: 12px;
+  }
+
+  .avatar svg {
+    width: 20px;
+    height: 20px;
   }
 
   .text {

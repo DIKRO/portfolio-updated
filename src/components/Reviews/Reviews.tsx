@@ -3,8 +3,19 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Lang } from "@/content/lang";
-import { reviews } from "@/content/reviews";
-import { QuoteIcon, StarIcon } from "@/components/Icons/Icons";
+import { reviews, ReviewIconKey } from "@/content/reviews";
+import {
+  BriefcaseIcon,
+  CartIcon,
+  DroneIcon,
+  HomeIcon,
+  PaintRollerIcon,
+  QuoteIcon,
+  ShirtIcon,
+  SneakerIcon,
+  StarIcon,
+  WindTurbineIcon,
+} from "@/components/Icons/Icons";
 import styles from "./Reviews.module.css";
 
 interface ReviewsProps {
@@ -41,17 +52,22 @@ const COLLAPSED_MAX_HEIGHT = 560;
 // это условие остаётся верным и там.
 const canClip = reviews.length > 3;
 
-// Инициалы клиента для круглого "аватара" в подписи — фото клиентов
-// собирать не нужно (не все готовы их присылать), инициалы на фирменном
-// оранжевом фоне работают всегда и выглядят единообразно во всей сетке.
-function initials(name: string): string {
-  return name
-    .split(" ")
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase())
-    .join("");
-}
+// Аватар карточки — квадрат со скруглёнными углами и иконкой сферы
+// деятельности клиента вместо фото (фото клиентов собирать не нужно — не
+// все готовы их присылать, а иконка сферы работает всегда и одинаково
+// выглядит во всей сетке). Какая иконка у какого отзыва — поле icon в
+// content/reviews.ts; если оно не указано, показывается универсальный
+// «портфель».
+const ICONS: Record<ReviewIconKey, () => React.ReactElement> = {
+  wind: WindTurbineIcon,
+  sport: SneakerIcon,
+  clothing: ShirtIcon,
+  retail: CartIcon,
+  home: HomeIcon,
+  construction: PaintRollerIcon,
+  drone: DroneIcon,
+  business: BriefcaseIcon,
+};
 
 export default function Reviews({ lang, t }: ReviewsProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -126,15 +142,22 @@ export default function Reviews({ lang, t }: ReviewsProps) {
 
               <header className={styles.header}>
                 <span className={styles.avatar} aria-hidden="true">
-                  {initials(review.clientName)}
+                  {(() => {
+                    const Icon = ICONS[review.icon ?? "business"];
+                    return <Icon />;
+                  })()}
                 </span>
                 <div className={styles.identity}>
                   <span className={styles.name}>{review.clientName}</span>
                   {(review.company || review.role) && (
+                    // Должность и компания — две отдельные строки: должность
+                    // сверху, название компании ВСЕГДА с новой строки (раньше они
+                    // шли одним потоком через « — », и короткое название
+                    // компании могло остаться на первой строке рядом с
+                    // должностью).
                     <span className={styles.companyRole}>
-                      {review.role ? review.role[lang] : null}
-                      {review.role && review.company ? " — " : null}
-                      {review.company}
+                      {review.role && <span className={styles.role}>{review.role[lang]}</span>}
+                      {review.company && <span className={styles.company}>{review.company}</span>}
                     </span>
                   )}
                 </div>
