@@ -21,7 +21,7 @@ interface HeaderProps {
       generalTab: string;
       note: { text: string; cta: string };
       items: { question: string; description?: string; answer: string }[];
-      services: { tab: string; items: { question: string; description?: string; answer: string }[] }[];
+      services: { tab: string; items: { group?: string; question: string; description?: string; answer: string }[] }[];
     };
   };
 }

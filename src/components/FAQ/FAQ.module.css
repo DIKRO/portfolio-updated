@@ -141,16 +141,37 @@
 
 .item {
   padding: 20px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Разделительная линия — только МЕЖДУ соседними вопросами (сверху у
+   каждого следующего), а не под каждым. Поэтому линии нет ни перед
+   подзаголовком группы, ни перед заметкой в конце вкладки, ни после
+   подзаголовка — на границах блоков остаётся только отступ. */
+.item + .item {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .item:first-child {
   padding-top: 0;
 }
 
-.item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+/* Подзаголовок группы вопросов внутри вкладки (см. group в FAQ.tsx),
+   например «Моушн-дизайн» / «Монтаж видео». Маленькая фирменная метка с
+   тонкой линией снизу — отделяет блоки, не споря с вопросами за внимание. */
+.groupLabel {
+  margin: 28px 0 4px;
+  padding-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid rgba(255, 90, 31, 0.28);
+}
+
+/* Первый вопрос после метки — небольшой отступ от неё (линии над ним нет). */
+.groupLabel + .item {
+  padding-top: 16px;
 }
 
 .question {

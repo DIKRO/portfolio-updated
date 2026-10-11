@@ -27,7 +27,9 @@ interface GalleryMedia {
 
 export type GalleryRow =
   | ({ type: "single"; isPortrait: boolean } & GalleryMedia)
-  | { type: "pair"; items: [GalleryMedia, GalleryMedia] };
+  // columns задан только у рядов "сетки" (galleryColumns у проекта): сколько
+  // фото в полном ряду. У обычных авто-пар (2 портретных подряд) его нет.
+  | { type: "pair"; items: GalleryMedia[]; columns?: number };
 
 // Фолбэк на случай, если реальные размеры прочитать не удалось (формат,
 // который readImageSize не разбирает — svg/webp/gif, либо файл не найден).
@@ -136,7 +138,13 @@ function describe(item: GalleryItem, index: number): GalleryMedia {
  * файла, см. GalleryVideoItem выше) это может дать долю пикселя
  * расхождения по высоте — не критично на глаз.
  */
-export function buildGalleryRows(items: GalleryItem[]): GalleryRow[] {
+export function buildGalleryRows(items: GalleryItem[], columns?: number): GalleryRow[] {
+  // Сетка включается только если у проекта указан galleryColumns ≥ 2 — иначе
+  // всё работает ровно как раньше (авто-пары портретных элементов).
+  if (columns && columns >= 2) {
+    return buildColumnRows(items, Math.min(6, Math.floor(columns)));
+  }
+
   const rows: GalleryRow[] = [];
   let i = 0;
 
@@ -156,5 +164,59 @@ export function buildGalleryRows(items: GalleryItem[]): GalleryRow[] {
     }
   }
 
+  return rows;
+}
+
+/**
+ * Режим сетки (galleryColumns у проекта): ФОТО раскладываются по `columns`
+ * штук в ряд, подряд по порядку из images, независимо от ориентации; ширина
+ * внутри ряда делится пропорционально соотношению сторон (та же логика, что
+ * у обычной пары — одинаковая высота, без обрезки). Если фото в конце не
+ * хватает на полный ряд, последний ряд остаётся неполным (ячейки той же
+ * ширины, что и в полных рядах, по центру).
+ *
+ * Видео в сетку не попадает: оно прерывает серию фото и раскладывается как
+ * раньше — отдельной строкой или в паре с соседним ВИДЕО (с фото в этом
+ * режиме видео в пару не встаёт).
+ */
+function buildColumnRows(items: GalleryItem[], columns: number): GalleryRow[] {
+  const rows: GalleryRow[] = [];
+  let run: GalleryMedia[] = [];
+
+  const flush = () => {
+    for (let k = 0; k < run.length; k += columns) {
+      rows.push({ type: "pair", items: run.slice(k, k + columns), columns });
+    }
+    run = [];
+  };
+
+  let i = 0;
+  while (i < items.length) {
+    const item = items[i];
+
+    if (typeof item === "string") {
+      run.push(describe(item, i));
+      i += 1;
+      continue;
+    }
+
+    flush();
+    const current = describe(item, i);
+    const nextItem = items[i + 1];
+    const next = nextItem && typeof nextItem !== "string" ? describe(nextItem, i + 1) : null;
+
+    const curIsPortrait = current.height >= current.width;
+    const nextIsPortrait = next ? next.height >= next.width : false;
+
+    if (next && curIsPortrait && nextIsPortrait) {
+      rows.push({ type: "pair", items: [current, next] });
+      i += 2;
+    } else {
+      rows.push({ type: "single", isPortrait: curIsPortrait, ...current });
+      i += 1;
+    }
+  }
+
+  flush();
   return rows;
 }

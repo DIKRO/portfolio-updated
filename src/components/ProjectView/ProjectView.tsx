@@ -8,6 +8,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useLang } from "@/content/lang";
 import { Project, CategoryKey } from "@/types/project";
 import { GalleryRow } from "@/lib/imageOrientation";
+
+// Промежуток между фото в ряду сетки (galleryColumns), px. Должен совпадать с
+// gap у .gridRow в ProjectView.module.css.
+const GRID_GAP = 16;
 import { shimmerBlurDataURL } from "@/lib/shimmer";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -232,12 +236,28 @@ export default function ProjectView({
             if (row.type === "pair") {
               return (
                 <motion.div
-                  key={row.items[0].key + row.items[1].key}
+                  key={row.items.map((m) => m.key).join("|")}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5 }}
-                  className={styles.pairRow}
+                  className={
+                    row.columns
+                      ? `${styles.pairRow} ${styles.gridRow}${row.columns >= 3 ? ` ${styles.gridRowDense}` : ""}`
+                      : styles.pairRow
+                  }
+                  // Ряд сетки (galleryColumns): ширина = n ячеек полного ряда
+                  // + промежутки между ними, поэтому в неполном последнем ряду
+                  // ячейки остаются той же ширины, что и в полных (а не
+                  // растягиваются на всю строку). Для полного ряда это ровно
+                  // 100%. GRID_GAP — тот же gap, что у .gridRow в CSS.
+                  style={
+                    row.columns
+                      ? {
+                          width: `calc((100% - ${(row.columns - 1) * GRID_GAP}px) / ${row.columns} * ${row.items.length} + ${(row.items.length - 1) * GRID_GAP}px)`,
+                        }
+                      : undefined
+                  }
                 >
                   {row.items.map((media, itemIndex) => {
                     const flatIndex = indices[itemIndex];
@@ -300,7 +320,11 @@ export default function ProjectView({
                           loading="lazy"
                           placeholder="blur"
                           blurDataURL={shimmerBlurDataURL(media.width, media.height)}
-                          sizes="(max-width: 768px) 90vw, 45vw"
+                          sizes={
+                            row.columns
+                              ? `(max-width: 768px) ${row.columns >= 3 ? "50vw" : "90vw"}, ${Math.ceil(70 / row.columns)}vw`
+                              : "(max-width: 768px) 90vw, 45vw"
+                          }
                           // Без этого Next/Vercel отдаёт /_next/image по умолчанию с
                           // quality=75 — а исходники уже пережаты локально скриптом
                           // optimize-images.mjs (quality 82). Вторая пересжатие поверх

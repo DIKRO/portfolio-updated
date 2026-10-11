@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { EmailIcon } from "@/components/Icons/Icons";
 import CopyEmailLink from "@/components/CopyEmailLink/CopyEmailLink";
@@ -8,6 +8,11 @@ import { SOCIALS } from "@/content/socials";
 import styles from "./FAQ.module.css";
 
 interface FaqItem {
+  // Необязательный подзаголовок-группа внутри вкладки: когда у очередного
+  // вопроса group отличается от предыдущего, перед ним выводится метка
+  // (например, «Моушн-дизайн» / «Монтаж видео» во вкладке «Моушн и
+  // монтаж»). Вопросы без group, идущие подряд, группой не помечаются.
+  group?: string;
   question: string;
   description?: string;
   answer: string;
@@ -145,12 +150,17 @@ export default function FAQ({ open, onClose, initialTab = 0, onContact, contact,
             </div>
 
             <div className={styles.scrollArea} ref={scrollRef}>
-              {current.items.map((item) => (
-                <div key={item.question} className={styles.item}>
-                  <h3 className={styles.question}>{item.question}</h3>
-                  {item.description && <p className={styles.description}>{item.description}</p>}
-                  <p className={styles.answer}>{item.answer}</p>
-                </div>
+              {current.items.map((item, i) => (
+                <Fragment key={item.question}>
+                  {item.group && item.group !== current.items[i - 1]?.group && (
+                    <h4 className={styles.groupLabel}>{item.group}</h4>
+                  )}
+                  <div className={styles.item}>
+                    <h3 className={styles.question}>{item.question}</h3>
+                    {item.description && <p className={styles.description}>{item.description}</p>}
+                    <p className={styles.answer}>{item.answer}</p>
+                  </div>
+                </Fragment>
               ))}
 
               <div className={styles.note}>

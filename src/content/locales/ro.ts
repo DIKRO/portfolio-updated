@@ -28,8 +28,8 @@ export const ro = {
         text: "Creez logo-ul, culorile, tipografia și ghidul de utilizare. Livrez fișiere vectoriale pentru print și web.",
       },
       {
-        title: "Motion design",
-        text: "Animez logo-uri și realizez clipuri promo, reels-uri și grafică pentru ecrane LED și prezentări.",
+        title: "Motion design și montaj video",
+        text: "Animez logo-uri și grafică pentru ecrane LED și prezentări, montez clipuri promo, reels-uri și shorts-uri.",
       },
       {
         title: "Design digital",
@@ -133,19 +133,39 @@ export const ro = {
         ],
       },
       {
-        tab: "Motion",
+        tab: "Motion și montaj",
         items: [
           {
-            question: "Ce se poate anima?",
-            description: "Motion nu înseamnă doar clipuri — domeniul de utilizare e mai larg.",
-            answer: "Logo-uri, clipuri publicitare, reels-uri și story-uri, prezentări, grafică pentru ecrane LED și ecrane din punctele de vânzare.",
+            question: "Prin ce diferă motion design-ul de montajul video?",
+            description: "Sunt direcții de lucru distincte, care se îmbină adesea în cadrul aceluiași proiect.",
+            answer: "Motion design-ul înseamnă crearea de grafică animată: logo-uri, text, ilustrații și alte elemente vizuale care prind viață în mișcare. Montajul video înseamnă asamblarea unui videoclip din material existent: selecția și succesiunea cadrelor, tranziții, subtitrări, elemente grafice. Cele două direcții se îmbină frecvent — de exemplu, într-un clip publicitar în care materialul montat este completat cu titluri animate și un intro.",
           },
           {
+            group: "Motion design",
+            question: "Ce se poate anima?",
+            description: "Motion design-ul lucrează cu grafică, nu cu material filmat.",
+            answer: "Logo-uri, text și infografice, bannere publicitare și animații de intro, grafică pentru prezentări, ecrane LED și ecrane din punctele de vânzare.",
+          },
+          {
+            group: "Motion design",
             question: "Se poate anima un logo existent?",
             description: "O situație frecventă: logo-ul există, animația nu.",
-            answer: "Da, animația se face pornind de la logo-ul final. Ideal este să existe fișierul vectorial; dacă nu, logo-ul trebuie mai întâi refăcut.",
+            answer: "Da, animația se creează pornind de la logo-ul final. Ideal este să existe fișierul vectorial; dacă nu, logo-ul trebuie mai întâi refăcut.",
           },
           {
+            group: "Montaj video",
+            question: "Ce include montajul video?",
+            description: "Montajul înseamnă lucru cu materialul video furnizat de client.",
+            answer: "Asamblarea unui clip din materialul furnizat: tăierea și succesiunea cadrelor, tranziții, subtitrări și text animat, elemente grafice, intro și cadru final de brand. Așa se realizează clipurile publicitare, reels-urile și shorts-urile, videoclipurile pentru story-uri și ecrane.",
+          },
+          {
+            group: "Montaj video",
+            question: "Filmați video? Dar dacă nu am materiale?",
+            description: "Filmarea și montajul sunt sarcini diferite.",
+            answer: "Nu, nu filmez, ci lucrez cu materialele furnizate de client (filmarea este posibilă doar în cazuri rare, dacă clientul este din orașul meu). Dacă nu aveți deloc materiale, pot propune crearea unui avatar AI — detaliile se discută individual.",
+          },
+          {
+            group: "Montaj video",
             question: "În ce format primesc videoclipul?",
             description: "Formatul depinde de locul unde va fi afișat videoclipul.",
             answer: "Adaptat platformei: de exemplu, video vertical pentru reels și story-uri, orizontal pentru site și prezentări, o rezoluție anume pentru ecran LED. Parametrii se stabilesc înainte de începerea lucrului.",

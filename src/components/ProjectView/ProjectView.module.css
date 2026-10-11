@@ -363,6 +363,22 @@
   min-width: 0;
 }
 
+/* Сетка фото (galleryColumns у проекта): ряд из 2–6 фото. Те же правила
+   деления ширины, что у обычной пары (.pairRow .imageWrap выше), только
+   промежуток меньше, а ширина самого ряда задаётся инлайном из
+   ProjectView.tsx (так неполный последний ряд не растягивается).
+   GRID_GAP в ProjectView.tsx должен совпадать с gap здесь. */
+.gridRow {
+  gap: 16px;
+}
+
+/* Между соседними рядами сетки — тот же промежуток 16px, что и внутри ряда
+   (у .gallery общий gap 24px, поэтому подтягиваем ряды на разницу). */
+.gridRow + .gridRow {
+  margin-top: -8px;
+}
+
+
 .galleryVideo {
   display: block;
   width: auto;
@@ -620,5 +636,30 @@
 
   .ctaRow {
     gap: 12px;
+  }
+}
+
+/* Телефон, сетка из 3+ фото: по 2 в ряд (вместо одного в колонку — иначе
+   30 фото превращаются в бесконечную ленту). Если в ряду нечётное число
+   фото, последнее встаёт на всю ширину. Ширина ряда — 100% (!important
+   нужен, потому что на десктопе она задаётся инлайном). Сетка из 2 фото
+   на телефоне, как и обычная пара, идёт в колонку. */
+@media (max-width: 768px) {
+  .gridRow {
+    width: 100% !important;
+  }
+
+  .pairRow.gridRowDense {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .gridRowDense > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .gridRow + .gridRow {
+    margin-top: -12px;
   }
 }

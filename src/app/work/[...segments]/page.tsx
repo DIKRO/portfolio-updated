@@ -100,7 +100,7 @@ export default async function ProjectPage({ params }: PageProps) {
     notFound();
   }
 
-  const galleryRows = buildGalleryRows(project.images);
+  const galleryRows = buildGalleryRows(project.images, project.galleryColumns);
 
   // Если пользователь пришёл из конкретной категории (первый сегмент пути —
   // /work/category/slug), "следующий проект" листает только внутри неё, по

@@ -28,8 +28,8 @@ export const en = {
         text: "I design the logo, colors, typography and guidelines, and deliver vector files for print and web.",
       },
       {
-        title: "Motion Design",
-        text: "I animate logos and make promo videos, reels and graphics for LED screens and presentations.",
+        title: "Motion Design & Video Editing",
+        text: "I animate logos and graphics for LED screens and presentations, and edit promo videos, reels and shorts.",
       },
       {
         title: "Digital Design",
@@ -132,19 +132,39 @@ export const en = {
         ],
       },
       {
-        tab: "Motion",
+        tab: "Motion & editing",
         items: [
           {
-            question: "What can be animated?",
-            description: "Motion is not only videos — the range of uses is wider.",
-            answer: "Logos, promo videos, reels and stories, presentations, graphics for LED screens and in-store displays.",
+            question: "How is motion design different from video editing?",
+            description: "These are separate areas of work that are often combined within a single project.",
+            answer: "Motion design is the creation of animated graphics: logos, text, illustrations and other visual elements brought to life through movement. Video editing is assembling a video from existing footage: selecting and sequencing shots, transitions, subtitles and graphic treatment. The two are often combined — for example, in a promo video where edited footage is complemented by animated titles and an intro.",
           },
           {
+            group: "Motion design",
+            question: "What can be animated?",
+            description: "Motion design works with graphics rather than filmed footage.",
+            answer: "Logos, text and infographics, ad banners and intros, graphics for presentations, LED screens and in-store displays.",
+          },
+          {
+            group: "Motion design",
             question: "Can you animate an existing logo?",
             description: "A common situation: the logo exists, the animation doesn't.",
-            answer: "Yes, animation is built from the finished logo. It's best if you have a vector file of it; if not, the logo has to be recreated first.",
+            answer: "Yes, the animation is built from the finished logo. It's best if you have a vector file of it; if not, the logo has to be recreated first.",
           },
           {
+            group: "Video editing",
+            question: "What does video editing include?",
+            description: "Editing means working with footage provided by the client.",
+            answer: "Assembling a video from the provided material: cutting and sequencing shots, transitions, subtitles and animated text, graphic treatment, a branded intro and end card. This is how promo videos, reels and shorts, stories and videos for screens are made.",
+          },
+          {
+            group: "Video editing",
+            question: "Do you shoot video? What if I have no footage?",
+            description: "Shooting and editing are different tasks.",
+            answer: "No, I don't shoot video — I work with the footage provided by the client (filming is possible only in rare cases, and only if the client is from my city). If you have no footage at all, I can offer to create an AI avatar — the details are discussed individually.",
+          },
+          {
+            group: "Video editing",
             question: "What format will I get the video in?",
             description: "The format depends on where the video will be shown.",
             answer: "Matched to the platform: for example, vertical video for reels and stories, horizontal for websites and presentations, a specific resolution for an LED screen. We clarify the parameters before the work starts.",
