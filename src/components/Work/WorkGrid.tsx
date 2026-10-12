@@ -18,8 +18,10 @@ import { CategoryKey, Project } from "@/types/project";
 // разницы нет, откуда оно взято — берём первое найденное.
 function getPreviewVideoSrc(project: Project): string | undefined {
   if (project.video) return project.video;
-  const inlineVideo = project.images.find((item) => typeof item !== "string");
-  return inlineVideo?.video;
+  for (const item of project.images) {
+    if (typeof item !== "string" && "video" in item) return item.video;
+  }
+  return undefined;
 }
 import { shimmerBlurDataURL } from "@/lib/shimmer";
 import styles from "./WorkGrid.module.css";

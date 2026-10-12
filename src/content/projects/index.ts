@@ -1092,7 +1092,7 @@ export const projects: Project[] = [
             en: "Informational meat stand, Măcelăria Vitalim",
             ro: "Stand informativ de carne, Măcelăria Vitalim" },
     categoryKey: "packaging",
-    year: 2024,
+    year: 2025,
     cover: "/images/work/packaging/macalaria_steclo/cover-36.jpg",
     images: ["/images/work/packaging/macalaria_steclo/1.jpg",
             "/images/work/packaging/macalaria_steclo/2.jpg",
@@ -1113,7 +1113,7 @@ export const projects: Project[] = [
             en: "Wide-format banner for Plăcinte",
             ro: "Banner lat pentru Plăcinte" },
     categoryKey: "packaging",
-    year: 2024,
+    year: 2025,
     cover: "/images/work/packaging/placinte_banner/cover-40.jpg",
     images: ["/images/work/packaging/placinte_banner/1.jpg",
             "/images/work/packaging/placinte_banner/2.jpg",],
@@ -1166,6 +1166,35 @@ export const projects: Project[] = [
       ru: "Разработка крупноформатного макета для широкоформатной печати на пленке Oracal, предназначенного для оформления фасада одного из филиалов магазина «Telemarket». Дизайн рекламной инсталляции посвящен линейке профессиональной уходовой косметики «Oriense Professional». Композиция выдержана в нежной весенне-цветочной эстетике с преобладанием пастельных розовых оттенков, объемными подиумами для презентации продукции (шампуни, гели для душа, скрабы, лосьоны и мисты) и выразительным брендингом, что создает привлекательный визуальный акцент на экстерьере торговой точки и привлекает внимание проходящих клиентов.",
       en: "Development of a large-scale visual layout for Oracal vinyl facade printing, tailored for the storefront branding of a «Telemarket» store branch. The design highlights the professional cosmetics line „Oriense Professional”. Executed in a delicate spring-floral aesthetic featuring soft pink tones, multi-tiered display podiums showcasing product lines (shampoos, body care, scrubs, lotions, and mists), and clear brand typography, the installation serves as an eye-catching exterior display to engage foot traffic.",
       ro: "Crearea unei machete de mare format pentru imprimarea pe folie Oracal, destinată decorării fațadei unei filiale a magazinului „Telemarket”. Designul promovează gama de cosmetice profesionale „Oriense Professional”. Conceptul vizual este realizat într-o estetică delicată de primăvară, dominată de nuanțe pastelate de roz, podiumuri expoziționale pentru gama de produse (șampon, geluri de duș, peeling, loțiuni și spray-uri de corp) și un branding clar, creând un punct de atracție vizuală puternic la exteriorul magazinului.",
+    },
+  },
+    {
+    id: "93",
+    order: 32.1,
+    slug: "telemarket_banneri_tovari",
+    client: "telemarket",
+    title: { ru: "Разработка рекламных баннеров с продукцией для сети магазинов 'Telemarket'",
+            en: "Promotional Banner Design Series for 'Telemarket' Retail Chain",
+            ro: "Design de bannere publicitare promoționale pentru rețeaua de magazine 'Telemarket'" },
+    categoryKey: "packaging",
+    year: 2025,
+    cover: "/images/work/packaging/telemarket_banneri_tovari/telemarket_banneri_tovari-cover.jpg",
+    images: [
+      { row: [
+          "/images/work/packaging/telemarket_banneri_tovari/1.jpg",
+          "/images/work/packaging/telemarket_banneri_tovari/2.jpg",
+          "/images/work/packaging/telemarket_banneri_tovari/3.jpg",
+      ] },
+      { row: [
+          "/images/work/packaging/telemarket_banneri_tovari/4.jpg",
+          "/images/work/packaging/telemarket_banneri_tovari/5.jpg",
+      ] },
+    ],
+
+    description: {
+      ru: "Разработка серии рекламных баннеров для демонстрации акционных товаров из каталога компании 'Telemarket'. Дизайн выдержан в интерьерной стилистике и ориентирован на наглядное привлечение внимания к специальным предложениям. Каждый макет включает фото продукции, наименование на двух языках (румынском и русском), объем и крупную плашку с обычной ценой и скидочной стоимостью по программе 'Preț card TOP' в леях. В портфолио проект представлен в виде печатных баннеров на мобильных рекламных стендах.",
+      en: "Design of a series of promotional banners created to showcase discounted items from the 'Telemarket' product catalog. The visual layout focuses on clear, high-impact product presentation within ambient lifestyle backgrounds. Each design incorporates product imagery, bilingual titles (Romanian & Russian), sizing details, and a bold price badge comparing standard prices with 'Preț card TOP' loyalty rates in LEI. Presented in the portfolio as printed display banners on freestanding stands.",
+      ro: "Crearea unei serii de bannere publicitare pentru prezentarea produselor aflate în promoție din catalogul companiei 'Telemarket'. Conceptul vizual oferă o prezentare clară și atractivă a ofertelor speciale. Fiecare machetă conține imaginea produsului, denumirea bilingvă (română și rusă), volumul și o plachetă evidențiată cu prețul obișnuit și cel de ofertă prin cardul 'Preț card TOP' în lei. Proiectul este prezentat în portofoliu sub formă de bannere tipărite pe standuri expoziționale mobile.",
     },
   },
 

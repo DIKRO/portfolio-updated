@@ -14,10 +14,24 @@ export interface GalleryVideoItem {
   height: number;
 }
 
-export type GalleryItem = string | GalleryVideoItem;
+// Явный ряд фото: вместо одного пути в images ставится объект { row: [...] } —
+// все указанные фото (от 2 до 6) встают в ОДНУ строку на всю ширину, вне
+// зависимости от ориентации. Так можно собрать любую раскладку вручную,
+// например «3 фото в первой строке, 2 во второй»: два объекта { row } подряд.
+// Видео в такой ряд не входит (только пути к фото). Остальные элементы
+// images раскладываются как обычно.
+export interface GalleryGroupItem {
+  row: string[];
+}
+
+export type GalleryItem = string | GalleryVideoItem | GalleryGroupItem;
+
+function isGroup(item: GalleryItem): item is GalleryGroupItem {
+  return typeof item === "object" && "row" in item;
+}
 
 interface GalleryMedia {
-  item: GalleryItem;
+  item: string | GalleryVideoItem;
   kind: "image" | "video";
   key: string;
   ratio: number;
@@ -101,7 +115,7 @@ function getImageSize(src: string): { width: number; height: number } | null {
 // ругается «two children with the same key» и может задвоить/потерять
 // элементы галереи. Ключ используется только как React-key и ключ в Map
 // с видео-элементами — на сами пути к файлам он не влияет.
-function describe(item: GalleryItem, index: number): GalleryMedia {
+function describe(item: string | GalleryVideoItem, index: number): GalleryMedia {
   if (typeof item === "string") {
     const size = getImageSize(item) ?? FALLBACK_SIZE;
     return { item, kind: "image", key: `${item}#${index}`, ratio: size.width / size.height, ...size };
@@ -149,8 +163,19 @@ export function buildGalleryRows(items: GalleryItem[], columns?: number): Galler
   let i = 0;
 
   while (i < items.length) {
-    const current = describe(items[i], i);
-    const next = items[i + 1] ? describe(items[i + 1], i + 1) : null;
+    const item = items[i];
+
+    // Явный ряд { row: [...] } — отдельная строка, в авто-пары не участвует.
+    if (isGroup(item)) {
+      rows.push(buildGroupRow(item, i));
+      i += 1;
+      continue;
+    }
+
+    const current = describe(item, i);
+    const nextItem = items[i + 1];
+    // Если следующий элемент — явный ряд, с ним в пару не встаём.
+    const next = nextItem && !isGroup(nextItem) ? describe(nextItem, i + 1) : null;
 
     const curIsPortrait = current.height >= current.width;
     const nextIsPortrait = next ? next.height >= next.width : false;
@@ -165,6 +190,22 @@ export function buildGalleryRows(items: GalleryItem[], columns?: number): Galler
   }
 
   return rows;
+}
+
+/**
+ * Строка из явного ряда { row: [...] }: фото делят ширину пропорционально
+ * соотношению сторон (одинаковая высота, без обрезки) и занимают всю ширину
+ * строки. columns = число фото в ряду — по нему ряд оформляется как строка
+ * «сетки» (тот же промежуток 16px, на телефоне 3+ фото идут по 2 в ряд).
+ * Если указано одно фото — это обычная одиночная строка; больше 6 — берутся
+ * первые 6.
+ */
+function buildGroupRow(group: GalleryGroupItem, index: number): GalleryRow {
+  const media = group.row.slice(0, 6).map((src, j) => describe(src, index * 100 + j));
+  if (media.length === 1) {
+    return { type: "single", isPortrait: media[0].height >= media[0].width, ...media[0] };
+  }
+  return { type: "pair", items: media, columns: media.length };
 }
 
 /**
@@ -201,9 +242,20 @@ function buildColumnRows(items: GalleryItem[], columns: number): GalleryRow[] {
     }
 
     flush();
+
+    // Явный ряд { row: [...] } имеет приоритет над общей сеткой проекта.
+    if (isGroup(item)) {
+      rows.push(buildGroupRow(item, i));
+      i += 1;
+      continue;
+    }
+
     const current = describe(item, i);
     const nextItem = items[i + 1];
-    const next = nextItem && typeof nextItem !== "string" ? describe(nextItem, i + 1) : null;
+    const next =
+      nextItem && typeof nextItem !== "string" && !isGroup(nextItem)
+        ? describe(nextItem, i + 1)
+        : null;
 
     const curIsPortrait = current.height >= current.width;
     const nextIsPortrait = next ? next.height >= next.width : false;
