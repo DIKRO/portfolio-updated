@@ -141,9 +141,9 @@ export const reviews: Review[] = [
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
     countryCode: "MD",
     text: {
-      ru: "Заказ был выполнен в полном объеме, в точном соответствии с оговоренными условиями и в установленные сроки. Работа была организована четко и без задержек, что позволило получить результат именно в том виде, в каком он ожидался.",
-      en: "The order was fulfilled in full, in strict accordance with the agreed-upon terms and within the specified timeframe. The work was organized efficiently and without delays, which ensured that the result was exactly as expected.",
-      ro: "Comanda a fost executată în întregime, în conformitate strictă cu condițiile convenite și în termenele stabilite. Lucrările au fost organizate în mod riguros și fără întârzieri, ceea ce a permis obținerea unui rezultat exact așa cum era de așteptat.",
+      ru: "Дмитрий - отличный дизайнер с современным подходом и свежим взглядом. Очень порадовала его гибкость и скорость: под любые задачи и правки адаптируется моментально. В процессе работы всегда мобилен, лоялен и нацелен на результат. С первых минут общаться было легко и комфортно. Обязательно буду обращаться ещё!",
+      en: "Dmitry is an excellent designer with a modern approach and a fresh perspective. I was very impressed by his flexibility and speed: he adapts instantly to any task or revision. Throughout the project, he’s always responsive, reliable, and results-oriented. From the very first moments, it was easy and comfortable to work with him. I’ll definitely be reaching out to him again!",
+      ro: "Dmitri este un designer excelent, cu o abordare modernă și o viziune proaspătă. M-au încântat foarte mult flexibilitatea și rapiditatea lui: se adaptează instantaneu la orice sarcină și modificare. În timpul lucrului, este întotdeauna flexibil, loial și orientat spre rezultat. Încă din primele minute, comunicarea a fost ușoară și plăcută. Cu siguranță voi apela din nou la el!",
     },
   },
 ];
