@@ -1426,7 +1426,7 @@ export const projects: Project[] = [
   },
   {
     id: "116",
-    order: 36.2,
+    order: 34.1,
     slug: "moldclima_flaeri",
     client: "telemarket",
     title: { ru: "Разработка промо-флаеров бытовой техники Hyundai для дистрибьютора 'Moldclima'",
@@ -1446,6 +1446,33 @@ export const projects: Project[] = [
       ru: "Дизайн серии двухсторонних рекламных флаеров для линейки бытовой техники Hyundai 'Home Appliances' (водонагреватели серии 'Ultratherm'/'Ironcore' и микроволновые печи), разработанный для официального дистрибьютора в Молдове — компании 'Moldclima'. Лицевая сторона выполнена в фирменных темно-синих тонах брендбука Hyundai с презентацией ключевых моделей, интерьерными рендерами, знаком качества 'Made for Europe' и контактами отдела оптовых продаж. Оборотная сторона наглядно структурирует технические характеристики, габариты и сравнительные таблицы моделей на двух языках (румынском и русском) с использованием понятной пиктографики.",
       en: "Visual design of a series of double-sided promotional flyers for Hyundai 'Home Appliances' product lines (water heaters and microwave ovens), tailored for 'Moldclima' — the official distributor in Moldova. The front side features Hyundai's signature deep blue corporate aesthetic, highlighting key product models alongside lifestyle interior renders, the 'Made for Europe' quality mark, and wholesale contact details. The back side provides a clear, bilingual (Romanian & Russian) layout with detailed technical specification tables, dimensions, and custom icon sets for feature highlights.",
       ro: "Designul unei serii de pliante promoționale cu două fețe pentru gama de electrocasnice Hyundai 'Home Appliances' (boilere electrice și cuptoare cu microunde), creat pentru distribuitorul oficial în Moldova — compania 'Moldclima'. Fața pliantului respectă identitatea vizuală Hyundai în nuanțe de albastru închis, prezentând modelele principale, randări din interior, marcajul de calitate 'Made for Europe' și datele de contact pentru vânzări en-gros. Verso structurează tabelar specificațiile tehnice, dimensiunile și caracteristicile comparative în două limbi (română și rusă), completate de pictograme intuitive.",
+    },
+  },
+  {
+    id: "117",
+    order: 34.2,
+    slug: "chetongrup_scotch",
+    client: "cheton",
+    title: { ru: "Дизайн эткетки и адаптация линейки малярных лент 'Smart Fix' для компании Cheton Grup",
+              en: "Masking Tape Label Design & Packaging Adaptations for 'Smart Fix', Cheton Grup",
+              ro: "Design de etichetă și adaptare linie de benzi de mascare 'Smart Fix' pentru Cheton Grup" },
+    categoryKey: "print",
+    year: 2025,
+    cover: "/images/work/print/chetongrup_scotch/chetongrup_scotch-cover.jpg",
+    galleryColumns: 2,
+    images: [
+      { row: [
+          "/images/work/print/chetongrup_scotch/1.jpg",
+          "/images/work/print/chetongrup_scotch/2.jpg",
+      ] },
+      { row: [
+          "/images/work/print/chetongrup_scotch/3.jpg",
+      ] },
+    ],
+    description: {
+      ru: "Разработка контрастного промышленного дизайна этикетки для малярной ленты 'Bandă de Mascare Universală' линейки 'Smart Fix', производимой по заказу компании 'Cheton Grup'. Визуальная концепция построена на сочетании индустриального черного и желтого цветов с четкой шрифтовой иерархией, фирменным логотипом с крокодилом и набором пиктограмм технических характеристик, отражающих температурный режим, сцепление и области применения. В рамках проекта единый стилистический шаблон был успешно адаптирован под всю размерную линейку рулонов различной ширины и намотки, охватывающую варианты от 19 мм х 25 м до 72 мм х 25 м.",
+      en: "Development of a high-visibility industrial label design for 'Smart Fix' universal masking tape manufactured for 'Cheton Grup'. The core visual identity relies on a high-contrast black-and-yellow color scheme, strong typography, the signature crocodile logo, and clear technical feature icons representing temperature resistance, adhesion, and application suitability. The master design template was effectively scaled and adapted across the entire product lineup, accommodating various tape widths and lengths ranging from 19mm x 25m up to 72mm x 25m.",
+      ro: "Crearea designului industrial de etichetă pentru banda de mascare universală 'Smart Fix', produsă la comanda companiei 'Cheton Grup'. Conceptul vizual se bazează pe o combinație contrastantă de galben și negru industrial, o ierarhie tipografică clară, logotipul cu crocodil și o serie de pictograme tehnice care indică regimul de temperatură, aderența și domeniul de utilizare. Macheta principală a fost adaptată cu succes pentru întreaga gamă de dimensiuni a rolelor, acoperind diverse lățimi și lungimi, de la 19 mm x 25 m până la 72 mm x 25 m.",
     },
   },
 
