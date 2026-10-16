@@ -133,7 +133,7 @@ export const projects: Project[] = [
             en: "Logo for the Kreola Chocolate Factory in Romania",
             ro: "Logo pentru fabrica de ciocolată Kreola din România" },
     categoryKey: "branding",
-    year: 2024,
+    year: 2025,
     cover: "/images/work/logo/kreola/cover-30.jpg",
     images: [
       "/images/work/logo/kreola/work1.jpg",
@@ -1041,6 +1041,30 @@ export const projects: Project[] = [
       ro: "Crearea unui șablon vizual universal și a unei serii de carduri promoționale pentru brandul turcesc de articole de bucătărie 'DecoBella' în cadrul campaniei companiei 'Telemarket' (perioada promoției: 16–22.03.2026). Designul utilizează o paletă elegantă în nuanțe de bordo și roz pal, combinând armonios elementele de co-branding și o plachetă vizibilă pentru reducerea exclusivă online de -20%. Structura este optimizată pentru prezentarea caserolelor și caserolelor duble pentru alimente, integrând spații pentru imaginea produsului, denumire, capacitate în litri, un bloc contrastant de preț (vechi/nou în mdl) și detalii privind livrarea în toată Moldova.",
     },
   },
+  {
+    id: "77",
+    order: 10.1,
+    featuredOrder: 5,
+    slug: "HUGE_webbanners_marketing",
+    client: "HUGE",
+    title: { ru: "Разработка серии рекламных баннеров для продвижения комплексного маркетинга 'HUGE'",
+              en: "Performance Ad Banner Series for 'HUGE' Integrated Marketing Agency",
+              ro: "Design serie de bannere publicitare pentru promovarea serviciilor de marketing 'HUGE'" },
+    categoryKey: "digital",
+    year: 2026,
+    cover: "/images/work/web/HUGE_webbanners_marketing/HUGE_webbanners_marketing-cover.jpg",
+    galleryColumns: 2,
+    images: ["/images/work/web/HUGE_webbanners_marketing/1.jpg",
+              "/images/work/web/HUGE_webbanners_marketing/2.jpg",
+              "/images/work/web/HUGE_webbanners_marketing/3.jpg",
+              "/images/work/web/HUGE_webbanners_marketing/4.jpg",],
+                
+    description: {
+      ru: "Разработка серии рекламных баннеров для лидогенерации и продвижения комплексных маркетинговых услуг агентства 'HUGE'. Оформление выдержано в фирменном брендинге компании с использованием глубоких темных фонов и контрастных оранжевых акцентов. Визуальные решения построены на оригинальных метафорах — шахматных фигурах, античной скульптуре 'Мыслитель', растущей графике и наглядных карточках сравнения. Каждый макет фокусируется на конкретной идее, демонстрируя ценность выделенной команды и направляя пользователя к подаче заявки через выразительные кнопки целевого действия.",
+      en: "Development of a promotional banner series designed for lead generation and advertising 'HUGE' agency's full-service marketing packages. The visual layout relies on the brand's identity, blending deep dark backgrounds with high-contrast orange accents. Conceptually, the designs use distinct metaphors such as chess pieces, the classical 'Thinker' sculpture, growth graphics, and clear comparison charts. Each creative focuses on a specific message, highlighting the value of a dedicated marketing team and guiding users toward submitting a request via prominent Call-to-Action buttons.",
+      ro: "Crearea unei serii de bannere publicitare axate pe generarea de lead-uri și promovarea pachetelor integrate de servicii de marketing ale agenției 'HUGE'. Conceptul grafic respectă identitatea vizuală a companiei, îmbinând fundaluri închise cu accente portocalii contrastante. Soluțiile vizuale se bazează pe metafore creative, precum piesele de șah, sculptura 'Gânditorul', graficele de creștere și tabelele comparative. Fiecare machetă este structurată pe o idee clară, punând în valoare beneficiile unei echipe dedicate și direcționând utilizatorul către trimiterea unei cereri prin butoane vizibile de Call-to-Action.",
+    },
+  },
 
   // ── НАРУЖНАЯ РЕКЛАМА — id 87–104 (занято: см. ниже, остальное — резерв под новые работы) ──
   {
@@ -1473,6 +1497,67 @@ export const projects: Project[] = [
       ru: "Разработка контрастного промышленного дизайна этикетки для малярной ленты 'Bandă de Mascare Universală' линейки 'Smart Fix', производимой по заказу компании 'Cheton Grup'. Визуальная концепция построена на сочетании индустриального черного и желтого цветов с четкой шрифтовой иерархией, фирменным логотипом с крокодилом и набором пиктограмм технических характеристик, отражающих температурный режим, сцепление и области применения. В рамках проекта единый стилистический шаблон был успешно адаптирован под всю размерную линейку рулонов различной ширины и намотки, охватывающую варианты от 19 мм х 25 м до 72 мм х 25 м.",
       en: "Development of a high-visibility industrial label design for 'Smart Fix' universal masking tape manufactured for 'Cheton Grup'. The core visual identity relies on a high-contrast black-and-yellow color scheme, strong typography, the signature crocodile logo, and clear technical feature icons representing temperature resistance, adhesion, and application suitability. The master design template was effectively scaled and adapted across the entire product lineup, accommodating various tape widths and lengths ranging from 19mm x 25m up to 72mm x 25m.",
       ro: "Crearea designului industrial de etichetă pentru banda de mascare universală 'Smart Fix', produsă la comanda companiei 'Cheton Grup'. Conceptul vizual se bazează pe o combinație contrastantă de galben și negru industrial, o ierarhie tipografică clară, logotipul cu crocodil și o serie de pictograme tehnice care indică regimul de temperatură, aderența și domeniul de utilizare. Macheta principală a fost adaptată cu succes pentru întreaga gamă de dimensiuni a rolelor, acoperind diverse lățimi și lungimi, de la 19 mm x 25 m până la 72 mm x 25 m.",
+    },
+  },
+  {
+    id: "118",
+    order: 36.2,
+    slug: "chetongrup_etiketki_product",
+    client: "cheton",
+    title: { ru: "Дизайн серии этикеток для строительной химии 'Coloris Premium Line', Cheton Grup",
+              en: "Product Label Design Series for 'Coloris Premium Line', Cheton Grup",
+              ro: "Design serie de etichete pentru produsele 'Coloris Premium Line', Cheton Grup" },
+    categoryKey: "print",
+    year: 2025,
+    cover: "/images/work/print/chetongrup_etiketki_product/chetongrup_etiketki_product-cover.jpg",
+    // galleryColumns: 2,
+    images: [
+      { row: [
+          "/images/work/print/chetongrup_etiketki_product/3.jpg",
+          "/images/work/print/chetongrup_etiketki_product/1.jpg",
+          "/images/work/print/chetongrup_etiketki_product/2.jpg",
+          "/images/work/print/chetongrup_etiketki_product/4.jpg"
+
+      ] },
+     { row: [
+        "/images/work/print/chetongrup_etiketki_product/5.jpg",
+      ] },
+    ],
+    description: {
+      ru: "Разработка серии этикеток для линейки профессиональной строительной химии 'Coloris Premium Line' компании 'Cheton Grup'. Оформление выдержано в фирменном стиле бренда с использованием элегантной черной основы, контрастной цветовой кодировки для каждого типа продукта и премиальных плашек с указанием немецких стандартов качества. Серия включает этикетки для четырех актуальных позиций: грунтовки с биозащитой, адгезионного грунта, финишной шпаклевки и защитного лака для камня. Каждый макет структурирован для размещения детальных инструкций, характеристик и двуязычного описания на ведрах и таре.",
+      en: "Development of a label design series for the professional construction chemicals lineup 'Coloris Premium Line' by 'Cheton Grup'. The visual styling adheres to the brand's identity, featuring a sleek black background paired with distinct color-coding for each product type and premium badges indicating German quality standards. The series covers labels for four available products in the current lineup: bioprotection primer, adhesion primer, finish putty, and decorative stone varnish. Each layout is organized to accommodate detailed instructions, specifications, and bilingual descriptions on buckets and containers.",
+      ro: "Crearea unei serii de etichete pentru gama de produse chimice destinate construcțiilor 'Coloris Premium Line' a companiei 'Cheton Grup'. Conceptul grafic respectă identitatea vizuală a brandului, combinând un fundal elegant negru cu coduri de culori distinctive pentru fiecare tip de produs și insigne premium care evidențiază standardele de calitate germane. Seria include etichete pentru cele patru produse disponibile în prezent în stoc: grund cu bioprotecție, grund adeziv, glet de finisaj și lac protector pentru piatră. Fiecare machetă este structurată pentru a găzdui instrucțiuni detaliate, caracteristici tehnice și descrieri bilingve aplicate pe găleți și ambalaje.",
+    },
+  },
+  {
+    id: "119",
+    order: 41.1,
+    slug: "chetongrup_sinka_etiketki",
+    client: "cheton",
+    title: { ru: "Дизайн упаковки порошковой синьки 'Albăstreală Ultramarină' для компании Cheton Grup",
+              en: "Packaging design for “Albăstreală Ultramarină” powdered blue dye for Cheton Grup",
+              ro: "Designul ambalajului pentru vopseaua în pudră „Albăstreală Ultramarină” pentru compania Cheton Grup" },
+    categoryKey: "print",
+    year: 2025,
+    cover: "/images/work/print/chetongrup_sinka_etiketki/chetongrup_sinka_etiketki-cover.jpg",
+    // galleryColumns: 2,
+    images: [
+      { row: [
+          "/images/work/print/chetongrup_sinka_etiketki/1.jpg",
+          "/images/work/print/chetongrup_sinka_etiketki/2.jpg",
+
+      ] },
+     { row: [
+        "/images/work/print/chetongrup_sinka_etiketki/3.jpg",
+      ] },
+      { row: [
+        "/images/work/print/chetongrup_sinka_etiketki/4.jpg",
+      ] },
+    ],
+    description: {
+      ru: "Разработка двухстороннего графического макета мягкой упаковки (саше/пакета) для универсального синего пигмента 'Albăstreală Ultramarină' компании 'Cheton Grup'. Лицевая сторона выполнена в насыщенных сине-белых тонах с яркой красной плашкой названия, лаконичной пиктографикой применения (отбеливание тканей, декоративная колеровка, белизна) и встроенным прозрачным окном по центру для наглядной демонстрации текстуры и цвета продукта. Оборотная сторона содержит исчерпывающую техническую информацию, области применения, нормы расхода и правила применения на двух языках (румынском и русском), а также штрихкод, артикул и логотип производителя.",
+      en: "Development of a double-sided sachet/pouch packaging layout for 'Albăstreală Ultramarină' universal blue pigment produced for 'Cheton Grup'. The front side features a vibrant blue-and-white layout accentuating a high-contrast red title badge, intuitive application icons (fabric whitening, tinting, immaculate shine), and a central clear window providing visibility of the product's natural color and powder texture. The reverse side accommodates comprehensive technical specifications, usage guidelines, dosage instructions in both Romanian and Russian, along with product barcodes and manufacturer branding.",
+      ro: "Crearea machetei grafice cu două fețe pentru ambalajul de tip plic/pungă al pigmentului universal 'Albăstreală Ultramarină' din portofoliul 'Cheton Grup'. Fața ambalajului este realizată într-o cromatică intensă de albastru și alb, decorată cu o bandă roșie de titlu, pictograme intuitive de utilizare (înălbire țesături, nuanțare, alb imaculat) și o fereastră transparentă centrală ce permite vizualizarea directă a texturii și nuanței produsului. Verso-ul este structurat pentru afișarea informațiilor tehnice, domeniilor de utilizare, normelor de consum bilingve (română și rusă), precum și a codului de bare și datelor producătorului.",
     },
   },
 

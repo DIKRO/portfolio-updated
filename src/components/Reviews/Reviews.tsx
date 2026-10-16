@@ -9,6 +9,7 @@ import {
   CartIcon,
   DroneIcon,
   HomeIcon,
+  MartialArtsIcon,
   PaintRollerIcon,
   QuoteIcon,
   ShirtIcon,
@@ -66,6 +67,7 @@ const ICONS: Record<ReviewIconKey, () => React.ReactElement> = {
   home: HomeIcon,
   construction: PaintRollerIcon,
   drone: DroneIcon,
+  martial: MartialArtsIcon,
   business: BriefcaseIcon,
 };
 

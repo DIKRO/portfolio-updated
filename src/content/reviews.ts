@@ -11,6 +11,7 @@ export type ReviewIconKey =
   | "home" // товары для дома
   | "construction" // стройматериалы, краски
   | "drone" // дроны, сервис техники
+  | "martial" // единоборства, ММА, додзе
   | "business"; // универсальная
 
 export interface Review {
@@ -54,7 +55,7 @@ export const reviews: Review[] = [
   {
     id: "energy-wind",
     icon: "wind",
-    clientName: "Cezar Russo",
+    clientName: "Ion Beșliu",
     company: "Energy Wind Moldova",
     role: {
       ru: "Исполнительный директор",
@@ -144,6 +145,25 @@ export const reviews: Review[] = [
       ru: "Дмитрий - отличный дизайнер с современным подходом и свежим взглядом. Очень порадовала его гибкость и скорость: под любые задачи и правки адаптируется моментально. В процессе работы всегда мобилен, лоялен и нацелен на результат. С первых минут общаться было легко и комфортно. Обязательно буду обращаться ещё!",
       en: "Dmitry is an excellent designer with a modern approach and a fresh perspective. I was very impressed by his flexibility and speed: he adapts instantly to any task or revision. Throughout the project, he’s always responsive, reliable, and results-oriented. From the very first moments, it was easy and comfortable to work with him. I’ll definitely be reaching out to him again!",
       ro: "Dmitri este un designer excelent, cu o abordare modernă și o viziune proaspătă. M-au încântat foarte mult flexibilitatea și rapiditatea lui: se adaptează instantaneu la orice sarcină și modificare. În timpul lucrului, este întotdeauna flexibil, loial și orientat spre rezultat. Încă din primele minute, comunicarea a fost ușoară și plăcută. Cu siguranță voi apela din nou la el!",
+    },
+  },
+  {
+    id: "pmma-persistent",
+    icon: "martial",
+    clientName: "Samir Aliev",
+    company: "PMMA Persistent",
+    role: {
+      ru: "Владелец и основатель додзе, тренер",
+      en: "Dojo Owner, Founder & Coach",
+      ro: "Proprietar, fondator și antrenor al dojo-ului",
+    },
+    year: 2026,
+    country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
+    countryCode: "MD",
+    text: {
+      ru: "Качественная работа с отличной детализацией. Мне понравилось то, что мне помогли скомплектовать мою идею, так как нет знаний в дизайне. Рисунок выглядит органично и идеально вписывается в тематику единоборств.",
+      en: "High-quality work with excellent attention to detail. I appreciated that I was helped to put my idea together, since I have no design background. The artwork looks organic and fits the martial arts theme perfectly.",
+      ro: "Muncă de calitate, cu un detaliu excelent. Mi-a plăcut că am fost ajutat să îmi structurez ideea, deoarece nu am cunoștințe de design. Desenul arată organic și se potrivește perfect cu tematica artelor marțiale.",
     },
   },
 ];

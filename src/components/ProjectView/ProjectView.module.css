@@ -470,6 +470,23 @@
   margin-bottom: 48px;
 }
 
+/* ПК: описание проекта выровнено по ширине с небольшой красной строкой
+   (1.5em). Автоперенос слов (hyphens: auto) убирает «дыры» между словами и
+   работает по языку самого абзаца — у <p> в ProjectView.tsx стоит
+   lang={lang} (lang у <html> не меняется при ручном переключении языка).
+   На телефоне (media ниже) и в горизонтальном телефоне — по левому краю. */
+@media (min-width: 769px) {
+  .description {
+    text-align: justify;
+    text-justify: inter-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+    text-indent: 1.5em;
+  }
+}
+
 .cta {
   text-align: center;
   display: flex;
@@ -609,6 +626,10 @@
   .description {
     font-size: 14px;
     margin-bottom: 28px;
+    text-align: left;
+    text-indent: 0;
+    -webkit-hyphens: manual;
+    hyphens: manual;
   }
 
   .gallery {

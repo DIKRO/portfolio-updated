@@ -270,3 +270,13 @@ export function BriefcaseIcon() {
     </svg>
   );
 }
+
+// Единоборства, ММА, додзе — кулак в перчатке с открытыми пальцами
+export function MartialArtsIcon() {
+  return (
+    <svg {...sphereProps}>
+      <path d="M4.5 12V7.25a1.75 1.75 0 0 1 3.5 0 1.75 1.75 0 0 1 3.5 0 1.75 1.75 0 0 1 3.5 0 1.75 1.75 0 0 1 3.5 0V13a5 5 0 0 1-5 5H9.5a5 5 0 0 1-5-5" />
+      <path d="M8 7.25V11M11.5 7.25V11M15 7.25V11M5.3 11h13.4M8 18v3h8v-3" />
+    </svg>
+  );
+}
