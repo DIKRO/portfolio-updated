@@ -27,7 +27,7 @@ export const projects: Project[] = [
     categoryKey: "branding",
 
     year: 2026,
-    cover: "/images/work/logo/socurdmitrii/cover-1.jpg",
+    cover: "/images/work/logo/socurdmitrii/cover-1 copy.jpg",
     images: [
       "/images/work/logo/socurdmitrii/work.jpg",
       "/images/work/logo/socurdmitrii/work3.png",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     title: { ru: "Логотип для кафедры математики и информатики факультета ȘREM, USARB", en: "Logo for the Department of Mathematics and Computer Science, ȘREM Faculty, USARB", ro: "Logotip pentru catedra de matematică și informatică a facultății ȘREM, USARB" },
     categoryKey: "branding",
     year: 2026,
-    cover: "/images/work/logo/matematica/cover-7.jpg",
+    cover: "/images/work/logo/matematica/cover-7 copy.jpg",
     images: [
       "/images/work/logo/matematica/work1.jpg",
       "/images/work/logo/matematica/work2.jpg",
@@ -79,7 +79,7 @@ export const projects: Project[] = [
             ro: "Logo pentru compania din domeniul energiei eoliene System Global Group (Energy Wind Moldova)" },
     categoryKey: "branding",
     year: 2026,
-    cover: "/images/work/logo/energywind/cover-11.jpg",
+    cover: "/images/work/logo/energywind/cover-11 copy.jpg",
     images: [
       "/images/work/logo/energywind/work1.jpg",
       "/images/work/logo/energywind/work2.jpg",
@@ -107,7 +107,7 @@ export const projects: Project[] = [
             ro: "Logo pentru echipa de e-sport HDL (Hope Dies Last)" },
     categoryKey: "branding",
     year: 2026,
-    cover: "/images/work/logo/hdl/cover-12.jpg",
+    cover: "/images/work/logo/hdl/cover-12 copy.jpg",
     images: [
       "/images/work/logo/hdl/work1.jpg",
       "/images/work/logo/hdl/work2.jpg",
@@ -134,7 +134,7 @@ export const projects: Project[] = [
             ro: "Logo pentru fabrica de ciocolată Kreola din România" },
     categoryKey: "branding",
     year: 2025,
-    cover: "/images/work/logo/kreola/cover-30.jpg",
+    cover: "/images/work/logo/kreola/cover-30 copy.jpg",
     images: [
       "/images/work/logo/kreola/work1.jpg",
       "/images/work/logo/kreola/work2.png",
@@ -162,7 +162,7 @@ export const projects: Project[] = [
             ro: "Concept de redesign al logo-ului și al brandingului pentru Grill Kebab" },
     categoryKey: "branding",
     year: 2024,
-    cover: "/images/work/logo/grillkebab_logo/cover-44.jpg",
+    cover: "/images/work/logo/grillkebab_logo/cover-44 copy.jpg",
     images: [
       "/images/work/logo/grillkebab_logo/work1.jpg",
       "/images/work/logo/grillkebab_logo/work2.png",
@@ -191,7 +191,7 @@ export const projects: Project[] = [
             ro: "Concept de redesign al logo-ului și al brandingului pentru Green Hills" },
     categoryKey: "branding",
     year: 2025,
-    cover: "/images/work/logo/GreenHills_logo/cover-45.jpg",
+    cover: "/images/work/logo/GreenHills_logo/cover-45 copy.jpg",
     images: [
       "/images/work/logo/GreenHills_logo/1.jpg",
       "/images/work/logo/GreenHills_logo/2.jpg",
