@@ -468,10 +468,13 @@
   font-weight: 300;
   color: var(--text);
   margin-bottom: 48px;
+  /* Переносы строк в тексте описания сохраняются: пустая строка между
+     абзацами в description (\n\n в index.ts) показывается как отступ
+     между абзацами. Обычные описания без переносов выглядят как раньше. */
+  white-space: pre-line;
 }
 
-/* ПК: описание проекта выровнено по ширине с небольшой красной строкой
-   (1.5em). Автоперенос слов (hyphens: auto) убирает «дыры» между словами и
+/* ПК: описание проекта выровнено по ширине. Автоперенос слов (hyphens: auto) убирает «дыры» между словами и
    работает по языку самого абзаца — у <p> в ProjectView.tsx стоит
    lang={lang} (lang у <html> не меняется при ручном переключении языка).
    На телефоне (media ниже) и в горизонтальном телефоне — по левому краю. */
@@ -483,7 +486,192 @@
     hyphens: auto;
     overflow-wrap: break-word;
     text-wrap: pretty;
-    text-indent: 1.5em;
+  }
+}
+
+/* ---- Кейс «Запрос → Идея → Итог» (project.story) ----
+   Три вертикальных столбца-карточки в ряд в стиле карточек отзывов:
+   поверхность var(--surface), тонкая обводка, светящийся уголок слева
+   сверху (дуга .storyCorner + градиентные полоски ::before/::after),
+   разделитель под шапкой, мягкое свечение обводки при наведении. Между
+   столбцами — круглые стрелки слева направо («путь идеи»). Карточки
+   одинаковой высоты, стрелки по центру строки, при наведении ничего не
+   сдвигается — выравнивание остаётся ровным. Если блок уже 720px (телефон),
+   столбцы идут друг под другом, а стрелки смотрят вниз. Решает ширина самого
+   блока (container query), поэтому работает одинаково на десктопе, планшете
+   и телефоне в любой ориентации. */
+/* .story — только «измеритель» ширины (container-type): сам контейнер
+   нельзя менять через @container, поэтому раскладка живёт во вложенном
+   .storyRow. */
+.story {
+  container-type: inline-size;
+  margin-bottom: 40px;
+}
+
+.storyRow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Плашки почти вплотную; стрелка (.storyArrow) своими отрицательными
+     полями «занимает» нулевую ширину и поэтому ложится ровно на середину
+     зазора, заходя на обе плашки. */
+  gap: 4px;
+}
+
+/* Проект «в сотрудничестве» (context + story): короткий вводный текст,
+   под ним лейбл сотрудничества, потом плашки. */
+.description.intro {
+  margin-bottom: 16px;
+}
+
+.collabRow {
+  margin-bottom: 24px;
+}
+
+.collabRow .contextLabel {
+  display: inline-block;
+  white-space: normal;
+}
+
+.storyTile {
+  /* Толщина оранжевого уголка — один параметр, как у карточек отзывов. */
+  --corner-thickness: 2px;
+
+  position: relative;
+  min-width: 0;
+  background: var(--surface);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 18px 18px 20px 20px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 0 rgba(255, 90, 31, 0);
+  transition: border-color 0.4s ease, box-shadow 0.5s ease;
+}
+
+.storyTile:hover {
+  border-color: rgba(255, 90, 31, 0.32);
+  box-shadow: inset 0 0 30px -10px rgba(255, 90, 31, 0.22);
+}
+
+.storyTile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 28px;
+  right: 0;
+  height: var(--corner-thickness);
+  background: linear-gradient(90deg, var(--accent) 0%, rgba(255, 90, 31, 0) 80%);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.storyTile::after {
+  content: "";
+  position: absolute;
+  top: 28px;
+  left: 0;
+  bottom: 0;
+  width: var(--corner-thickness);
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(255, 90, 31, 0) 55%);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.storyCorner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  stroke-width: var(--corner-thickness);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.storyHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.storyLabel {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.storyNum {
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.16);
+  font-variant-numeric: tabular-nums;
+}
+
+.storyText {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--text);
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.storyArrow {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  /* Отрицательные поля (= половина размера) обнуляют место, которое стрелка
+     занимает в раскладке: она не раздвигает плашки, а лежит поверх зазора
+     между ними ровно по центру. */
+  margin: -13px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 90, 31, 0.7);
+  /* Непрозрачный фон — чтобы края плашек под стрелкой не просвечивали. */
+  background: var(--bg);
+  color: var(--accent);
+  /* Телефон: плашки друг под другом — стрелка смотрит вниз. */
+  transform: rotate(90deg);
+}
+
+.storyArrow svg {
+  width: 14px;
+  height: 14px;
+  display: block;
+}
+
+@container (min-width: 720px) {
+  .storyRow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: stretch;
+    /* Колонки со стрелками — нулевой ширины (см. .storyArrow), поэтому
+       расстояние между плашками = 2 × column-gap. Все три плашки в ряду
+       всегда одной высоты — по самой «длинной» из них (stretch). */
+    column-gap: 4px;
+  }
+
+  .storyTile {
+    padding: 20px 20px 24px 22px;
+  }
+
+  .storyText {
+    font-size: 14px;
+  }
+
+  .storyArrow {
+    transform: none;
   }
 }
 
@@ -627,7 +815,6 @@
     font-size: 14px;
     margin-bottom: 28px;
     text-align: left;
-    text-indent: 0;
     -webkit-hyphens: manual;
     hyphens: manual;
   }

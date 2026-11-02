@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
@@ -180,18 +180,102 @@ export default function ProjectView({
             <span className={styles.categoryYear}>
               {t.categories[project.categoryKey]} — {project.year}
             </span>
-            {project.context && <span className={styles.contextLabel}>{project.context[lang]}</span>}
+            {project.context && !project.story && (
+              <span className={styles.contextLabel}>{project.context[lang]}</span>
+            )}
           </span>
         </motion.header>
 
-        <motion.p
-          className={styles.description}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          {project.description[lang]}
-        </motion.p>
+        {project.story ? (
+          <>
+          {/* Если проект сделан в сотрудничестве (context): короткий вводный
+              текст (intro, необязателен), под ним лейбл сотрудничества, и
+              только потом плашки story. Без context лейбл остаётся в шапке. */}
+          {project.context && project.intro && (
+            <motion.p
+              className={`${styles.description} ${styles.intro}`}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              {project.intro[lang]}
+            </motion.p>
+          )}
+          {project.context && (
+            <motion.div
+              className={styles.collabRow}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+            >
+              <span className={styles.contextLabel}>{project.context[lang]}</span>
+            </motion.div>
+          )}
+          {/* Кейс в формате «Запрос → Идея → Итог»: три плашки вместо сплошного
+              текста. Раскладка (3 колонки / столбик) зависит от ширины самого
+              блока, см. .story в ProjectView.module.css. */}
+          <motion.div
+            className={styles.story}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <div className={styles.storyRow}>
+            {(["brief", "idea", "result"] as const).map((key, i) => (
+              <Fragment key={key}>
+                {/* Стрелка между столбцами — «путь идеи» слева направо
+                    (на телефоне, где столбцы идут друг под другом, CSS
+                    поворачивает её вниз). */}
+                {i > 0 && (
+                  <span className={styles.storyArrow} aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9.5 6l6 6-6 6" />
+                    </svg>
+                  </span>
+                )}
+                <section className={styles.storyTile}>
+                  {/* Светящийся уголок — та же SVG-дуга, что и у карточек
+                      отзывов (см. Reviews.tsx), прямые полоски от неё —
+                      ::before/::after в CSS. */}
+                  <svg
+                    className={styles.storyCorner}
+                    width="28"
+                    height="28"
+                    viewBox="0 0 28 28"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M 28 1 L 15 1 A 14 14 0 0 0 1 15 L 1 28"
+                      stroke="var(--accent)"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  <div className={styles.storyHead}>
+                    <h2 className={styles.storyLabel}>{t.project.story[key]}</h2>
+                    <span className={styles.storyNum} aria-hidden="true">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <p lang={lang} className={styles.storyText}>
+                    {project.story![key][lang]}
+                  </p>
+                </section>
+              </Fragment>
+            ))}
+            </div>
+          </motion.div>
+          </>
+        ) : (
+          <motion.p
+            className={styles.description}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            {project.description[lang]}
+          </motion.p>
+        )}
 
         {project.video && (
           <motion.div

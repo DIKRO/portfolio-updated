@@ -42,6 +42,23 @@ export const projects: Project[] = [
       en: "A logo I designed for myself. The logo is created in a flat style and combines the initials of my first and last name, Socur Dmitrii. In addition, to create visual balance, a vertical element was added to the left side to complete the shape.",
       ro: "Un logo creat pentru mine. Logo-ul este realizat în stil plat și combină inițialele numelui și prenumelui Socur Dmitrii. În plus, pentru a crea un echilibru vizual, partea stângă a fost completată cu un element vertical care încheie forma.",
     },
+    story: {
+      brief: {
+        ru: "Нужен был собственный знак дизайнера: лаконичный, узнаваемый и пригодный для любых носителей — от аватара в соцсетях до визитки и сайта.",
+        en: "I needed a personal mark for myself as a designer: concise, recognizable and flexible enough for any medium, from a social media avatar to a business card and a website.",
+        ro: "Aveam nevoie de un semn personal de designer: concis, ușor de recunoscut și potrivit pentru orice suport, de la avatarul din rețelele sociale până la cartea de vizită și site.",
+      },
+      idea: {
+        ru: "В основе — аббревиатура имени и фамилии Socur Dmitrii, выполненная в плоском стиле. Чтобы фигура выглядела цельной и сбалансированной, слева я добавил вертикальный элемент, который замыкает форму.",
+        en: "The mark is built on the initials of my first and last name, Socur Dmitrii, drawn in a flat style. To keep the shape whole and balanced, I added a vertical element on the left that closes the form.",
+        ro: "La bază stau inițialele numelui și prenumelui Socur Dmitrii, realizate în stil plat. Pentru ca forma să fie unitară și echilibrată, am adăugat în stânga un element vertical care o închide.",
+      },
+      result: {
+        ru: "Компактный монограмм-знак, который читается даже в маленьком размере. Он стал основой моего личного бренда и визуальной подписью в портфолио и коммуникации.",
+        en: "A compact monogram that stays legible even at small sizes. It became the foundation of my personal brand and my visual signature across the portfolio and communication.",
+        ro: "Un monogram compact, lizibil chiar și la dimensiuni mici. A devenit baza brandului meu personal și semnătura mea vizuală în portofoliu și în comunicare.",
+      },
+    },
   },
   {
     id: "2",
@@ -66,6 +83,23 @@ export const projects: Project[] = [
       ru: "Логотип, созданный в рамках лицензионного проекта («Исследование и разработка визуальной идентичности факультета ȘREM, USARB: от концепции до реализации»), с последующим применением. В основе логотипа лежит аббревиатура слов Matematica/Informatica, вписанных в квадратные скобки, которые используются в обеих дисциплинах.",
       en: "A logo created as part of a licensing project (“Research and Development of the Visual Identity for the ȘREM Faculty, USARB: From Concept to Implementation”), followed by its implementation. The logo is based on the abbreviation of the words “Matematica/Informatica,” enclosed in square brackets, which are used in both disciplines.",
       ro: "Logo-ul creat în cadrul proiectului licențial („Cercetarea și dezvoltarea identității vizuale a Facultății ȘREM, USARB: de la concept la realizare”), urmat de punerea sa în practică. La baza logo-ului stă abrevierea cuvintelor „Matematica/Informatica”, încadrate între paranteze pătrate, care sunt utilizate în ambele discipline.",
+    },
+    story: {
+      brief: {
+        ru: "В рамках лицензионного проекта нужно было разработать визуальную идентичность кафедры математики и информатики факультета ȘREM (USARB) — от концепции до применения на конкретных носителях.",
+        en: "As part of a degree project, I had to develop the visual identity of the Department of Mathematics and Computer Science at the ȘREM Faculty (USARB), from the concept to its real-world application.",
+        ro: "În cadrul proiectului de licență a trebuit să dezvolt identitatea vizuală a catedrei de matematică și informatică a facultății ȘREM (USARB), de la concept până la aplicarea pe suporturi concrete.",
+      },
+      idea: {
+        ru: "Основа логотипа — аббревиатура слов Matematica и Informatica, вписанная в квадратные скобки. Скобки используются в обеих дисциплинах, поэтому один элемент объединяет математику и программирование.",
+        en: "The logo is based on an abbreviation of the words Matematica and Informatica, set inside square brackets. Brackets are used in both disciplines, so a single element unites mathematics and programming.",
+        ro: "Logo-ul are la bază abrevierea cuvintelor Matematica și Informatica, încadrată în paranteze pătrate. Parantezele sunt folosite în ambele discipline, așa că un singur element unește matematica și programarea.",
+      },
+      result: {
+        ru: "Лаконичный знак, который сразу объясняет профиль кафедры. Логотип доведён до применения и показан на реальных примерах использования.",
+        en: "A concise mark that instantly explains the profile of the department. The logo was taken all the way to implementation and is shown in real usage examples.",
+        ro: "Un semn concis, care explică imediat profilul catedrei. Logo-ul a fost dus până la aplicare și este prezentat pe exemple reale de utilizare.",
+      },
     },
   },
   {
@@ -96,6 +130,23 @@ export const projects: Project[] = [
       en: "A logo created for a company specializing in wind energy in Moldova — Energy Wind Moldova. The logo is designed in a modern style using green shades that reflect environmental friendliness and renewable energy.",
       ro: "Logo-ul creat pentru o companie care se ocupă de energie eoliană în Moldova — Energy Wind Moldova. Logo-ul este realizat într-un stil modern folosind nuanțe de verde care reflectă prietenia față de mediu și energia regenerabilă.",
     },
+    story: {
+      brief: {
+        ru: "Компании Energy Wind Moldova, работающей в сфере ветроэнергетики, нужен был современный логотип, который передаёт технологичность отрасли и ориентацию на возобновляемую энергию.",
+        en: "Energy Wind Moldova, a wind energy company, needed a modern logo that conveys the technological side of the industry and its focus on renewable energy.",
+        ro: "Companiei Energy Wind Moldova, activă în energia eoliană, îi trebuia un logo modern, care să transmită caracterul tehnologic al industriei și orientarea spre energia regenerabilă.",
+      },
+      idea: {
+        ru: "Логотип выполнен в современном стиле, а зелёные оттенки в палитре отсылают к экологичности и чистой энергии. Форма и цвет подобраны так, чтобы бренд выглядел надёжно и технологично.",
+        en: "The logo is designed in a modern style, and the green shades in the palette point to sustainability and clean energy. Shape and color are chosen so that the brand looks reliable and technological.",
+        ro: "Logo-ul este realizat într-un stil modern, iar nuanțele de verde din paletă trimit la ecologie și energie curată. Forma și culoarea sunt alese astfel încât brandul să arate sigur și tehnologic.",
+      },
+      result: {
+        ru: "Узнаваемый знак, который стал основой всей коммуникации компании. На его базе я затем сделал презентацию, рекламные баннеры и видео для Energy Wind Moldova.",
+        en: "A recognizable mark that became the basis of the company's entire communication. I later built a presentation, ad banners and videos for Energy Wind Moldova on top of it.",
+        ro: "Un semn ușor de recunoscut, care a devenit baza întregii comunicări a companiei. Pe baza lui am realizat ulterior o prezentare, bannere publicitare și videoclipuri pentru Energy Wind Moldova.",
+      },
+    },
   },
   {
     id: "4",
@@ -118,9 +169,26 @@ export const projects: Project[] = [
       "/images/work/logo/hdl/work7.jpg"
             ],
     description: {
-      ru: "Логотип, созданный для киберспортивной команды Hope Dies Last. В его основе — образ воина, сражающегося до последнего дыхания. Когда единственным остаётся лишь надежда, вспыхивает искра, воплощённая в виде огня, исходящего из левого глаза.",
-      en: "A logo created for the esports team Hope Dies Last. It is based on the image of a warrior fighting until his last breath. When hope is all that remains, a spark flares up, represented by the fire emanating from his left eye.",
-      ro: "Logo-ul creat pentru echipa de e-sport Hope Dies Last. La baza acestuia stă imaginea unui războinic care luptă până la ultima suflare. Când nu mai rămâne decât speranța, se aprinde o scânteie, reprezentată sub forma unui foc care izvorăște din ochiul stâng.",
+      ru: "Запрос. Киберспортивной команде Hope Dies Last нужен был логотип, который с первого взгляда передаёт её характер и девиз: «надежда умирает последней».\n\nИдея. Девиз я прочитал как историю о воине, который продолжает бороться, когда шансов почти не осталось. Так появился образ бойца, сражающегося до последнего вздоха, а надежда стала единственным источником света в нём: искрой, вспыхивающей огнём в левом глазу.\n\nИтог. Логотип-персонаж, в котором девиз команды читается без подписи: решимость воина и огонь надежды как главный смысловой акцент.",
+      en: "Brief. The esports team Hope Dies Last needed a logo that conveys its character and motto at first glance.\n\nConcept. I read the motto as the story of a warrior who keeps fighting when hardly any chance is left. That became the image of a fighter battling to his last breath, with hope as the only source of light in him: a spark that flares up as fire in his left eye.\n\nResult. A character-based emblem where the team's motto reads without a caption: the warrior's resolve and the fire of hope as the key point of meaning.",
+      ro: "Solicitare. Echipa de e-sport Hope Dies Last avea nevoie de un logo care să transmită, dintr-o privire, caracterul și deviza echipei.\n\nIdee. Am citit deviza ca pe povestea unui războinic care continuă să lupte atunci când șansele aproape au dispărut. Așa a apărut imaginea unui luptător care se bate până la ultima suflare, iar speranța a devenit singura sursă de lumină din el: o scânteie care se aprinde sub forma focului din ochiul stâng.\n\nRezultat. O emblemă-personaj în care deviza echipei se citește fără explicații: hotărârea războinicului și focul speranței ca accent central de sens.",
+    },
+    story: {
+      brief: {
+        ru: "Киберспортивной команде Hope Dies Last был нужен логотип, который с первого взгляда передаёт её характер и девиз — «надежда умирает последней». Знак должен был выглядеть сильно и запоминаться, но нести смысл, а не быть просто эмблемой. Кроме того, он должен работать как лицо команды: на форме, в соцсетях и на трансляциях.",
+        en: "The esports team Hope Dies Last needed a logo that conveys its character and its motto, “hope dies last”, at first glance. The mark had to look strong and memorable, yet carry a meaning rather than be just an emblem. It also had to work as the face of the team: on jerseys, on social media and in broadcasts.",
+        ro: "Echipa de e-sport Hope Dies Last avea nevoie de un logo care să transmită, dintr-o privire, caracterul și deviza ei — „speranța moare ultima”. Semnul trebuia să arate puternic și să fie memorabil, dar să poarte un sens, nu să fie doar o emblemă. În plus, trebuia să funcționeze ca fața echipei: pe echipament, în rețelele sociale și în transmisiuni.",
+      },
+      idea: {
+        ru: "Девиз я прочитал как историю о воине, который продолжает бороться, когда шансов почти не осталось. Так появился образ бойца, сражающегося до последнего вздоха. Надежда стала единственным источником света в нём — искрой, вспыхивающей огнём в левом глазу.",
+        en: "I read the motto as the story of a warrior who keeps fighting when hardly any chance is left. That became the image of a fighter battling to his last breath. Hope became the only source of light in him: a spark that flares up as fire in his left eye.",
+        ro: "Am citit deviza ca pe povestea unui războinic care continuă să lupte atunci când șansele aproape au dispărut. Așa a apărut imaginea unui luptător care se bate până la ultima suflare. Speranța a devenit singura sursă de lumină din el: o scânteie care se aprinde sub forma focului din ochiul stâng.",
+      },
+      result: {
+        ru: "Получился логотип-персонаж, в котором девиз команды читается без подписи. Решимость воина и огонь надежды — главный смысловой акцент, который отличает знак от типовых киберспортивных эмблем. Его легко узнать и запомнить.",
+        en: "The result is a character-based logo in which the team's motto reads without a caption. The warrior's resolve and the fire of hope are the key point of meaning that sets the mark apart from typical esports emblems. It is easy to recognize and remember.",
+        ro: "Rezultatul este un logo-personaj în care deviza echipei se citește fără explicații. Hotărârea războinicului și focul speranței sunt accentul central de sens, care deosebește semnul de emblemele obișnuite din e-sport. Este ușor de recunoscut și de ținut minte.",
+      },
     },
   },
   {
@@ -151,6 +219,23 @@ export const projects: Project[] = [
       en: "A logo created for the Kreola Chocolate Factory in Romania. It combines premium aesthetics with the spirit of authentic artisanal chocolate. Deep wine and warm earthy tones, combined with an elegant serif typeface, emphasize the nobility of the product. Textured patterns on the packaging and an open window showcasing the abundance of natural ingredients create an image of honest yet luxurious chocolate that you want to try right now.",
       ro: "Identitatea de brand KREOLA îmbină estetica premium cu spiritul ciocolatei artizanale autentice. Nuanțele adânci de vin și tonurile calde, pământii, combinate cu un font cu serife elegant, subliniază noblețea produsului. Modelele tactile de pe ambalaj și fereastra deschisă, care arată bogăția ingredientelor naturale, creează imaginea unei ciocolate sincere, dar luxoase, pe care ai vrea s-o guști chiar acum.",
     },
+    story: {
+      brief: {
+        ru: "Румынской шоколадной фабрике Kreola нужна была айдентика, которая сочетает премиальную подачу с духом настоящего ремесленного шоколада.",
+        en: "The Romanian chocolate factory Kreola needed an identity that combines a premium look with the spirit of genuine artisanal chocolate.",
+        ro: "Fabricii de ciocolată Kreola din România îi trebuia o identitate care să îmbine aspectul premium cu spiritul ciocolatei artizanale autentice.",
+      },
+      idea: {
+        ru: "Глубокие винные и тёплые землистые оттенки в паре с элегантной антиквой подчёркивают благородство продукта. Тактильные паттерны на упаковке и открытое окно, показывающее натуральные ингредиенты, создают образ честного, но роскошного шоколада.",
+        en: "Deep wine and warm earthy tones paired with an elegant serif typeface emphasize the nobility of the product. Tactile patterns on the packaging and an open window showing natural ingredients create the image of honest yet luxurious chocolate.",
+        ro: "Nuanțele adânci de vin și tonurile calde, pământii, împreună cu un font cu serife elegant, subliniază noblețea produsului. Modelele tactile de pe ambalaj și fereastra deschisă, care arată ingredientele naturale, creează imaginea unei ciocolate sincere, dar luxoase.",
+      },
+      result: {
+        ru: "Цельная айдентика, в которой логотип, палитра и упаковка работают как единая система и вызывают желание попробовать продукт. На её основе были сделаны упаковка плиток и каталог-флаер.",
+        en: "A cohesive identity in which the logo, palette and packaging work as one system and make you want to try the product. The chocolate bar packaging and the catalog flyer were built on top of it.",
+        ro: "O identitate unitară, în care logo-ul, paleta și ambalajul funcționează ca un sistem și te fac să vrei să guști produsul. Pe baza ei au fost create ambalajul tabletelor și pliantul-catalog.",
+      },
+    },
   },
   {
     id: "6",
@@ -180,6 +265,23 @@ export const projects: Project[] = [
       en: "The logo redesign for the Grill Kebab fast-food chain was created with an emphasis on modernity and versatility. The visual concept is based on a combination of dynamic typography and flame graphics, which highlights the brand’s unique identity and its connection to grilling. The logo has been adapted for various media—including packaging, promotional materials, and outdoor advertising—to ensure a consistent brand identity. This approach enhances brand recognition and creates a cohesive image for the restaurant chain.",
       ro: "Redesenarea logo-ului pentru lanțul de restaurante fast-food Grill Kebab a fost realizată punând accentul pe modernitate și versatilitate. Conceptul vizual se bazează pe combinația dintre tipografia dinamică și elementele grafice reprezentând flăcările, ceea ce subliniază specificul mărcii și legătura acesteia cu prepararea la grătar. Logo-ul a fost adaptat pentru diverse suporturi — ambalaje, materiale publicitare și publicitate exterioară — asigurând un stil corporativ unitar. Această abordare sporește gradul de recunoaștere a mărcii și creează o imagine coerentă a lanțului de restaurante.",
     },
+    story: {
+      brief: {
+        ru: "Сети быстрого питания Grill Kebab нужен был редизайн логотипа и брендинга: современнее, универсальнее и пригоднее для разных носителей.",
+        en: "The Grill Kebab fast-food chain needed a redesign of its logo and branding: more modern, more versatile and suitable for different media.",
+        ro: "Lanțului de fast-food Grill Kebab îi trebuia o redesenare a logo-ului și a brandingului: mai modernă, mai versatilă și potrivită pentru diverse suporturi.",
+      },
+      idea: {
+        ru: "Концепция строится на сочетании динамичной типографики и графики пламени. Это подчёркивает специфику бренда и его связь с приготовлением на гриле.",
+        en: "The concept combines dynamic typography with flame graphics. It highlights the character of the brand and its connection to grilling.",
+        ro: "Conceptul îmbină tipografia dinamică cu elemente grafice reprezentând flăcări. Acestea subliniază specificul mărcii și legătura ei cu prepararea la grătar.",
+      },
+      result: {
+        ru: "Обновлённый логотип адаптирован для упаковки, рекламных материалов и наружной рекламы. Он работает как единый фирменный стиль, повышает узнаваемость и создаёт цельный образ сети.",
+        en: "The updated logo is adapted for packaging, promotional materials and outdoor advertising. It works as one consistent brand style, boosts recognition and gives the chain a cohesive image.",
+        ro: "Logo-ul actualizat este adaptat pentru ambalaje, materiale publicitare și publicitate exterioară. Funcționează ca un stil de brand unitar, sporește recunoașterea și creează o imagine coerentă a lanțului.",
+      },
+    },
   },
   {
     id: "7",
@@ -208,6 +310,23 @@ export const projects: Project[] = [
       ru: "Разработан комбинированный логотип для сети супермаркетов «Green Hills», графический знак которого визуально объединяет контуры покупательской корзины и зеленого холма. Использование насыщенного монохромного зеленого цвета в сочетании с мягким, округлым шрифтом без засечек формирует прямую ассоциацию со свежестью, натуральностью продуктов и экологичностью. Благодаря лаконичной геометрии и отсутствию мелких деталей, фирменный знак обладает высокой контрастностью, легко считывается и масштабируется для использования на любых рекламных и физических носителях.",
       en: "A combined logo has been developed for the “Green Hills” supermarket chain, whose graphic symbol visually combines the outlines of a shopping cart and a green hill. The use of a rich monochromatic green color, combined with a soft, rounded sans-serif font, creates a direct association with the freshness and naturalness of the products, as well as environmental friendliness. Thanks to its clean geometry and lack of fine details, the logo has high contrast, is easily legible, and can be scaled for use on any advertising or physical media.",
       ro: "A fost creat un logo combinat pentru lanțul de supermarketuri „Green Hills”, al cărui simbol grafic îmbină vizual contururile unui coș de cumpărături și ale unui deal verde. Utilizarea unei nuanțe intense de verde monocrom, în combinație cu un font rotunjit, fără serife, creează o asociere directă cu prospețimea, naturalețea produselor și caracterul ecologic. Datorită geometriei concise și absenței detaliilor mici, sigla prezintă un contrast ridicat, este ușor de citit și poate fi redimensionată pentru a fi utilizată pe orice suport publicitar sau fizic.",
+    },
+    story: {
+      brief: {
+        ru: "Сети супермаркетов Green Hills требовался логотип, который сразу ассоциируется со свежестью, натуральностью продуктов и экологичностью.",
+        en: "The Green Hills supermarket chain needed a logo that immediately suggests freshness, natural products and environmental friendliness.",
+        ro: "Lanțului de supermarketuri Green Hills îi trebuia un logo care să trimită imediat la prospețime, produse naturale și caracter ecologic.",
+      },
+      idea: {
+        ru: "Графический знак объединяет контуры покупательской корзины и зелёного холма. Насыщенный монохромный зелёный и мягкий округлый шрифт без засечек усиливают ощущение свежести.",
+        en: "The graphic symbol combines the outlines of a shopping cart and a green hill. A rich monochrome green and a soft, rounded sans-serif typeface reinforce the sense of freshness.",
+        ro: "Simbolul grafic îmbină contururile unui coș de cumpărături și ale unui deal verde. Un verde monocrom intens și un font rotunjit, fără serife, întăresc senzația de prospețime.",
+      },
+      result: {
+        ru: "Комбинированный логотип с лаконичной геометрией и без мелких деталей: он контрастный, легко читается и масштабируется на любых рекламных и физических носителях.",
+        en: "A combined logo with clean geometry and no fine details: it is high-contrast, easy to read and scales to any advertising or physical medium.",
+        ro: "Un logo combinat, cu geometrie concisă și fără detalii mici: are contrast ridicat, se citește ușor și poate fi redimensionat pentru orice suport publicitar sau fizic.",
+      },
     },
   },
 
@@ -251,6 +370,23 @@ export const projects: Project[] = [
       en: "As part of the project, an animated logo was created for a Japanese cuisine restaurant. The animation highlights the friendly image of the chef and the brand’s dynamic character, adding vibrancy and modernity to the visual presentation. Bright accents of green and orange reinforce associations with freshness and energy, while smooth movements make the logo appealing for use in videos, social media, and promotional materials.",
       ro: "În cadrul proiectului a fost creat un logo animat pentru un restaurant de bucătărie japoneză. Animația evidențiază imaginea prietenoasă a bucătarului și dinamica brandului, adăugând vivacitate și modernitate prezentării vizuale. Accentele vii de verde și portocaliu întăresc asocierea cu prospețimea și energia, iar mișcările fluide fac logo-ul atractiv pentru utilizarea în videoclipuri, rețele sociale și materiale publicitare.",
     },
+    story: {
+      brief: {
+        ru: "Ресторану японской кухни SushiRO нужен был анимированный логотип: живой и дружелюбный, пригодный для видео, соцсетей и рекламных материалов.",
+        en: "The Japanese restaurant SushiRO needed an animated logo: lively and friendly, ready to be used in videos, social media and promotional materials.",
+        ro: "Restaurantului de bucătărie japoneză SushiRO îi trebuia un logo animat: vioi și prietenos, potrivit pentru videoclipuri, rețele sociale și materiale publicitare.",
+      },
+      idea: {
+        ru: "Анимация строится на образе шефа — он добавляет бренду дружелюбия и динамики. Яркие акценты зелёного и оранжевого усиливают ощущение свежести и энергии, а плавные движения делают подачу современной.",
+        en: "The animation is built around the chef character, who adds friendliness and dynamics to the brand. Bright green and orange accents reinforce the feeling of freshness and energy, while smooth movements keep the presentation modern.",
+        ro: "Animația se construiește în jurul imaginii bucătarului, care aduce brandului prietenie și dinamism. Accentele vii de verde și portocaliu întăresc senzația de prospețime și energie, iar mișcările fluide fac prezentarea modernă.",
+      },
+      result: {
+        ru: "Готовая анимация логотипа в квадратном формате 1:1. Её можно ставить в начало видео, использовать в соцсетях и в рекламных материалах ресторана.",
+        en: "A finished logo animation in a square 1:1 format. It can open a video, be used on social media and in the restaurant's promotional materials.",
+        ro: "O animație de logo finalizată, în format pătrat 1:1. Poate deschide un videoclip, poate fi folosită în rețelele sociale și în materialele promoționale ale restaurantului.",
+      },
+    },
   },
   {
     id: "23",
@@ -279,6 +415,30 @@ export const projects: Project[] = [
       en: "An animated promotional video for the Modus Vivendi medical diagnostic center (Chișinău), created for display on an indoor floor-standing LED screen, commissioned by DOOH House. The project features smooth graphic transitions, expressive typography, and a well-thought-out visual hierarchy that blends key information (services, contact details, 30 years of experience) with emotional imagery. Adapted for a vertical format (9:16) with a high-contrast color palette, the video is designed to effectively capture attention in public spaces. It is fully optimized for the technical parameters of LED totems, ensuring excellent text legibility from any viewing angle, vibrant color reproduction, and seamless looping.",
       ro: "Clip video publicitar animat pentru centrul medical de diagnostic „Modus Vivendi” (Chișinău), conceput pentru difuzare pe ecran LED de interior (tip totem), la comanda DOOH House. Proiectul se remarcă prin tranziții grafice fluide, tipografie expresivă și o ierarhie vizuală bine structurată, care combină informațiile cheie (servicii, date de contact, 30 de ani de experiență) cu imagini emoționante. Adaptat pentru formatul vertical (9:16) și având o paletă de culori contrastantă, videoclipul este creat pentru a atrage eficient atenția în spațiile publice. Acesta este optimizat pentru parametrii tehnici ai ecranelor LED indoor, asigurând o lizibilitate excelentă a textului din orice unghi de vizualizare, culori vibrante și o redare în buclă fără întreruperi.",
     },
+    // Короткий вводный текст над лейблом сотрудничества (показывается только
+    // вместе с story и context).
+    intro: {
+      ru: "Анимационный рекламный ролик для медицинского диагностического центра «Modus Vivendi» (Кишинёв), созданный для показа на indoor LED-экране (стеле).",
+      en: "An animated promotional video for the Modus Vivendi medical diagnostic center (Chișinău), created for an indoor LED screen (totem).",
+      ro: "Un clip publicitar animat pentru centrul medical de diagnostic „Modus Vivendi” (Chișinău), creat pentru difuzare pe un ecran LED de interior (totem).",
+    },
+    story: {
+      brief: {
+        ru: "Нужен был ролик, который привлекает внимание в публичных пространствах на вертикальном экране-стеле 9:16. В него требовалось уместить услуги, контакты и 30-летний опыт центра.",
+        en: "The task was a video that grabs attention in public spaces on a vertical 9:16 LED totem. It had to fit the services, contact details and the center's 30 years of experience.",
+        ro: "Era nevoie de un clip care să atragă atenția în spațiile publice, pe un ecran-totem vertical 9:16. În el trebuiau încadrate serviciile, datele de contact și cei 30 de ani de experiență ai centrului.",
+      },
+      idea: {
+        ru: "Основа — плавные графические переходы, выразительная типографика и чёткая иерархия, где ключевая информация сочетается с эмоциональными семейными образами. Контрастная цветовая гамма помогает заметить ролик издалека.",
+        en: "The base is smooth graphic transitions, expressive typography and a clear hierarchy in which key information is combined with emotional family imagery. A contrasting color palette helps the video stand out from afar.",
+        ro: "La bază sunt tranzițiile grafice fluide, tipografia expresivă și o ierarhie clară, în care informațiile cheie se îmbină cu imagini emoționante de familie. Paleta contrastantă ajută ca clipul să fie observat de la distanță.",
+      },
+      result: {
+        ru: "Ролик оптимизирован под особенности LED-пилонов: текст читается под любым углом обзора, цвета яркие, а воспроизведение зациклено без видимых стыков.",
+        en: "The video is optimized for LED totems: the text stays legible from any viewing angle, colors are vibrant, and the playback loops without visible seams.",
+        ro: "Clipul este optimizat pentru ecranele LED de tip totem: textul se citește din orice unghi, culorile sunt vii, iar redarea se repetă în buclă fără întreruperi vizibile.",
+      },
+    },
   },
   {
     id: "24",
@@ -304,6 +464,23 @@ export const projects: Project[] = [
       en: "Motion design development for a sea fishing charter company based in Phuket, Thailand. The objective was to bring the client's existing logo to life and produce a versatile 2D animation suitable as a video report intro, standalone promo clip, or semi-transparent video overlay. The concept features a narrative underwater scene with a fishing hook and marlin that seamlessly transitions into the signature compass emblem containing a boat and anchor.",
       ro: "Dezvoltarea designului de mișcare pentru o companie specializată în pescuit maritim pe insula Phuket, Thailanda. Obiectivul proiectului a fost animarea logo-ului clientului și crearea unui videoclip 2D versatil, destinat utilizării ca intro pentru rapoarte video, clip promoțional independent sau suprapunere peste secvențe video. Conceptul se bazează pe o scenă subacvatică narativă cu un cârlig de pescuit și un pește-spadă, care se transformă fluid în emblema oficială sub formă de compas cu barcă și ancoră.",
     },
+    story: {
+      brief: {
+        ru: "Компании по организации морской рыбалки на Пхукете (Таиланд) нужно было оживить логотип и получить универсальную 2D-анимацию: для интро видеоотчётов, самостоятельного промо или наложения на видеоряд.",
+        en: "A sea fishing charter company in Phuket (Thailand) needed its logo brought to life and a versatile 2D animation: as an intro for video reports, a standalone promo or an overlay on footage.",
+        ro: "O companie de pescuit maritim din Phuket (Thailanda) avea nevoie să-și animeze logo-ul și să primească o animație 2D versatilă: pentru intro-ul rapoartelor video, ca promo de sine stătător sau ca suprapunere peste imagine.",
+      },
+      idea: {
+        ru: "Сюжет — подводная сцена с рыболовным крючком и меч-рыбой. Она плавно превращается в фирменную эмблему: компас с катером и якорем.",
+        en: "The story is an underwater scene with a fishing hook and a marlin. It smoothly turns into the signature emblem: a compass with a boat and an anchor.",
+        ro: "Povestea este o scenă subacvatică cu un cârlig de pescuit și un pește-spadă. Aceasta se transformă fluid în emblema oficială: un compas cu barcă și ancoră.",
+      },
+      result: {
+        ru: "Универсальная анимация логотипа, которая работает и как интро, и как самостоятельный промо-ролик, и как наложение на видео.",
+        en: "A versatile logo animation that works as an intro, as a standalone promo clip and as an overlay on video.",
+        ro: "O animație de logo versatilă, care funcționează ca intro, ca clip promoțional de sine stătător și ca suprapunere peste videoclip.",
+      },
+    },
   },
   {
     id: "25",
@@ -327,6 +504,23 @@ export const projects: Project[] = [
       ru: "Анимационный заставочный ролик, разработанный для семейного ресторана «Mumtaz» в Польше. Визуальная концепция начинается с графического появления карты Польши, на которой размещаются золотые гео-маркеры в форме бриллиантов, акцентирующие внимание на расположении и высоком качестве сервиса. Затем карта плавно трансформируется в изысканный логотип с золотым узорным обрамлением. Вертикальный формат (9:16), контрастный темный фон и элегантные золотые элементы делают видеоряд отличным решением для соцсетей (Instagram Reels, Stories, TikTok) и цифровых меню-бордов.",
       en: "An animated intro and brand reveal created for Mumtaz Family Restaurant in Poland. The visual narrative opens with an outline map of Poland, onto which golden diamond-shaped location pins drop to highlight the brand's presence and premium quality. The map then seamlessly morphs into an elegant, ornamentally framed golden logo emblem. Rendered in a vertical 9:16 format with a dark, sophisticated backdrop, this motion asset is ideal for social media promotion (Reels, Stories, TikTok) and digital signage displays.",
       ro: "Un intro animat de brand creat pentru restaurantul de familie „Mumtaz” din Polonia. Conceptul vizual debutează cu apariția conturată a hărții Poloniei, pe care sunt plasate marcatoare geografice aurii în formă de diamant, subliniind locația și standardele înalte ale brandului. Harta se transformă apoi fluid într-o emblemă de logo elegantă, încadrată de ornamente aurii. Formatul vertical (9:16), fundalul întunecat și rafinat și detaliile aurii fac videoclipul perfect pentru promovarea în rețelele sociale (Reels, Stories, TikTok) și pe ecranele digitale.",
+    },
+    story: {
+      brief: {
+        ru: "Семейному ресторану Mumtaz в Польше нужна была анимированная заставка, которая подчёркивает расположение и высокий уровень сервиса и подходит для соцсетей и цифровых меню-бордов.",
+        en: "The family restaurant Mumtaz in Poland needed an animated intro that highlights its location and premium service and suits social media and digital menu boards.",
+        ro: "Restaurantului de familie Mumtaz din Polonia îi trebuia un intro animat, care să sublinieze locația și serviciile de calitate și să se potrivească rețelelor sociale și meniurilor digitale.",
+      },
+      idea: {
+        ru: "Ролик начинается с появления карты Польши, на которой размещаются золотые гео-маркеры в форме бриллиантов. Затем карта плавно превращается в логотип с золотым узорным обрамлением.",
+        en: "The clip opens with an outline map of Poland on which golden diamond-shaped location pins appear. The map then smoothly turns into the logo with an ornamental golden frame.",
+        ro: "Clipul începe cu apariția hărții Poloniei, pe care sunt plasate marcatoare aurii în formă de diamant. Apoi harta se transformă fluid în logo, încadrat de ornamente aurii.",
+      },
+      result: {
+        ru: "Вертикальный ролик 9:16 на тёмном фоне с золотыми элементами. Он готов к публикации в Instagram Reels, Stories, TikTok и к показу на цифровых экранах.",
+        en: "A vertical 9:16 video on a dark background with golden elements. It is ready for Instagram Reels, Stories, TikTok and for digital displays.",
+        ro: "Un clip vertical 9:16, pe fundal întunecat și cu elemente aurii. Este gata pentru Instagram Reels, Stories, TikTok și pentru ecrane digitale.",
+      },
     },
   },
   {
@@ -352,6 +546,23 @@ export const projects: Project[] = [
       en: "An animated intro and end-screen (outro/CTA) developed for Smart Vantage IT (smartvantageit.com), an IT managed solutions and cybersecurity consulting firm. The visual concept is driven by a tech-focused digital code matrix effect that reveals the golden winged emblem and company typography. The second phase transitions into a sleek Call-To-Action segment featuring circuit board graphics and a branded QR code animation designed to drive consultation bookings and web traffic. This motion asset is tailored for corporate video intros, sales presentations, social media marketing, and promotional reels.",
       ro: "Intro animat și ecran de final (outro/CTA) create pentru Smart Vantage IT (smartvantageit.com), o companie specializată în servicii IT și consultanță în securitate cibernetică. Conceptul vizual se bazează pe un efect tehnologic de matrice de cod digital, care dezvăluie emblema aurie și denumirea companiei. A doua parte a videoclipului include un apel la acțiune (Call-To-Action) dinamic, cu fundal grafic în stil plăci de circuite și animație a codului QR personalizat pentru acces rapid la site și programarea consultațiilor. Proiectul este ideal pentru utilizare ca intro/outro în prezentări corporative, videoclipuri de promovare și rețele sociale.",
     },
+    story: {
+      brief: {
+        ru: "Международной компании Smart Vantage IT, которая работает в сфере кибербезопасности и IT-консалтинга, нужны были анимированная заставка и конечный экран с призывом к действию.",
+        en: "Smart Vantage IT, an international cybersecurity and IT consulting company, needed an animated intro and an end screen with a call to action.",
+        ro: "Companiei internaționale Smart Vantage IT, activă în securitate cibernetică și consultanță IT, îi trebuiau un intro animat și un ecran de final cu apel la acțiune.",
+      },
+      idea: {
+        ru: "Заставка построена на технологичном эффекте декодирования данных и матрицы, который проявляет золотую эмблему и название компании. Вторая часть — призыв к действию на фоне микросхем с анимацией фирменного QR-кода.",
+        en: "The intro is built on a tech-style data-decoding and matrix effect that reveals the golden emblem and the company name. The second part is a call to action over a circuit-board background with an animated branded QR code.",
+        ro: "Intro-ul se bazează pe un efect tehnologic de decodare a datelor și de matrice, care dezvăluie emblema aurie și denumirea companiei. A doua parte este un apel la acțiune pe fundal de plăci de circuite, cu animația codului QR de brand.",
+      },
+      result: {
+        ru: "Интро и аутро, которые подходят для презентаций, видео в соцсетях и корпоративных промо-материалов. QR-код быстро ведёт на сайт и на запись на консультацию.",
+        en: "An intro and outro that fit presentations, social media videos and corporate promo materials. The QR code quickly leads to the website and to booking a consultation.",
+        ro: "Un intro și un outro potrivite pentru prezentări, videoclipuri din rețelele sociale și materiale corporative. Codul QR duce rapid la site și la programarea unei consultații.",
+      },
+    },
   },
   {
     id: "27",
@@ -375,6 +586,23 @@ export const projects: Project[] = [
       ru: "Короткий анимационный интро-ролик, разработанный для компании RHEENO — оператора рекламы на экранах в метро. Работа строится на контурном проявлении букв, плавной сборке фирменного знака в виде рога из динамичных градиентных полос и контрастной смене темного фона на светлый. Ролик завершается выходом финального слогана «С нами Ваша реклама пробьет все преграды!», создавая универсальную заставку для промо-видео, соцсетей и корпоративных презентаций.",
       en: "A short animated intro video developed for RHEENO, a subway screen advertising operator. The motion design features a letter-by-letter outline typography reveal, a smooth assembly of the signature rhino horn logo from dynamic gradient stripes, and a high-contrast transition from a dark to light backdrop. The sequence finishes with the brand slogan (With us, your advertising will break through all barriers!), offering a versatile video opener for promo reels, social media, and corporate presentations.",
       ro: "Un scurt intro animat creat pentru compania RHEENO, operator de publicitate pe ecranele din metrou. Animația integrează o apariție conturată a literelor, o asamblare fluidă a emblemei în formă de corn din benzi dinamice cu gradient și o tranziție contrastantă de la fundal întunecat la luminos. Videoclipul se încheie cu afișarea sloganului „Cu noi, reclama ta va depăși orice barieră!”, oferind un intro versatil pentru clipuri promoționale, rețele sociale și prezentări corporative.",
+    },
+    story: {
+      brief: {
+        ru: "Компании RHEENO, оператору рекламы на экранах в метро, нужен был короткий анимационный интро-ролик, универсальный для промо-видео, соцсетей и презентаций.",
+        en: "RHEENO, a subway screen advertising operator, needed a short animated intro that works for promo videos, social media and presentations.",
+        ro: "Companiei RHEENO, operator de publicitate pe ecranele din metrou, îi trebuia un scurt intro animat, universal pentru clipuri promoționale, rețele sociale și prezentări.",
+      },
+      idea: {
+        ru: "Буквы проявляются по контуру, а фирменный знак в виде рога собирается из динамичных градиентных полос. Фон контрастно меняется с тёмного на светлый.",
+        en: "The letters are revealed by their outlines, and the signature horn-shaped mark is assembled from dynamic gradient stripes. The background switches in contrast from dark to light.",
+        ro: "Literele apar prin contur, iar emblema în formă de corn se asamblează din benzi dinamice cu gradient. Fundalul trece contrastant de la întunecat la luminos.",
+      },
+      result: {
+        ru: "Заставка завершается слоганом «С нами Ваша реклама пробьет все преграды!» — коротко, динамично и в духе бренда.",
+        en: "The intro finishes with the slogan “With us, your advertising will break through all barriers!”: short, dynamic and true to the brand.",
+        ro: "Intro-ul se încheie cu sloganul „Cu noi, reclama ta va depăși orice barieră!” — scurt, dinamic și în spiritul brandului.",
+      },
     },
   },
   {
@@ -400,6 +628,23 @@ export const projects: Project[] = [
       en: "An animated promotional banner created for the Pizza Deals special offer, designed for digital menu boards and display screens. The project highlights the integration of artificial intelligence: the seamless rotation of the appetizing pizza and the realistic steam generation were powered by AI tools, bringing a static food photo to life without 3D modeling. The visual layout is enhanced by bold typography, pulsing price badges, and subtle background graphic motion designed to catch customer attention.",
       ro: "Un banner publicitar animat creat pentru oferta specială „Pizza Deals”, conceput pentru ecrane digitale și meniuri electronice. Elementul cheie al proiectului îl constituie integrarea inteligenței artificiale: rotația lină a pizzei și generarea aburului au fost realizate cu ajutorul instrumentelor AI, dând viață unei fotografii statice fără a necesita modelare 3D. Compoziția este completată de tipografie dinamică, animații ale etichetelor de preț și elemente grafice de fundal, menite să atragă atenția clienților.",
     },
+    story: {
+      brief: {
+        ru: "Для акционного меню «Pizza Deals» требовался анимированный рекламный баннер для цифровых экранов и меню-бордов — сочный и привлекающий внимание к акции.",
+        en: "The “Pizza Deals” special menu needed an animated promotional banner for digital screens and menu boards: appetizing and attention-grabbing.",
+        ro: "Meniul promoțional „Pizza Deals” avea nevoie de un banner publicitar animat pentru ecrane digitale și meniuri electronice: apetisant și care să atragă atenția către ofertă.",
+      },
+      idea: {
+        ru: "Статичное фуд-фото я оживил с помощью ИИ: бесшовное вращение пиццы на подносе и горячий пар созданы без 3D-моделирования. Поверх добавлены динамичная типографика, пульсирующие ценники и фоновые паттерны.",
+        en: "I brought a static food photo to life with AI: the seamless rotation of the pizza on its tray and the hot steam were created without 3D modeling. On top I added dynamic typography, pulsing price tags and background patterns.",
+        ro: "Am animat o fotografie statică cu ajutorul AI: rotația fluidă a pizzei pe tavă și aburul fierbinte au fost create fără modelare 3D. Deasupra am adăugat tipografie dinamică, etichete de preț pulsatorii și modele de fundal.",
+      },
+      result: {
+        ru: "Яркий продающий баннер, который заметен на экране и выделяет акционные цены.",
+        en: "A vivid, sales-driven banner that stands out on screen and puts the promotional prices in focus.",
+        ro: "Un banner viu, orientat spre vânzări, care iese în evidență pe ecran și scoate în față prețurile promoționale.",
+      },
+    },
   },
   {
     id: "29",
@@ -423,6 +668,23 @@ export const projects: Project[] = [
       ru: "Игривая 2D-анимация логотипа, разработанная для кулинарного шоу «Coolinart». В центре концепции — оригинальный графический элемент, где две буквы «o» в названии оформлены в виде глаз под шеф-поварским колпаком и с усами. В начале ролика глаза динамично оглядываются по сторонам и моргают, после чего символ плавно собирается в полное текстовое название бренда.",
       en: "A playful 2D logo animation created for the «Coolinart» culinary show. At the core of the concept is a clever graphic element where the two «o» letters in the name are styled as eyes topped with a chef's hat and mustache. The sequence begins with the eyes dynamically looking around and blinking, after which the symbol smoothly morphs into the full brand typography.",
       ro: "O animație 2D de logo creată pentru emisiunea culinară „Coolinart”. În centrul conceptului se află un element grafic original, în care cele două litere „o” din denumire sunt stilizate sub formă de ochi cu bonetă de bucătar și mustață. La începutul clipului, ochii se mișcă dinamic privind în jur și clipesc, după care simbolul se transformă fluid în denumirea completă a brandului.",
+    },
+    story: {
+      brief: {
+        ru: "Кулинарному шоу «Coolinart» нужна была игривая 2D-анимация логотипа, которая сразу задаёт настроение шоу.",
+        en: "The culinary show “Coolinart” needed a playful 2D logo animation that sets the mood of the show right away.",
+        ro: "Emisiunii culinare „Coolinart” îi trebuia o animație 2D jucăușă a logo-ului, care să transmită imediat atmosfera emisiunii.",
+      },
+      idea: {
+        ru: "В центре — оригинальный графический ход: две буквы «o» в названии превращены в глаза под шеф-поварским колпаком и с усами. Глаза оглядываются по сторонам и моргают, затем символ собирается в полное название.",
+        en: "At the core is a clever graphic idea: the two “o” letters in the name become eyes under a chef's hat and with a mustache. The eyes look around and blink, then the symbol assembles into the full name.",
+        ro: "În centru este un element grafic original: cele două litere „o” din denumire devin ochi sub o bonetă de bucătar și cu mustață. Ochii se uită în jur și clipesc, apoi simbolul se transformă în denumirea completă.",
+      },
+      result: {
+        ru: "Живая анимация логотипа с характером, которую можно использовать как заставку шоу.",
+        en: "A lively logo animation with character that can be used as the show's intro.",
+        ro: "O animație de logo vie și cu personalitate, care poate fi folosită ca generic al emisiunii.",
+      },
     },
   },
   {
@@ -451,6 +713,23 @@ export const projects: Project[] = [
       ru: "Профессиональная бесшовная зацикленная 2D-анимация (Seamless Loop), созданная для фонового сопровождения и трансляции на панорамном LED-экране боулинг-клуба в рамках праздника Хеллоуин. Видеоарт спроектирован под нестандартные ультраширокие пропорции кадра и включает синхронную анимацию тематических элементов: мерцающего полнолуния, летучих мышей, замка с привидениями, катящихся тыкв и атрибутики боулинга (кеглей). Ролик дополнен неоновой типографикой «Happy Halloween» и точным совпадением начального и финального кадров, что обеспечивает идеальный непрерывный цикл воспроизведения без видимых стыков и пауз.",
       en: "Professional 2D seamless looped motion design created for ambient visual broadcasting on an ultrawide panoramic LED display in a bowling venue during Halloween. Specially rendered for extreme ultra-wide aspect ratios, the animation smoothly loops custom-crafted Halloween visuals (glowing full moon, flying bats, haunted mansion, rolling jack-o'-lanterns) alongside bowling pin motifs. Featuring animated glowing neon typography (Happy Halloween) and flawless frame-matching for infinite playback without noticeable transitions or cuts.",
       ro: "Proiect profesional de animație 2D în buclă continuă (Seamless Loop), creat pentru difuzare ambientală pe un ecran LED panoramic ultra-wide în cadrul unui club de bowling de Halloween. Conceptul vizual este adaptat pentru formate ecran atipice și îmbină grafica tematică (lună plină, lilieci, castel bântuit, dovleci sculptați) cu simbolurile din bowling (popice). Materialul include tipografie animată cu efecte neon („Happy Halloween”) și o potrivire perfectă a cadrelor, permițând rularea infinită a videoclipului fără întreruperi vizibile.",
+    },
+    story: {
+      brief: {
+        ru: "Боулинг-клубу нужен был видеоарт для панорамного LED-экрана к Хеллоуину — зацикленный, чтобы идти фоном без пауз.",
+        en: "A bowling club needed a Halloween video art for its panoramic LED screen: looped, so it can play in the background without pauses.",
+        ro: "Unui club de bowling îi trebuia un video-art de Halloween pentru ecranul LED panoramic: în buclă, ca să ruleze fundal fără pauze.",
+      },
+      idea: {
+        ru: "Анимация спроектирована под ультраширокие пропорции кадра и объединяет тематические элементы: мерцающее полнолуние, летучих мышей, замок с привидениями, катящиеся тыквы и кегли. Добавлена неоновая типографика “Happy Halloween”.",
+        en: "The animation is designed for ultrawide frame proportions and combines themed elements: a glowing full moon, bats, a haunted castle, rolling pumpkins and bowling pins. Neon “Happy Halloween” typography completes it.",
+        ro: "Animația este proiectată pentru formate ultra-wide și îmbină elemente tematice: luna plină strălucitoare, lilieci, un castel bântuit, dovleci care se rostogolesc și popice. Este completată de tipografie neon „Happy Halloween”.",
+      },
+      result: {
+        ru: "Первый и последний кадры совпадают, поэтому цикл воспроизводится непрерывно, без видимых стыков и пауз.",
+        en: "The first and last frames match, so the loop plays continuously, without visible seams or pauses.",
+        ro: "Primul și ultimul cadru coincid, așa că bucla rulează continuu, fără întreruperi sau pauze vizibile.",
+      },
     },
   },
   

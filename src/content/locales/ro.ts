@@ -92,6 +92,7 @@ export const ro = {
       success: "Mulțumesc! Mesajul a fost trimis, îți răspund în curând.",
       error: "Ceva n-a mers bine. Încearcă din nou sau scrie-mi direct pe email.",
       sendAnother: "Trimite alt mesaj",
+      limit: "Limita a fost atinsă: maximum 3 mesaje în 24 de ore. Te rog scrie-mi direct pe e-mail sau pe rețelele sociale.",
     },
   },
   project: {
@@ -100,6 +101,7 @@ export const ro = {
     cta: "Îți place? Hai să discutăm proiectul tău",
     ctaButton: "Contactează-mă",
     expandVideo: "Deschide videoul pe tot ecranul",
+    story: { brief: "Solicitare", idea: "Idee", result: "Rezultat" },
   },
   faq: {
     title: "FAQ",

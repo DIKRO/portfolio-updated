@@ -91,6 +91,7 @@ export const en = {
       success: "Thanks! Your message is on its way, I'll reply soon.",
       error: "Something went wrong. Please try again or email me directly.",
       sendAnother: "Send another",
+      limit: "Limit reached: no more than 3 messages per 24 hours. Please email me directly or use social media.",
     },
   },
   project: {
@@ -99,6 +100,7 @@ export const en = {
     cta: "Like this? Let's discuss your project",
     ctaButton: "Get in touch",
     expandVideo: "Open video fullscreen",
+    story: { brief: "Brief", idea: "Idea", result: "Result" },
   },
   faq: {
     title: "FAQ",
