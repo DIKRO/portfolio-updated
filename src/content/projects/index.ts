@@ -329,6 +329,64 @@ export const projects: Project[] = [
       },
     },
   },
+  {
+    id: "8",
+    order: 2.1,
+    featuredOrder: 4,
+    slug: "telefonuberi_logo",
+    client: "energy",
+    title: { 
+      ru: "Логотип и айдентика для ресторана грузинской кухни «Убери телефон»", 
+      en: "Logo and Brand Identity for 'Uberi Telefon' Georgian Cuisine Restaurant", 
+      ro: "Logotip și identitate de brand pentru restaurantul cu bucătărie georgiană „Uberi Telefon”" 
+    },
+    categoryKey: "branding",
+    year: 2026,
+    cover: "/images/work/logo/telefonuberi_logo/telefonuberi_logo-cover.jpg",
+    images: [
+      { row: [
+          "/images/work/logo/telefonuberi_logo/0.jpg",
+      ] },
+      { row: [
+          "/images/work/logo/telefonuberi_logo/22.png",
+      ] },
+      { row: [
+          "/images/work/logo/telefonuberi_logo/33.png",
+      ] },
+      { row: [
+          "/images/work/logo/telefonuberi_logo/1.jpg",
+          "/images/work/logo/telefonuberi_logo/2.jpg",
+          "/images/work/logo/telefonuberi_logo/3.jpg",
+      ] },
+      { row: [
+          "/images/work/logo/telefonuberi_logo/4.jpg",
+          "/images/work/logo/telefonuberi_logo/5.jpg",
+          "/images/work/logo/telefonuberi_logo/6.jpg",
+      ] },
+    ],
+    description: {
+      ru: "Концепция фирменного стиля и логотипа для ресторана грузинской кухни, вдохновленная известным интернет-мемом с призывом отложить гаджеты. Главная идея заведения заключается в том, чтобы отвлечь гостей от экранов телефонов и вернуть их к живому общению за традиционным застольем.",
+      en: "Brand identity and logo concept for a Georgian cuisine restaurant, inspired by the viral internet meme urging people to put their gadgets away. The core idea of the venue is to distract guests from phone screens and bring them back to live communication over a traditional feast.",
+      ro: "Concept de identitate vizuală și logotip pentru un restaurant cu bucătărie georgiană, inspirat de memul viral de pe internet care îndeamnă la renunțarea la gadgeturi. Ideea principală a localului este de a distrage oaspeții de la ecranele telefoanelor și de a-i readuce la comunicarea vie în cadrul unui ospăț tradițional.",
+    },
+    story: {
+      brief: {
+        ru: "Требовалось разработать концепцию айдентики и логотипа для ресторана грузинской кухни, которая органично перенесет популярный интернет-мем в сферу гостеприимства и гастрономии.",
+        en: "The task was to develop a brand identity and logo concept for a Georgian cuisine restaurant that seamlessly translates a popular internet meme into the hospitality and gastronomy sector.",
+        ro: "A fost necesară dezvoltarea unui concept de identitate și logotip pentru un restaurant cu bucătărie georgiană, care să transfere organic un meme viral de pe internet în sectorul ospitalității și al gastronomiei.",
+      },
+      idea: {
+        ru: "В основу лег вирусный мем с мужчиной, эмоционально призывающим убрать телефон. Главный посыл заведения — вернуть гостей к живому общению и традиционному застолью. В центре визуального стиля находится стилизованный портрет персонажа и характерная типографика.",
+        en: "The concept is based on the viral meme featuring a man emotionally urging people to put their phones away. The main message of the venue is to bring guests back to live communication and a traditional feast. The visual style centers around a stylized portrait of the character and distinctive typography.",
+        ro: "La bază stă memul viral cu bărbatul care îndeamnă emoționant să fie lăsat deoparte telefonul. Mesajul principal al localului este de a readuce oaspeții la comunicarea vie și la un ospăț tradițional. În centrul stilului vizual se află un portret stilizat al personajului și o tipografie distinctivă.",
+      },
+      result: {
+        ru: "Создан яркий и запоминающийся бренд, который доведен до практической реализации и продемонстрирован на различных носителях: вывесках, элементах интерьера, униформе персонала и фирменной упаковке.",
+        en: "A striking and memorable brand was created, successfully implemented and showcased across various touchpoints, including exterior signage, interior elements, staff uniforms, and branded packaging.",
+        ro: "A fost creat un brand expresiv și memorabil, implementat cu succes și prezentat pe diverse suporturi: panouri exterioare, elemente de interior, uniformele personalului și ambalaje branduite.",
+      },
+    },
+  },
 
   // ── АНИМАЦИЯ — id 22–37 (занято: см. ниже, остальное — резерв под новые работы) ──
   {

@@ -48,6 +48,11 @@ interface ProjectViewProps {
   hasMultipleProjects: boolean;
 }
 
+// Шаг цепочки появления блока «Запрос → Идея → Итог», секунд. Элементы идут
+// друг за другом: плашка, стрелка, плашка, стрелка, плашка. Хочешь быстрее —
+// уменьши значение, медленнее — увеличь.
+const STORY_STEP = 0.1;
+
 export default function ProjectView({
   project,
   galleryRows,
@@ -214,12 +219,7 @@ export default function ProjectView({
           {/* Кейс в формате «Запрос → Идея → Итог»: три плашки вместо сплошного
               текста. Раскладка (3 колонки / столбик) зависит от ширины самого
               блока, см. .story в ProjectView.module.css. */}
-          <motion.div
-            className={styles.story}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
+          <div className={styles.story}>
             <div className={styles.storyRow}>
             {(["brief", "idea", "result"] as const).map((key, i) => (
               <Fragment key={key}>
@@ -227,13 +227,40 @@ export default function ProjectView({
                     (на телефоне, где столбцы идут друг под другом, CSS
                     поворачивает её вниз). */}
                 {i > 0 && (
-                  <span className={styles.storyArrow} aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M9.5 6l6 6-6 6" />
-                    </svg>
-                  </span>
+                  <motion.span
+                    className={styles.storyArrow}
+                    aria-hidden="true"
+                    // Внешняя обёртка отвечает только за появление (подъём +
+                    // проявление, как у плашек), а круг с поворотом на
+                    // телефоне — внутренний .storyArrowIcon: так анимация
+                    // (inline transform) не конфликтует с CSS-поворотом.
+                    // Задержка — строго между соседними плашками: весь блок
+                    // появляется одной цепочкой по порядку слева направо —
+                    // плашка 1 → стрелка → плашка 2 → стрелка → плашка 3
+                    // (шаг STORY_STEP у каждого элемента цепочки).
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.5, delay: (2 * i - 1) * STORY_STEP }}
+                  >
+                    <span className={styles.storyArrowIcon}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M9.5 6l6 6-6 6" />
+                      </svg>
+                    </span>
+                  </motion.span>
                 )}
-                <section className={styles.storyTile}>
+                {/* Появление — как у карточек отзывов (Reviews.tsx): плавный
+                    подъём на 24px с проявлением при попадании в экран, один
+                    раз. Плашки — чётные шаги цепочки (0, 2, 4), стрелки —
+                    нечётные (1, 3), поэтому всё идёт строго друг за другом. */}
+                <motion.section
+                  className={styles.storyTile}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: 2 * i * STORY_STEP }}
+                >
                   {/* Светящийся уголок — та же SVG-дуга, что и у карточек
                       отзывов (см. Reviews.tsx), прямые полоски от неё —
                       ::before/::after в CSS. */}
@@ -260,11 +287,11 @@ export default function ProjectView({
                   <p lang={lang} className={styles.storyText}>
                     {project.story![key][lang]}
                   </p>
-                </section>
+                </motion.section>
               </Fragment>
             ))}
             </div>
-          </motion.div>
+          </div>
           </>
         ) : (
           <motion.p
