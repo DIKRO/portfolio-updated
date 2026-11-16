@@ -13,8 +13,12 @@ const locales = {
 
 const STORAGE_KEY = "lang";
 
-export function useLang() {
-  const [lang, setLangState] = useState<Lang>("en");
+// initialLang — язык, который сервер определил по Accept-Language. Благодаря
+// ему первый HTML (и то, что видит поисковик) сразу на нужном языке, без
+// мигания «английский → русский». Сохранённый выбор из localStorage по-
+// прежнему имеет приоритет и применяется после монтирования.
+export function useLang(initialLang: Lang = "en") {
+  const [lang, setLangState] = useState<Lang>(initialLang);
 
   useEffect(() => {
     const saved = window.localStorage.getItem(STORAGE_KEY);

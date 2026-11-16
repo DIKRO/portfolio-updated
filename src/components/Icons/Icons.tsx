@@ -123,6 +123,23 @@ export function InstagramIcon() {
   );
 }
 
+// Логотип LinkedIn: скруглённый квадрат с буквами «in» — в той же контурной
+// стилистике (stroke 1.6), что и остальные иконки соцсетей.
+export function LinkedInIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <rect x="3" y="3" width="18" height="18" rx="3.5" strokeLinejoin="round" />
+      <path d="M8 10.4v6.1" strokeLinecap="round" />
+      <circle cx="8" cy="7.6" r="1.05" fill="currentColor" stroke="none" />
+      <path
+        d="M12 16.5v-6.1m0 2.5c0-1.5 1-2.6 2.5-2.6 1.6 0 2.2 1.1 2.2 2.7v3.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function ViberIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">

@@ -65,7 +65,7 @@ export const projects: Project[] = [
     order: 2,
     slug: "catedra_matinf_logo",
     client: "usarb",
-    title: { ru: "Логотип для кафедры математики и информатики факультета ȘREM, USARB", en: "Logo for the Department of Mathematics and Computer Science, ȘREM Faculty, USARB", ro: "Logotip pentru catedra de matematică și informatică a facultății ȘREM, USARB" },
+    title: { ru: "Логотип для кафедры математики и информатики факультета ȘREM, USARB", en: "Logo for the Department of Mathematics and Computer Science, ȘREM Faculty, USARB", ro: "Logo pentru catedra de matematică și informatică a facultății ȘREM, USARB" },
     categoryKey: "branding",
     year: 2026,
     cover: "/images/work/logo/matematica/cover-7 copy.jpg",
@@ -80,13 +80,13 @@ export const projects: Project[] = [
       "/images/work/logo/matematica/work8.jpg"
             ],
     description: {
-      ru: "Логотип, созданный в рамках лицензионного проекта («Исследование и разработка визуальной идентичности факультета ȘREM, USARB: от концепции до реализации»), с последующим применением. В основе логотипа лежит аббревиатура слов Matematica/Informatica, вписанных в квадратные скобки, которые используются в обеих дисциплинах.",
-      en: "A logo created as part of a licensing project (“Research and Development of the Visual Identity for the ȘREM Faculty, USARB: From Concept to Implementation”), followed by its implementation. The logo is based on the abbreviation of the words “Matematica/Informatica,” enclosed in square brackets, which are used in both disciplines.",
-      ro: "Logo-ul creat în cadrul proiectului licențial („Cercetarea și dezvoltarea identității vizuale a Facultății ȘREM, USARB: de la concept la realizare”), urmat de punerea sa în practică. La baza logo-ului stă abrevierea cuvintelor „Matematica/Informatica”, încadrate între paranteze pătrate, care sunt utilizate în ambele discipline.",
+      ru: "Логотип, созданный в рамках дипломного проекта («Исследование и разработка визуальной идентичности факультета ȘREM, USARB: от концепции до реализации»), с последующим применением. В основе логотипа лежит аббревиатура слов Matematica/Informatica, вписанных в квадратные скобки, которые используются в обеих дисциплинах.",
+      en: "A logo created as part of a degree project (“Research and Development of the Visual Identity for the ȘREM Faculty, USARB: From Concept to Implementation”), followed by its implementation. The logo is based on the abbreviation of the words “Matematica/Informatica,” enclosed in square brackets, which are used in both disciplines.",
+      ro: "Logo-ul creat în cadrul proiectului de licență („Cercetarea și dezvoltarea identității vizuale a Facultății ȘREM, USARB: de la concept la realizare”), urmat de punerea sa în practică. La baza logo-ului stă abrevierea cuvintelor „Matematica/Informatica”, încadrate între paranteze pătrate, care sunt utilizate în ambele discipline.",
     },
     story: {
       brief: {
-        ru: "В рамках лицензионного проекта нужно было разработать визуальную идентичность кафедры математики и информатики факультета ȘREM (USARB) — от концепции до применения на конкретных носителях.",
+        ru: "В рамках дипломного проекта нужно было разработать визуальную идентичность кафедры математики и информатики факультета ȘREM (USARB) — от концепции до применения на конкретных носителях.",
         en: "As part of a degree project, I had to develop the visual identity of the Department of Mathematics and Computer Science at the ȘREM Faculty (USARB), from the concept to its real-world application.",
         ro: "În cadrul proiectului de licență a trebuit să dezvolt identitatea vizuală a catedrei de matematică și informatică a facultății ȘREM (USARB), de la concept până la aplicarea pe suporturi concrete.",
       },
@@ -112,7 +112,7 @@ export const projects: Project[] = [
             en: "Logo for System Global Group (Energy Wind Moldova), a company in the wind energy sector",
             ro: "Logo pentru compania din domeniul energiei eoliene System Global Group (Energy Wind Moldova)" },
     categoryKey: "branding",
-    year: 2026,
+    year: 2025,
     cover: "/images/work/logo/energywind/cover-11 copy.jpg",
     images: [
       "/images/work/logo/energywind/work1.jpg",
@@ -142,9 +142,9 @@ export const projects: Project[] = [
         ro: "Logo-ul este realizat într-un stil modern, iar nuanțele de verde din paletă trimit la ecologie și energie curată. Forma și culoarea sunt alese astfel încât brandul să arate sigur și tehnologic.",
       },
       result: {
-        ru: "Узнаваемый знак, который стал основой всей коммуникации компании. На его базе я затем сделал презентацию, рекламные баннеры и видео для Energy Wind Moldova.",
-        en: "A recognizable mark that became the basis of the company's entire communication. I later built a presentation, ad banners and videos for Energy Wind Moldova on top of it.",
-        ro: "Un semn ușor de recunoscut, care a devenit baza întregii comunicări a companiei. Pe baza lui am realizat ulterior o prezentare, bannere publicitare și videoclipuri pentru Energy Wind Moldova.",
+        ru: "Узнаваемый знак, который стал основой всей коммуникации компании. Для Energy Wind Moldova я также подготовил презентацию, рекламные баннеры и видео.",
+        en: "A recognizable mark that became the basis of the company's entire communication. For Energy Wind Moldova I also created a presentation, ad banners and videos.",
+        ro: "Un semn ușor de recunoscut, care a devenit baza întregii comunicări a companiei. Pentru Energy Wind Moldova am realizat și o prezentare, bannere publicitare și videoclipuri.",
       },
     },
   },
@@ -197,9 +197,9 @@ export const projects: Project[] = [
     featuredOrder: 5, // закреплено в начале «Все»
     slug: "kreola_logo",
     client: "kreola",
-    title: { ru: "Логотип для шоколадной фабрики Kreola в Румынии",
-            en: "Logo for the Kreola Chocolate Factory in Romania",
-            ro: "Logo pentru fabrica de ciocolată Kreola din România" },
+    title: { ru: "Логотип и айдентика для шоколадной фабрики Kreola (Румыния)",
+            en: "Logo and Brand Identity for the Kreola Chocolate Factory (Romania)",
+            ro: "Logo și identitate de brand pentru fabrica de ciocolată Kreola (România)" },
     categoryKey: "branding",
     year: 2025,
     cover: "/images/work/logo/kreola/cover-30 copy.jpg",
@@ -215,9 +215,9 @@ export const projects: Project[] = [
       "/images/work/logo/kreola/work9.jpg"
             ],
     description: {
-      ru: "Айдентика бренда KREOLA объединяет премиальную эстетику с духом настоящего ремесленного шоколада. Глубокие винные и теплые землистые оттенки в сочетании с элегантной антиквой подчеркивают благородство продукта. Тактильные паттерны на упаковке и открытое окно, демонстрирующее богатство натуральных ингредиентов, создают образ честного, но роскошного шоколада, который хочется попробовать прямо сейчас.",
-      en: "A logo created for the Kreola Chocolate Factory in Romania. It combines premium aesthetics with the spirit of authentic artisanal chocolate. Deep wine and warm earthy tones, combined with an elegant serif typeface, emphasize the nobility of the product. Textured patterns on the packaging and an open window showcasing the abundance of natural ingredients create an image of honest yet luxurious chocolate that you want to try right now.",
-      ro: "Identitatea de brand KREOLA îmbină estetica premium cu spiritul ciocolatei artizanale autentice. Nuanțele adânci de vin și tonurile calde, pământii, combinate cu un font cu serife elegant, subliniază noblețea produsului. Modelele tactile de pe ambalaj și fereastra deschisă, care arată bogăția ingredientelor naturale, creează imaginea unei ciocolate sincere, dar luxoase, pe care ai vrea s-o guști chiar acum.",
+      ru: "Айдентика бренда Kreola объединяет премиальную эстетику с духом настоящего ремесленного шоколада. Глубокие винные и тёплые землистые оттенки в сочетании с элегантной антиквой подчёркивают благородство продукта. Тактильные паттерны на упаковке и открытое окно, демонстрирующее богатство натуральных ингредиентов, создают образ честного, но роскошного шоколада, который хочется попробовать прямо сейчас.",
+      en: "Brand identity for the Kreola Chocolate Factory in Romania. It combines premium aesthetics with the spirit of authentic artisanal chocolate. Deep wine and warm earthy tones, combined with an elegant serif typeface, emphasize the nobility of the product. Textured patterns on the packaging and an open window showcasing the abundance of natural ingredients create an image of honest yet luxurious chocolate that you want to try right now.",
+      ro: "Identitatea de brand Kreola îmbină estetica premium cu spiritul ciocolatei artizanale autentice. Nuanțele adânci de vin și tonurile calde, pământii, combinate cu un font cu serife elegant, subliniază noblețea produsului. Modelele tactile de pe ambalaj și fereastra deschisă, care arată bogăția ingredientelor naturale, creează imaginea unei ciocolate sincere, dar luxoase, pe care ai vrea s-o guști chiar acum.",
     },
     story: {
       brief: {
@@ -231,9 +231,9 @@ export const projects: Project[] = [
         ro: "Nuanțele adânci de vin și tonurile calde, pământii, împreună cu un font cu serife elegant, subliniază noblețea produsului. Modelele tactile de pe ambalaj și fereastra deschisă, care arată ingredientele naturale, creează imaginea unei ciocolate sincere, dar luxoase.",
       },
       result: {
-        ru: "Цельная айдентика, в которой логотип, палитра и упаковка работают как единая система и вызывают желание попробовать продукт. На её основе были сделаны упаковка плиток и каталог-флаер.",
-        en: "A cohesive identity in which the logo, palette and packaging work as one system and make you want to try the product. The chocolate bar packaging and the catalog flyer were built on top of it.",
-        ro: "O identitate unitară, în care logo-ul, paleta și ambalajul funcționează ca un sistem și te fac să vrei să guști produsul. Pe baza ei au fost create ambalajul tabletelor și pliantul-catalog.",
+        ru: "Цельная айдентика, в которой логотип, палитра и упаковка работают как единая система и вызывают желание попробовать продукт. В ту же систему входят упаковка плиток и каталог-флаер.",
+        en: "A cohesive identity in which the logo, palette and packaging work as one system and make you want to try the product. The chocolate bar packaging and the catalog flyer are part of the same system.",
+        ro: "O identitate unitară, în care logo-ul, paleta și ambalajul funcționează ca un sistem și te fac să vrei să guști produsul. Ambalajul tabletelor și pliantul-catalog fac parte din același sistem.",
       },
     },
   },
@@ -261,9 +261,9 @@ export const projects: Project[] = [
       "/images/work/logo/grillkebab_logo/work11.jpg"
             ],
     description: {
-      ru: "Редизайн логотипа для сети быстрого питания Grill Kebab выполнен с акцентом на современность и универсальность использования. Визуальная концепция основана на сочетании динамичной типографики и графики пламени, что подчёркивает специфику бренда и его связь с приготовлением на гриле. Логотип адаптирован для разных носителей — упаковки, рекламных материалов и наружной рекламы, обеспечивая единый фирменный стиль. Такой подход усиливает узнаваемость бренда и формирует целостный образ сети питания.",
-      en: "The logo redesign for the Grill Kebab fast-food chain was created with an emphasis on modernity and versatility. The visual concept is based on a combination of dynamic typography and flame graphics, which highlights the brand’s unique identity and its connection to grilling. The logo has been adapted for various media—including packaging, promotional materials, and outdoor advertising—to ensure a consistent brand identity. This approach enhances brand recognition and creates a cohesive image for the restaurant chain.",
-      ro: "Redesenarea logo-ului pentru lanțul de restaurante fast-food Grill Kebab a fost realizată punând accentul pe modernitate și versatilitate. Conceptul vizual se bazează pe combinația dintre tipografia dinamică și elementele grafice reprezentând flăcările, ceea ce subliniază specificul mărcii și legătura acesteia cu prepararea la grătar. Logo-ul a fost adaptat pentru diverse suporturi — ambalaje, materiale publicitare și publicitate exterioară — asigurând un stil corporativ unitar. Această abordare sporește gradul de recunoaștere a mărcii și creează o imagine coerentă a lanțului de restaurante.",
+      ru: "Редизайн логотипа для сети быстрого питания Grill Kebab выполнен с акцентом на современность и универсальность использования. Визуальная концепция основана на сочетании динамичной типографики и графики пламени, что подчёркивает специфику бренда и его связь с приготовлением на гриле. Применение логотипа показано на разных носителях — упаковке, рекламных материалах и наружной рекламе, что обеспечивает единый фирменный стиль. Такой подход усиливает узнаваемость бренда и формирует целостный образ сети питания.",
+      en: "The logo redesign for the Grill Kebab fast-food chain was created with an emphasis on modernity and versatility. The visual concept is based on a combination of dynamic typography and flame graphics, which highlights the brand’s unique identity and its connection to grilling. The logo is shown applied across various media, including packaging, promotional materials and outdoor advertising, to ensure a consistent brand identity. This approach enhances brand recognition and creates a cohesive image for the restaurant chain.",
+      ro: "Redesenarea logo-ului pentru lanțul de restaurante fast-food Grill Kebab a fost realizată punând accentul pe modernitate și versatilitate. Conceptul vizual se bazează pe combinația dintre tipografia dinamică și elementele grafice reprezentând flăcările, ceea ce subliniază specificul mărcii și legătura acesteia cu prepararea la grătar. Aplicarea logo-ului este prezentată pe diverse suporturi — ambalaje, materiale publicitare și publicitate exterioară — asigurând un stil de brand unitar. Această abordare sporește gradul de recunoaștere a mărcii și creează o imagine coerentă a lanțului de restaurante.",
     },
     story: {
       brief: {
@@ -277,9 +277,9 @@ export const projects: Project[] = [
         ro: "Conceptul îmbină tipografia dinamică cu elemente grafice reprezentând flăcări. Acestea subliniază specificul mărcii și legătura ei cu prepararea la grătar.",
       },
       result: {
-        ru: "Обновлённый логотип адаптирован для упаковки, рекламных материалов и наружной рекламы. Он работает как единый фирменный стиль, повышает узнаваемость и создаёт цельный образ сети.",
-        en: "The updated logo is adapted for packaging, promotional materials and outdoor advertising. It works as one consistent brand style, boosts recognition and gives the chain a cohesive image.",
-        ro: "Logo-ul actualizat este adaptat pentru ambalaje, materiale publicitare și publicitate exterioară. Funcționează ca un stil de brand unitar, sporește recunoașterea și creează o imagine coerentă a lanțului.",
+        ru: "Обновлённый логотип показан в применении на упаковке, рекламных материалах и наружной рекламе. Он работает как единый фирменный стиль, повышает узнаваемость и создаёт цельный образ сети.",
+        en: "The updated logo is shown applied to packaging, promotional materials and outdoor advertising. It works as one consistent brand style, boosts recognition and gives the chain a cohesive image.",
+        ro: "Aplicarea logo-ului actualizat este prezentată pe ambalaje, materiale publicitare și publicitate exterioară. Funcționează ca un stil de brand unitar, sporește recunoașterea și creează o imagine coerentă a lanțului.",
       },
     },
   },
@@ -289,8 +289,8 @@ export const projects: Project[] = [
     slug: "GreenHills_logo",
     client: "GreenHills",
     title: { ru: "Логотип для сети супермаркетов Green Hills",
-            en: "Logo Redesign and Branding Concept for Green Hills",
-            ro: "Concept de redesign al logo-ului și al brandingului pentru Green Hills" },
+            en: "Logo for the Green Hills Supermarket Chain",
+            ro: "Logo pentru lanțul de supermarketuri Green Hills" },
     categoryKey: "branding",
     year: 2025,
     cover: "/images/work/logo/GreenHills_logo/cover-45 copy.jpg",
@@ -307,7 +307,7 @@ export const projects: Project[] = [
       "/images/work/logo/GreenHills_logo/10.jpg"
             ],
     description: {
-      ru: "Разработан комбинированный логотип для сети супермаркетов «Green Hills», графический знак которого визуально объединяет контуры покупательской корзины и зеленого холма. Использование насыщенного монохромного зеленого цвета в сочетании с мягким, округлым шрифтом без засечек формирует прямую ассоциацию со свежестью, натуральностью продуктов и экологичностью. Благодаря лаконичной геометрии и отсутствию мелких деталей, фирменный знак обладает высокой контрастностью, легко считывается и масштабируется для использования на любых рекламных и физических носителях.",
+      ru: "Разработан комбинированный логотип для сети супермаркетов «Green Hills», графический знак которого визуально объединяет контуры покупательской корзины и зелёного холма. Использование насыщенного монохромного зелёного цвета в сочетании с мягким, округлым шрифтом без засечек формирует прямую ассоциацию со свежестью, натуральностью продуктов и экологичностью. Благодаря лаконичной геометрии и отсутствию мелких деталей, фирменный знак обладает высокой контрастностью, легко считывается и масштабируется для использования на любых рекламных и физических носителях.",
       en: "A combined logo has been developed for the “Green Hills” supermarket chain, whose graphic symbol visually combines the outlines of a shopping cart and a green hill. The use of a rich monochromatic green color, combined with a soft, rounded sans-serif font, creates a direct association with the freshness and naturalness of the products, as well as environmental friendliness. Thanks to its clean geometry and lack of fine details, the logo has high contrast, is easily legible, and can be scaled for use on any advertising or physical media.",
       ro: "A fost creat un logo combinat pentru lanțul de supermarketuri „Green Hills”, al cărui simbol grafic îmbină vizual contururile unui coș de cumpărături și ale unui deal verde. Utilizarea unei nuanțe intense de verde monocrom, în combinație cu un font rotunjit, fără serife, creează o asociere directă cu prospețimea, naturalețea produselor și caracterul ecologic. Datorită geometriei concise și absenței detaliilor mici, sigla prezintă un contrast ridicat, este ușor de citit și poate fi redimensionată pentru a fi utilizată pe orice suport publicitar sau fizic.",
     },
@@ -334,11 +334,10 @@ export const projects: Project[] = [
     order: 2.1,
     featuredOrder: 4,
     slug: "telefonuberi_logo",
-    client: "energy",
     title: { 
       ru: "Логотип и айдентика для ресторана грузинской кухни «Убери телефон»", 
-      en: "Logo and Brand Identity for 'Uberi Telefon' Georgian Cuisine Restaurant", 
-      ro: "Logotip și identitate de brand pentru restaurantul cu bucătărie georgiană „Uberi Telefon”" 
+      en: "Logo and Brand Identity for “Uberi Telefon” Georgian Cuisine Restaurant", 
+      ro: "Logo și identitate de brand pentru restaurantul cu bucătărie georgiană „Uberi Telefon”" 
     },
     categoryKey: "branding",
     year: 2026,
@@ -365,25 +364,25 @@ export const projects: Project[] = [
       ] },
     ],
     description: {
-      ru: "Концепция фирменного стиля и логотипа для ресторана грузинской кухни, вдохновленная известным интернет-мемом с призывом отложить гаджеты. Главная идея заведения заключается в том, чтобы отвлечь гостей от экранов телефонов и вернуть их к живому общению за традиционным застольем.",
+      ru: "Концепция фирменного стиля и логотипа для ресторана грузинской кухни, вдохновлённая известным интернет-мемом с призывом отложить гаджеты. Главная идея заведения заключается в том, чтобы отвлечь гостей от экранов телефонов и вернуть их к живому общению за традиционным застольем.",
       en: "Brand identity and logo concept for a Georgian cuisine restaurant, inspired by the viral internet meme urging people to put their gadgets away. The core idea of the venue is to distract guests from phone screens and bring them back to live communication over a traditional feast.",
       ro: "Concept de identitate vizuală și logotip pentru un restaurant cu bucătărie georgiană, inspirat de memul viral de pe internet care îndeamnă la renunțarea la gadgeturi. Ideea principală a localului este de a distrage oaspeții de la ecranele telefoanelor și de a-i readuce la comunicarea vie în cadrul unui ospăț tradițional.",
     },
     story: {
       brief: {
-        ru: "Требовалось разработать концепцию айдентики и логотипа для ресторана грузинской кухни, которая органично перенесет популярный интернет-мем в сферу гостеприимства и гастрономии.",
+        ru: "Требовалось разработать концепцию айдентики и логотипа для ресторана грузинской кухни, которая органично перенесёт популярный интернет-мем в сферу гостеприимства и гастрономии.",
         en: "The task was to develop a brand identity and logo concept for a Georgian cuisine restaurant that seamlessly translates a popular internet meme into the hospitality and gastronomy sector.",
         ro: "A fost necesară dezvoltarea unui concept de identitate și logotip pentru un restaurant cu bucătărie georgiană, care să transfere organic un meme viral de pe internet în sectorul ospitalității și al gastronomiei.",
       },
       idea: {
-        ru: "В основу лег вирусный мем с мужчиной, эмоционально призывающим убрать телефон. Главный посыл заведения — вернуть гостей к живому общению и традиционному застолью. В центре визуального стиля находится стилизованный портрет персонажа и характерная типографика.",
+        ru: "В основу лёг вирусный мем с мужчиной, эмоционально призывающим убрать телефон. Главный посыл заведения — вернуть гостей к живому общению и традиционному застолью. В центре визуального стиля находится стилизованный портрет персонажа и характерная типографика.",
         en: "The concept is based on the viral meme featuring a man emotionally urging people to put their phones away. The main message of the venue is to bring guests back to live communication and a traditional feast. The visual style centers around a stylized portrait of the character and distinctive typography.",
-        ro: "La bază stă memul viral cu bărbatul care îndeamnă emoționant să fie lăsat deoparte telefonul. Mesajul principal al localului este de a readuce oaspeții la comunicarea vie și la un ospăț tradițional. În centrul stilului vizual se află un portret stilizat al personajului și o tipografie distinctivă.",
+        ro: "La bază stă memul viral cu bărbatul care îndeamnă cu patos să fie lăsat deoparte telefonul. Mesajul principal al localului este de a readuce oaspeții la comunicarea vie și la un ospăț tradițional. În centrul stilului vizual se află un portret stilizat al personajului și o tipografie distinctivă.",
       },
       result: {
-        ru: "Создан яркий и запоминающийся бренд, который доведен до практической реализации и продемонстрирован на различных носителях: вывесках, элементах интерьера, униформе персонала и фирменной упаковке.",
-        en: "A striking and memorable brand was created, successfully implemented and showcased across various touchpoints, including exterior signage, interior elements, staff uniforms, and branded packaging.",
-        ro: "A fost creat un brand expresiv și memorabil, implementat cu succes și prezentat pe diverse suporturi: panouri exterioare, elemente de interior, uniformele personalului și ambalaje branduite.",
+        ru: "Создан яркий и запоминающийся бренд, применение которого показано на различных носителях: вывесках, элементах интерьера, униформе персонала и фирменной упаковке.",
+        en: "A striking and memorable brand was created, with its application shown across various touchpoints, including exterior signage, interior elements, staff uniforms, and branded packaging.",
+        ro: "A fost creat un brand expresiv și memorabil, a cărui aplicare este prezentată pe diverse suporturi: panouri exterioare, elemente de interior, uniformele personalului și ambalaje branduite.",
       },
     },
   },
@@ -464,12 +463,12 @@ export const projects: Project[] = [
     // Пример необязательного лейбла-контекста (см. комментарий у поля
     // context в src/types/project.ts):
     context: {
-       ru: "Выполнено в рамках сотрудничества с DOOH house",
-       en: "Completed in collaboration with DOOH house",
-       ro: "Realizat în cadrul colaborării cu DOOH house",
+       ru: "Выполнено в рамках сотрудничества с DOOH House",
+       en: "Completed in collaboration with DOOH House",
+       ro: "Realizat în cadrul colaborării cu DOOH House",
     },
     description: {
-      ru: "Анимационный рекламный ролик для медицинского диагностического центра «Modus Vivendi» (Кишинёв), разработанный для трансляции на indoor LED-экране (стеле), по заказу DOOH House. В основе работы — плавные графические переходы, выразительная типографика и продуманная визуальная иерархия, сочетающая ключевую информацию (услуги, контакты, 30-летний опыт) с эмоциональными семейными образами. Видео адаптировано под вертикальный формат (9:16) с контрастной цветовой гаммой для максимального привлечения внимания в публичных пространствах. Видеоряд полностью оптимизирован под технические особенности LED-пилонов, обеспечивая высокую читаемость текста под любым углом обзора, яркую цветопередачу и бесшовное циклическое воспроизведение.",
+      ru: "Анимационный рекламный ролик для медицинского диагностического центра «Modus Vivendi» (Кишинёв), разработанный для трансляции на indoor LED-экране (стеле), по заказу DOOH House. В основе работы — плавные графические переходы, выразительная типографика и продуманная визуальная иерархия, сочетающая ключевую информацию (услуги, контакты, 30-летний опыт) с эмоциональными семейными образами. Видео адаптировано под вертикальный формат (9:16) с контрастной цветовой гаммой для максимального привлечения внимания в публичных пространствах. Видеоряд полностью оптимизирован под технические особенности LED-стел, обеспечивая высокую читаемость текста под любым углом обзора, яркую цветопередачу и бесшовное циклическое воспроизведение.",
       en: "An animated promotional video for the Modus Vivendi medical diagnostic center (Chișinău), created for display on an indoor floor-standing LED screen, commissioned by DOOH House. The project features smooth graphic transitions, expressive typography, and a well-thought-out visual hierarchy that blends key information (services, contact details, 30 years of experience) with emotional imagery. Adapted for a vertical format (9:16) with a high-contrast color palette, the video is designed to effectively capture attention in public spaces. It is fully optimized for the technical parameters of LED totems, ensuring excellent text legibility from any viewing angle, vibrant color reproduction, and seamless looping.",
       ro: "Clip video publicitar animat pentru centrul medical de diagnostic „Modus Vivendi” (Chișinău), conceput pentru difuzare pe ecran LED de interior (tip totem), la comanda DOOH House. Proiectul se remarcă prin tranziții grafice fluide, tipografie expresivă și o ierarhie vizuală bine structurată, care combină informațiile cheie (servicii, date de contact, 30 de ani de experiență) cu imagini emoționante. Adaptat pentru formatul vertical (9:16) și având o paletă de culori contrastantă, videoclipul este creat pentru a atrage eficient atenția în spațiile publice. Acesta este optimizat pentru parametrii tehnici ai ecranelor LED indoor, asigurând o lizibilitate excelentă a textului din orice unghi de vizualizare, culori vibrante și o redare în buclă fără întreruperi.",
     },
@@ -492,7 +491,7 @@ export const projects: Project[] = [
         ro: "La bază sunt tranzițiile grafice fluide, tipografia expresivă și o ierarhie clară, în care informațiile cheie se îmbină cu imagini emoționante de familie. Paleta contrastantă ajută ca clipul să fie observat de la distanță.",
       },
       result: {
-        ru: "Ролик оптимизирован под особенности LED-пилонов: текст читается под любым углом обзора, цвета яркие, а воспроизведение зациклено без видимых стыков.",
+        ru: "Ролик оптимизирован под особенности LED-стел: текст читается под любым углом обзора, цвета яркие, а воспроизведение зациклено без видимых стыков.",
         en: "The video is optimized for LED totems: the text stays legible from any viewing angle, colors are vibrant, and the playback loops without visible seams.",
         ro: "Clipul este optimizat pentru ecranele LED de tip totem: textul se citește din orice unghi, culorile sunt vii, iar redarea se repetă în buclă fără întreruperi vizibile.",
       },
@@ -502,8 +501,8 @@ export const projects: Project[] = [
     id: "24",
     order: 8.2,
     featuredOrder: 7,
-    slug: "phucket_fishing",
-    title: { ru: "Анимация логотипа для Phuket Fishing", en: "Logo Animation for Phuket Fishing", ro: "Animație de logo Phuket Fishing" },
+    slug: "phuket_fishing",
+    title: { ru: "Анимация логотипа для Phuket Fishing", en: "Logo Animation for Phuket Fishing", ro: "Animație de logo pentru Phuket Fishing" },
     categoryKey: "motion-design",
     year: 2026,
     cover: "/images/work/animation/PhucketFishing/PhucketFishing-cover.jpg",
@@ -513,13 +512,13 @@ export const projects: Project[] = [
     // Пример необязательного лейбла-контекста (см. комментарий у поля
     // context в src/types/project.ts):
     //context: {
-       //ru: "Выполнено в рамках сотрудничества с DOOH house",
-       //en: "Completed in collaboration with DOOH house",
-       //ro: "Realizat în cadrul colaborării cu DOOH house",
+       //ru: "Выполнено в рамках сотрудничества с DOOH House",
+       //en: "Completed in collaboration with DOOH House",
+       //ro: "Realizat în cadrul colaborării cu DOOH House",
     //},
     description: {
-      ru: "Разработка моушн-дизайна для компании по организации морской рыбалки на острове Пхукет (Таиланд). Задача проекта заключалась в оживлении логотипа заказчика и создании универсальной 2D-анимации, подходящей для использования в качестве интро/превью к видеоотчетам, самостоятельного промо-ролика или наложения на видеоряд. В основе концепции — сюжетная подводная сцена с рыболовным крючком и меч-рыбой, которая плавно трансформируется в фирменную эмблему в виде компаса с катером и якорем.",
-      en: "Motion design development for a sea fishing charter company based in Phuket, Thailand. The objective was to bring the client's existing logo to life and produce a versatile 2D animation suitable as a video report intro, standalone promo clip, or semi-transparent video overlay. The concept features a narrative underwater scene with a fishing hook and marlin that seamlessly transitions into the signature compass emblem containing a boat and anchor.",
+      ru: "Разработка моушн-дизайна для компании по организации морской рыбалки на острове Пхукет (Таиланд). Задача проекта заключалась в оживлении логотипа заказчика и создании универсальной 2D-анимации, подходящей для использования в качестве интро/превью к видеоотчётам, самостоятельного промо-ролика или наложения на видеоряд. В основе концепции — сюжетная подводная сцена с рыболовным крючком и меч-рыбой, которая плавно трансформируется в фирменную эмблему в виде компаса с катером и якорем.",
+      en: "Motion design development for a sea fishing charter company based in Phuket, Thailand. The objective was to bring the client's existing logo to life and produce a versatile 2D animation suitable as a video report intro, standalone promo clip, or video overlay. The concept features a narrative underwater scene with a fishing hook and swordfish that seamlessly transitions into the signature compass emblem containing a boat and anchor.",
       ro: "Dezvoltarea designului de mișcare pentru o companie specializată în pescuit maritim pe insula Phuket, Thailanda. Obiectivul proiectului a fost animarea logo-ului clientului și crearea unui videoclip 2D versatil, destinat utilizării ca intro pentru rapoarte video, clip promoțional independent sau suprapunere peste secvențe video. Conceptul se bazează pe o scenă subacvatică narativă cu un cârlig de pescuit și un pește-spadă, care se transformă fluid în emblema oficială sub formă de compas cu barcă și ancoră.",
     },
     story: {
@@ -530,7 +529,7 @@ export const projects: Project[] = [
       },
       idea: {
         ru: "Сюжет — подводная сцена с рыболовным крючком и меч-рыбой. Она плавно превращается в фирменную эмблему: компас с катером и якорем.",
-        en: "The story is an underwater scene with a fishing hook and a marlin. It smoothly turns into the signature emblem: a compass with a boat and an anchor.",
+        en: "The story is an underwater scene with a fishing hook and a swordfish. It smoothly turns into the signature emblem: a compass with a boat and an anchor.",
         ro: "Povestea este o scenă subacvatică cu un cârlig de pescuit și un pește-spadă. Aceasta se transformă fluid în emblema oficială: un compas cu barcă și ancoră.",
       },
       result: {
@@ -554,12 +553,12 @@ export const projects: Project[] = [
     // Пример необязательного лейбла-контекста (см. комментарий у поля
     // context в src/types/project.ts):
     //context: {
-       //ru: "Выполнено в рамках сотрудничества с DOOH house",
-       //en: "Completed in collaboration with DOOH house",
-       //ro: "Realizat în cadrul colaborării cu DOOH house",
+       //ru: "Выполнено в рамках сотрудничества с DOOH House",
+       //en: "Completed in collaboration with DOOH House",
+       //ro: "Realizat în cadrul colaborării cu DOOH House",
     //},
     description: {
-      ru: "Анимационный заставочный ролик, разработанный для семейного ресторана «Mumtaz» в Польше. Визуальная концепция начинается с графического появления карты Польши, на которой размещаются золотые гео-маркеры в форме бриллиантов, акцентирующие внимание на расположении и высоком качестве сервиса. Затем карта плавно трансформируется в изысканный логотип с золотым узорным обрамлением. Вертикальный формат (9:16), контрастный темный фон и элегантные золотые элементы делают видеоряд отличным решением для соцсетей (Instagram Reels, Stories, TikTok) и цифровых меню-бордов.",
+      ru: "Анимационный заставочный ролик, разработанный для семейного ресторана «Mumtaz» в Польше. Визуальная концепция начинается с графического появления карты Польши, на которой размещаются золотые гео-маркеры в форме бриллиантов, акцентирующие внимание на расположении и высоком качестве сервиса. Затем карта плавно трансформируется в изысканный логотип с золотым узорным обрамлением. Вертикальный формат (9:16), контрастный тёмный фон и элегантные золотые элементы делают видеоряд отличным решением для соцсетей (Instagram Reels, Stories, TikTok) и цифровых меню-бордов.",
       en: "An animated intro and brand reveal created for Mumtaz Family Restaurant in Poland. The visual narrative opens with an outline map of Poland, onto which golden diamond-shaped location pins drop to highlight the brand's presence and premium quality. The map then seamlessly morphs into an elegant, ornamentally framed golden logo emblem. Rendered in a vertical 9:16 format with a dark, sophisticated backdrop, this motion asset is ideal for social media promotion (Reels, Stories, TikTok) and digital signage displays.",
       ro: "Un intro animat de brand creat pentru restaurantul de familie „Mumtaz” din Polonia. Conceptul vizual debutează cu apariția conturată a hărții Poloniei, pe care sunt plasate marcatoare geografice aurii în formă de diamant, subliniind locația și standardele înalte ale brandului. Harta se transformă apoi fluid într-o emblemă de logo elegantă, încadrată de ornamente aurii. Formatul vertical (9:16), fundalul întunecat și rafinat și detaliile aurii fac videoclipul perfect pentru promovarea în rețelele sociale (Reels, Stories, TikTok) și pe ecranele digitale.",
     },
@@ -595,18 +594,18 @@ export const projects: Project[] = [
     // Пример необязательного лейбла-контекста (см. комментарий у поля
     // context в src/types/project.ts):
     //context: {
-       //ru: "Выполнено в рамках сотрудничества с DOOH house",
-       //en: "Completed in collaboration with DOOH house",
-       //ro: "Realizat în cadrul colaborării cu DOOH house",
+       //ru: "Выполнено в рамках сотрудничества с DOOH House",
+       //en: "Completed in collaboration with DOOH House",
+       //ro: "Realizat în cadrul colaborării cu DOOH House",
     //},
     description: {
-      ru: "Анимированная заставка и конечный сплит-экран (outtro/CTA), созданные для международной компании в сфере кибербезопасности и IT-консалтинга Smart Vantage IT (smartvantageit.com). Визуальная концепция строится на технологичном эффекте декодирования данных и матрицы, который проявляет золотую эмблему и название компании. Вторая часть видео представляет собой динамический призыв к действию (Call-To-Action) с переходами на схематичный технологический фон (микросхемы) и анимацией фирменного QR-кода для быстрого перехода на сайт и записи на консультацию. Работа идеально подходит для использования в качестве интро/аутро к презентациям, видеороликам в соцсетях и корпоративным промо-материалам.",
-      en: "An animated intro and end-screen (outro/CTA) developed for Smart Vantage IT (smartvantageit.com), an IT managed solutions and cybersecurity consulting firm. The visual concept is driven by a tech-focused digital code matrix effect that reveals the golden winged emblem and company typography. The second phase transitions into a sleek Call-To-Action segment featuring circuit board graphics and a branded QR code animation designed to drive consultation bookings and web traffic. This motion asset is tailored for corporate video intros, sales presentations, social media marketing, and promotional reels.",
+      ru: "Анимированная заставка и финальный экран (outro/CTA), созданные для международной компании в сфере кибербезопасности и IT-консалтинга Smart Vantage IT (smartvantageit.com). Визуальная концепция строится на технологичном эффекте декодирования данных и матрицы, который проявляет золотую эмблему и название компании. Вторая часть видео представляет собой динамический призыв к действию (Call-To-Action) с переходами на схематичный технологический фон (микросхемы) и анимацией фирменного QR-кода для быстрого перехода на сайт и записи на консультацию. Работа идеально подходит для использования в качестве интро/аутро к презентациям, видеороликам в соцсетях и корпоративным промо-материалам.",
+      en: "An animated intro and end-screen (outro/CTA) developed for Smart Vantage IT (smartvantageit.com), an IT managed solutions and cybersecurity consulting firm. The visual concept is driven by a tech-focused digital code matrix effect that reveals the golden emblem and company typography. The second phase transitions into a sleek Call-To-Action segment featuring circuit board graphics and a branded QR code animation designed to drive consultation bookings and web traffic. This motion asset is tailored for corporate video intros, sales presentations, social media marketing, and promotional reels.",
       ro: "Intro animat și ecran de final (outro/CTA) create pentru Smart Vantage IT (smartvantageit.com), o companie specializată în servicii IT și consultanță în securitate cibernetică. Conceptul vizual se bazează pe un efect tehnologic de matrice de cod digital, care dezvăluie emblema aurie și denumirea companiei. A doua parte a videoclipului include un apel la acțiune (Call-To-Action) dinamic, cu fundal grafic în stil plăci de circuite și animație a codului QR personalizat pentru acces rapid la site și programarea consultațiilor. Proiectul este ideal pentru utilizare ca intro/outro în prezentări corporative, videoclipuri de promovare și rețele sociale.",
     },
     story: {
       brief: {
-        ru: "Международной компании Smart Vantage IT, которая работает в сфере кибербезопасности и IT-консалтинга, нужны были анимированная заставка и конечный экран с призывом к действию.",
+        ru: "Международной компании Smart Vantage IT, которая работает в сфере кибербезопасности и IT-консалтинга, нужны были анимированная заставка и финальный экран с призывом к действию.",
         en: "Smart Vantage IT, an international cybersecurity and IT consulting company, needed an animated intro and an end screen with a call to action.",
         ro: "Companiei internaționale Smart Vantage IT, activă în securitate cibernetică și consultanță IT, îi trebuiau un intro animat și un ecran de final cu apel la acțiune.",
       },
@@ -636,13 +635,13 @@ export const projects: Project[] = [
     // Пример необязательного лейбла-контекста (см. комментарий у поля
     // context в src/types/project.ts):
     //context: {
-       //ru: "Выполнено в рамках сотрудничества с DOOH house",
-       //en: "Completed in collaboration with DOOH house",
-       //ro: "Realizat în cadrul colaborării cu DOOH house",
+       //ru: "Выполнено в рамках сотрудничества с DOOH House",
+       //en: "Completed in collaboration with DOOH House",
+       //ro: "Realizat în cadrul colaborării cu DOOH House",
     //},
     description: {
-      ru: "Короткий анимационный интро-ролик, разработанный для компании RHEENO — оператора рекламы на экранах в метро. Работа строится на контурном проявлении букв, плавной сборке фирменного знака в виде рога из динамичных градиентных полос и контрастной смене темного фона на светлый. Ролик завершается выходом финального слогана «С нами Ваша реклама пробьет все преграды!», создавая универсальную заставку для промо-видео, соцсетей и корпоративных презентаций.",
-      en: "A short animated intro video developed for RHEENO, a subway screen advertising operator. The motion design features a letter-by-letter outline typography reveal, a smooth assembly of the signature rhino horn logo from dynamic gradient stripes, and a high-contrast transition from a dark to light backdrop. The sequence finishes with the brand slogan (With us, your advertising will break through all barriers!), offering a versatile video opener for promo reels, social media, and corporate presentations.",
+      ru: "Короткий анимационный интро-ролик, разработанный для компании RHEENO — оператора рекламы на экранах в метро. Работа строится на контурном проявлении букв, плавной сборке фирменного знака в виде рога из динамичных градиентных полос и контрастной смене тёмного фона на светлый. Ролик завершается выходом финального слогана «С нами Ваша реклама пробьет все преграды!», создавая универсальную заставку для промо-видео, соцсетей и корпоративных презентаций.",
+      en: "A short animated intro video developed for RHEENO, a subway screen advertising operator. The motion design features a letter-by-letter outline typography reveal, a smooth assembly of the signature rhino horn logo from dynamic gradient stripes, and a high-contrast transition from a dark to light backdrop. The sequence finishes with the brand slogan “With us, your advertising will break through all barriers!”, offering a versatile video opener for promo reels, social media, and corporate presentations.",
       ro: "Un scurt intro animat creat pentru compania RHEENO, operator de publicitate pe ecranele din metrou. Animația integrează o apariție conturată a literelor, o asamblare fluidă a emblemei în formă de corn din benzi dinamice cu gradient și o tranziție contrastantă de la fundal întunecat la luminos. Videoclipul se încheie cu afișarea sloganului „Cu noi, reclama ta va depăși orice barieră!”, oferind un intro versatil pentru clipuri promoționale, rețele sociale și prezentări corporative.",
     },
     story: {
@@ -667,7 +666,7 @@ export const projects: Project[] = [
     id: "28",
     order: 8.6,
     slug: "Pizza_animation",
-    title: { ru: "Анимация промо-баннера для Pizza Deals", en: "Motion design for Pizza Deals promo banner", ro: "Animație de banner promoțional pentru Pizza Deals”" },
+    title: { ru: "Анимация промо-баннера для Pizza Deals", en: "Animated Promo Banner for Pizza Deals", ro: "Animație de banner promoțional pentru Pizza Deals" },
     categoryKey: "motion-design",
     year: 2026,
     cover: "/images/work/animation/Pizza/Pizza-cover.jpg",
@@ -677,9 +676,9 @@ export const projects: Project[] = [
     // Пример необязательного лейбла-контекста (см. комментарий у поля
     // context в src/types/project.ts):
     //context: {
-       //ru: "Выполнено в рамках сотрудничества с DOOH house",
-       //en: "Completed in collaboration with DOOH house",
-       //ro: "Realizat în cadrul colaborării cu DOOH house",
+       //ru: "Выполнено в рамках сотрудничества с DOOH House",
+       //en: "Completed in collaboration with DOOH House",
+       //ro: "Realizat în cadrul colaborării cu DOOH House",
     //},
     description: {
       ru: "Анимированный рекламный баннер для акционного меню «Pizza Deals», разработанный для цифровых экранов и меню-бордов. Ключевой особенностью работы стала интеграция искусственного интеллекта: бесшовное вращение аппетитной пиццы на подносе и генерация горячего пара реализованы с помощью ИИ, что позволило оживить статичное фуд-фото без сложностей 3D-моделирования. Композиция дополнена акцентной динамичной типографикой, пульсирующими ценниками и фоновыми паттернами, создающими сочный и продающий визуал.",
@@ -708,7 +707,7 @@ export const projects: Project[] = [
     id: "29",
     order: 8.7,
     slug: "Coolinart_logo_animation",
-    title: { ru: "Анимация лого для кулинарного шоу «Coolinart»", en: "Logo animation for the culinary show «Coolinart»", ro: "Animație de logo pentru emisiunea culinară «Coolinart»" },
+    title: { ru: "Анимация лого для кулинарного шоу «Coolinart»", en: "Logo animation for the culinary show “Coolinart”", ro: "Animație de logo pentru emisiunea culinară „Coolinart”" },
     categoryKey: "motion-design",
     year: 2026,
     cover: "/images/work/animation/Coolinart/Coolinart-cover.jpg",
@@ -718,13 +717,13 @@ export const projects: Project[] = [
     // Пример необязательного лейбла-контекста (см. комментарий у поля
     // context в src/types/project.ts):
     //context: {
-       //ru: "Выполнено в рамках сотрудничества с DOOH house",
-       //en: "Completed in collaboration with DOOH house",
-       //ro: "Realizat în cadrul colaborării cu DOOH house",
+       //ru: "Выполнено в рамках сотрудничества с DOOH House",
+       //en: "Completed in collaboration with DOOH House",
+       //ro: "Realizat în cadrul colaborării cu DOOH House",
     //},
     description: {
       ru: "Игривая 2D-анимация логотипа, разработанная для кулинарного шоу «Coolinart». В центре концепции — оригинальный графический элемент, где две буквы «o» в названии оформлены в виде глаз под шеф-поварским колпаком и с усами. В начале ролика глаза динамично оглядываются по сторонам и моргают, после чего символ плавно собирается в полное текстовое название бренда.",
-      en: "A playful 2D logo animation created for the «Coolinart» culinary show. At the core of the concept is a clever graphic element where the two «o» letters in the name are styled as eyes topped with a chef's hat and mustache. The sequence begins with the eyes dynamically looking around and blinking, after which the symbol smoothly morphs into the full brand typography.",
+      en: "A playful 2D logo animation created for the “Coolinart” culinary show. At the core of the concept is a clever graphic element where the two “o” letters in the name are styled as eyes topped with a chef's hat and mustache. The sequence begins with the eyes dynamically looking around and blinking, after which the symbol smoothly morphs into the full brand typography.",
       ro: "O animație 2D de logo creată pentru emisiunea culinară „Coolinart”. În centrul conceptului se află un element grafic original, în care cele două litere „o” din denumire sunt stilizate sub formă de ochi cu bonetă de bucătar și mustață. La începutul clipului, ochii se mișcă dinamic privind în jur și clipesc, după care simbolul se transformă fluid în denumirea completă a brandului.",
     },
     story: {
@@ -748,7 +747,7 @@ export const projects: Project[] = [
   {
     id: "30",
     order: 8.8,
-    slug: "halloween_animation",
+    slug: "halloween_bowling_animation",
     title: { ru: "Бесшовная зацикленная 2D-моушн анимация для ультраширокого LED-экрана (Halloween Edition)",
             en: "Seamless Looped 2D Motion Design for Ultrawide LED Displays (Halloween Edition)",
             ro: "Animație 2D în buclă continuă pentru ecran LED Ultra-Wide (Halloween Edition)" },
@@ -763,14 +762,14 @@ export const projects: Project[] = [
     // Пример необязательного лейбла-контекста (см. комментарий у поля
     // context в src/types/project.ts):
     //context: {
-       //ru: "Выполнено в рамках сотрудничества с DOOH house",
-       //en: "Completed in collaboration with DOOH house",
-       //ro: "Realizat în cadrul colaborării cu DOOH house",
+       //ru: "Выполнено в рамках сотрудничества с DOOH House",
+       //en: "Completed in collaboration with DOOH House",
+       //ro: "Realizat în cadrul colaborării cu DOOH House",
     //},
     description: {
       ru: "Профессиональная бесшовная зацикленная 2D-анимация (Seamless Loop), созданная для фонового сопровождения и трансляции на панорамном LED-экране боулинг-клуба в рамках праздника Хеллоуин. Видеоарт спроектирован под нестандартные ультраширокие пропорции кадра и включает синхронную анимацию тематических элементов: мерцающего полнолуния, летучих мышей, замка с привидениями, катящихся тыкв и атрибутики боулинга (кеглей). Ролик дополнен неоновой типографикой «Happy Halloween» и точным совпадением начального и финального кадров, что обеспечивает идеальный непрерывный цикл воспроизведения без видимых стыков и пауз.",
-      en: "Professional 2D seamless looped motion design created for ambient visual broadcasting on an ultrawide panoramic LED display in a bowling venue during Halloween. Specially rendered for extreme ultra-wide aspect ratios, the animation smoothly loops custom-crafted Halloween visuals (glowing full moon, flying bats, haunted mansion, rolling jack-o'-lanterns) alongside bowling pin motifs. Featuring animated glowing neon typography (Happy Halloween) and flawless frame-matching for infinite playback without noticeable transitions or cuts.",
-      ro: "Proiect profesional de animație 2D în buclă continuă (Seamless Loop), creat pentru difuzare ambientală pe un ecran LED panoramic ultra-wide în cadrul unui club de bowling de Halloween. Conceptul vizual este adaptat pentru formate ecran atipice și îmbină grafica tematică (lună plină, lilieci, castel bântuit, dovleci sculptați) cu simbolurile din bowling (popice). Materialul include tipografie animată cu efecte neon („Happy Halloween”) și o potrivire perfectă a cadrelor, permițând rularea infinită a videoclipului fără întreruperi vizibile.",
+      en: "Professional 2D seamless looped motion design created for ambient visual broadcasting on an ultrawide panoramic LED display in a bowling venue during Halloween. Specially rendered for extreme ultra-wide aspect ratios, the animation smoothly loops custom-crafted Halloween visuals (glowing full moon, flying bats, haunted castle, rolling jack-o'-lanterns) alongside bowling pin motifs. Featuring animated glowing neon typography (“Happy Halloween”) and flawless frame-matching for infinite playback without noticeable transitions or cuts.",
+      ro: "Proiect profesional de animație 2D în buclă continuă (Seamless Loop), creat pentru difuzare ambientală pe un ecran LED panoramic ultra-wide în cadrul unui club de bowling, cu ocazia Halloween-ului. Conceptul vizual este adaptat pentru formate ecran atipice și îmbină grafica tematică (lună plină, lilieci, castel bântuit, dovleci sculptați) cu simbolurile din bowling (popice). Materialul include tipografie animată cu efecte neon („Happy Halloween”) și o potrivire perfectă a cadrelor, permițând rularea infinită a videoclipului fără întreruperi vizibile.",
     },
     story: {
       brief: {
@@ -779,7 +778,7 @@ export const projects: Project[] = [
         ro: "Unui club de bowling îi trebuia un video-art de Halloween pentru ecranul LED panoramic: în buclă, ca să ruleze fundal fără pauze.",
       },
       idea: {
-        ru: "Анимация спроектирована под ультраширокие пропорции кадра и объединяет тематические элементы: мерцающее полнолуние, летучих мышей, замок с привидениями, катящиеся тыквы и кегли. Добавлена неоновая типографика “Happy Halloween”.",
+        ru: "Анимация спроектирована под ультраширокие пропорции кадра и объединяет тематические элементы: мерцающее полнолуние, летучих мышей, замок с привидениями, катящиеся тыквы и кегли. Добавлена неоновая типографика «Happy Halloween».",
         en: "The animation is designed for ultrawide frame proportions and combines themed elements: a glowing full moon, bats, a haunted castle, rolling pumpkins and bowling pins. Neon “Happy Halloween” typography completes it.",
         ro: "Animația este proiectată pentru formate ultra-wide și îmbină elemente tematice: luna plină strălucitoare, lilieci, un castel bântuit, dovleci care se rostogolesc și popice. Este completată de tipografie neon „Happy Halloween”.",
       },
@@ -795,7 +794,7 @@ export const projects: Project[] = [
   {
     id: "38",
     order: 9,
-    slug: "energywind_prezentation",
+    slug: "energywind_presentation",
     client: "energy",
     title: { ru: "Презентация компании System Global Group в области ветроэнергетики (Energy Wind Moldova)",
             en: "System Global Group's Presentation on Wind Energy (Energy Wind Moldova)",
@@ -837,7 +836,7 @@ export const projects: Project[] = [
     order: 10,
     slug: "sport_spirit_1",
     client: "ss",
-    title: { ru: "Рекламный креатив для коллекции одежды Converse, Sport Spirit", en: "Advertising creative for Converse Sport Spirit collection", ro: "Creativ publicitar pentru colecția Converse Sport Spirit" },
+    title: { ru: "Рекламный креатив для коллекции одежды Converse, Sport Spirit", en: "Advertising creative for the Converse collection at Sport Spirit", ro: "Creativ publicitar pentru colecția Converse din magazinul Sport Spirit" },
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_1/cover-5.jpg",
@@ -845,9 +844,9 @@ export const projects: Project[] = [
               "/images/work/web/ss_1/2.jpg",
               "/images/work/web/ss_1/3.jpg"],
     description: {
-      ru: "Рекламный креатив для коллекции одежды Converse, Sport Spirit. В рамках проекта была разработана концепция, создан визуальный контент и реализована рекламная кампания в социальных сетях.",
-      en: "Advertising creative for Converse Sport Spirit collection. As part of the project, a concept was developed, visual content was created, and a social media advertising campaign was implemented.",
-      ro: "Creativ publicitar pentru colecția Converse Sport Spirit. În cadrul proiectului, a fost dezvoltat un concept, a fost creat conținut vizual și a fost implementată o campanie de publicitate în rețelele sociale.",
+      ru: "Рекламный креатив для коллекции одежды Converse в магазине Sport Spirit. В рамках проекта была разработана концепция, создан визуальный контент и подготовлены макеты для социальных сетей.",
+      en: "Advertising creative for the Converse collection at Sport Spirit. As part of the project, a concept was developed, visual content was created, and layouts were prepared for social media.",
+      ro: "Creativ publicitar pentru colecția Converse din magazinul Sport Spirit. În cadrul proiectului, a fost dezvoltat un concept, a fost creat conținut vizual și au fost pregătite machete pentru rețelele sociale.",
     },
   },
   {
@@ -856,7 +855,7 @@ export const projects: Project[] = [
     featuredOrder: 3, // закреплено в начале «Все»
     slug: "PUMA_web_1",
     client: "puma",
-    title: { ru: "Рекламный креатив для сезонной акции Black Friday, PUMA Moldova", en: "Advertising creative for the Black Friday seasonal promotion, PUMA Moldova", ro: "Concept publicitar pentru campania sezonieră de Black Friday, PUMA Moldova" },
+    title: { ru: "Рекламный креатив для сезонной акции Black Friday, PUMA Moldova", en: "Advertising creative for the Black Friday seasonal promotion, PUMA Moldova", ro: "Creativ publicitar pentru campania sezonieră de Black Friday, PUMA Moldova" },
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/PUMA_web_1/cover-6.jpg",
@@ -864,9 +863,9 @@ export const projects: Project[] = [
               "/images/work/web/PUMA_web_1/2.jpg",
               "/images/work/web/PUMA_web_1/3.jpg"],
     description: {
-      ru: "Рекламный креатив для сезонной акции Black Friday, PUMA Moldova. В рамках проекта была разработана концепция, создан визуальный контент и реализована рекламная кампания для продвижения в социальных сетях.",
-      en: "Advertising creative for the Black Friday seasonal promotion, PUMA Moldova. As part of the project, a concept was developed, visual content was created, and an advertising campaign was launched for promotion on social media.",
-      ro: "Concept publicitar pentru campania sezonieră de Black Friday, PUMA Moldova. În cadrul proiectului, s-a elaborat conceptul, s-a creat conținutul vizual și s-a derulat campania publicitară pentru promovarea pe rețelele sociale.",
+      ru: "Рекламный креатив для сезонной акции Black Friday, PUMA Moldova. В рамках проекта была разработана концепция, создан визуальный контент и подготовлены макеты для продвижения в социальных сетях.",
+      en: "Advertising creative for the Black Friday seasonal promotion, PUMA Moldova. As part of the project, a concept was developed, visual content was created, and layouts were prepared for promotion on social media.",
+      ro: "Creativ publicitar pentru campania sezonieră de Black Friday, PUMA Moldova. În cadrul proiectului, s-a elaborat conceptul, s-a creat conținutul vizual și au fost pregătite machete pentru promovarea pe rețelele sociale.",
     },
   },
   {
@@ -874,7 +873,7 @@ export const projects: Project[] = [
     order: 12,
     slug: "sport_spirit_3",
     client: "ss",
-    title: { ru: "Рекламный креатив для коллекции одежды Nike, Sport Spirit", en: "Advertising campaign for the Nike “Sport Spirit” clothing collection", ro: "Conceptul publicitar pentru colecția de îmbrăcăminte Nike, „Sport Spirit”" },
+    title: { ru: "Рекламный креатив для коллекции одежды Nike, Sport Spirit", en: "Advertising creative for the Nike clothing collection at Sport Spirit", ro: "Creativ publicitar pentru colecția de îmbrăcăminte Nike din magazinul Sport Spirit" },
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_3/cover-8.jpg",
@@ -882,9 +881,9 @@ export const projects: Project[] = [
             "/images/work/web/ss_3/2.jpg",
             "/images/work/web/ss_3/3.jpg"],
     description: {
-      ru: "Рекламный креатив для коллекции одежды Nike, Sport Spirit. В рамках проекта была разработана концепция, создан визуальный контент и реализована рекламная кампания в социальных сетях.",
-      en: "Advertising campaign for the Nike “Sport Spirit” clothing collection. As part of the project, a concept was developed, visual content was created, and an advertising campaign was implemented on social media.",
-      ro: "Concept publicitar pentru colecția de îmbrăcăminte Nike, „Sport Spirit”. În cadrul proiectului a fost dezvoltat un concept, creat conținut vizual și implementată o campanie publicitară pe rețelele sociale.",
+      ru: "Рекламный креатив для коллекции одежды Nike в магазине Sport Spirit. В рамках проекта была разработана концепция, создан визуальный контент и подготовлены макеты для социальных сетей.",
+      en: "Advertising creative for the Nike clothing collection at Sport Spirit. As part of the project, a concept was developed, visual content was created, and layouts were prepared for social media.",
+      ro: "Creativ publicitar pentru colecția de îmbrăcăminte Nike din magazinul Sport Spirit. În cadrul proiectului a fost dezvoltat un concept, creat conținut vizual și au fost pregătite machete pentru rețelele sociale.",
     },
   },
   {
@@ -894,7 +893,7 @@ export const projects: Project[] = [
     client: "ss",
     title: { ru: "Рекламный креатив для акции -30% extra sale Black Friday, Sport Spirit",
               en: "Advertising creative for the “-30% Extra Black Friday Sale” promotion, Sport Spirit",
-              ro: "Conceptul publicitar pentru promoția „-30% extra sale Black Friday”, Sport Spirit"},
+              ro: "Creativ publicitar pentru promoția „-30% extra sale Black Friday”, Sport Spirit"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_4/cover-15.jpg",
@@ -902,9 +901,9 @@ export const projects: Project[] = [
             "/images/work/web/ss_4/2.jpg",
             "/images/work/web/ss_4/3.jpg"],
     description: {
-      ru: "Рекламный креатив для акции -30% extra sale Black Friday, Sport Spirit. В рамках проекта была разработана концепция, создан визуальный контент и реализована рекламная кампания в социальных сетях.",
-      en: "Advertising creative for the “-30% Extra Black Friday Sale” promotion, Sport Spirit. As part of the project, a concept was developed, visual content was created, and an advertising campaign was implemented on social media.",
-      ro: "Concept publicitar pentru promoția „-30% extra sale Black Friday”, Sport Spirit. În cadrul proiectului a fost dezvoltat un concept, creat conținut vizual și implementată o campanie publicitară pe rețelele sociale.",
+      ru: "Рекламный креатив для акции -30% extra sale Black Friday, Sport Spirit. В рамках проекта была разработана концепция, создан визуальный контент и подготовлены макеты для социальных сетей.",
+      en: "Advertising creative for the “-30% Extra Black Friday Sale” promotion, Sport Spirit. As part of the project, a concept was developed, visual content was created, and layouts were prepared for social media.",
+      ro: "Creativ publicitar pentru promoția „-30% extra sale Black Friday”, Sport Spirit. În cadrul proiectului a fost dezvoltat un concept, creat conținut vizual și au fost pregătite machete pentru rețelele sociale.",
     },
   },
   {
@@ -912,9 +911,9 @@ export const projects: Project[] = [
     order: 14,
     slug: "sport_spirit_5",
     client: "ss",
-    title: { ru: "Рекламный креатив для продукции Crep Protect, Sport Spirit",
-              en: "Advertising concepts for Crep Protect and Sport Spirit products",
-              ro: "Concepte publicitare pentru produsele Crep Protect și Sport Spirit"},
+    title: { ru: "Рекламный креатив для продукции Crep Protect в магазине Sport Spirit",
+              en: "Advertising concepts for Crep Protect products sold at Sport Spirit",
+              ro: "Concepte publicitare pentru produsele Crep Protect vândute în magazinul Sport Spirit"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_5/cover-16.jpg",
@@ -922,9 +921,9 @@ export const projects: Project[] = [
             "/images/work/web/ss_5/2.jpg",
             "/images/work/web/ss_5/3.jpg"],
     description: {
-      ru: "Рекламный креатив для продукции Crep Protect, Sport Spirit. В рамках проекта была разработана концепция, создан визуальный контент и реализована рекламная кампания в социальных сетях.",
-      en: "Advertising creative for Crep Protect and Sport Spirit products. As part of the project, a concept was developed, visual content was created, and an advertising campaign was launched on social media.",
-      ro: "Concept publicitar pentru produsele Crep Protect și Sport Spirit. În cadrul proiectului a fost dezvoltat un concept, creat conținut vizual și implementată o campanie publicitară pe rețelele sociale.",
+      ru: "Рекламный креатив для продукции Crep Protect в магазине Sport Spirit. В рамках проекта была разработана концепция, создан визуальный контент и подготовлены макеты для социальных сетей.",
+      en: "Advertising creative for Crep Protect products sold at Sport Spirit. As part of the project, a concept was developed, visual content was created, and layouts were prepared for social media.",
+      ro: "Creativ publicitar pentru produsele Crep Protect vândute în magazinul Sport Spirit. În cadrul proiectului a fost dezvoltat un concept, creat conținut vizual și au fost pregătite machete pentru rețelele sociale.",
     },
   },
   {
@@ -932,18 +931,18 @@ export const projects: Project[] = [
     order: 15,
     slug: "sport_spirit_6",
     client: "ss",
-    title: { ru: "Рекламный креатив для акции -70% Mega Sale, Sport Spirit",
-              en: "Advertising creative for the “-70% Mega Sale” promotion, Sport Spirit",
-              ro: "Conceptul publicitar pentru promoția „-70% Mega Sale”, Sport Spirit"},
+    title: { ru: "Рекламный креатив для акции -70% Mega Sale, Sport Spirit Outlet",
+              en: "Advertising creative for the “-70% Mega Sale” promotion, Sport Spirit Outlet",
+              ro: "Creativ publicitar pentru promoția „-70% Mega Sale”, Sport Spirit Outlet"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_6/cover-17.jpg",
     images: ["/images/work/web/ss_6/1.jpg",
             "/images/work/web/ss_6/2.jpg",],
     description: {
-      ru: "Рекламный креатив для продукции Sport Spirit Outlet. В рамках проекта была разработана концепция визуальной кампании, создан графический контент с акцентом на скидки до 70%. Итоговый материал был реализован в социальных сетях и использован для продвижения масштабной распродажи.",
-      en: "Advertising creative for Sport Spirit Outlet products. As part of the project, a concept for a visual campaign was developed, and graphic content was created highlighting discounts of up to 70%. The final materials were published on social media and used to promote a large-scale sale.",
-      ro: "Concept publicitar pentru produsele Sport Spirit Outlet. În cadrul proiectului, a fost elaborat conceptul campaniei vizuale și a fost creat conținut grafic care pune accentul pe reduceri de până la 70%. Materialul final a fost publicat pe rețelele sociale și utilizat pentru promovarea unei vânzări la scară largă.",
+      ru: "Рекламный креатив для продукции Sport Spirit Outlet. В рамках проекта была разработана концепция визуальной кампании, создан графический контент с акцентом на скидки до 70%. Итоговые макеты подготовлены для социальных сетей и использованы для продвижения масштабной распродажи.",
+      en: "Advertising creative for Sport Spirit Outlet products. As part of the project, a concept for a visual campaign was developed, and graphic content was created highlighting discounts of up to 70%. The final layouts were prepared for social media and used to promote a large-scale sale.",
+      ro: "Creativ publicitar pentru produsele Sport Spirit Outlet. În cadrul proiectului, a fost elaborat conceptul campaniei vizuale și a fost creat conținut grafic care pune accentul pe reduceri de până la 70%. Machetele finale au fost pregătite pentru rețelele sociale și utilizate pentru promovarea unei vânzări la scară largă.",
     },
   },
   {
@@ -952,8 +951,8 @@ export const projects: Project[] = [
     slug: "sport_spirit_7",
     client: "ss",
     title: { ru: "Рекламный креатив для зимней коллекции одежды Adidas, Sport Spirit",
-              en: "Advertising campaign for the Adidas winter clothing collection, “Sport Spirit”",
-              ro: "Conceptul publicitar pentru colecția de iarnă de îmbrăcăminte Adidas, Sport Spirit"},
+              en: "Advertising creative for the Adidas winter clothing collection at Sport Spirit",
+              ro: "Creativ publicitar pentru colecția de iarnă de îmbrăcăminte Adidas, Sport Spirit"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_7/cover-18.jpg",
@@ -961,9 +960,9 @@ export const projects: Project[] = [
             "/images/work/web/ss_7/2.jpg",
             "/images/work/web/ss_7/3.jpg",],
     description: {
-      ru: "Рекламный креатив для продукции Adidas, Sport Spirit. В рамках проекта была разработана концепция зимней кампании, создан визуальный контент с акцентом на стиль и комфорт в холодный сезон. Итоговый материал был реализован в социальных сетях и использован для продвижения коллекции зимней одежды.",
-      en: "Advertising creative for Adidas and Sport Spirit products. As part of the project, a concept for a winter campaign was developed, and visual content was created with an emphasis on style and comfort during the cold season. The final material was published on social media and used to promote the winter clothing collection.",
-      ro: "Concept publicitar pentru produsele Adidas, Sport Spirit. În cadrul proiectului, a fost elaborat un concept pentru campania de iarnă și a fost creat conținut vizual care pune accentul pe stil și confort în sezonul rece. Materialul final a fost publicat pe rețelele sociale și utilizat pentru promovarea colecției de îmbrăcăminte de iarnă.",
+      ru: "Рекламный креатив для продукции Adidas в магазине Sport Spirit. В рамках проекта была разработана концепция зимней кампании, создан визуальный контент с акцентом на стиль и комфорт в холодный сезон. Итоговые макеты подготовлены для социальных сетей и использованы для продвижения коллекции зимней одежды.",
+      en: "Advertising creative for Adidas products at Sport Spirit. As part of the project, a concept for a winter campaign was developed, and visual content was created with an emphasis on style and comfort during the cold season. The final layouts were prepared for social media and used to promote the winter clothing collection.",
+      ro: "Creativ publicitar pentru produsele Adidas din magazinul Sport Spirit. În cadrul proiectului, a fost elaborat un concept pentru campania de iarnă și a fost creat conținut vizual care pune accentul pe stil și confort în sezonul rece. Machetele finale au fost pregătite pentru rețelele sociale și utilizate pentru promovarea colecției de îmbrăcăminte de iarnă.",
     },
   },
   {
@@ -972,8 +971,8 @@ export const projects: Project[] = [
     slug: "sport_spirit_8",
     client: "ss",
     title: { ru: "Рекламный креатив для коллекции лёгкой одежды Adidas, Sport Spirit",
-              en: "Advertising campaign for the Adidas light clothing collection, “Sport Spirit”",
-              ro: "Conceptul publicitar pentru colecția de îmbrăcăminte ușoară Adidas, Sport Spirit"},
+              en: "Advertising creative for the Adidas light clothing collection at Sport Spirit",
+              ro: "Creativ publicitar pentru colecția de îmbrăcăminte ușoară Adidas, Sport Spirit"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_8/cover-19.jpg",
@@ -981,9 +980,9 @@ export const projects: Project[] = [
             "/images/work/web/ss_8/2.jpg",
             "/images/work/web/ss_8/3.jpg",],
     description: {
-      ru: "Рекламный креатив для легкой одежды Adidas, Sport Spirit. В рамках проекта была разработана концепция кампании легкой одежды, создан визуальный контент с акцентом на стиль и комфорт в теплый период. Итоговый материал был реализован в социальных сетях и использован для продвижения.",
-      en: "Advertising creative for Adidas’s lightweight apparel line, Sport Spirit. As part of the project, a campaign concept for lightweight apparel was developed, and visual content was created with an emphasis on style and comfort during the warmer months. The final content was published on social media and used for promotional purposes.",
-      ro: "Conceptul publicitar pentru colecția de îmbrăcăminte ușoară Adidas, „Sport Spirit”. În cadrul proiectului, a fost elaborat conceptul campaniei pentru colecția de îmbrăcăminte ușoară și a fost creat conținut vizual care pune accentul pe stil și confort în perioada caldă. Materialul final a fost publicat pe rețelele sociale și utilizat în scopuri de promovare.",
+      ru: "Рекламный креатив для лёгкой одежды Adidas в магазине Sport Spirit. В рамках проекта была разработана концепция кампании для лёгкой одежды, создан визуальный контент с акцентом на стиль и комфорт в тёплый период. Итоговые макеты подготовлены для социальных сетей и использованы для продвижения.",
+      en: "Advertising creative for Adidas lightweight apparel at Sport Spirit. As part of the project, a campaign concept for lightweight apparel was developed, and visual content was created with an emphasis on style and comfort during the warmer months. The final layouts were prepared for social media and used for promotional purposes.",
+      ro: "Creativ publicitar pentru colecția de îmbrăcăminte ușoară Adidas din magazinul Sport Spirit. În cadrul proiectului, a fost elaborat conceptul campaniei pentru colecția de îmbrăcăminte ușoară și a fost creat conținut vizual care pune accentul pe stil și confort în perioada caldă. Machetele finale au fost pregătite pentru rețelele sociale și utilizate în scopuri de promovare.",
     },
   },
   {
@@ -992,8 +991,8 @@ export const projects: Project[] = [
     slug: "sport_spirit_9",
     client: "ss",
     title: { ru: "Рекламный креатив для коллекции одежды Adidas, Sport Spirit",
-              en: "Advertising campaign for the Adidas “Sport Spirit” clothing collection",
-              ro: "Conceptul publicitar pentru colecția de îmbrăcăminte Adidas, Sport Spirit"},
+              en: "Advertising creative for the Adidas clothing collection at Sport Spirit",
+              ro: "Creativ publicitar pentru colecția de îmbrăcăminte Adidas, Sport Spirit"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_9/cover-20.jpg",
@@ -1001,9 +1000,9 @@ export const projects: Project[] = [
             "/images/work/web/ss_9/2.jpg",
             "/images/work/web/ss_9/3.jpg",],
     description: {
-      ru: "Рекламный креатив для одежды Adidas, Sport Spirit. В рамках проекта была разработана концепция кампании, создан визуальный контент и реализована рекламная кампания в социальных сетях.",
-      en: "Advertising creative for Adidas apparel, “Sport Spirit.” As part of the project, a campaign concept was developed, visual content was created, and an advertising campaign was launched on social media.",
-      ro: "Concept publicitar pentru colecția de îmbrăcăminte Adidas, „Sport Spirit”. În cadrul proiectului, s-a elaborat conceptul campaniei, s-a creat conținutul vizual și s-a derulat campania publicitară pe rețelele sociale.",
+      ru: "Рекламный креатив для одежды Adidas в магазине Sport Spirit. В рамках проекта была разработана концепция кампании, создан визуальный контент и подготовлены макеты для социальных сетей.",
+      en: "Advertising creative for Adidas apparel at Sport Spirit. As part of the project, a campaign concept was developed, visual content was created, and layouts were prepared for social media.",
+      ro: "Creativ publicitar pentru colecția de îmbrăcăminte Adidas din magazinul Sport Spirit. În cadrul proiectului, s-a elaborat conceptul campaniei, s-a creat conținutul vizual și au fost pregătite machete pentru rețelele sociale.",
     },
   },
   {
@@ -1011,9 +1010,9 @@ export const projects: Project[] = [
     order: 19,
     slug: "sport_spirit_10",
     client: "ss",
-    title: { ru: "Рекламный креатив для коллекции школьной атрибутики Back to School: рюкзаки от Sport Spirit",
-              en: "Advertising campaign for the “Back to School” collection of school supplies: backpacks from Sport Spirit",
-              ro: "Conceptul publicitar pentru colecția de articole școlare „Back to School”: rucsacuri de la Sport Spirit"},
+    title: { ru: "Рекламный креатив для коллекции школьной атрибутики Back to School: рюкзаки Adidas и Puma в Sport Spirit",
+              en: "Advertising creative for the “Back to School” collection of school supplies: Adidas and Puma backpacks at Sport Spirit",
+              ro: "Creativ publicitar pentru colecția de articole școlare „Back to School”: rucsacuri Adidas și Puma din magazinul Sport Spirit"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_10/cover-21.jpg",
@@ -1021,9 +1020,9 @@ export const projects: Project[] = [
             "/images/work/web/ss_10/2.jpg",
             "/images/work/web/ss_10/3.jpg",],
     description: {
-      ru: "Рекламный креатив для продукции Adidas и Puma, Sport Spirit в рамках кампании Back to School. Проект был ориентирован на начало сентября: разработана концепция, создан визуальный контент с акцентом на доступные цены и стильные рюкзаки для учебного сезона. Итоговый материал использован в социальных сетях и промо‑акциях для привлечения студентов и школьников к бренду.",
-      en: "Advertising creative for Adidas and Puma products, Sport Spirit, as part of the Back to School campaign. The project was timed for early September: a concept was developed, and visual content was created with an emphasis on affordable prices and stylish backpacks for the school year. The final materials were used on social media and in promotional campaigns to attract students and schoolchildren to the brand.",
-      ro: "Concept publicitar pentru produsele Adidas și Puma, Sport Spirit, în cadrul campaniei „Back to School”. Proiectul a fost orientat către începutul lunii septembrie: s-a elaborat conceptul și s-a creat conținutul vizual, punând accentul pe prețurile accesibile și rucsacurile elegante pentru noul an școlar. Materialul final a fost utilizat pe rețelele sociale și în campaniile promoționale pentru a atrage studenții și elevii către brand.",
+      ru: "Рекламный креатив для продукции Adidas и Puma в магазине Sport Spirit в рамках кампании Back to School. Проект был ориентирован на начало сентября: разработана концепция, создан визуальный контент с акцентом на доступные цены и стильные рюкзаки для учебного сезона. Итоговые макеты подготовлены для социальных сетей и промо‑акций и использованы для привлечения студентов и школьников к бренду.",
+      en: "Advertising creative for Adidas and Puma products at Sport Spirit, as part of the Back to School campaign. The project was timed for early September: a concept was developed, and visual content was created with an emphasis on affordable prices and stylish backpacks for the school year. The final layouts were prepared for social media and promotional campaigns and used to attract students and schoolchildren to the brand.",
+      ro: "Creativ publicitar pentru produsele Adidas și Puma din magazinul Sport Spirit, în cadrul campaniei „Back to School”. Proiectul a fost orientat către începutul lunii septembrie: s-a elaborat conceptul și s-a creat conținutul vizual, punând accentul pe prețurile accesibile și rucsacurile elegante pentru noul an școlar. Machetele finale au fost pregătite pentru rețelele sociale și campaniile promoționale și utilizate pentru a atrage studenții și elevii către brand.",
     },
   },
   {
@@ -1032,8 +1031,8 @@ export const projects: Project[] = [
     slug: "sport_spirit_11",
     client: "ss",
     title: { ru: "Рекламный креатив для коллекции обуви Adidas, Sport Spirit",
-              en: "Advertising campaign for the new collection of shoes from Sport Spirit",
-              ro: "Conceptul publicitar pentru noua colecție de încălțăminte de la Sport Spirit"},
+              en: "Advertising creative for the new Adidas shoe collection at Sport Spirit",
+              ro: "Creativ publicitar pentru noua colecție de încălțăminte Adidas din magazinul Sport Spirit"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_11/cover-22.jpg",
@@ -1041,9 +1040,9 @@ export const projects: Project[] = [
             "/images/work/web/ss_11/2.jpg",
             "/images/work/web/ss_11/3.jpg",],
     description: {
-      ru: "Рекламный креатив для продукции Adidas, Sport Spirit, посвящён запуску новой коллекции. В рамках проекта была разработана концепция с акцентом на спортивный стиль и динамику движения: визуальный контент построен вокруг фирменных элементов бренда — контрастных полос, текстуры беговой дорожки и актуальной модели кроссовок. Кампания была реализована в социальных сетях и использована для продвижения свежей линейки обуви, подчеркивая её современность и связь с активным образом жизни.",
-      en: "This advertising campaign for Adidas’ Sport Spirit line is dedicated to the launch of a new collection. As part of the project, a concept was developed that emphasizes athletic style and the dynamics of movement: the visual content is built around the brand’s signature elements—contrasting stripes, the texture of a running track, and a current sneaker model. The campaign was rolled out on social media and used to promote the new line of shoes, highlighting its modernity and connection to an active lifestyle.",
-      ro: "Campania publicitară pentru produsele Adidas, Sport Spirit, este dedicată lansării noii colecții. În cadrul proiectului a fost elaborat un concept care pune accentul pe stilul sportiv și dinamica mișcării: conținutul vizual este construit în jurul elementelor caracteristice ale mărcii — dungile contrastante, textura pistei de alergare și modelul actual de adidași. Campania a fost derulată pe rețelele sociale și utilizată pentru promovarea noii linii de încălțăminte, subliniind caracterul său modern și legătura cu un stil de viață activ.",
+      ru: "Рекламный креатив для продукции Adidas в магазине Sport Spirit, посвящён запуску новой коллекции. В рамках проекта была разработана концепция с акцентом на спортивный стиль и динамику движения: визуальный контент построен вокруг фирменных элементов бренда — контрастных полос, текстуры беговой дорожки и актуальной модели кроссовок. Макеты подготовлены для социальных сетей и использованы для продвижения свежей линейки обуви, подчёркивая её современность и связь с активным образом жизни.",
+      en: "This advertising creative for Adidas products at Sport Spirit is dedicated to the launch of a new collection. As part of the project, a concept was developed that emphasizes athletic style and the dynamics of movement: the visual content is built around the brand’s signature elements—contrasting stripes, the texture of a running track, and a current sneaker model. The layouts were prepared for social media and used to promote the new line of shoes, highlighting its modernity and connection to an active lifestyle.",
+      ro: "Creativul publicitar pentru produsele Adidas din magazinul Sport Spirit este dedicat lansării noii colecții. În cadrul proiectului a fost elaborat un concept care pune accentul pe stilul sportiv și dinamica mișcării: conținutul vizual este construit în jurul elementelor caracteristice ale mărcii — dungile contrastante, textura pistei de alergare și modelul actual de adidași. Machetele au fost pregătite pentru rețelele sociale și utilizate pentru promovarea noii linii de încălțăminte, subliniind caracterul său modern și legătura cu un stil de viață activ.",
     },
   },
   {
@@ -1052,8 +1051,8 @@ export const projects: Project[] = [
     slug: "sport_spirit_12",
     client: "ss",
     title: { ru: "Рекламный креатив для коллекции спортивной обуви Adidas, Sport Spirit",
-              en: "Advertising campaign for the new collection of athletic shoes from Sport Spirit",
-              ro: "Conceptul publicitar pentru noua colecție de încălțăminte sportivă de la Sport Spirit"},
+              en: "Advertising creative for the new Adidas athletic shoe collection at Sport Spirit",
+              ro: "Creativ publicitar pentru noua colecție de încălțăminte sportivă Adidas din magazinul Sport Spirit"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_12/cover-23.jpg",
@@ -1061,9 +1060,9 @@ export const projects: Project[] = [
             "/images/work/web/ss_12/2.jpg",
             "/images/work/web/ss_12/3.jpg",],
     description: {
-      ru: "Рекламный креатив для продукции Adidas, Sport Spirit. В рамках проекта была разработана концепция запуска новой коллекции спортивной обуви, создан визуальный контент с акцентом на современный дизайн и технологичность модели. Центральным элементом стал кроссовок в черно‑зелёной гамме на подиуме, подчёркивающий инновацию и стиль бренда. Кампания была реализована в социальных сетях и использована для продвижения эксклюзивной линейки в магазине Sport Spirit.",
-      en: "Advertising creative for Adidas and Sport Spirit products. As part of the project, a concept was developed for the launch of a new collection of athletic shoes, and visual content was created with an emphasis on the models’ modern design and technological features. The central element was a pair of sneakers in a black-and-green color scheme displayed on a podium, highlighting the brand’s innovation and style. The campaign was rolled out on social media and used to promote an exclusive line at the Sport Spirit store.",
-      ro: "Concept publicitar pentru produsele Adidas, Sport Spirit. În cadrul proiectului, a fost elaborată o strategie de lansare a noii colecții de încălțăminte sportivă și a fost creat conținut vizual care pune accentul pe designul modern și caracterul tehnologic al modelului. Elementul central a fost o pereche de adidași în nuanțe de negru și verde, așezați pe un podium, care subliniază inovația și stilul mărcii. Campania a fost derulată pe rețelele sociale și utilizată pentru promovarea liniei exclusive în magazinul Sport Spirit.",
+      ru: "Рекламный креатив для продукции Adidas в магазине Sport Spirit. В рамках проекта была разработана концепция запуска новой коллекции спортивной обуви, создан визуальный контент с акцентом на современный дизайн и технологичность модели. Центральным элементом стал кроссовок в чёрно‑зелёной гамме на подиуме, подчёркивающий инновацию и стиль бренда. Макеты подготовлены для социальных сетей и использованы для продвижения эксклюзивной линейки в магазине Sport Spirit.",
+      en: "Advertising creative for Adidas products at Sport Spirit. As part of the project, a concept was developed for the launch of a new collection of athletic shoes, and visual content was created with an emphasis on the models’ modern design and technological features. The central element was a pair of sneakers in a black-and-green color scheme displayed on a podium, highlighting the brand’s innovation and style. The layouts were prepared for social media and used to promote an exclusive line at the Sport Spirit store.",
+      ro: "Creativ publicitar pentru produsele Adidas din magazinul Sport Spirit. În cadrul proiectului, a fost elaborată o strategie de lansare a noii colecții de încălțăminte sportivă și a fost creat conținut vizual care pune accentul pe designul modern și caracterul tehnologic al modelului. Elementul central a fost o pereche de adidași în nuanțe de negru și verde, așezați pe un podium, care subliniază inovația și stilul mărcii. Machetele au fost pregătite pentru rețelele sociale și utilizate pentru promovarea liniei exclusive în magazinul Sport Spirit.",
     },
   },
   {
@@ -1072,8 +1071,8 @@ export const projects: Project[] = [
     slug: "sport_spirit_13",
     client: "ss",
     title: { ru: "Рекламный креатив для новой коллекции Nike, Jordan и Yankees, Sport Spirit",
-              en: "Advertising campaign for the new Nike, Jordan, and Yankees collection, Sport Spirit",
-              ro: "Conceptul publicitar pentru noua colecție Nike, Jordan și Yankees, Sport Spirit"},
+              en: "Advertising creative for the new Nike, Jordan, and Yankees collection, Sport Spirit",
+              ro: "Creativ publicitar pentru noua colecție Nike, Jordan și Yankees, Sport Spirit"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_13/cover-24.jpg",
@@ -1083,7 +1082,7 @@ export const projects: Project[] = [
     description: {
       ru: "Рекламный креатив, разработанный для магазина Sport Spirit с целью продвижения зимней коллекции одежды и аксессуаров Nike, Jordan и New York Yankees. Основной акцент сделан на выразительной типографике, контрастной цветовой гамме и современном визуальном стиле, который эффективно привлекает внимание аудитории в социальных сетях.",
       en: "Advertising creative developed for the Sport Spirit store to promote the winter collection of Nike, Jordan, and New York Yankees apparel and accessories. The focus is on striking typography, a contrasting color palette, and a modern visual style that effectively captures the audience’s attention on social media.",
-      ro: "Conceptul publicitar creat pentru magazinul Sport Spirit, cu scopul de a promova colecția de iarnă de îmbrăcăminte și accesorii Nike, Jordan și New York Yankees. Accentul principal este pus pe tipografia expresivă, pe paleta de culori contrastante și pe stilul vizual modern, care atrage în mod eficient atenția publicului pe rețelele sociale.",
+      ro: "Creativul publicitar creat pentru magazinul Sport Spirit, cu scopul de a promova colecția de iarnă de îmbrăcăminte și accesorii Nike, Jordan și New York Yankees. Accentul principal este pus pe tipografia expresivă, pe paleta de culori contrastante și pe stilul vizual modern, care atrage în mod eficient atenția publicului pe rețelele sociale.",
     },
   },
   {
@@ -1091,9 +1090,9 @@ export const projects: Project[] = [
     order: 23,
     slug: "sport_spirit_14",
     client: "ss",
-    title: { ru: "Рекламный креатив для новой коллекции легкой одежды Nike, Sport Spirit",
-              en: "Advertising campaign for Nike's new lightweight clothing collection, Sport Spirit",
-              ro: "Conceptul publicitar pentru noua colecție de îmbrăcăminte ușoară Nike, Sport Spirit"},
+    title: { ru: "Рекламный креатив для новой коллекции лёгкой одежды Nike, Sport Spirit",
+              en: "Advertising creative for Nike's new lightweight clothing collection, Sport Spirit",
+              ro: "Creativ publicitar pentru noua colecție de îmbrăcăminte ușoară Nike, Sport Spirit"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_14/cover-25.jpg",
@@ -1101,9 +1100,9 @@ export const projects: Project[] = [
             "/images/work/web/ss_14/2.jpg",
             "/images/work/web/ss_14/3.jpg",],
     description: {
-      ru: "Рекламный креатив для продукции Nike, Sport Spirit. В рамках проекта была разработана концепция кампании «Выходи за рамки», ориентированной на молодёжную аудиторию и активный образ жизни. Визуальный контент построен вокруг динамичных образов в спортивной экипировке Nike, дополненных графикой и социальными элементами, что подчёркивает идею свободы и выхода за привычные границы. Кампания была реализована в социальных сетях и использована для продвижения коллекции одежды и аксессуаров.",
-      en: "Advertising creative for Nike products, Sport Spirit. As part of the project, the “Go Beyond” campaign concept was developed, targeting a young audience and promoting an active lifestyle. The visual content is built around dynamic images of people wearing Nike sportswear, complemented by graphics and social media elements that emphasize the idea of freedom and pushing beyond familiar boundaries. The campaign was launched on social media and used to promote a collection of clothing and accessories.",
-      ro: "Concept publicitar pentru produsele Nike, Sport Spirit. În cadrul proiectului a fost elaborat conceptul campaniei „Ieși din tipare”, orientată către publicul tânăr și un stil de viață activ. Conținutul vizual este construit în jurul unor imagini dinamice cu persoane îmbrăcate în echipament sportiv Nike, completate cu elemente grafice și sociale, care subliniază ideea de libertate și de depășire a limitelor obișnuite. Campania a fost derulată pe rețelele sociale și utilizată pentru promovarea colecției de îmbrăcăminte și accesorii.",
+      ru: "Рекламный креатив для продукции Nike в магазине Sport Spirit. В рамках проекта была разработана концепция кампании «Выходи за рамки», ориентированной на молодёжную аудиторию и активный образ жизни. Визуальный контент построен вокруг динамичных образов в спортивной экипировке Nike, дополненных графикой и социальными элементами, что подчёркивает идею свободы и выхода за привычные границы. Макеты подготовлены для социальных сетей и использованы для продвижения коллекции одежды и аксессуаров.",
+      en: "Advertising creative for Nike products at Sport Spirit. As part of the project, the “Go Beyond” campaign concept was developed, targeting a young audience and promoting an active lifestyle. The visual content is built around dynamic images of people wearing Nike sportswear, complemented by graphics and social media elements that emphasize the idea of freedom and pushing beyond familiar boundaries. The layouts were prepared for social media and used to promote a collection of clothing and accessories.",
+      ro: "Creativ publicitar pentru produsele Nike din magazinul Sport Spirit. În cadrul proiectului a fost elaborat conceptul campaniei „Ieși din tipare”, orientată către publicul tânăr și un stil de viață activ. Conținutul vizual este construit în jurul unor imagini dinamice cu persoane îmbrăcate în echipament sportiv Nike, completate cu elemente grafice și sociale, care subliniază ideea de libertate și de depășire a limitelor obișnuite. Machetele au fost pregătite pentru rețelele sociale și utilizate pentru promovarea colecției de îmbrăcăminte și accesorii.",
     },
   },
   {
@@ -1113,7 +1112,7 @@ export const projects: Project[] = [
     client: "puma",
     title: { ru: "Рекламный креатив для сезонной акции Midseason Sale, PUMA Moldova",
               en: "Advertising creative for the Midseason Sale, PUMA Moldova",
-              ro: "Conceptul publicitar pentru campania sezonieră „Midseason Sale”, PUMA Moldova"},
+              ro: "Creativ publicitar pentru campania sezonieră „Midseason Sale”, PUMA Moldova"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/PUMA_web_2/cover-26.jpg",
@@ -1122,9 +1121,9 @@ export const projects: Project[] = [
             "/images/work/web/PUMA_web_2/3.jpg",
             "/images/work/web/PUMA_web_2/4.jpg",],
     description: {
-      ru: "Рекламный креатив для продукции Puma. В рамках проекта была разработана концепция кампании Midseason Sale, акцент сделан на выгодные предложения и стильный образ бренда. Визуальный контент включает динамичную подачу скидки «-30%» и образ в фирменной экипировке Puma, что подчёркивает актуальность коллекции и стимулирует интерес к распродаже. Кампания была реализована в социальных сетях и использована для продвижения выбранных товаров в рамках сезонной акции.",
-      en: "Advertising creative for Puma products. As part of the project, the “Midseason Sale” campaign concept was developed, focusing on attractive offers and a stylish brand image. The visual content includes dynamic discount displays and images of people wearing Puma apparel, highlighting the relevance of the collection and encouraging interest in the sale. The campaign was implemented on social media and used to promote selected products during the seasonal sale.",
-      ro: "Concept publicitar pentru produsele Puma. În cadrul proiectului a fost elaborat conceptul campaniei „Midseason Sale”, cu accent pe ofertele avantajoase și imaginea elegantă a brandului. Conținutul vizual include afișarea dinamică a reducerii de 30% și imagini cu persoane îmbrăcate în echipament Puma, subliniind actualitatea colecției și stimulând interesul pentru vânzări. Campania a fost implementată pe rețelele sociale și utilizată pentru promovarea produselor selectate în cadrul acțiunii sezoniere.",
+      ru: "Рекламный креатив для продукции Puma. В рамках проекта была разработана концепция кампании Midseason Sale, акцент сделан на выгодные предложения и стильный образ бренда. Визуальный контент включает динамичную подачу скидки «-30%» и образ в фирменной экипировке Puma, что подчёркивает актуальность коллекции и стимулирует интерес к распродаже. Макеты подготовлены для социальных сетей и использованы для продвижения выбранных товаров в рамках сезонной акции.",
+      en: "Advertising creative for Puma products. As part of the project, the “Midseason Sale” campaign concept was developed, focusing on attractive offers and a stylish brand image. The visual content includes a dynamic “-30%” discount display and images of people wearing Puma apparel, highlighting the relevance of the collection and encouraging interest in the sale. The layouts were prepared for social media and used to promote selected products during the seasonal sale.",
+      ro: "Creativ publicitar pentru produsele Puma. În cadrul proiectului a fost elaborat conceptul campaniei „Midseason Sale”, cu accent pe ofertele avantajoase și imaginea elegantă a brandului. Conținutul vizual include afișarea dinamică a reducerii de 30% și imagini cu persoane îmbrăcate în echipament Puma, subliniind actualitatea colecției și stimulând interesul pentru vânzări. Machetele au fost pregătite pentru rețelele sociale și utilizate pentru promovarea produselor selectate în cadrul acțiunii sezoniere.",
     },
   },
   {
@@ -1134,7 +1133,7 @@ export const projects: Project[] = [
     client: "ss",
     title: { ru: "Рекламный креатив для сезонной акции Winter Sale, Sport Spirit",
               en: "Advertising creative for the Winter Sale, Sport Spirit",
-              ro: "Conceptul publicitar pentru campania sezonieră Winter Sale, Sport Spirit"},
+              ro: "Creativ publicitar pentru campania sezonieră Winter Sale, Sport Spirit"},
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/ss_16/cover-27.jpg",
@@ -1144,9 +1143,9 @@ export const projects: Project[] = [
             "/images/work/web/ss_16/4.jpg",
             "/images/work/web/ss_16/5.jpg"],
     description: {
-      ru: "Рекламный креатив для продукции Sport Spirit в рамках кампании Winter Sale. Проект был ориентирован на зимний сезон: разработана концепция с акцентом на праздничную атмосферу и выгодные предложения, создан визуальный контент с использованием снежного фона, подарочных элементов и фирменного шопинг‑бэга. Кампания была реализована в социальных сетях и использована для продвижения зимних скидок до 50% на выбранные товары.",
-      en: "Advertising creative for Sport Spirit products as part of the Winter Sale campaign. The project was geared toward the winter season: a concept was developed emphasizing a festive atmosphere and great deals, and visual content was created using a snowy background, gift elements, and the brand’s signature shopping bag. The campaign was launched on social media and used to promote winter discounts of up to 50% on select items.",
-      ro: "Concept publicitar pentru produsele Sport Spirit în cadrul campaniei „Winter Sale”. Proiectul a fost orientat către sezonul de iarnă: s-a elaborat un concept care pune accentul pe atmosfera festivă și ofertele avantajoase, s-a creat conținut vizual folosind un fundal cu zăpadă, elemente de cadou și geanta de cumpărături cu sigla mărcii. Campania a fost derulată pe rețelele sociale și utilizată pentru promovarea reducerilor de iarnă de până la 50% la anumite produse.",
+      ru: "Рекламный креатив для продукции Sport Spirit в рамках кампании Winter Sale. Проект был ориентирован на зимний сезон: разработана концепция с акцентом на праздничную атмосферу и выгодные предложения, создан визуальный контент с использованием снежного фона, подарочных элементов и фирменного шопинг‑бэга. Макеты подготовлены для социальных сетей и использованы для продвижения зимних скидок до 50% на выбранные товары.",
+      en: "Advertising creative for Sport Spirit products as part of the Winter Sale campaign. The project was geared toward the winter season: a concept was developed emphasizing a festive atmosphere and great deals, and visual content was created using a snowy background, gift elements, and the brand’s signature shopping bag. The layouts were prepared for social media and used to promote winter discounts of up to 50% on select items.",
+      ro: "Creativ publicitar pentru produsele Sport Spirit în cadrul campaniei „Winter Sale”. Proiectul a fost orientat către sezonul de iarnă: s-a elaborat un concept care pune accentul pe atmosfera festivă și ofertele avantajoase, s-a creat conținut vizual folosind un fundal cu zăpadă, elemente de cadou și geanta de cumpărături cu sigla mărcii. Machetele au fost pregătite pentru rețelele sociale și utilizate pentru promovarea reducerilor de iarnă de până la 50% la anumite produse.",
     },
   },
   {
@@ -1165,9 +1164,9 @@ export const projects: Project[] = [
               "/images/work/web/corporatia_finantare/work3.jpg",
               "/images/work/web/corporatia_finantare/work4.jpg"],
     description: {
-      ru: "Создана серия рекламных креативов для продвижения финансовых продуктов с гарантией ODA. Визуальные решения подчеркивают надежность и масштаб предложения — акцент сделан на сумме гарантии в 1 000 000 леев и персонализированном графике выплат. Использованы деловые образы (рукопожатие, работа за ноутбуком, звонок клиенту), которые транслируют доверие и партнерство. Креативы объединены единым стилем, что усиливает восприятие бренда и делает кампанию целостной.",
-      en: "Advertising creative for ODA financing program, Corporatia de Finantare. As part of the project, a concept was developed, visual content was created, and a social media advertising campaign was implemented.",
-      ro: "Creativ publicitar pentru programul de finanțare ODA, Corporatia de Finantare. În cadrul proiectului, a fost dezvoltat un concept, a fost creat conținut vizual și a fost implementată o campanie de publicitate în rețelele sociale.",
+      ru: "Создана серия рекламных креативов для продвижения финансовых продуктов с гарантией ODA. Визуальные решения подчёркивают надёжность и масштаб предложения — акцент сделан на сумме гарантии в 1 000 000 леев и персонализированном графике выплат. Использованы деловые образы (рукопожатие, работа за ноутбуком, звонок клиенту), которые транслируют доверие и партнёрство. Креативы объединены единым стилем, что усиливает восприятие бренда и делает кампанию целостной.",
+      en: "A series of advertising creatives promoting financial products backed by the ODA guarantee. The visuals emphasize reliability and the scale of the offer, with the focus on the 1,000,000 lei guarantee amount and a personalized payment schedule. Business imagery (a handshake, working on a laptop, a call to a client) conveys trust and partnership. The creatives share a single style, which strengthens brand perception and makes the campaign cohesive.",
+      ro: "O serie de creații publicitare pentru promovarea produselor financiare cu garanție ODA. Soluțiile vizuale subliniază fiabilitatea și amploarea ofertei — accentul cade pe suma garanției de 1 000 000 de lei și pe graficul personalizat de plăți. Au fost folosite imagini de business (strângere de mână, lucru la laptop, apel către client), care transmit încredere și parteneriat. Creațiile sunt unite printr-un stil comun, ceea ce întărește percepția brandului și face campania coerentă.",
     },
   },
   {
@@ -1190,9 +1189,9 @@ export const projects: Project[] = [
               "/images/work/web/energywind_web_1/7.jpg",
               "/images/work/web/energywind_web_1/8.jpg"],
     description: {
-      ru: "Рекламные креативы для производителей ветряных турбин демонстрируют решения ведущих мировых брендов — Enercon, Envision, General Electric, Goldwind, Mingyang, Nordex, Siemens Gamesa и Vestas, доступные в Energy Wind Moldova. Каждый макет сочетает мощные фотографии турбин с чёткой структурой информации: диапазон мощности (от 1.1 до 8.3 МВт), контактные данные и полный спектр услуг — от продажи и доставки до монтажа, гарантии и лизинга. Визуальная подача подчёркивает как технологичность, так и универсальность брендов, создавая ощущение надёжности и современности.",
+      ru: "Рекламные креативы для производителей ветряных турбин демонстрируют решения ведущих мировых брендов — Enercon, Envision, General Electric, Goldwind, Mingyang, Nordex, Siemens Gamesa и Vestas, доступные в Energy Wind Moldova. Каждый макет сочетает мощные фотографии турбин с чёткой структурой информации: диапазон мощности (от 1,1 до 8,3 МВт), контактные данные и полный спектр услуг — от продажи и доставки до монтажа, гарантии и лизинга. Визуальная подача подчёркивает как технологичность, так и универсальность брендов, создавая ощущение надёжности и современности.",
       en: "Advertising creatives for wind turbine manufacturers showcase solutions from the world’s leading brands—Enercon, Envision, General Electric, Goldwind, Mingyang, Nordex, Siemens Gamesa, and Vestas—available through Energy Wind Moldova. Each layout combines striking photographs of turbines with a clear information structure: power range (from 1.1 to 8.3 MW), contact information, and a full range of services—from sales and delivery to installation, warranty, and leasing. The visual presentation highlights both the technological sophistication and versatility of the brands, creating a sense of reliability and modernity.",
-      ro: "Materialele publicitare pentru producătorii de turbine eoliene prezintă soluțiile oferite de marile branduri mondiale — Enercon, Envision, General Electric, Goldwind, Mingyang, Nordex, Siemens Gamesa și Vestas — disponibile la Energy Wind Moldova. Fiecare machetă combină fotografii impresionante ale turbinelor cu o structură clară a informațiilor: gama de putere (de la 1,1 la 8,3 MW), datele de contact și gama completă de servicii — de la vânzare și livrare până la montare, garanție și leasing. Prezentarea vizuală subliniază atât caracterul tehnologic, cât și universalitatea mărcilor, creând o senzație de fiabilitate și modernitate. ",
+      ro: "Materialele publicitare pentru producătorii de turbine eoliene prezintă soluțiile oferite de marile branduri mondiale — Enercon, Envision, General Electric, Goldwind, Mingyang, Nordex, Siemens Gamesa și Vestas — disponibile la Energy Wind Moldova. Fiecare machetă combină fotografii impresionante ale turbinelor cu o structură clară a informațiilor: gama de putere (de la 1,1 la 8,3 MW), datele de contact și gama completă de servicii — de la vânzare și livrare până la montare, garanție și leasing. Prezentarea vizuală subliniază atât caracterul tehnologic, cât și universalitatea mărcilor, creând o senzație de fiabilitate și modernitate.",
     },
   },
   {
@@ -1209,9 +1208,9 @@ export const projects: Project[] = [
     images: ["/images/work/web/energywind_web_2/1.jpg",
               "/images/work/web/energywind_web_2/2.jpg"],
     description: {
-      ru: "Разработаны рекламные креативы для социальных сетей в области ветроэнергетики, акцент сделан на продвижении систем хранения энергии (ESS/BESS) как инвестиционного продукта. В обоих баннерах использованы изображения промышленных контейнеров для хранения энергии, сопровождаемые текстовыми блоками о цене и выгоде — «от 100 000$ за MW/h» и обещание пассивного дохода. Визуально выделены контактные данные и сайт компании Energy Wind Moldova, что усиливает доверие и направляет потенциальных клиентов к действию.",
-      en: "Advertising creatives have been developed for social media in the wind energy sector, with an emphasis on promoting energy storage systems (ESS/BESS) as an investment product. Both banners feature images of industrial energy storage containers, accompanied by text blocks highlighting the price and benefits — “starting at $100,000 per MW/h” — and a promise of passive income. The contact information and website for Energy Wind Moldova are visually highlighted, which builds trust and encourages potential customers to take action.",
-      ro: "Au fost elaborate materiale publicitare pentru rețelele sociale din domeniul energiei eoliene, accentul fiind pus pe promovarea sistemelor de stocare a energiei (ESS/BESS) ca produs de investiții. În ambele bannere au fost utilizate imagini cu containere industriale pentru stocarea energiei, însoțite de blocuri de text referitoare la preț și beneficii — „de la 100 000$ pe MW/h” — și promisiunea unui venit pasiv. Datele de contact și site-ul companiei Energy Wind Moldova sunt evidențiate vizual, ceea ce sporește încrederea și îndrumă potențialii clienți spre acțiune.",
+      ru: "Разработаны рекламные креативы для социальных сетей в области ветроэнергетики, акцент сделан на продвижении систем хранения энергии (ESS/BESS) как инвестиционного продукта. В обоих баннерах использованы изображения промышленных контейнеров для хранения энергии, сопровождаемые текстовыми блоками о цене и выгоде — «от 100 000$ за MWh» и обещание пассивного дохода. Визуально выделены контактные данные и сайт компании Energy Wind Moldova, что усиливает доверие и направляет потенциальных клиентов к действию.",
+      en: "Advertising creatives have been developed for social media in the wind energy sector, with an emphasis on promoting energy storage systems (ESS/BESS) as an investment product. Both banners feature images of industrial energy storage containers, accompanied by text blocks highlighting the price and benefits — “starting at $100,000 per MWh” — and a promise of passive income. The contact information and website for Energy Wind Moldova are visually highlighted, which builds trust and encourages potential customers to take action.",
+      ro: "Au fost elaborate materiale publicitare pentru rețelele sociale din domeniul energiei eoliene, accentul fiind pus pe promovarea sistemelor de stocare a energiei (ESS/BESS) ca produs de investiții. În ambele bannere au fost utilizate imagini cu containere industriale pentru stocarea energiei, însoțite de blocuri de text referitoare la preț și beneficii — „de la 100 000$ pe MWh” — și promisiunea unui venit pasiv. Datele de contact și site-ul companiei Energy Wind Moldova sunt evidențiate vizual, ceea ce sporește încrederea și îndrumă potențialii clienți spre acțiune.",
     },
   },
   {
@@ -1220,16 +1219,16 @@ export const projects: Project[] = [
     slug: "Vitrum_letale_tshirt_tovar",
     // client: "energy",
     title: { ru: "Дизайн карточки товара для футболки, бренда одежды «Vitrum Letale»",
-              en: "Product card design for a T-shirt from the «Vitrum Letale» clothing brand",
-              ro: "Designul fișei de produs pentru un tricou al mărcii de îmbrăcăminte «Vitrum Letale»" },
+              en: "Product card design for a T-shirt from the “Vitrum Letale” clothing brand",
+              ro: "Designul fișei de produs pentru un tricou al mărcii de îmbrăcăminte „Vitrum Letale”" },
     categoryKey: "digital",
     year: 2026,
     cover: "/images/work/web/Vitrum_letale_tshirt_tovar/vitrumletalefutbolka-cover.jpg",
     images: ["/images/work/web/Vitrum_letale_tshirt_tovar/1.jpg",
               "/images/work/web/Vitrum_letale_tshirt_tovar/2.jpg"],
     description: {
-      ru: "Дизайн серии продающих карточек для лимитированной коллекции футболок бренда «Vitrum Letale» в стиле Darkwear / Streetwear. Главная фишка коллекции — кастомные серийные номера для каждого клиента. Оформление выполнено в мрачной эстетике с готической типографикой и контрастными акцентами, подчеркивающими премиальность изделия. Макеты включают продуманную инфографику с указанием характеристик (плотность 240 г/м², состав, уникальный крой воротника), сетку размеров, стоимость и вынесенные макро-кадры деталей (принт, фирменная бирка). Также интегрированы маркетинговые триггеры ограниченного тиража (FOMO) и призыв к действию для заказов в Direct.",
-      en: "Visual design of a product card series for «Vitrum Letale» darkwear/streetwear limited t-shirt drop. The core USP of the collection is custom serial numbering for individual buyers. The visual identity incorporates dark gothic typography and sharp red accents that highlight the premium nature of the garment. The layout features structured infographics detailing key specs (240 g/m² fabric weight, material composition, custom collar cut), size grid, pricing, and dedicated macro callouts for product details (print, branded tag). Integrated limited-availability marketing triggers (FOMO) drive direct sales conversions.",
+      ru: "Дизайн серии продающих карточек для лимитированной коллекции футболок бренда «Vitrum Letale» в стиле Darkwear / Streetwear. Главная фишка коллекции — кастомные серийные номера для каждого клиента. Оформление выполнено в мрачной эстетике с готической типографикой и контрастными акцентами, подчёркивающими премиальность изделия. Макеты включают продуманную инфографику с указанием характеристик (плотность 240 г/м², состав, уникальный крой воротника), сетку размеров, стоимость и вынесенные макро-кадры деталей (принт, фирменная бирка). Также интегрированы маркетинговые триггеры ограниченного тиража (FOMO) и призыв к действию для заказов в Direct.",
+      en: "Visual design of a product card series for “Vitrum Letale” darkwear/streetwear limited t-shirt drop. The core USP of the collection is custom serial numbering for individual buyers. The visual identity incorporates dark gothic typography and sharp red accents that highlight the premium nature of the garment. The layout features structured infographics detailing key specs (240 g/m² fabric weight, material composition, custom collar cut), size grid, pricing, and dedicated macro callouts for product details (print, branded tag). Integrated limited-availability marketing triggers (FOMO) drive direct sales conversions.",
       ro: "Design vizual al unei serii de carduri de produs pentru colecția limitată de tricouri a brandului „Vitrum Letale” în stil Darkwear / Streetwear. Elementul principal al colecției îl constituie codurile de serie personalizate pentru fiecare client. Grafica este realizată într-o estetică dark cu tipografie gotică și accente contrastante de roșu. Machetele includ infografice structurate cu specificațiile produsului (densitatea țesăturii 240 g/m², compoziția, croiala gulerului), grila de mărimi, prețul și cadre macro cu detaliile articolului (printul, eticheta de brand). De asemenea, sunt integrate elemente de marketing FOMO pentru stimularea comenzilor în Direct.",
     },
   },
@@ -1250,12 +1249,12 @@ export const projects: Project[] = [
       "/images/work/video editing/atlantida/wedding/Без имени-1.jpg",
     ],
     context: {
-       ru: "Выполнено в рамках сотрудничества с DOOH house",
-       en: "Completed in collaboration with DOOH house",
-       ro: "Realizat în cadrul colaborării cu DOOH house",
+       ru: "Выполнено в рамках сотрудничества с DOOH House",
+       en: "Completed in collaboration with DOOH House",
+       ro: "Realizat în cadrul colaborării cu DOOH House",
     },
     description: {
-      ru: "Рекламный видеомонтаж промо-ролика для ресторана «Atlantida» в городе Комрат, разработанный для трансляции на вертикальных LED-экранах, по заказу DOOH House. Проект объединяет стильное вступительное представление брендинга, динамичную нарезку интерьера, банковых блюд и свадебных торжеств, а также постоянное графическое плашка-шапку с контактными данными и текстовые призывы к действию. Видеоряд передает атмосферу уюта и премиального сервиса, делая ролик эффективным инструментом привлечения клиентов в локальной рекламе.",
+      ru: "Рекламный видеомонтаж промо-ролика для ресторана «Atlantida» в городе Комрат, разработанный для трансляции на вертикальных LED-экранах, по заказу DOOH House. Проект объединяет стильное вступительное представление брендинга, динамичную нарезку интерьера, банкетных блюд и свадебных торжеств, а также постоянную графическую плашку-шапку с контактными данными и текстовые призывы к действию. Видеоряд передаёт атмосферу уюта и премиального сервиса, делая ролик эффективным инструментом привлечения клиентов в локальной рекламе.",
       en: "A promotional video edit created for the Atlantida restaurant in Comrat, designed specifically for vertical LED displays, commissioned by DOOH House. The project incorporates a branded intro sequence, video editing of elegant interior shots, banquet settings, and wedding celebrations, paired with a persistent contact header overlay and animated call-to-action screens. The video captures the sophisticated atmosphere and event capabilities of the venue for public advertising.",
       ro: "Un montaj video publicitar creat pentru restaurantul „Atlantida” din orașul Comrat, conceput pentru difuzare pe ecrane LED verticale, la comanda DOOH House. Proiectul include o prezentare stilizată a elementelor de brand, montajul cadrelor cu interiorul rafinat, mesele festive și secvențele de la nunți, alături de un antet grafic fix cu datele de contact și mesaje finale animate. Videoclipul redă cu acuratețe atmosfera festivă și serviciile pentru evenimente, fiind optimizat pentru publicitatea pe ecrane digitale.",
     },
@@ -1265,21 +1264,21 @@ export const projects: Project[] = [
     order: 29.1,
     slug: "EnergyWind_reels1",
     client: "energy",
-    title: { ru: "Разработка и монтаж серии Reels/Shorts для «Energy Wind Moldova»", en: "Full-cycle creation and video editing of Reels/Shorts series for «Energy Wind Moldova»", ro: "Creare și editare serie de videoclipuri Reels/Shorts pentru «Energy Wind Moldova»" },
+    title: { ru: "Разработка и монтаж серии Reels/Shorts для «Energy Wind Moldova»", en: "Full-cycle creation and video editing of Reels/Shorts series for “Energy Wind Moldova”", ro: "Creare și editare serie de videoclipuri Reels/Shorts pentru „Energy Wind Moldova”" },
     categoryKey: "video-editing",
     year: 2026,
     cover: "/images/work/video editing/energy wind moldova/reels1/reels1-cover.jpg",
     images: [
-      { video: "https://pub-733e8c8d30a74425ba9f6703c99fb798.r2.dev/energy%20wind%20video/%D0%A1%D0%B5%D0%BD%D1%82%D1%8F%D0%B1%D1%80%D1%8C%20%D1%82%D0%B5%D0%BC%D0%B0%2010.mp4", width: 1080, height: 1980 },
-      { video: "https://pub-733e8c8d30a74425ba9f6703c99fb798.r2.dev/energy%20wind%20video/%D0%90%D0%B2%D0%B3%D1%83%D1%81%D1%82%20%D1%82%D0%B5%D0%BC%D0%B0%204.%20%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D1%81%D1%82%D0%BE%D0%B8%D1%82%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%B8%D1%8F%20%D0%BE%D1%82%20%D1%81%D0%BE%D0%B1.mp4", width: 1080, height: 1980 },
+      { video: "https://pub-733e8c8d30a74425ba9f6703c99fb798.r2.dev/energy%20wind%20video/%D0%A1%D0%B5%D0%BD%D1%82%D1%8F%D0%B1%D1%80%D1%8C%20%D1%82%D0%B5%D0%BC%D0%B0%2010.mp4", width: 1080, height: 1920 },
+      { video: "https://pub-733e8c8d30a74425ba9f6703c99fb798.r2.dev/energy%20wind%20video/%D0%90%D0%B2%D0%B3%D1%83%D1%81%D1%82%20%D1%82%D0%B5%D0%BC%D0%B0%204.%20%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D1%81%D1%82%D0%BE%D0%B8%D1%82%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D1%8D%D0%BD%D0%B5%D1%80%D0%B3%D0%B8%D1%8F%20%D0%BE%D1%82%20%D1%81%D0%BE%D0%B1.mp4", width: 1080, height: 1920 },
     ],
      // context: {
-       // ru: "Выполнено в рамках сотрудничества с DOOH house",
-       // en: "Completed in collaboration with DOOH house",
-       // ro: "Realizat în cadrul colaborării cu DOOH house",
+       // ru: "Выполнено в рамках сотрудничества с DOOH House",
+       // en: "Completed in collaboration with DOOH House",
+       // ro: "Realizat în cadrul colaborării cu DOOH House",
      //  },
     description: {
-      ru: "Серия экспертных роликов для Reels/Shorts, выполненная в рамках полного цикла производства: от составления сценария и создания цифрового аватара спикера с озвучкой до генерации фонового видеоряда и финального монтажа. Проект включает интеграцию аватара ведущего, наложение динамичных субтитров и анимации, а также подбор и генерацию тематических B-roll кадров (ветрогенераторы, логистика, монтаж оборудования и инфографика). Ролики в понятном формате раскрывают темы ветроэнергетики, окупаемости и реализации проектов «под ключ», завершаясь брендированным финальным пэком с контактной информацией.",
+      ru: "Серия экспертных роликов для Reels/Shorts, выполненная в рамках полного цикла производства: от составления сценария и создания цифрового аватара спикера с озвучкой до генерации фонового видеоряда и финального монтажа. Проект включает интеграцию аватара ведущего, наложение динамичных субтитров и анимации, а также подбор и генерацию тематических B-roll кадров (ветрогенераторы, логистика, монтаж оборудования и инфографика). Ролики в понятном формате раскрывают темы ветроэнергетики, окупаемости и реализации проектов «под ключ», завершаясь брендированным финальным экраном с контактной информацией.",
       en: "A series of expert short-form videos (Reels/Shorts) produced through a complete end-to-end workflow: from scriptwriting and creating a digital avatar speaker with voiceover to generating background video footage and final editing. The project combines a digital avatar presenter with dynamic animated captions, graphics, and generated B-roll scenes (wind turbines, logistics, installation stages, and infographics). The content clearly breaks down complex wind energy investment topics and turnkey project workflows, wrapped with branded contact end screens.",
       ro: "O serie de videoclipuri de tip Reels/Shorts realizată în cadrul unui ciclu complet de producție: de la redactarea scenariului și crearea avatarului digital al prezentatorului cu voce off, până la generarea secvențelor video de fundal și montajul final. Proiectul îmbină integrarea avatarului cu subtitrări dinamice, grafică animată și cadre B-roll generate (turbine eoliene, transport, instalare și infografice). Materialele explică într-un mod accesibil conceptele din domeniul energiei eoliene și etapele proiectelor la cheie, încheindu-se cu un ecran de final personalizat cu datele de contact.",
     },
@@ -1290,7 +1289,7 @@ export const projects: Project[] = [
     slug: "telemarket_wokali_web_1",
     client: "telemarket",
     title: { ru: "Разработка шаблона и серии акционных карточек товаров для бренда Wokali, Telemarket",
-              en: "Development of a template and a series of promotional product cards for the Wokali brand, Telemarket.",
+              en: "Development of a template and a series of promotional product cards for the Wokali brand, Telemarket",
               ro: "Dezvoltarea unui șablon și a unei serii de carduri promoționale pentru marca Wokali, Telemarket" },
     categoryKey: "digital",
     year: 2026,
@@ -1309,9 +1308,9 @@ export const projects: Project[] = [
               "/images/work/web/telemarket_wokali_web_1/11.jpg",
               "/images/work/web/telemarket_wokali_web_1/12.jpg",],
     description: {
-      ru: "Создание универсального продающего шаблона и масштабная линейка из более чем 50+ акционных карточек товаров для косметического бренда «Wokali» в рамках рекламной кампании компании «Telemarket» (период акции: 12–18.01.2026). Дизайн макетов выдержан в фирменной стилистике с использованием акцентных розовых и белых тонов, элементов брендинга, плашек с датами проведения акции и информации об эксклюзивных онлайн-скидках (-20%). Шаблон спроектирован с четкой иерархией для быстрой адаптации под разные категории уходовой косметики: он включает зоны для размещения качественного фото товара, наименования и объема, а также контрастный блок старой и новой цены (в mdl), дополненный контактами и условиями доставки по всей Молдове.",
-      en: "Development of a versatile promotional template and a large-scale series of over 50+ product cards for the «Wokali» cosmetic brand under the «Telemarket» company campaign (active dates: 12–18.01.2026). The visual layout utilizes a branded pink-and-white aesthetic highlighting online-exclusive discounts (-20%) and promotional event timelines. The unified template features a structured layout optimized for rapid content scaling across various skincare items — incorporating designated slots for product imagery, titles, volumes, striking old/new price blocks in MDL, and reliable delivery information across Moldova.",
-      ro: "Crearea unui șablon vizual universal și a unei serii extinse de peste 50+ de carduri promoționale pentru produsele cosmetice „Wokali” în cadrul campaniei companiei „Telemarket” (perioada promoției: 12–18.01.2026). Designul utilizează o paletă curată, dominată de tonuri roz și albe, evidențiind reducerile exclusive online (-20%) și perioada exactă a campaniei. Șablonul este conceput pentru o adaptare rapidă la o gamă largă de articole de îngrijire, integrând spații pentru fotografia produsului, denumire, volum, precum și un bloc de prețuri contrastant (vechi/nou în mdl) și informații clare despre livrarea disponibilă pe tot teritoriul Moldovei.",
+      ru: "Создание универсального продающего шаблона и масштабная линейка из более 50 акционных карточек товаров для косметического бренда «Wokali» в рамках рекламной кампании компании «Telemarket» (период акции: 12–18.01.2026). Дизайн макетов выдержан в фирменной стилистике с использованием акцентных розовых и белых тонов, элементов брендинга, плашек с датами проведения акции и информации об эксклюзивных онлайн-скидках (-20%). Шаблон спроектирован с чёткой иерархией для быстрой адаптации под разные категории уходовой косметики: он включает зоны для размещения качественного фото товара, наименования и объёма, а также контрастный блок старой и новой цены (в MDL), дополненный контактами и условиями доставки по всей Молдове.",
+      en: "Development of a versatile promotional template and a large-scale series of over 50 product cards for the “Wokali” cosmetic brand under the “Telemarket” company campaign (active dates: 12–18.01.2026). The visual layout utilizes a branded pink-and-white aesthetic highlighting online-exclusive discounts (-20%) and promotional event timelines. The unified template features a structured layout optimized for rapid content scaling across various skincare items — incorporating designated slots for product imagery, titles, volumes, striking old/new price blocks in MDL, and reliable delivery information across Moldova.",
+      ro: "Crearea unui șablon vizual universal și a unei serii extinse de peste 50 de carduri promoționale pentru produsele cosmetice „Wokali” în cadrul campaniei companiei „Telemarket” (perioada promoției: 12–18.01.2026). Designul utilizează o paletă curată, dominată de tonuri roz și albe, evidențiind reducerile exclusive online (-20%) și perioada exactă a campaniei. Șablonul este conceput pentru o adaptare rapidă la o gamă largă de articole de îngrijire, integrând spații pentru fotografia produsului, denumire, volum, precum și un bloc de prețuri contrastant (vechi/nou în MDL) și informații clare despre livrarea disponibilă pe tot teritoriul Moldovei.",
     },
   },
   {
@@ -1319,9 +1318,9 @@ export const projects: Project[] = [
     order: 17.2,
     slug: "telemarket_BF_web_2",
     client: "telemarket",
-    title: { ru: "Разработка шаблона и серии акционных карточек товаров для компании 'Telemarket' (Black Friday Sale)",
-              en: "Template Design and Promotional Product Card Series for 'Telemarket' (Black Friday Sale)",
-              ro: "Design de șablon și serie de carduri promoționale pentru compania 'Telemarket' (Black Friday Sale)" },
+    title: { ru: "Разработка шаблона и серии акционных карточек товаров для компании «Telemarket» (Black Friday Sale)",
+              en: "Template Design and Promotional Product Card Series for “Telemarket” (Black Friday Sale)",
+              ro: "Design de șablon și serie de carduri promoționale pentru compania „Telemarket” (Black Friday Sale)" },
     categoryKey: "digital",
     year: 2025,
     cover: "/images/work/web/telemarket_BF_web_2/telemarket_BF_web_2-cover.jpg",
@@ -1339,9 +1338,9 @@ export const projects: Project[] = [
               "/images/work/web/telemarket_BF_web_2/11.jpg",
               "/images/work/web/telemarket_BF_web_2/12.jpg",],
     description: {
-      ru: "Создание универсального продающего шаблона и серии карточек для рекламной кампании распродажи 'Black Friday Sale' компании 'Telemarket' (период проведения: 27.11 – 30.11). Дизайн разработан с акцентом на контрастную красно-черную палитру, элементы праздничного оформления с воздушными шарами и яркую плашку глобальной скидки -25% на весь ассортимент каталога. Шаблон оптимизирован под быструю верстку широкой матрицы товаров различных категорий — от бытовой техники и кухонных принадлежностей до бытовой химии, косметики, детских и спортивных товаров. Конструктор макета содержит четко выделенный плашка-блок с вычеркнутой старой и акцентной новой ценой в леях, а также фирменный футер с контактами и информацией о доставке по всей Молдове.",
-      en: "Development of a versatile promotional template and product card series for the 'Black Friday Sale' campaign by 'Telemarket' (active dates: 27.11 – 30.11). The graphic system relies on a high-contrast red-and-black palette paired with decorative balloon elements and a bold -25% site-wide discount badge. The layout frame is structured for rapid content scaling across diverse product categories, including home appliances, kitchen accessories, household detergents, cosmetics, sports gear, and toys. Each card incorporates a prominent price box comparing crossed-out original prices with updated discounted values in LEI, complete with corporate delivery details across Moldova.",
-      ro: "Crearea unui șablon vizual universal și a unei serii de carduri promoționale pentru campania de reduceri 'Black Friday Sale' a companiei 'Telemarket' (perioada promoției: 27.11 – 30.11). Conceptul grafic utilizează o paletă contrastantă de roșu și negru, decorată cu baloane tematice și o bandă/plachetă vizibilă cu reducerea generală de -25% la toate produsele. Structura șablonului este concepută pentru adaptarea rapidă la o gamă variată de articole din catalog (electrocasnice, ustensile de bucătărie, produse de îngrijire, articole sportive și jucării). Macheta include un bloc de preț bine definit cu prețul vechi tăiat și cel nou evidențiat în lei, alături de informații clare privind livrarea pe tot teritoriul Moldovei.",
+      ru: "Создание универсального продающего шаблона и серии карточек для рекламной кампании распродажи «Black Friday Sale» компании «Telemarket» (период проведения: 27.11 – 30.11). Дизайн разработан с акцентом на контрастную красно-чёрную палитру, элементы праздничного оформления с воздушными шарами и яркую плашку общей скидки -25% на весь ассортимент каталога. Шаблон оптимизирован под быструю вёрстку широкой матрицы товаров различных категорий — от бытовой техники и кухонных принадлежностей до бытовой химии, косметики, детских и спортивных товаров. Макет содержит чётко выделенный блок цены с зачёркнутой старой и акцентной новой ценой в MDL, а также фирменный футер с контактами и информацией о доставке по всей Молдове.",
+      en: "Development of a versatile promotional template and product card series for the “Black Friday Sale” campaign by “Telemarket” (active dates: 27.11 – 30.11). The graphic system relies on a high-contrast red-and-black palette paired with decorative balloon elements and a bold -25% site-wide discount badge. The layout frame is structured for rapid content scaling across diverse product categories, including home appliances, kitchen accessories, household detergents, cosmetics, sports gear, and toys. Each card incorporates a prominent price box comparing crossed-out original prices with updated discounted values in MDL, complete with corporate delivery details across Moldova.",
+      ro: "Crearea unui șablon vizual universal și a unei serii de carduri promoționale pentru campania de reduceri „Black Friday Sale” a companiei „Telemarket” (perioada promoției: 27.11 – 30.11). Conceptul grafic utilizează o paletă contrastantă de roșu și negru, decorată cu baloane tematice și o plachetă vizibilă cu reducerea generală de -25% la toate produsele. Structura șablonului este concepută pentru adaptarea rapidă la o gamă variată de articole din catalog (electrocasnice, ustensile de bucătărie, produse de îngrijire, articole sportive și jucării). Macheta include un bloc de preț bine definit cu prețul vechi tăiat și cel nou evidențiat în MDL, alături de informații clare privind livrarea pe tot teritoriul Moldovei.",
     },
   },
   {
@@ -1353,7 +1352,7 @@ export const projects: Project[] = [
               en: "Template Design and Promotional Product Card Series for DecoBella Brand, Telemarket",
               ro: "Design de șablon și serie de carduri promoționale pentru produsele DecoBella, Telemarket" },
     categoryKey: "digital",
-    year: 2025,
+    year: 2026,
     cover: "/images/work/web/telemarket_decobella_web_3/telemarket_decobella_web_3-cover.jpg",
     galleryColumns: 3,
     images: ["/images/work/web/telemarket_decobella_web_3/1.jpg",
@@ -1373,9 +1372,9 @@ export const projects: Project[] = [
               "/images/work/web/telemarket_decobella_web_3/15.jpg", ],
                 
     description: {
-      ru: "Разработка универсального шаблона и серии промо-карточек товаров для турецкого бренда кухонной посуды и органайзеров 'DecoBella' в рамках акционной кампании компании 'Telemarket' (период проведения: 16–22.03.2026). Макет выдержан в элегантной винно-бордовой и светло-розовой цветовой гамме, органично сочетающейся с логотипами обоих брендов и выразительной плашкой эксклюзивной онлайн-скидки -20%. Шаблон спроектирован для демонстрации различных емкостей для хранения и ланч-боксов: он включает зоны под изолированное фото товара, наименование, литраж, а также контрастный прайс-блок со старой и новой ценой в mdl и инфографикой доставки по всей Молдове.",
-      en: "Development of a versatile promotional layout template and product card series for the Turkish kitchenware and organizer brand 'DecoBella' for 'Telemarket' company's promotional campaign (active dates: 16–22.03.2026). The visual concept features a refined burgundy-and-pink color palette, seamlessly incorporating co-branding logos and a prominent -20% online discount tag. The structured design focuses on food containers and lunch boxes, incorporating dedicated sections for product cutouts, volume capacity details, a high-contrast pricing block comparing crossed-out original values with discounted rates in MDL, and nationwide delivery details.",
-      ro: "Crearea unui șablon vizual universal și a unei serii de carduri promoționale pentru brandul turcesc de articole de bucătărie 'DecoBella' în cadrul campaniei companiei 'Telemarket' (perioada promoției: 16–22.03.2026). Designul utilizează o paletă elegantă în nuanțe de bordo și roz pal, combinând armonios elementele de co-branding și o plachetă vizibilă pentru reducerea exclusivă online de -20%. Structura este optimizată pentru prezentarea caserolelor și caserolelor duble pentru alimente, integrând spații pentru imaginea produsului, denumire, capacitate în litri, un bloc contrastant de preț (vechi/nou în mdl) și detalii privind livrarea în toată Moldova.",
+      ru: "Разработка универсального шаблона и серии промо-карточек товаров для турецкого бренда кухонной посуды и органайзеров «DecoBella» в рамках акционной кампании компании «Telemarket» (период проведения: 16–22.03.2026). Макет выдержан в элегантной винно-бордовой и светло-розовой цветовой гамме, органично сочетающейся с логотипами обоих брендов и выразительной плашкой эксклюзивной онлайн-скидки -20%. Шаблон спроектирован для демонстрации различных ёмкостей для хранения и ланч-боксов: он включает зоны под изолированное фото товара, наименование, литраж, а также контрастный прайс-блок со старой и новой ценой в MDL и инфографикой доставки по всей Молдове.",
+      en: "Development of a versatile promotional layout template and product card series for the Turkish kitchenware and organizer brand “DecoBella” for “Telemarket” company's promotional campaign (active dates: 16–22.03.2026). The visual concept features a refined burgundy-and-pink color palette, seamlessly incorporating co-branding logos and a prominent -20% online discount tag. The structured design focuses on food containers and lunch boxes, incorporating dedicated sections for product cutouts, volume capacity details, a high-contrast pricing block comparing crossed-out original values with discounted rates in MDL, and nationwide delivery details.",
+      ro: "Crearea unui șablon vizual universal și a unei serii de carduri promoționale pentru brandul turcesc de articole de bucătărie „DecoBella” în cadrul campaniei companiei „Telemarket” (perioada promoției: 16–22.03.2026). Designul utilizează o paletă elegantă în nuanțe de bordo și roz pal, combinând armonios elementele de co-branding și o plachetă vizibilă pentru reducerea exclusivă online de -20%. Structura este optimizată pentru prezentarea recipientelor pentru păstrarea alimentelor și a lunch box-urilor, integrând spații pentru imaginea produsului, denumire, capacitate în litri, un bloc contrastant de preț (vechi/nou în MDL) și detalii privind livrarea în toată Moldova.",
     },
   },
   {
@@ -1384,9 +1383,9 @@ export const projects: Project[] = [
     featuredOrder: 5,
     slug: "HUGE_webbanners_marketing",
     client: "HUGE",
-    title: { ru: "Разработка серии рекламных баннеров для продвижения комплексного маркетинга 'HUGE'",
-              en: "Performance Ad Banner Series for 'HUGE' Integrated Marketing Agency",
-              ro: "Design serie de bannere publicitare pentru promovarea serviciilor de marketing 'HUGE'" },
+    title: { ru: "Разработка серии рекламных баннеров для продвижения комплексного маркетинга «HUGE»",
+              en: "Performance Ad Banner Series for “HUGE” Integrated Marketing Agency",
+              ro: "Design serie de bannere publicitare pentru promovarea serviciilor de marketing „HUGE”" },
     categoryKey: "digital",
     year: 2026,
     cover: "/images/work/web/HUGE_webbanners_marketing/HUGE_webbanners_marketing-cover.jpg",
@@ -1397,9 +1396,9 @@ export const projects: Project[] = [
               "/images/work/web/HUGE_webbanners_marketing/4.jpg",],
                 
     description: {
-      ru: "Разработка серии рекламных баннеров для лидогенерации и продвижения комплексных маркетинговых услуг агентства 'HUGE'. Оформление выдержано в фирменном брендинге компании с использованием глубоких темных фонов и контрастных оранжевых акцентов. Визуальные решения построены на оригинальных метафорах — шахматных фигурах, античной скульптуре 'Мыслитель', растущей графике и наглядных карточках сравнения. Каждый макет фокусируется на конкретной идее, демонстрируя ценность выделенной команды и направляя пользователя к подаче заявки через выразительные кнопки целевого действия.",
-      en: "Development of a promotional banner series designed for lead generation and advertising 'HUGE' agency's full-service marketing packages. The visual layout relies on the brand's identity, blending deep dark backgrounds with high-contrast orange accents. Conceptually, the designs use distinct metaphors such as chess pieces, the classical 'Thinker' sculpture, growth graphics, and clear comparison charts. Each creative focuses on a specific message, highlighting the value of a dedicated marketing team and guiding users toward submitting a request via prominent Call-to-Action buttons.",
-      ro: "Crearea unei serii de bannere publicitare axate pe generarea de lead-uri și promovarea pachetelor integrate de servicii de marketing ale agenției 'HUGE'. Conceptul grafic respectă identitatea vizuală a companiei, îmbinând fundaluri închise cu accente portocalii contrastante. Soluțiile vizuale se bazează pe metafore creative, precum piesele de șah, sculptura 'Gânditorul', graficele de creștere și tabelele comparative. Fiecare machetă este structurată pe o idee clară, punând în valoare beneficiile unei echipe dedicate și direcționând utilizatorul către trimiterea unei cereri prin butoane vizibile de Call-to-Action.",
+      ru: "Разработка серии рекламных баннеров для лидогенерации и продвижения комплексных маркетинговых услуг агентства «HUGE». Оформление выдержано в фирменном брендинге компании с использованием глубоких тёмных фонов и контрастных оранжевых акцентов. Визуальные решения построены на оригинальных метафорах — шахматных фигурах, античной скульптуре «Мыслитель», растущей графике и наглядных карточках сравнения. Каждый макет фокусируется на конкретной идее, демонстрируя ценность выделенной команды и направляя пользователя к подаче заявки через выразительные кнопки целевого действия.",
+      en: "Development of a promotional banner series designed for lead generation and promoting the full-service marketing packages of the “HUGE” agency. The visual layout relies on the brand's identity, blending deep dark backgrounds with high-contrast orange accents. Conceptually, the designs use distinct metaphors such as chess pieces, the classical “Thinker” sculpture, growth graphics, and clear comparison charts. Each creative focuses on a specific message, highlighting the value of a dedicated marketing team and guiding users toward submitting a request via prominent Call-to-Action buttons.",
+      ro: "Crearea unei serii de bannere publicitare axate pe generarea de lead-uri și promovarea pachetelor integrate de servicii de marketing ale agenției „HUGE”. Conceptul grafic respectă identitatea vizuală a companiei, îmbinând fundaluri închise cu accente portocalii contrastante. Soluțiile vizuale se bazează pe metafore creative, precum piesele de șah, sculptura „Gânditorul”, graficele de creștere și tabelele comparative. Fiecare machetă este structurată pe o idee clară, punând în valoare beneficiile unei echipe dedicate și direcționând utilizatorul către trimiterea unei cereri prin butoane vizibile de Call-to-Action.",
     },
   },
 
@@ -1410,7 +1409,7 @@ export const projects: Project[] = [
     featuredOrder: 9,
     slug: "persistentmma_steclo",
     client: "mma",
-    title: { ru: "Оракал на стекло для додзё Persistent MMA в городе Кишинёв", en: "Oracal vinyl on glass for Persistent MMA dojo in Chișinău", ro: "Folie autocolantă Oracal pe sticlă pentru dojo-ul Persistent MMA din Chișinău" },
+    title: { ru: "Плёнка Oracal на стекло для додзё Persistent MMA в городе Кишинёв", en: "Oracal vinyl on glass for Persistent MMA dojo in Chișinău", ro: "Folie autocolantă Oracal pe sticlă pentru dojo-ul Persistent MMA din Chișinău" },
     categoryKey: "packaging",
     year: 2026,
     cover: "/images/work/packaging/mma_steclo/cover-4.jpg",
@@ -1418,9 +1417,9 @@ export const projects: Project[] = [
             "/images/work/packaging/mma_steclo/2.jpg",],
 
     description: {
-      ru: "Проект, выполненный для додзё Persistent MMA в городе Кишинёв. На стекло нанесён оракал с логотипом клуба и 14 величайшими бойцами MMA (по мнению клиента). Данный проект реализован в рамках сотрудничества с клубом, чтобы улучшить визуальное представление и идентичность додзё.",
+      ru: "Проект, выполненный для додзё Persistent MMA в городе Кишинёв. На стекло нанесена плёнка Oracal с логотипом клуба и 14 величайшими бойцами MMA (по мнению клиента). Данный проект реализован в рамках сотрудничества с клубом, чтобы улучшить визуальное представление и идентичность додзё.",
       en: "A project completed for the Persistent MMA dojo in Chișinău. An Oracal vinyl decal featuring the club's logo and 14 of the greatest MMA fighters (according to the client) was applied to the glass. This project was implemented as part of a collaboration with the club to enhance the dojo's visual identity.",
-      ro: "Un proiect finalizat pentru dojo-ul Persistent MMA din Chișinău. Pe sticlă a fost aplicat o folie autocolantă Oracal cu logo-ul clubului și 14 dintre cei mai mari luptători MMA (conform clientului). Acest proiect a fost implementat ca parte a unei colaborări cu clubul pentru a îmbunătăți identitatea vizuală a dojo-ului.",
+      ro: "Un proiect finalizat pentru dojo-ul Persistent MMA din Chișinău. Pe sticlă a fost aplicată o folie autocolantă Oracal cu logo-ul clubului și 14 dintre cei mai mari luptători MMA (conform clientului). Acest proiect a fost implementat ca parte a unei colaborări cu clubul pentru a îmbunătăți identitatea vizuală a dojo-ului.",
     },
   },
   {
@@ -1439,9 +1438,9 @@ export const projects: Project[] = [
             "/images/work/packaging/puma_rollup/3.jpg",],
 
     description: {
-      ru: "Рекламный креатив для продукции Puma, Sport Spirit в формате роллапа. В рамках проекта была разработана концепция кампании Go Wild, ориентированной на вовлечение аудитории в спортивное сообщество Strava. Дизайн построен на контрасте черного и белого фона с динамичными красными акцентами и графикой «claw marks», что подчёркивает энергию бренда Puma. Центральным элементом стал QR‑код, позволяющий быстро присоединиться к команде Puma в Strava.",
-      en: "Advertising creative for Puma’s Sport Spirit products in roll-up format. As part of the project, the “Go Wild” campaign concept was developed, aimed at engaging the audience with the Strava sports community. The design is based on the contrast between black and white backgrounds with dynamic red accents and “claw marks” graphics, which emphasize the energy of the Puma brand. The central element is a QR code that allows users to quickly join the Puma team on Strava.",
-      ro: "Concept publicitar pentru produsele Puma, Sport Spirit, în format roll-up. În cadrul proiectului a fost elaborat conceptul campaniei „Go Wild”, menită să atragă publicul în comunitatea sportivă Strava. Designul se bazează pe contrastul dintre fundalul alb și cel negru, cu accente dinamice de roșu și elemente grafice „claw marks”, care subliniază energia mărcii Puma. Elementul central îl constituie codul QR, care permite alăturarea rapidă la echipa Puma din Strava.",
+      ru: "Рекламный креатив для Puma Moldova в формате роллапа. В рамках проекта была разработана концепция кампании Go Wild, ориентированной на вовлечение аудитории в спортивное сообщество Strava. Дизайн построен на контрасте чёрного и белого фона с динамичными красными акцентами и графикой «claw marks», что подчёркивает энергию бренда Puma. Центральным элементом стал QR‑код, позволяющий быстро присоединиться к команде Puma в Strava.",
+      en: "Advertising creative for Puma Moldova in roll-up format. As part of the project, the “Go Wild” campaign concept was developed, aimed at engaging the audience with the Strava sports community. The design is based on the contrast between black and white backgrounds with dynamic red accents and “claw marks” graphics, which emphasize the energy of the Puma brand. The central element is a QR code that allows users to quickly join the Puma team on Strava.",
+      ro: "Creativ publicitar pentru Puma Moldova, în format roll-up. În cadrul proiectului a fost elaborat conceptul campaniei „Go Wild”, menită să atragă publicul în comunitatea sportivă Strava. Designul se bazează pe contrastul dintre fundalul alb și cel negru, cu accente dinamice de roșu și elemente grafice „claw marks”, care subliniază energia mărcii Puma. Elementul central îl constituie codul QR, care permite alăturarea rapidă la echipa Puma din Strava.",
     },
   },
   {
@@ -1461,7 +1460,7 @@ export const projects: Project[] = [
 
     description: {
       ru: "Информационный мясной стенд в магазине Măcelăria Vitalim выполняет строго практическую задачу. Он служит справочным материалом для покупателей, показывая основные части свинины и их названия. Такой стенд облегчает выбор продукции, делает процесс покупки более понятным и прозрачным. Дополнительно он подтверждает профессиональный подход магазина к продаже мясных изделий.",
-      en: "An informational meat stand in the Măcelăria Vitalim store serves a strictly practical purpose. It serves as reference material for customers, showing the main parts of pork and their names. Such a stand facilitates product selection, making the purchasing process easier to understand and more transparent. Additionally, it confirms the store's professional approach to selling meat products.",
+      en: "An informational meat stand in the Măcelăria Vitalim store serves a strictly practical purpose. It acts as reference material for customers, showing the main parts of pork and their names. Such a stand facilitates product selection, making the purchasing process easier to understand and more transparent. Additionally, it confirms the store's professional approach to selling meat products.",
       ro: "Acest stand informativ de la magazinul Măcelăria Vitalim are un scop strict practic. Servește drept referință pentru clienți, prezentând principalele bucăți de carne de porc și denumirile acestora. Acest stand facilitează selecția produselor, făcând procesul de cumpărare mai ușor de înțeles și mai transparent. De asemenea, confirmă abordarea profesională a magazinului în ceea ce privește vânzarea produselor din carne.",
     },
   },
@@ -1480,7 +1479,7 @@ export const projects: Project[] = [
             "/images/work/packaging/placinte_banner/2.jpg",],
 
     description: {
-      ru: "Баннер для рекламы plăcinte выполнен в ярком и понятном стиле, чтобы привлечь внимание покупателей. Левая часть содержит список начинок, правая — аппетитные фотографии изделий, дополненные ценовым предложением. Визуальное решение сочетает крупную типографику и сочные изображения, что делает информацию доступной и одновременно вызывает желание попробовать продукт.",
+      ru: "Баннер для рекламы plăcinte (молдавских пирожков) выполнен в ярком и понятном стиле, чтобы привлечь внимание покупателей. Левая часть содержит список начинок, правая — аппетитные фотографии изделий, дополненные ценовым предложением. Визуальное решение сочетает крупную типографику и сочные изображения, что делает информацию доступной и одновременно вызывает желание попробовать продукт.",
       en: "The banner advertising plăcinte is designed in a bright and straightforward style to attract customers’ attention. The left side features a list of fillings, while the right side displays appetizing photos of the products, accompanied by pricing information. The visual design combines large typography with vibrant images, making the information easy to understand while also sparking a desire to try the product.",
       ro: "Bannerul publicitar pentru plăcinte este realizat într-un stil viu și ușor de înțeles, pentru a atrage atenția cumpărătorilor. Partea stângă conține o listă cu umpluturi, iar cea dreaptă — fotografii apetisante ale produselor, însoțite de oferta de preț. Soluția vizuală combină o tipografie de dimensiuni mari cu imagini captivante, ceea ce face informația accesibilă și, în același timp, stârnește dorința de a încerca produsul.",
     },
@@ -1491,8 +1490,8 @@ export const projects: Project[] = [
     slug: "persistentmma_oracal_inside",
     client: "mma",
     title: { ru: "Дизайн интерьерной печати на плёнке Oracal для спортивного клуба «PMMA»",
-              en: "Interior Oracal Vinyl Graphics Design for «PMMA» Fight Club",
-              ro: "Design grafică de interior pe folie Oracal pentru clubul de luptă «PMMA»" },
+              en: "Interior Oracal Vinyl Graphics Design for “PMMA” Sports Club",
+              ro: "Design grafic de interior pe folie Oracal pentru clubul sportiv „PMMA”" },
     categoryKey: "packaging",
     year: 2026,
     cover: "/images/work/packaging/persistentmma_oracal_inside/persistentmma_oracal_inside-cover.jpg",
@@ -1505,8 +1504,8 @@ export const projects: Project[] = [
 
     description: {
       ru: "Разработка серии вертикальных макетов для брендирования интерьера спортивного клуба «PMMA» (Persistent MMA Community). Дизайн подготовлен под широкоформатную печать на виниловой плёнке (Oracal) для оклейки двух шкафчиков в раздевалке и стеклянной двери. Концепция выдержана в брутальной, мотивирующей стилистике: высококонтрастные монохромные изображения легендарных бойцов (Хамзат Чимаев, Жорж Сен-Пьер, Чарльз Оливейра) с ярко-красными акцентами, фирменным логотипом клуба, динамичной каллиграфией и дисциплинирующими слоганами («Trust the Process», «Sharpen to Perfection», «Persist. Evolve. Dominate.»). Проект подчёркивает дух боевых искусств, формирует сильную визуальную идентичность пространства и заряжает атлетов на результат.",
-      en: "Creation of a series of vertical layouts for interior branding at the «PMMA» (Persistent MMA Community) sports facility. The graphics were specifically designed for large-format printing on Oracal vinyl film to wrap two locker doors and a glass entry door. The visual direction delivers a raw, high-energy aesthetic featuring high-contrast black-and-white imagery of iconic MMA athletes (Khamzat Chimaev, Georges St-Pierre, Charles Oliveira) paired with striking red accents, official club branding, custom lettering, and motivational mindsets («Trust the Process», «Sharpen to Perfection», «Persist. Evolve. Dominate.»). The project reinforces the club's core values and elevates the overall atmosphere of the training space.",
-      ro: "Concept și design pentru o serie de machete verticale destinate personalizării spațiului interior al clubului sportiv «PMMA» (Persistent MMA Community). Proiectul a fost pregătit pentru imprimare de mare format pe folie vinilică Oracal, fiind utilizat pentru colantarea a două dulapuri din vestiar și a unei uși din sticlă. Identitatea vizuală mizează pe un stil puternic și motivant: imagini monocrome de înalt contrast ale unor luptători emblematici (Khamzat Chimaev, Georges St-Pierre, Charles Oliveira), completate cu accente roșii intense, logotipul oficial al clubului, tipografie dinamică și sloganuri inspiraționale („Trust the Process”, „Sharpen to Perfection”, „Persist. Evolve. Dominate.”). Designul creează o atmosferă profesionistă și consolidează identitatea vizuală a comunității.",
+      en: "Creation of a series of vertical layouts for interior branding at the “PMMA” (Persistent MMA Community) sports facility. The graphics were specifically designed for large-format printing on Oracal vinyl film to wrap two locker doors and a glass entry door. The visual direction delivers a raw, high-energy aesthetic featuring high-contrast black-and-white imagery of iconic MMA athletes (Khamzat Chimaev, Georges St-Pierre, Charles Oliveira) paired with striking red accents, official club branding, custom lettering, and motivational slogans (“Trust the Process”, “Sharpen to Perfection”, “Persist. Evolve. Dominate.”). The project reinforces the club's core values and elevates the overall atmosphere of the training space.",
+      ro: "Concept și design pentru o serie de machete verticale destinate personalizării spațiului interior al clubului sportiv „PMMA” (Persistent MMA Community). Proiectul a fost pregătit pentru imprimare de mare format pe folie vinilică Oracal, fiind utilizat pentru colantarea a două dulapuri din vestiar și a unei uși din sticlă. Identitatea vizuală mizează pe un stil puternic și motivant: imagini monocrome de înalt contrast ale unor luptători emblematici (Khamzat Chimaev, Georges St-Pierre, Charles Oliveira), completate cu accente roșii intense, logotipul oficial al clubului, tipografie dinamică și sloganuri inspiraționale („Trust the Process”, „Sharpen to Perfection”, „Persist. Evolve. Dominate.”). Designul creează o atmosferă profesionistă și consolidează identitatea vizuală a comunității.",
     },
   },
   {
@@ -1515,8 +1514,8 @@ export const projects: Project[] = [
     slug: "telemarket_oracal_steclo",
     client: "telemarket",
     title: { ru: "Оформление наружной рекламы и фасада «Telemarket» (Бренд Oriense)",
-            en: "Exterior Advertising & Storefront Design for «Telemarket» (Oriense Brand)",
-            ro: "Design spațiu publicitar exterior și fațadă «Telemarket» (Brandul Oriense)" },
+            en: "Exterior Advertising & Storefront Design for “Telemarket” (Oriense Brand)",
+            ro: "Design spațiu publicitar exterior și fațadă „Telemarket” (Brandul Oriense)" },
     categoryKey: "packaging",
     year: 2025,
     cover: "/images/work/packaging/telemarket_oracal_steclo/telemarket_oracal_steclo-cover.jpg",
@@ -1524,8 +1523,8 @@ export const projects: Project[] = [
             "/images/work/packaging/telemarket_oracal_steclo/2.jpg",],
 
     description: {
-      ru: "Разработка крупноформатного макета для широкоформатной печати на пленке Oracal, предназначенного для оформления фасада одного из филиалов магазина «Telemarket». Дизайн рекламной инсталляции посвящен линейке профессиональной уходовой косметики «Oriense Professional». Композиция выдержана в нежной весенне-цветочной эстетике с преобладанием пастельных розовых оттенков, объемными подиумами для презентации продукции (шампуни, гели для душа, скрабы, лосьоны и мисты) и выразительным брендингом, что создает привлекательный визуальный акцент на экстерьере торговой точки и привлекает внимание проходящих клиентов.",
-      en: "Development of a large-scale visual layout for Oracal vinyl facade printing, tailored for the storefront branding of a «Telemarket» store branch. The design highlights the professional cosmetics line „Oriense Professional”. Executed in a delicate spring-floral aesthetic featuring soft pink tones, multi-tiered display podiums showcasing product lines (shampoos, body care, scrubs, lotions, and mists), and clear brand typography, the installation serves as an eye-catching exterior display to engage foot traffic.",
+      ru: "Разработка крупноформатного макета для широкоформатной печати на плёнке Oracal, предназначенного для оформления фасада одного из филиалов магазина «Telemarket». Дизайн рекламной инсталляции посвящён линейке профессиональной уходовой косметики «Oriense Professional». Композиция выдержана в нежной весенне-цветочной эстетике с преобладанием пастельных розовых оттенков, объёмными подиумами для презентации продукции (шампуни, гели для душа, скрабы, лосьоны и мисты) и выразительным брендингом, что создаёт привлекательный визуальный акцент на экстерьере торговой точки и привлекает внимание проходящих клиентов.",
+      en: "Development of a large-scale visual layout for Oracal vinyl facade printing, tailored for the storefront branding of a “Telemarket” store branch. The design highlights the professional cosmetics line “Oriense Professional”. Executed in a delicate spring-floral aesthetic featuring soft pink tones, multi-tiered display podiums showcasing product lines (shampoos, body care, scrubs, lotions, and mists), and clear brand typography, the installation serves as an eye-catching exterior display to engage foot traffic.",
       ro: "Crearea unei machete de mare format pentru imprimarea pe folie Oracal, destinată decorării fațadei unei filiale a magazinului „Telemarket”. Designul promovează gama de cosmetice profesionale „Oriense Professional”. Conceptul vizual este realizat într-o estetică delicată de primăvară, dominată de nuanțe pastelate de roz, podiumuri expoziționale pentru gama de produse (șampon, geluri de duș, peeling, loțiuni și spray-uri de corp) și un branding clar, creând un punct de atracție vizuală puternic la exteriorul magazinului.",
     },
   },
@@ -1534,9 +1533,9 @@ export const projects: Project[] = [
     order: 32.1,
     slug: "telemarket_banneri_tovari",
     client: "telemarket",
-    title: { ru: "Разработка рекламных баннеров с продукцией для сети магазинов 'Telemarket'",
-            en: "Promotional Banner Design Series for 'Telemarket' Retail Chain",
-            ro: "Design de bannere publicitare promoționale pentru rețeaua de magazine 'Telemarket'" },
+    title: { ru: "Разработка рекламных баннеров с продукцией для сети магазинов «Telemarket»",
+            en: "Promotional Banner Design Series for “Telemarket” Retail Chain",
+            ro: "Design de bannere publicitare promoționale pentru rețeaua de magazine „Telemarket”" },
     categoryKey: "packaging",
     year: 2025,
     cover: "/images/work/packaging/telemarket_banneri_tovari/telemarket_banneri_tovari-cover.jpg",
@@ -1553,9 +1552,9 @@ export const projects: Project[] = [
     ],
 
     description: {
-      ru: "Разработка серии рекламных баннеров для демонстрации акционных товаров из каталога компании 'Telemarket'. Дизайн выдержан в интерьерной стилистике и ориентирован на наглядное привлечение внимания к специальным предложениям. Каждый макет включает фото продукции, наименование на двух языках (румынском и русском), объем и крупную плашку с обычной ценой и скидочной стоимостью по программе 'Preț card TOP' в леях. В портфолио проект представлен в виде печатных баннеров на мобильных рекламных стендах.",
-      en: "Design of a series of promotional banners created to showcase discounted items from the 'Telemarket' product catalog. The visual layout focuses on clear, high-impact product presentation within ambient lifestyle backgrounds. Each design incorporates product imagery, bilingual titles (Romanian & Russian), sizing details, and a bold price badge comparing standard prices with 'Preț card TOP' loyalty rates in LEI. Presented in the portfolio as printed display banners on freestanding stands.",
-      ro: "Crearea unei serii de bannere publicitare pentru prezentarea produselor aflate în promoție din catalogul companiei 'Telemarket'. Conceptul vizual oferă o prezentare clară și atractivă a ofertelor speciale. Fiecare machetă conține imaginea produsului, denumirea bilingvă (română și rusă), volumul și o plachetă evidențiată cu prețul obișnuit și cel de ofertă prin cardul 'Preț card TOP' în lei. Proiectul este prezentat în portofoliu sub formă de bannere tipărite pe standuri expoziționale mobile.",
+      ru: "Разработка серии рекламных баннеров для демонстрации акционных товаров из каталога компании «Telemarket». Дизайн выдержан в интерьерной стилистике и ориентирован на наглядное привлечение внимания к специальным предложениям. Каждый макет включает фото продукции, наименование на двух языках (румынском и русском), объём и крупную плашку с обычной ценой и скидочной стоимостью по программе «Preț card TOP» в MDL. В портфолио проект представлен в виде печатных баннеров на мобильных рекламных стендах.",
+      en: "Design of a series of promotional banners created to showcase discounted items from the “Telemarket” product catalog. The visual layout focuses on clear, high-impact product presentation within ambient lifestyle backgrounds. Each design incorporates product imagery, bilingual titles (Romanian & Russian), sizing details, and a bold price badge comparing standard prices with “Preț card TOP” loyalty rates in MDL. Presented in the portfolio as printed display banners on freestanding stands.",
+      ro: "Crearea unei serii de bannere publicitare pentru prezentarea produselor aflate în promoție din catalogul companiei „Telemarket”. Conceptul vizual oferă o prezentare clară și atractivă a ofertelor speciale. Fiecare machetă conține imaginea produsului, denumirea bilingvă (română și rusă), volumul și o plachetă evidențiată cu prețul obișnuit și cel de ofertă prin cardul „Preț card TOP” în MDL. Proiectul este prezentat în portofoliu sub formă de bannere tipărite pe standuri expoziționale mobile.",
     },
   },
 
@@ -1576,9 +1575,9 @@ export const projects: Project[] = [
               "/images/work/print/PUMA_flaer/3.jpg",
               "/images/work/print/PUMA_flaer/4.jpg"],
     description: {
-      ru: "Разработка макета в формате подарочного печатного флаера‑ваучера, PUMA Moldova. В рамках проекта была разработана концепция промо‑акции: создан дизайн с динамичными графическими элементами (черный фон, красные акценты, фирменный логотип Puma), подготовлен ваучер на скидку и бесплатный товар. Флаер печатался на бумаге и раздавался клиентам в качестве подарка, что усиливало лояльность и стимулировало повторные покупки. ",
-      en: "Design of a printed gift flyer-voucher layout for PUMA Moldova. As part of the project, a promotional campaign concept was developed: a design featuring dynamic graphic elements (black background, red accents, the Puma brand logo) was created, and a voucher for a discount and a free item was prepared. The flyer was printed on paper and distributed to customers as a gift, which strengthened customer loyalty and encouraged repeat purchases. ",
-      ro: "Realizarea machetei unui fluturaș tipărit sub formă de voucher cadou, PUMA Moldova. În cadrul proiectului a fost elaborat conceptul campaniei promoționale: s-a creat un design cu elemente grafice dinamice (fundal negru, accente roșii, logo-ul Puma), s-a pregătit un voucher pentru reducere și produse gratuite. Fluturașul a fost tipărit pe hârtie și distribuit clienților ca cadou, ceea ce a consolidat loialitatea și a stimulat achizițiile repetate. ",
+      ru: "Разработка макета в формате подарочного печатного флаера‑ваучера, PUMA Moldova. В рамках проекта была разработана концепция промо‑акции: создан дизайн с динамичными графическими элементами (чёрный фон, красные акценты, фирменный логотип Puma), подготовлен ваучер на скидку и бесплатный товар. Флаер печатался на бумаге и раздавался клиентам в качестве подарка, что усиливало лояльность и стимулировало повторные покупки.",
+      en: "Design of a printed gift flyer-voucher layout for PUMA Moldova. As part of the project, a promotional campaign concept was developed: a design featuring dynamic graphic elements (black background, red accents, the Puma brand logo) was created, and a voucher for a discount and a free item was prepared. The flyer was printed on paper and distributed to customers as a gift, which strengthened customer loyalty and encouraged repeat purchases.",
+      ro: "Realizarea machetei unui fluturaș tipărit sub formă de voucher cadou, PUMA Moldova. În cadrul proiectului a fost elaborat conceptul campaniei promoționale: s-a creat un design cu elemente grafice dinamice (fundal negru, accente roșii, logo-ul Puma), s-a pregătit un voucher pentru reducere și produse gratuite. Fluturașul a fost tipărit pe hârtie și distribuit clienților ca cadou, ceea ce a consolidat loialitatea și a stimulat achizițiile repetate.",
     },
   },
   {
@@ -1588,16 +1587,16 @@ export const projects: Project[] = [
     client: "puma",
     title: { ru: "Рекламный креатив для продукции Puma в формате печатного постера (лист А4)",
               en: "Advertising creative for Puma products in the form of a print poster (A4 sheet)",
-              ro: "Concept publicitar pentru produsele Puma sub forma unui poster tipărit (foaie A4)" },
+              ro: "Creativ publicitar pentru produsele Puma sub forma unui poster tipărit (foaie A4)" },
     categoryKey: "print",
     year: 2025,
     cover: "/images/work/print/PUMA_holder/cover-9.jpg",
     images: ["/images/work/print/PUMA_holder/1.jpg",
               "/images/work/print/PUMA_holder/3.jpg"],
     description: {
-      ru: "Рекламный креатив для продукции Puma в формате печатного постера (лист А4). В рамках проекта была разработана концепция кампании Go Wild, ориентированной на вовлечение аудитории в спортивное сообщество Strava. Дизайн построен на контрасте черного и белого фона с динамичными красными акцентами и графикой «claw marks», что подчёркивает энергию бренда Puma.",
+      ru: "Рекламный креатив для продукции Puma в формате печатного постера (лист А4). В рамках проекта была разработана концепция кампании Go Wild, ориентированной на вовлечение аудитории в спортивное сообщество Strava. Дизайн построен на контрасте чёрного и белого фона с динамичными красными акцентами и графикой «claw marks», что подчёркивает энергию бренда Puma.",
       en: "Advertising creative for Puma products in the form of a print poster (A4 sheet). As part of the project, the “Go Wild” campaign concept was developed, aimed at engaging the audience with the Strava sports community. The design is based on the contrast between black and white backgrounds with dynamic red accents and “claw marks” graphics, which emphasize the energy of the Puma brand.",
-      ro: "Concept publicitar pentru produsele Puma sub forma unui poster tipărit (foaie A4). În cadrul proiectului a fost dezvoltat conceptul campaniei „Go Wild”, orientată spre implicarea publicului în comunitatea sportivă Strava. Designul se bazează pe contrastul dintre fundalul alb și cel negru, cu accente dinamice de roșu și elemente grafice de tip „claw marks”, care subliniază energia mărcii Puma.",
+      ro: "Creativ publicitar pentru produsele Puma sub forma unui poster tipărit (foaie A4). În cadrul proiectului a fost dezvoltat conceptul campaniei „Go Wild”, orientată spre implicarea publicului în comunitatea sportivă Strava. Designul se bazează pe contrastul dintre fundalul alb și cel negru, cu accente dinamice de roșu și elemente grafice de tip „claw marks”, care subliniază energia mărcii Puma.",
     },
   },
   {
@@ -1636,9 +1635,9 @@ export const projects: Project[] = [
               "/images/work/print/SS_flaer/2.jpg",
               "/images/work/print/SS_flaer/3.jpg",],
     description: {
-      ru: "Рекламный креатив для продукции Sport Spirit в формате печатного флаера‑дисконтной карты. В рамках проекта была разработана концепция промо‑акции: создан дизайн в фирменной черно‑зелёной гамме, подготовлен ваучер номиналом 250 леев с чёткой типографикой и условиями использования. Флаер печатался на бумаге и вручался клиентам в качестве подарка, что усиливало ценность предложения и стимулировало интерес к покупкам.",
-      en: "Design of a printed gift flyer-voucher layout for Sport Spirit. As part of the project, a promotional campaign concept was developed: a design featuring dynamic graphic elements (black background, red accents, the Sport Spirit brand logo) was created, and a voucher for a discount and a free item was prepared. The flyer was printed on paper and distributed to customers as a gift, which strengthened customer loyalty and encouraged repeat purchases. ",
-      ro: "Realizarea machetei unui fluturaș tipărit sub formă de voucher cadou, Sport Spirit. În cadrul proiectului a fost elaborat conceptul campaniei promoționale: s-a creat un design cu elemente grafice dinamice (fundal negru, accente roșii, logo-ul Sport Spirit), s-a pregătit un voucher pentru reducere și produse gratuite. Fluturașul a fost tipărit pe hârtie și distribuit clienților ca cadou, ceea ce a consolidat loialitatea și a stimulat achizițiile repetate. ",
+      ru: "Рекламный креатив для продукции Sport Spirit в формате печатного флаера‑дисконтной карты. В рамках проекта была разработана концепция промо‑акции: создан дизайн в фирменной чёрно‑зелёной гамме, подготовлен ваучер номиналом 250 леев с чёткой типографикой и условиями использования. Флаер печатался на бумаге и вручался клиентам в качестве подарка, что усиливало ценность предложения и стимулировало интерес к покупкам.",
+      en: "Advertising creative for Sport Spirit in the form of a printed flyer-discount card. As part of the project, a promotional campaign concept was developed: a design in the brand’s black-and-green color scheme was created, and a voucher worth 250 lei with clear typography and terms of use was prepared. The flyer was printed on paper and handed to customers as a gift, which increased the value of the offer and stimulated interest in purchases.",
+      ro: "Creativ publicitar pentru Sport Spirit sub forma unui fluturaș tipărit cu card de reducere. În cadrul proiectului a fost elaborat conceptul campaniei promoționale: s-a creat un design în gama cromatică neagră și verde a brandului, s-a pregătit un voucher cu valoarea de 250 de lei, cu tipografie clară și condiții de utilizare. Fluturașul a fost tipărit pe hârtie și înmânat clienților ca cadou, ceea ce a sporit valoarea ofertei și a stimulat interesul pentru achiziții.",
     },
   },
   {
@@ -1657,7 +1656,7 @@ export const projects: Project[] = [
             "/images/work/print/kreola_chocolate_packaging/work3.jpg",
           "/images/work/print/kreola_chocolate_packaging/work4.png"],
     description: {
-      ru: "Разработка дизайна упаковки для плитки шоколада производителя Kreola. Основная задача заключалась в создании премиального образа продукта с акцентом на натуральность: прозрачное окно демонстрирует цельные орехи в молочном шоколаде, а крафтовый картон подчеркивает ручную работу и экологичность. Элегантная типографика и минималистичная композиция усиливают ощущение аутентичности бренда. Этот кейс иллюстрирует подход к айдентике шоколадных брендов, где упаковка становится важным элементом позиционирования и доверия к продукту.",
+      ru: "Разработка дизайна упаковки для плитки шоколада производителя Kreola. Основная задача заключалась в создании премиального образа продукта с акцентом на натуральность: прозрачное окно демонстрирует цельные орехи в молочном шоколаде, а крафтовый картон подчёркивает ручную работу и экологичность. Элегантная типографика и минималистичная композиция усиливают ощущение аутентичности бренда. Этот кейс иллюстрирует подход к айдентике шоколадных брендов, где упаковка становится важным элементом позиционирования и доверия к продукту.",
       en: "Development of packaging design for Kreola’s chocolate bars. The main objective was to create a premium product image with an emphasis on naturalness: a transparent window showcases whole nuts encased in milk chocolate, while the craft cardboard highlights the handcrafted nature and eco-friendliness of the product. Elegant typography and a minimalist composition reinforce the brand’s sense of authenticity. This case study illustrates an approach to the brand identity of chocolate brands, where packaging becomes a key element of positioning and building trust in the product.",
       ro: "Proiectarea ambalajului pentru tabletele de ciocolată ale producătorului Kreola. Obiectivul principal a fost crearea unei imagini premium a produsului, cu accent pe naturalețe: fereastra transparentă pune în evidență nucile întregi învelite în ciocolată cu lapte, iar cartonul de tip „craft” subliniază caracterul artizanal și sustenabilitatea. Tipografia elegantă și compoziția minimalistă întăresc senzația de autenticitate a mărcii. Acest caz ilustrează abordarea identității vizuale a mărcilor de ciocolată, în care ambalajul devine un element important al poziționării și al încrederii în produs.",
     },
@@ -1678,7 +1677,7 @@ export const projects: Project[] = [
             "/images/work/print/drycleaning_vizitka/3.jpg",
           "/images/work/print/drycleaning_vizitka/4.jpg"],
     description: {
-      ru: "Визитка для компании DRY CLEANING.MD выполнена в современном стиле с использованием синих и зелёных оттенков, которые подчеркивают чистоту и свежесть бренда. Дизайн построен на геометрических формах иконок и аккуратной типографике, что делает информацию легко читаемой. На визитке представлены основные услуги (химчистка мебели, салона авто, матрасов), контактные телефоны и ссылки на социальные сети, что обеспечивает удобство связи с клиентами.",
+      ru: "Визитка для компании DRY CLEANING.MD выполнена в современном стиле с использованием синих и зелёных оттенков, которые подчёркивают чистоту и свежесть бренда. Дизайн построен на геометрических формах иконок и аккуратной типографике, что делает информацию легко читаемой. На визитке представлены основные услуги (химчистка мебели, салона авто, матрасов), контактные телефоны и ссылки на социальные сети, что обеспечивает удобство связи с клиентами.",
       en: "The business card for DRY CLEANING.MD features a modern design using blue and green tones, emphasizing the brand's clean and fresh ambiance. The design utilizes geometric icons and clean typography, making information easy to read. The card highlights key services (furniture, car interior, and mattress cleaning), contact phone numbers, and social media links, ensuring easy communication with clients.",
       ro: "Cartea de vizită pentru DRY CLEANING.MD prezintă un design modern, folosind tonuri de albastru și verde, accentuând ambianța curată și proaspătă a mărcii. Designul utilizează pictograme geometrice și tipografie curată, facilitând citirea informațiilor. Cartea evidențiază serviciile cheie (mobilă, interior auto și curățarea saltelelor), numerele de telefon de contact și linkurile către rețelele sociale, asigurând o comunicare ușoară cu clienții.",
     },
@@ -1686,7 +1685,7 @@ export const projects: Project[] = [
   {
     id: "111",
     order: 40,
-    slug: "surgicov_print",
+    slug: "surjicov_print",
     client: "surgicov",
     title: { ru: "Вкладыши для упаковки подушки и одеяла, Surjicov Group",
               en: "Inserts for pillow and blanket packaging, Surjicov Group",
@@ -1739,7 +1738,7 @@ export const projects: Project[] = [
             "/images/work/print/viorica_vizitka/2.jpg",
             "/images/work/print/viorica_vizitka/3.jpg"],
     description: {
-      ru: "Визитка для Viorica Vrancean разработана с учетом фирменного стиля и содержит основную информацию о компании. Дизайн лаконичный и профессиональный, что создаёт сильное впечатление о бренде.",
+      ru: "Визитка для Viorica Vrancean разработана с учётом фирменного стиля и содержит основную информацию о компании. Дизайн лаконичный и профессиональный, что создаёт сильное впечатление о бренде.",
       en: "The business card for Viorica Vrancean was designed with the company's brand style in mind and contains essential information about the company. The design is clean and professional, creating a strong impression of the brand.",
       ro: "Cardul de vizită pentru Viorica Vrancean a fost conceput în conformitate cu stilul de brand al companiei și conține informații esențiale despre aceasta. Designul este simplu și profesional, ceea ce creează o impresie puternică despre brand.",
     },
@@ -1759,7 +1758,7 @@ export const projects: Project[] = [
             "/images/work/print/danvic_flaer/2.jpg",
             "/images/work/print/danvic_flaer/3.jpg",],
     description: {
-      ru: "Рекламный флаер для компании DANVIC выполнен как комплексная презентация цифровых и смарт‑услуг. Визуальная структура построена на сочетании иконок и текстовых блоков, что позволяет чётко донести преимущества: высокоскоростной интернет, цифровое телевидение, мощный Wi‑Fi, бесплатные минуты связи, камеры видеонаблюдения и решения для «умного дома». Дизайн подчёркивает современность и технологичность бренда, а акцент на бесплатном подключении усиливает привлекательность предложения. ",
+      ru: "Рекламный флаер для компании DANVIC выполнен как комплексная презентация цифровых и смарт‑услуг. Визуальная структура построена на сочетании иконок и текстовых блоков, что позволяет чётко донести преимущества: высокоскоростной интернет, цифровое телевидение, мощный Wi‑Fi, бесплатные минуты связи, камеры видеонаблюдения и решения для «умного дома». Дизайн подчёркивает современность и технологичность бренда, а акцент на бесплатном подключении усиливает привлекательность предложения.",
       en: "The advertising flyer for DANVIC is designed as a comprehensive presentation of digital and smart services. The visual structure is built on a combination of icons and text blocks, clearly conveying the benefits: high-speed internet, digital television, powerful Wi-Fi, free call minutes, CCTV cameras, and smart home solutions. The design emphasizes the brand's modernity and technological advancement, while the emphasis on free connection enhances the appeal of the offer.",
       ro: "Fluturașul publicitar pentru DANVIC este conceput ca o prezentare cuprinzătoare a serviciilor digitale și inteligente. Structura vizuală este construită pe o combinație de pictograme și blocuri de text, transmițând clar beneficiile: internet de mare viteză, televiziune digitală, Wi-Fi puternic, minute gratuite de apel, camere CCTV și soluții inteligente pentru casă. Designul subliniază modernitatea și progresul tehnologic al mărcii, în timp ce accentul pus pe conexiunea gratuită sporește atractivitatea ofertei.",
     },
@@ -1770,8 +1769,8 @@ export const projects: Project[] = [
     slug: "vitrumletale_sticker_flyer",
     // client: "danvic",
     title: { ru: "Дизайн комплектации упаковки (сертификат и стикеры) для «Vitrum Letale»",
-              en: "Packaging Kit & Accessories Design (Certificate & Stickers) for «Vitrum Letale»",
-              ro: "Design kit ambalaj și accesorii (certificat și autocolante) pentru «Vitrum Letale»" },
+              en: "Packaging Kit & Accessories Design (Certificate & Stickers) for “Vitrum Letale”",
+              ro: "Design kit ambalaj și accesorii (certificat și autocolante) pentru „Vitrum Letale”" },
     categoryKey: "print",
     year: 2026,
     cover: "/images/work/print/vitrumletale_sticker_flyer/vitrumletale_sticker_flyer-cover.jpg",
@@ -1781,8 +1780,8 @@ export const projects: Project[] = [
             "/images/work/print/vitrumletale_sticker_flyer/4.jpg",],
     description: {
       ru: "Разработка полиграфии и брендированного мерч-пака для оформления комплектации лимитированного дропа #001 «Syndicate» бренда «Vitrum Letale». В комплект входит односторонний сертификат подлинности (Certificate of Authenticity) с персонализированной нумерацией каждого изделия (ограниченный тираж из 11 штук) и подписью основателя, а также сет виниловых стикеров с готической монограммой «VL» в двух размерах (54 мм и 74 мм) и двух цветовых решениях: с белым и красным логотипом на тёмно-сером фоне. Дизайн выдержан в строгой эстетике darkwear с контрастными деталями, подчёркивая эксклюзивность покупки и усиливая впечатление от распаковки (unboxing experience).",
-      en: "Design of branded collateral and packaging inserts for the limited drop #001 «Syndicate» by «Vitrum Letale». The unboxing experience kit features a single-sided Certificate of Authenticity with custom serial numbering (limited edition of 11 items) and founder's signature, paired with a custom vinyl sticker set with the gothic «VL» monogram available in two sizes (54 mm and 74 mm) and two colorways (white and red logo on a dark grey/black background). Executed in a darkwear aesthetic, the collateral elevates perceived product value and reinforces the brand's exclusivity.",
-      ro: "Designul materialelor de brand și al kitului de unboxing pentru colecția limitată #001 «Syndicate» a brandului «Vitrum Letale». Pachetul include un certificat de autenticitate cu o singură față (Certificate of Authenticity) cu număr de serie unic pentru fiecare articol (ediție limitată de 11 bucăți) și semnătura fondatorului, alături de un set de autocolante din vinil cu monograma gotică „VL” în două dimensiuni (54 mm și 74 mm) și două variante de culoare (logo alb și roșu pe fundal negru-gri). Conceptul este realizat într-o estetică darkwear minimalistă, oferind o experiență de unboxing premium și subliniind exclusivitatea produsului.",
+      en: "Design of branded collateral and packaging inserts for the limited drop #001 “Syndicate” by “Vitrum Letale”. The unboxing experience kit features a single-sided Certificate of Authenticity with custom serial numbering (limited edition of 11 items) and founder's signature, paired with a custom vinyl sticker set with the gothic “VL” monogram available in two sizes (54 mm and 74 mm) and two colorways (white and red logo on a dark grey/black background). Executed in a darkwear aesthetic, the collateral elevates perceived product value and reinforces the brand's exclusivity.",
+      ro: "Designul materialelor de brand și al kitului de unboxing pentru colecția limitată #001 „Syndicate” a brandului „Vitrum Letale”. Pachetul include un certificat de autenticitate cu o singură față (Certificate of Authenticity) cu număr de serie unic pentru fiecare articol (ediție limitată de 11 bucăți) și semnătura fondatorului, alături de un set de autocolante din vinil cu monograma gotică „VL” în două dimensiuni (54 mm și 74 mm) și două variante de culoare (logo alb și roșu pe fundal negru-gri). Conceptul este realizat într-o estetică darkwear minimalistă, oferind o experiență de unboxing premium și subliniind exclusivitatea produsului.",
     },
   },
   {
@@ -1790,9 +1789,9 @@ export const projects: Project[] = [
     order: 34.1,
     slug: "moldclima_flaeri",
     client: "telemarket",
-    title: { ru: "Разработка промо-флаеров бытовой техники Hyundai для дистрибьютора 'Moldclima'",
-              en: "Promotional Flyer Design for Hyundai Home Appliances ('Moldclima' Distributor)",
-              ro: "Design pliante promoționale pentru electrocasnice Hyundai (Distribuitor 'Moldclima')" },
+    title: { ru: "Разработка промо-флаеров бытовой техники Hyundai для дистрибьютора «Moldclima»",
+              en: "Promotional Flyer Design for Hyundai Home Appliances (“Moldclima” Distributor)",
+              ro: "Design pliante promoționale pentru electrocasnice Hyundai (Distribuitor „Moldclima”)" },
     categoryKey: "print",
     year: 2025,
     cover: "/images/work/print/moldclima_flaeri/moldclima_flaeri-cover.jpg",
@@ -1804,9 +1803,9 @@ export const projects: Project[] = [
             "/images/work/print/moldclima_flaeri/5.jpg",
             "/images/work/print/moldclima_flaeri/6.jpg",],
     description: {
-      ru: "Дизайн серии двухсторонних рекламных флаеров для линейки бытовой техники Hyundai 'Home Appliances' (водонагреватели серии 'Ultratherm'/'Ironcore' и микроволновые печи), разработанный для официального дистрибьютора в Молдове — компании 'Moldclima'. Лицевая сторона выполнена в фирменных темно-синих тонах брендбука Hyundai с презентацией ключевых моделей, интерьерными рендерами, знаком качества 'Made for Europe' и контактами отдела оптовых продаж. Оборотная сторона наглядно структурирует технические характеристики, габариты и сравнительные таблицы моделей на двух языках (румынском и русском) с использованием понятной пиктографики.",
-      en: "Visual design of a series of double-sided promotional flyers for Hyundai 'Home Appliances' product lines (water heaters and microwave ovens), tailored for 'Moldclima' — the official distributor in Moldova. The front side features Hyundai's signature deep blue corporate aesthetic, highlighting key product models alongside lifestyle interior renders, the 'Made for Europe' quality mark, and wholesale contact details. The back side provides a clear, bilingual (Romanian & Russian) layout with detailed technical specification tables, dimensions, and custom icon sets for feature highlights.",
-      ro: "Designul unei serii de pliante promoționale cu două fețe pentru gama de electrocasnice Hyundai 'Home Appliances' (boilere electrice și cuptoare cu microunde), creat pentru distribuitorul oficial în Moldova — compania 'Moldclima'. Fața pliantului respectă identitatea vizuală Hyundai în nuanțe de albastru închis, prezentând modelele principale, randări din interior, marcajul de calitate 'Made for Europe' și datele de contact pentru vânzări en-gros. Verso structurează tabelar specificațiile tehnice, dimensiunile și caracteristicile comparative în două limbi (română și rusă), completate de pictograme intuitive.",
+      ru: "Дизайн серии двусторонних рекламных флаеров для линейки бытовой техники Hyundai «Home Appliances» (водонагреватели серии «Ultratherm»/«Ironcore» и микроволновые печи), разработанный для официального дистрибьютора в Молдове — компании «Moldclima». Лицевая сторона выполнена в фирменных тёмно-синих тонах брендбука Hyundai с презентацией ключевых моделей, интерьерными рендерами, знаком качества «Made for Europe» и контактами отдела оптовых продаж. Оборотная сторона наглядно структурирует технические характеристики, габариты и сравнительные таблицы моделей на двух языках (румынском и русском) с использованием понятной пиктографики.",
+      en: "Visual design of a series of double-sided promotional flyers for Hyundai “Home Appliances” product lines (water heaters and microwave ovens), tailored for “Moldclima” — the official distributor in Moldova. The front side features Hyundai's signature deep blue corporate aesthetic, highlighting key product models alongside lifestyle interior renders, the “Made for Europe” quality mark, and wholesale contact details. The back side provides a clear, bilingual (Romanian & Russian) layout with detailed technical specification tables, dimensions, and custom icon sets for feature highlights.",
+      ro: "Designul unei serii de pliante promoționale cu două fețe pentru gama de electrocasnice Hyundai „Home Appliances” (boilere electrice și cuptoare cu microunde), creat pentru distribuitorul oficial în Moldova — compania „Moldclima”. Fața pliantului respectă identitatea vizuală Hyundai în nuanțe de albastru închis, prezentând modelele principale, randări din interior, marcajul de calitate „Made for Europe” și datele de contact pentru vânzări en-gros. Verso structurează tabelar specificațiile tehnice, dimensiunile și caracteristicile comparative în două limbi (română și rusă), completate de pictograme intuitive.",
     },
   },
   {
@@ -1814,9 +1813,9 @@ export const projects: Project[] = [
     order: 34.2,
     slug: "chetongrup_scotch",
     client: "cheton",
-    title: { ru: "Дизайн эткетки и адаптация линейки малярных лент 'Smart Fix' для компании Cheton Grup",
-              en: "Masking Tape Label Design & Packaging Adaptations for 'Smart Fix', Cheton Grup",
-              ro: "Design de etichetă și adaptare linie de benzi de mascare 'Smart Fix' pentru Cheton Grup" },
+    title: { ru: "Дизайн этикетки и адаптация линейки малярных лент «Smart Fix» для компании Cheton Grup",
+              en: "Masking Tape Label Design & Packaging Adaptations for “Smart Fix”, Cheton Grup",
+              ro: "Design de etichetă și adaptare linie de benzi de mascare „Smart Fix” pentru Cheton Grup" },
     categoryKey: "print",
     year: 2025,
     cover: "/images/work/print/chetongrup_scotch/chetongrup_scotch-cover.jpg",
@@ -1831,9 +1830,9 @@ export const projects: Project[] = [
       ] },
     ],
     description: {
-      ru: "Разработка контрастного промышленного дизайна этикетки для малярной ленты 'Bandă de Mascare Universală' линейки 'Smart Fix', производимой по заказу компании 'Cheton Grup'. Визуальная концепция построена на сочетании индустриального черного и желтого цветов с четкой шрифтовой иерархией, фирменным логотипом с крокодилом и набором пиктограмм технических характеристик, отражающих температурный режим, сцепление и области применения. В рамках проекта единый стилистический шаблон был успешно адаптирован под всю размерную линейку рулонов различной ширины и намотки, охватывающую варианты от 19 мм х 25 м до 72 мм х 25 м.",
-      en: "Development of a high-visibility industrial label design for 'Smart Fix' universal masking tape manufactured for 'Cheton Grup'. The core visual identity relies on a high-contrast black-and-yellow color scheme, strong typography, the signature crocodile logo, and clear technical feature icons representing temperature resistance, adhesion, and application suitability. The master design template was effectively scaled and adapted across the entire product lineup, accommodating various tape widths and lengths ranging from 19mm x 25m up to 72mm x 25m.",
-      ro: "Crearea designului industrial de etichetă pentru banda de mascare universală 'Smart Fix', produsă la comanda companiei 'Cheton Grup'. Conceptul vizual se bazează pe o combinație contrastantă de galben și negru industrial, o ierarhie tipografică clară, logotipul cu crocodil și o serie de pictograme tehnice care indică regimul de temperatură, aderența și domeniul de utilizare. Macheta principală a fost adaptată cu succes pentru întreaga gamă de dimensiuni a rolelor, acoperind diverse lățimi și lungimi, de la 19 mm x 25 m până la 72 mm x 25 m.",
+      ru: "Разработка контрастного промышленного дизайна этикетки для малярной ленты «Bandă de Mascare Universală» линейки «Smart Fix», производимой по заказу компании «Cheton Grup». Визуальная концепция построена на сочетании индустриального чёрного и желтого цветов с чёткой шрифтовой иерархией, фирменным логотипом с крокодилом и набором пиктограмм технических характеристик, отражающих температурный режим, сцепление и области применения. В рамках проекта единый стилистический шаблон был успешно адаптирован под всю размерную линейку рулонов различной ширины и намотки, охватывающую варианты от 19 мм × 25 м до 72 мм × 25 м.",
+      en: "Development of a high-visibility industrial label design for “Smart Fix” universal masking tape manufactured for “Cheton Grup”. The core visual identity relies on a high-contrast black-and-yellow color scheme, strong typography, the signature crocodile logo, and clear technical feature icons representing temperature resistance, adhesion, and application suitability. The master design template was effectively scaled and adapted across the entire product lineup, accommodating various tape widths and lengths ranging from 19 mm × 25 m up to 72 mm × 25 m.",
+      ro: "Crearea designului industrial de etichetă pentru banda de mascare universală „Smart Fix”, produsă la comanda companiei „Cheton Grup”. Conceptul vizual se bazează pe o combinație contrastantă de galben și negru industrial, o ierarhie tipografică clară, logotipul cu crocodil și o serie de pictograme tehnice care indică regimul de temperatură, aderența și domeniul de utilizare. Macheta principală a fost adaptată cu succes pentru întreaga gamă de dimensiuni a rolelor, acoperind diverse lățimi și lungimi, de la 19 mm × 25 m până la 72 mm × 25 m.",
     },
   },
   {
@@ -1841,9 +1840,9 @@ export const projects: Project[] = [
     order: 36.2,
     slug: "chetongrup_etiketki_product",
     client: "cheton",
-    title: { ru: "Дизайн серии этикеток для строительной химии 'Coloris Premium Line', Cheton Grup",
-              en: "Product Label Design Series for 'Coloris Premium Line', Cheton Grup",
-              ro: "Design serie de etichete pentru produsele 'Coloris Premium Line', Cheton Grup" },
+    title: { ru: "Дизайн серии этикеток для строительной химии «Coloris Premium Line», Cheton Grup",
+              en: "Product Label Design Series for “Coloris Premium Line”, Cheton Grup",
+              ro: "Design serie de etichete pentru produsele „Coloris Premium Line”, Cheton Grup" },
     categoryKey: "print",
     year: 2025,
     cover: "/images/work/print/chetongrup_etiketki_product/chetongrup_etiketki_product-cover.jpg",
@@ -1861,9 +1860,9 @@ export const projects: Project[] = [
       ] },
     ],
     description: {
-      ru: "Разработка серии этикеток для линейки профессиональной строительной химии 'Coloris Premium Line' компании 'Cheton Grup'. Оформление выдержано в фирменном стиле бренда с использованием элегантной черной основы, контрастной цветовой кодировки для каждого типа продукта и премиальных плашек с указанием немецких стандартов качества. Серия включает этикетки для четырех актуальных позиций: грунтовки с биозащитой, адгезионного грунта, финишной шпаклевки и защитного лака для камня. Каждый макет структурирован для размещения детальных инструкций, характеристик и двуязычного описания на ведрах и таре.",
-      en: "Development of a label design series for the professional construction chemicals lineup 'Coloris Premium Line' by 'Cheton Grup'. The visual styling adheres to the brand's identity, featuring a sleek black background paired with distinct color-coding for each product type and premium badges indicating German quality standards. The series covers labels for four available products in the current lineup: bioprotection primer, adhesion primer, finish putty, and decorative stone varnish. Each layout is organized to accommodate detailed instructions, specifications, and bilingual descriptions on buckets and containers.",
-      ro: "Crearea unei serii de etichete pentru gama de produse chimice destinate construcțiilor 'Coloris Premium Line' a companiei 'Cheton Grup'. Conceptul grafic respectă identitatea vizuală a brandului, combinând un fundal elegant negru cu coduri de culori distinctive pentru fiecare tip de produs și insigne premium care evidențiază standardele de calitate germane. Seria include etichete pentru cele patru produse disponibile în prezent în stoc: grund cu bioprotecție, grund adeziv, glet de finisaj și lac protector pentru piatră. Fiecare machetă este structurată pentru a găzdui instrucțiuni detaliate, caracteristici tehnice și descrieri bilingve aplicate pe găleți și ambalaje.",
+      ru: "Разработка серии этикеток для линейки профессиональной строительной химии «Coloris Premium Line» компании «Cheton Grup». Оформление выдержано в фирменном стиле бренда с использованием элегантной чёрной основы, контрастной цветовой кодировки для каждого типа продукта и премиальных плашек с указанием немецких стандартов качества. Серия включает этикетки для четырёх актуальных позиций: грунтовки с биозащитой, адгезионного грунта, финишной шпаклевки и защитного лака для камня. Каждый макет структурирован для размещения детальных инструкций, характеристик и двуязычного описания на ведрах и таре.",
+      en: "Development of a label design series for the professional construction chemicals lineup “Coloris Premium Line” by “Cheton Grup”. The visual styling adheres to the brand's identity, featuring a sleek black background paired with distinct color-coding for each product type and premium badges indicating German quality standards. The series covers labels for four available products in the current lineup: bioprotection primer, adhesion primer, finish putty, and decorative stone varnish. Each layout is organized to accommodate detailed instructions, specifications, and bilingual descriptions on buckets and containers.",
+      ro: "Crearea unei serii de etichete pentru gama de produse chimice destinate construcțiilor „Coloris Premium Line” a companiei „Cheton Grup”. Conceptul grafic respectă identitatea vizuală a brandului, combinând un fundal elegant negru cu coduri de culori distinctive pentru fiecare tip de produs și insigne premium care evidențiază standardele de calitate germane. Seria include etichete pentru cele patru produse actuale din gamă: grund cu bioprotecție, grund adeziv, glet de finisaj și lac protector pentru piatră. Fiecare machetă este structurată pentru a găzdui instrucțiuni detaliate, caracteristici tehnice și descrieri bilingve aplicate pe găleți și ambalaje.",
     },
   },
   {
@@ -1871,7 +1870,7 @@ export const projects: Project[] = [
     order: 41.1,
     slug: "chetongrup_sinka_etiketki",
     client: "cheton",
-    title: { ru: "Дизайн упаковки порошковой синьки 'Albăstreală Ultramarină' для компании Cheton Grup",
+    title: { ru: "Дизайн упаковки порошковой синьки «Albăstreală Ultramarină» для компании Cheton Grup",
               en: "Packaging design for “Albăstreală Ultramarină” powdered blue dye for Cheton Grup",
               ro: "Designul ambalajului pentru vopseaua în pudră „Albăstreală Ultramarină” pentru compania Cheton Grup" },
     categoryKey: "print",
@@ -1892,9 +1891,9 @@ export const projects: Project[] = [
       ] },
     ],
     description: {
-      ru: "Разработка двухстороннего графического макета мягкой упаковки (саше/пакета) для универсального синего пигмента 'Albăstreală Ultramarină' компании 'Cheton Grup'. Лицевая сторона выполнена в насыщенных сине-белых тонах с яркой красной плашкой названия, лаконичной пиктографикой применения (отбеливание тканей, декоративная колеровка, белизна) и встроенным прозрачным окном по центру для наглядной демонстрации текстуры и цвета продукта. Оборотная сторона содержит исчерпывающую техническую информацию, области применения, нормы расхода и правила применения на двух языках (румынском и русском), а также штрихкод, артикул и логотип производителя.",
-      en: "Development of a double-sided sachet/pouch packaging layout for 'Albăstreală Ultramarină' universal blue pigment produced for 'Cheton Grup'. The front side features a vibrant blue-and-white layout accentuating a high-contrast red title badge, intuitive application icons (fabric whitening, tinting, immaculate shine), and a central clear window providing visibility of the product's natural color and powder texture. The reverse side accommodates comprehensive technical specifications, usage guidelines, dosage instructions in both Romanian and Russian, along with product barcodes and manufacturer branding.",
-      ro: "Crearea machetei grafice cu două fețe pentru ambalajul de tip plic/pungă al pigmentului universal 'Albăstreală Ultramarină' din portofoliul 'Cheton Grup'. Fața ambalajului este realizată într-o cromatică intensă de albastru și alb, decorată cu o bandă roșie de titlu, pictograme intuitive de utilizare (înălbire țesături, nuanțare, alb imaculat) și o fereastră transparentă centrală ce permite vizualizarea directă a texturii și nuanței produsului. Verso-ul este structurat pentru afișarea informațiilor tehnice, domeniilor de utilizare, normelor de consum bilingve (română și rusă), precum și a codului de bare și datelor producătorului.",
+      ru: "Разработка двустороннего графического макета мягкой упаковки (саше/пакета) для универсального синего пигмента «Albăstreală Ultramarină» компании «Cheton Grup». Лицевая сторона выполнена в насыщенных сине-белых тонах с яркой красной плашкой названия, лаконичной пиктографикой применения (отбеливание тканей, декоративная колеровка, белизна) и встроенным прозрачным окном по центру для наглядной демонстрации текстуры и цвета продукта. Оборотная сторона содержит исчерпывающую техническую информацию, области применения, нормы расхода и правила применения на двух языках (румынском и русском), а также штрихкод, артикул и логотип производителя.",
+      en: "Development of a double-sided sachet/pouch packaging layout for “Albăstreală Ultramarină” universal blue pigment produced for “Cheton Grup”. The front side features a vibrant blue-and-white layout accentuating a high-contrast red title badge, intuitive application icons (fabric whitening, tinting, immaculate shine), and a central clear window providing visibility of the product's natural color and powder texture. The reverse side accommodates comprehensive technical specifications, usage guidelines, dosage instructions in both Romanian and Russian, along with product barcodes and manufacturer branding.",
+      ro: "Crearea machetei grafice cu două fețe pentru ambalajul de tip plic/pungă al pigmentului universal „Albăstreală Ultramarină” din portofoliul „Cheton Grup”. Fața ambalajului este realizată într-o cromatică intensă de albastru și alb, decorată cu o bandă roșie de titlu, pictograme intuitive de utilizare (înălbire țesături, nuanțare, alb imaculat) și o fereastră transparentă centrală ce permite vizualizarea directă a texturii și nuanței produsului. Verso-ul este structurat pentru afișarea informațiilor tehnice, domeniilor de utilizare, normelor de consum bilingve (română și rusă), precum și a codului de bare și datelor producătorului.",
     },
   },
 

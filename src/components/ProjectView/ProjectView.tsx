@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { useLang } from "@/content/lang";
+import { useLang, type Lang } from "@/content/lang";
 import { Project, CategoryKey } from "@/types/project";
 import { GalleryRow } from "@/lib/imageOrientation";
 
@@ -35,6 +35,8 @@ const GalleryLightbox = dynamic(() => import("../Work/Lightbox"), { ssr: false }
 
 interface ProjectViewProps {
   project: Project;
+  // Язык, определённый сервером (см. useLang) — страница проекта сразу на нужном языке.
+  initialLang?: Lang;
   galleryRows: GalleryRow[];
   nextProject: Project;
   // Категория, внутри которой сейчас листаются проекты (undefined — режим
@@ -59,8 +61,9 @@ export default function ProjectView({
   nextProject,
   category,
   hasMultipleProjects,
+  initialLang,
 }: ProjectViewProps) {
-  const { lang, setLang, t } = useLang();
+  const { lang, setLang, t } = useLang(initialLang);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const nextProjectHref = category
@@ -563,7 +566,7 @@ export default function ProjectView({
           <p>{t.project.cta}</p>
           <div className={styles.ctaRow}>
             <Link href="/#contact" className={styles.ctaButton}>
-              {t.project.ctaButton} →
+              {t.project.ctaButton}
             </Link>
 
             <div className={styles.ctaSocials}>

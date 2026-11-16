@@ -5,6 +5,7 @@ import { buildGalleryRows } from "@/lib/imageOrientation";
 import { CategoryKey } from "@/types/project";
 import ProjectView from "@/components/ProjectView/ProjectView";
 import { getServerLang } from "@/lib/serverLang";
+import { INACTIVE_CATEGORIES } from "@/lib/inactiveCategories";
 import { sortProjects } from "@/lib/sortProjects";
 import { ru } from "@/content/locales/ru";
 import { en } from "@/content/locales/en";
@@ -24,6 +25,7 @@ const locales = { ru, en, ro };
 export function generateStaticParams() {
   const params: { segments: string[] }[] = [];
   for (const project of projects) {
+    if (INACTIVE_CATEGORIES.includes(project.categoryKey)) continue;
     params.push({ segments: [project.slug] });
     params.push({ segments: [project.categoryKey, project.slug] });
   }
@@ -56,7 +58,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { segments } = await params;
   const { slug } = parseSegments(segments);
   const project = slug ? getProjectBySlug(slug) : undefined;
-  if (!project) return {};
+  if (!project || INACTIVE_CATEGORIES.includes(project.categoryKey)) return {};
 
   const lang = await getServerLang();
   const title = `${project.title[lang]} — Socur Dmitrii`;
@@ -96,7 +98,7 @@ export default async function ProjectPage({ params }: PageProps) {
   const { slug, categoryFromPath } = parseSegments(segments);
   const project = slug ? getProjectBySlug(slug) : undefined;
 
-  if (!project) {
+  if (!project || INACTIVE_CATEGORIES.includes(project.categoryKey)) {
     notFound();
   }
 
@@ -188,6 +190,7 @@ export default async function ProjectPage({ params }: PageProps) {
         galleryRows={galleryRows}
         nextProject={nextProject}
         category={activeCategory}
+        initialLang={lang}
         hasMultipleProjects={list.length > 1}
       />
     </>

@@ -14,7 +14,7 @@ export const en = {
   hero: {
     title: "Graphic & Motion Designer",
     subtitle:
-      "I help brands stand out with custom logo design, brand identity, digital design and motion design that don't just look good — they work for the business.",
+      "I help brands stand out with custom logo design, brand identity, digital design and motion design that don’t just look good — they work for the business.",
     badge: "Open for new projects",
     cta: "Start a project",
     ctaSecondary: "See the work",
@@ -58,11 +58,11 @@ export const en = {
   },
   about: {
     label: "About",
-    text: "My name is Dmitrii Socur, a graphic and motion designer based in Moldova. I create design that solves the client's problem, not just something that looks nice — from the first sketch to final files ready for print, web, or social media.",
+    text: "My name is Dmitrii Socur, a graphic and motion designer based in Moldova. I create design that solves the client’s problem, not just something that looks nice — from the first sketch to final files ready for print, web, or social media.",
     // Второй абзац — подтверждение экспертности (опирается на реальные проекты
     // из портфолио). Правь текст под себя, когда захочешь.
-    text2: "I work with companies from different fields and quickly get to grips with the specifics of each business. It matters to me that design doesn't just look good, but solves the client's task and helps the brand look cohesive on any medium. Many clients come back with new projects — to me, that's the best proof of the quality of my work.",
-    clientsLabel: "Companies I've worked with",
+    text2: "I work with companies from different fields and quickly get to grips with the specifics of each business. I help brands look cohesive on any medium. Many clients come back with new projects — to me, that’s the best proof of the quality of my work.",
+    clientsLabel: "Companies I’ve worked with",
     viewProjects: "Projects for this company",
   },
   reviews: {
@@ -72,7 +72,7 @@ export const en = {
   },
   contact: {
     label: "Contact",
-    cta: "Let's work together",
+    cta: "Let’s work together",
     // Замени на свою почту
     email: "sokurdmitrii18@gmail.com",
     // Подпись у почты в выпадающей панели «Контакты» в шапке (вместо самого
@@ -88,16 +88,20 @@ export const en = {
       submit: "Send",
       close: "Collapse the form",
       sending: "Sending…",
-      success: "Thanks! Your message is on its way, I'll reply soon.",
+      success: "Thanks! Your message is on its way, I’ll reply soon.",
       error: "Something went wrong. Please try again or email me directly.",
       sendAnother: "Send another",
       limit: "Limit reached: no more than 3 messages per 24 hours. Please email me directly or use social media.",
+      privacyToggle: "Details",
+      privacyHide: "Hide",
+      privacy: "Your name, email and message are used only to reply to you and are not shared with third parties. The message is delivered to my inbox through the Formspree service (USA). To limit spam, an anonymous identifier and a send counter are stored in your browser. Data is kept only as long as needed for our correspondence. To have it deleted or to ask a question, email me at sokurdmitrii18@gmail.com.",
     },
   },
+  notFound: { text: "Page not found", back: "Back to home" },
   project: {
     back: "← All work",
     next: "Next project",
-    cta: "Like this? Let's discuss your project",
+    cta: "Like this? Let’s discuss your project",
     ctaButton: "Get in touch",
     expandVideo: "Open video fullscreen",
     story: { brief: "Brief", idea: "Idea", result: "Result" },
@@ -107,7 +111,7 @@ export const en = {
     generalTab: "General",
     // Заметка в конце каждой вкладки FAQ: ведёт к контактам для частных случаев.
     note: {
-      text: "* The answers above are general guidelines. Every project has its own details: an unusual task, special file requirements, tight deadlines, reworking someone else's materials, or a case that isn't covered here. For a more precise answer or to discuss specific situations, get in touch: tell me about your task and I'll suggest the options and the best way forward for your case.",
+      text: "* The answers above are general guidelines. Every project has its own details: an unusual task, special file requirements, tight deadlines, reworking someone else’s materials, or a case that isn’t covered here. For a more precise answer or to discuss specific situations, get in touch: tell me about your task and I’ll suggest the options and the best way forward for your case.",
       cta: "Discuss the details",
     },
     // FAQ по разделам блока «Чем я занимаюсь»: порядок = порядок карточек
@@ -119,7 +123,7 @@ export const en = {
           {
             question: "How is a logo different from brand identity?",
             description: "The two are often mixed up, and the choice changes the scope of work.",
-            answer: "A logo is the company's mark. Brand identity is the whole system around it: colors, typography, graphic elements and the rules for using them. You can start with just a logo and expand into a full identity later.",
+            answer: "A logo is the company’s mark. Brand identity is the whole system around it: colors, typography, graphic elements and the rules for using them. You can start with just a logo and expand into a full identity later.",
           },
           {
             question: "What does logo design include?",
@@ -150,8 +154,8 @@ export const en = {
           {
             group: "Motion design",
             question: "Can you animate an existing logo?",
-            description: "A common situation: the logo exists, the animation doesn't.",
-            answer: "Yes, the animation is built from the finished logo. It's best if you have a vector file of it; if not, the logo has to be recreated first.",
+            description: "A common situation: the logo exists, the animation doesn’t.",
+            answer: "Yes, the animation is built from the finished logo. It’s best if you have a vector file of it; if not, the logo has to be recreated first.",
           },
           {
             group: "Video editing",
@@ -163,7 +167,7 @@ export const en = {
             group: "Video editing",
             question: "Do you shoot video? What if I have no footage?",
             description: "Shooting and editing are different tasks.",
-            answer: "No, I don't shoot video — I work with the footage provided by the client (filming is possible only in rare cases, and only if the client is from my city). If you have no footage at all, I can offer to create an AI avatar — the details are discussed individually.",
+            answer: "No, I don’t shoot video — I work with the footage provided by the client (filming is possible only in rare cases, and only if the client is from my city). If you have no footage at all, I can offer to create an AI avatar — the details are discussed individually.",
           },
           {
             group: "Video editing",
@@ -178,12 +182,12 @@ export const en = {
         items: [
           {
             question: "What digital materials do you create?",
-            description: "\"Digital\" can mean many different things.",
+            description: "“Digital” can mean many different things.",
             answer: "Ad banners, social media posts and stories, covers, email and website page layouts, presentations.",
           },
           {
             question: "Do you build websites?",
-            description: "It's important to know the boundary: design and development are different tasks.",
+            description: "It’s important to know the boundary: design and development are different tasks.",
             answer: "I do the design: the layout and the visual side. Coding is not part of my work, but the finished layout can be handed over to a developer.",
           },
           {
@@ -198,8 +202,8 @@ export const en = {
         items: [
           {
             question: "Will the files be print-ready?",
-            description: "A good-looking layout isn't always ready for the printer.",
-            answer: "Yes, layouts are prepared for the specific type of printing: with the right sizes, bleed and color model. It's best to get the printer's requirements in advance and share them with me.",
+            description: "A good-looking layout isn’t always ready for the printer.",
+            answer: "Yes, layouts are prepared for the specific type of printing: with the right sizes, bleed and color model. It’s best to get the printer’s requirements in advance and share them with me.",
           },
           {
             question: "What materials do you design?",
@@ -223,7 +227,7 @@ export const en = {
       },
       {
         question: "What do I get when a project is finished?",
-        description: "The set of files depends on the type of project — here's the general idea.",
+        description: "The set of files depends on the type of project — here’s the general idea.",
         answer:
           "Finished materials in the formats the task calls for: for a logo or brand identity — source vector files (AI/EPS/SVG) plus print- and web-ready versions; for digital work and print — files sized and formatted for the specific medium; for video and motion design — exported clips in the agreed format. On request — basic usage guidelines.",
       },
@@ -235,7 +239,7 @@ export const en = {
       },
       {
         question: "How long does a project take?",
-        description: "Timing is usually the first thing people ask about, especially if it's tied to a launch or deadline.",
+        description: "Timing is usually the first thing people ask about, especially if it’s tied to a launch or deadline.",
         answer:
           "It depends on scope and type of project: a simple task (a banner or a logo, say) usually takes less time than something more involved, like a full brand identity with a guideline or a series of video edits. I give an exact timeline after a short discussion of the task — usually within a day of first contact.",
       },
@@ -243,25 +247,25 @@ export const en = {
         question: "Do you work with clients outside Moldova?",
         description: "A common question is whether the work is limited to the local market.",
         answer:
-          "Yes, everything is done remotely — messages, calls, and file delivery all happen online, so the client's location doesn't matter.",
+          "Yes, everything is done remotely — messages, calls, and file delivery all happen online, so the client’s location doesn’t matter.",
       },
       {
         question: "Do I need to prepare a brief before we start?",
-        description: "It's not always clear what to prepare in advance to get things moving faster.",
+        description: "It’s not always clear what to prepare in advance to get things moving faster.",
         answer:
-          "No, a detailed brief isn't required — it's enough to describe the business, target audience, and any preferences in a message or call. I use that to shape the task and propose a direction.",
+          "No, a detailed brief isn’t required — it’s enough to describe the business, target audience, and any preferences in a message or call. I use that to shape the task and propose a direction.",
       },
       {
-        question: "What if I don't like the result?",
+        question: "What if I don’t like the result?",
         description: "Being able to push back on a direction is part of trusting the process, not just a formality.",
         answer:
-          "The work is broken into stages with check-ins along the way — there's room to adjust direction before final approval, not just small tweaks at the very end.",
+          "The work is broken into stages with check-ins along the way — there’s room to adjust direction before final approval, not just small tweaks at the very end.",
       },
       {
         question: "Do you only take on new projects, or do you also update/redesign existing materials?",
-        description: "Not every project starts from a blank page — sometimes it's about updating something that already exists.",
+        description: "Not every project starts from a blank page — sometimes it’s about updating something that already exists.",
         answer:
-          "Both — a rebrand, refreshing an existing website, or reworking existing marketing materials. For this kind of work, I also look at what's already there: what's worth keeping (for example, if the audience already recognizes the logo or style) and what's worth rethinking.",
+          "Both — a rebrand, refreshing an existing website, or reworking existing marketing materials. For this kind of work, I also look at what’s already there: what’s worth keeping (for example, if the audience already recognizes the logo or style) and what’s worth rethinking.",
       },
     ],
   },

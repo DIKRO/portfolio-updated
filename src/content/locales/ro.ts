@@ -16,7 +16,7 @@ export const ro = {
     subtitle:
       "Ajut brandurile să iasă în evidență: logo la comandă, identitate vizuală, design digital și motion design care nu doar arată bine, ci și ajută afacerea să-și atingă obiectivele.",
     badge: "Disponibil pentru proiecte noi",
-    cta: "Hai să discutăm",
+    cta: "Haideți să discutăm",
     ctaSecondary: "Vezi lucrările",
   },
   services: {
@@ -49,7 +49,7 @@ export const ro = {
   categories: {
     all: "Toate",
     branding: "Logo / Identitate",
-    digital: "Creativitate digitală",
+    digital: "Creative digitale",
     print: "Poligrafie",
     packaging: "Publicitate exterioară",
     "ui-ux": "UI/UX",
@@ -62,7 +62,7 @@ export const ro = {
     text: "Mă numesc Dmitrii Socur și sunt designer grafic și motion designer din Moldova. Creez design care rezolvă problema clientului, nu doar ceva frumos — de la prima schiță până la fișierele finale, gata pentru print, web sau social media.",
     // Второй абзац — подтверждение экспертности (опирается на реальные проекты
     // из портфолио). Правь текст под себя, когда захочешь.
-    text2: "Lucrez cu companii din domenii diferite și mă familiarizez rapid cu specificul fiecărei afaceri. Pentru mine este important ca designul să nu arate doar bine, ci să rezolve sarcina clientului și să ajute brandul să arate unitar pe orice suport. Mulți clienți revin cu proiecte noi — pentru mine, aceasta este cea mai bună confirmare a calității muncii mele.",
+    text2: "Lucrez cu companii din domenii diferite și mă familiarizez rapid cu specificul fiecărei afaceri. Ajut brandul să arate unitar pe orice suport. Mulți clienți revin cu proiecte noi — pentru mine, aceasta este cea mai bună confirmare a calității muncii mele.",
     clientsLabel: "Companii cu care am colaborat",
     viewProjects: "Proiecte pentru această companie",
   },
@@ -73,7 +73,7 @@ export const ro = {
   },
   contact: {
     label: "Contact",
-    cta: "Hai să lucrăm împreună",
+    cta: "Haideți să lucrăm împreună",
     // Înlocuiește cu emailul tău
     email: "sokurdmitrii18@gmail.com",
     // Подпись у почты в выпадающей панели «Контакты» в шапке (вместо самого
@@ -84,22 +84,26 @@ export const ro = {
     form: {
       name: "Nume",
       email: "Email",
-      message: "Spune-mi despre proiectul tău",
+      message: "Povestiți-mi despre proiectul dumneavoastră",
       consent: "Sunt de acord cu prelucrarea datelor mele cu caracter personal",
       submit: "Trimite",
       close: "Restrânge formularul",
       sending: "Se trimite…",
-      success: "Mulțumesc! Mesajul a fost trimis, îți răspund în curând.",
-      error: "Ceva n-a mers bine. Încearcă din nou sau scrie-mi direct pe email.",
+      success: "Mulțumesc! Mesajul a fost trimis, vă răspund în curând.",
+      error: "Ceva n-a mers bine. Încercați din nou sau scrieți-mi direct pe email.",
       sendAnother: "Trimite alt mesaj",
-      limit: "Limita a fost atinsă: maximum 3 mesaje în 24 de ore. Te rog scrie-mi direct pe e-mail sau pe rețelele sociale.",
+      limit: "Limita a fost atinsă: maximum 3 mesaje în 24 de ore. Vă rog să-mi scrieți direct pe e-mail sau pe rețelele sociale.",
+      privacyToggle: "Detalii",
+      privacyHide: "Ascunde",
+      privacy: "Numele, adresa de email și mesajul sunt folosite doar pentru a vă răspunde și nu sunt transmise unor terțe părți. Mesajul ajunge la mine pe email prin serviciul Formspree (SUA). Pentru a limita spamul, în browserul dvs. se salvează un identificator anonim și un contor de trimiteri. Datele sunt păstrate doar cât este necesar pentru corespondență. Pentru ștergerea lor sau pentru întrebări, scrieți-mi la sokurdmitrii18@gmail.com.",
     },
   },
+  notFound: { text: "Pagina nu a fost găsită", back: "Înapoi acasă" },
   project: {
     back: "← Toate lucrările",
     next: "Proiectul următor",
-    cta: "Îți place? Hai să discutăm proiectul tău",
-    ctaButton: "Contactează-mă",
+    cta: "Vă place? Haideți să discutăm proiectul dumneavoastră",
+    ctaButton: "Contactați-mă",
     expandVideo: "Deschide videoul pe tot ecranul",
     story: { brief: "Solicitare", idea: "Idee", result: "Rezultat" },
   },
@@ -109,7 +113,7 @@ export const ro = {
     // Заметка в конце каждой вкладки FAQ: ведёт к контактам для частных случаев.
     note: {
       text: "* Răspunsurile de mai sus sunt repere generale. Fiecare proiect are particularitățile lui: o sarcină atipică, cerințe speciale pentru fișiere, termene strânse, refacerea unor materiale existente sau un caz care nu apare aici. Pentru un răspuns mai precis și pentru a discuta cazuri particulare, contactați-mă: povestiți-mi despre sarcină și vă voi spune ce variante există și cum ar fi cel mai bine în situația dumneavoastră.",
-      cta: "Discută detaliile",
+      cta: "Discutăm detaliile",
     },
     // FAQ по разделам блока «Чем я занимаюсь»: порядок = порядок карточек
     // в services.items. Клик по карточке открывает FAQ на нужной вкладке.
@@ -124,7 +128,7 @@ export const ro = {
           },
           {
             question: "Ce include crearea unui logo?",
-            description: "Ca să știi din start cum arată procesul.",
+            description: "Ca să știți din start cum arată procesul.",
             answer: "Cunoașterea sarcinii și a domeniului, căutarea ideii și câteva direcții la început, finalizarea variantei alese și livrarea fișierelor: surse vectoriale, plus versiuni pentru print și web.",
           },
           {
@@ -250,7 +254,7 @@ export const ro = {
         question: "Trebuie să pregătesc un brief înainte să începem?",
         description: "Nu e mereu clar ce ar trebui pregătit din timp ca lucrurile să înceapă mai repede.",
         answer:
-          "Nu, un brief detaliat nu e obligatoriu — e suficient să descrii afacerea, publicul țintă și eventualele preferințe într-un mesaj sau apel. Pe baza acestora formulez sarcina și propun o direcție.",
+          "Nu, un brief detaliat nu e obligatoriu — este suficient să descrieți afacerea, publicul țintă și eventualele preferințe într-un mesaj sau apel. Pe baza acestora formulez sarcina și propun o direcție.",
       },
       {
         question: "Ce se întâmplă dacă nu-mi place rezultatul?",

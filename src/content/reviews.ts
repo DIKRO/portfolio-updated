@@ -18,7 +18,10 @@ export interface Review {
   id: string;
   // Имя клиента — как и логотипы в About.tsx, не переводится, показывается
   // как есть на всех языках.
-  clientName: string;
+  // Имя может отсутствовать (например, заказ с фриланс-биржи, где имя клиента
+  // неизвестно) — тогда вместо него показывается подпись source.
+  clientName?: string;
+  source?: LocalizedText;
   // Компания и должность — необязательны (например, если отзыв от частного
   // клиента без компании, просто не указывай company).
   company?: string;
@@ -67,8 +70,8 @@ export const reviews: Review[] = [
     countryCode: "MD",
     text: {
       ru: "Сотрудничество прошло отлично — особенно понравился комплексный подход к визуальной коммуникации нашего бренда. Были разработаны динамичные Reels, логотип для юридической компании, а также digital-материалы: баннеры, презентация и другие графические решения. Всё выполнено современно, профессионально и с хорошим пониманием задач бизнеса.",
-      en: "The collaboration went well—I was especially impressed by the integrated approach to our brand's visual communications. We developed dynamic Reels, a logo for the law firm, and digital materials such as banners, a presentation, and other graphic solutions. Everything was executed in a modern, professional manner, and with a clear understanding of the business's objectives.",
-      ro: "Colaborarea a decurs bine - am fost deosebit de impresionat de abordarea integrată a comunicării vizuale a mărcii noastre. Am dezvoltat reel-uri dinamice, un logo pentru firma de avocatură și materiale digitale precum bannere, o prezentare și alte soluții grafice. Totul a fost executat într-o manieră modernă, profesională și cu o înțelegere clară a obiectivelor afacerii.",
+      en: "The collaboration went well — I was especially impressed by the integrated approach to our brand’s visual communications. We developed dynamic Reels, a logo for the law firm, and digital materials such as banners, a presentation, and other graphic solutions. Everything was executed in a modern, professional manner, and with a clear understanding of the business’s objectives.",
+      ro: "Colaborarea a decurs bine — am fost deosebit de impresionat de abordarea integrată a comunicării vizuale a mărcii noastre. Am dezvoltat reel-uri dinamice, un logo pentru firma de avocatură și materiale digitale precum bannere, o prezentare și alte soluții grafice. Totul a fost executat într-o manieră modernă, profesională și cu o înțelegere clară a obiectivelor afacerii.",
     },
   },
   {
@@ -85,9 +88,9 @@ export const reviews: Review[] = [
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
     countryCode: "MD",
     text: {
-      ru: "Дмитрий легкий в общении, позитивный и креативный. Главные ценности в таком сотруднике, как Дмитрий, - он никогда не говорит, что что-то невозможно. Быстро находит решения, предлагает варианты и в срок.",
-      en: "Dmitry is easy to get along with, positive, and creative. A key quality he brings to the role is that he never says something is impossible; he quickly finds solutions and proposes options, always meeting deadlines.",
-      ro: "Dmitry este ușor de comunicat, pozitiv și creativ. Valorile cheie la un angajat ca Dmitry sunt că nu spune niciodată că ceva este imposibil. Găsește rapid soluții, oferă opțiuni și livrează la timp.",
+      ru: "Дмитрий легкий в общении, позитивный и креативный. Главное, что ценишь в таком сотруднике, как Дмитрий, — он никогда не говорит, что что-то невозможно. Быстро находит решения, предлагает варианты и работает в срок.",
+      en: "Dmitrii is easy to get along with, positive, and creative. A key quality he brings to the role is that he never says something is impossible; he quickly finds solutions and proposes options, always meeting deadlines.",
+      ro: "Dmitrii este ușor de comunicat, pozitiv și creativ. Valorile cheie la un angajat ca Dmitrii sunt că nu spune niciodată că ceva este imposibil. Găsește rapid soluții, oferă opțiuni și livrează la timp.",
     },
   },
   {
@@ -105,14 +108,18 @@ export const reviews: Review[] = [
     countryCode: "MD",
     text: {
       ru: "Работой Дмитрия очень доволен: он быстро понял идею бренда и передал её в визуале. Для Vitrum Letale он сделал карточки товара, сертификат подлинности и стикеры для дропа, и всё выглядит цельно и соответствует нашей эстетике. Отдельно ценю чёткие сроки и спокойную коммуникацию — с удовольствием продолжим сотрудничество.",
-      en: "I'm very happy with Dmitrii's work: he quickly understood the brand's idea and translated it into visuals. For Vitrum Letale he created product cards, a certificate of authenticity and stickers for our drop, and everything looks cohesive and true to our aesthetic. I especially value the clear deadlines and smooth communication — I'm glad to keep working together.",
+      en: "I’m very happy with Dmitrii’s work: he quickly understood the brand’s idea and translated it into visuals. For Vitrum Letale he created product cards, a certificate of authenticity and stickers for our drop, and everything looks cohesive and true to our aesthetic. I especially value the clear deadlines and smooth communication — I’m glad to keep working together.",
       ro: "Sunt foarte mulțumit de munca lui Dmitrii: a înțeles rapid ideea brandului și a transpus-o vizual. Pentru Vitrum Letale a realizat fișe de produs, certificat de autenticitate și autocolante pentru colecție, iar totul arată unitar și în spiritul esteticii noastre. Apreciez în special termenele clare și comunicarea fluidă — continuăm colaborarea cu plăcere.",
     },
   },
   {
     id: "dji",
     icon: "drone",
-    clientName: "Percy Jackson",
+    source: {
+      ru: "Клиент с фриланс-биржи",
+      en: "Freelance marketplace client",
+      ro: "Client de pe o bursă de freelance",
+    },
     company: "dji service",
     role: {
       ru: "Менеджер по продукту",
@@ -123,7 +130,7 @@ export const reviews: Review[] = [
     country: { ru: "Россия", en: "Russia", ro: "Rusia" },
     countryCode: "RU",
     text: {
-      ru: "Заказ был выполнен в полном объеме, в точном соответствии с оговоренными условиями и в установленные сроки. Работа была организована четко и без задержек, что позволило получить результат именно в том виде, в каком он ожидался.",
+      ru: "Заказ был выполнен в полном объёме, в точном соответствии с оговоренными условиями и в установленные сроки. Работа была организована четко и без задержек, что позволило получить результат именно в том виде, в каком он ожидался.",
       en: "The order was fulfilled in full, in strict accordance with the agreed-upon terms and within the specified timeframe. The work was organized efficiently and without delays, which ensured that the result was exactly as expected.",
       ro: "Comanda a fost executată în întregime, în conformitate strictă cu condițiile convenite și în termenele stabilite. Lucrările au fost organizate în mod riguros și fără întârzieri, ceea ce a permis obținerea unui rezultat exact așa cum era de așteptat.",
     },
@@ -142,9 +149,9 @@ export const reviews: Review[] = [
     country: { ru: "Молдова", en: "Moldova", ro: "Moldova" },
     countryCode: "MD",
     text: {
-      ru: "Дмитрий - отличный дизайнер с современным подходом и свежим взглядом. Очень порадовала его гибкость и скорость: под любые задачи и правки адаптируется моментально. В процессе работы всегда мобилен, лоялен и нацелен на результат. С первых минут общаться было легко и комфортно. Обязательно буду обращаться ещё!",
-      en: "Dmitry is an excellent designer with a modern approach and a fresh perspective. I was very impressed by his flexibility and speed: he adapts instantly to any task or revision. Throughout the project, he’s always responsive, reliable, and results-oriented. From the very first moments, it was easy and comfortable to work with him. I’ll definitely be reaching out to him again!",
-      ro: "Dmitri este un designer excelent, cu o abordare modernă și o viziune proaspătă. M-au încântat foarte mult flexibilitatea și rapiditatea lui: se adaptează instantaneu la orice sarcină și modificare. În timpul lucrului, este întotdeauna flexibil, loial și orientat spre rezultat. Încă din primele minute, comunicarea a fost ușoară și plăcută. Cu siguranță voi apela din nou la el!",
+      ru: "Дмитрий — отличный дизайнер с современным подходом и свежим взглядом. Очень порадовала его гибкость и скорость: под любые задачи и правки адаптируется моментально. В процессе работы всегда мобилен, лоялен и нацелен на результат. С первых минут общаться было легко и комфортно. Обязательно буду обращаться ещё!",
+      en: "Dmitrii is an excellent designer with a modern approach and a fresh perspective. I was very impressed by his flexibility and speed: he adapts instantly to any task or revision. Throughout the project, he’s always responsive, reliable, and results-oriented. From the very first moments, it was easy and comfortable to work with him. I’ll definitely be reaching out to him again!",
+      ro: "Dmitrii este un designer excelent, cu o abordare modernă și o viziune proaspătă. M-au încântat foarte mult flexibilitatea și rapiditatea lui: se adaptează instantaneu la orice sarcină și modificare. În timpul lucrului, este întotdeauna receptiv, loial și orientat spre rezultat. Încă din primele minute, comunicarea a fost ușoară și plăcută. Cu siguranță voi apela din nou la el!",
     },
   },
   {

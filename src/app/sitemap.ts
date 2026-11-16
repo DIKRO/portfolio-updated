@@ -1,5 +1,9 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/content/projects";
+import { projects as allProjects } from "@/content/projects";
+import { INACTIVE_CATEGORIES } from "@/lib/inactiveCategories";
+
+// В sitemap — только активные категории (без страниц-заглушек).
+const projects = allProjects.filter((p) => !INACTIVE_CATEGORIES.includes(p.categoryKey));
 
 // Замени на свой домен, если он отличается
 const BASE_URL = "https://socurdmitrii.com";

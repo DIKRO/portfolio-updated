@@ -150,7 +150,7 @@ export default function Reviews({ lang, t }: ReviewsProps) {
                   })()}
                 </span>
                 <div className={styles.identity}>
-                  <span className={styles.name}>{review.clientName}</span>
+                  <span className={styles.name}>{review.clientName ?? review.source?.[lang]}</span>
                   {(review.company || review.role) && (
                     // Должность и компания — две отдельные строки: должность
                     // сверху, название компании ВСЕГДА с новой строки (раньше они
@@ -233,7 +233,7 @@ export default function Reviews({ lang, t }: ReviewsProps) {
         {canClip && !expanded && (
           <div className={styles.fade}>
             <button className={styles.showAllButton} onClick={() => setExpanded(true)}>
-              {t.reviews.showAll} →
+              {t.reviews.showAll}
             </button>
           </div>
         )}

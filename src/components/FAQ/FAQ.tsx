@@ -170,7 +170,7 @@ export default function FAQ({ open, onClose, initialTab = 0, onContact, contact,
                 <div className={styles.noteActions}>
                   {onContact && (
                     <button type="button" className={styles.noteButton} onClick={onContact}>
-                      {t.note.cta} →
+                      {t.note.cta}
                     </button>
                   )}
 

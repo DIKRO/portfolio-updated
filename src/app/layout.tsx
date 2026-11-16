@@ -68,16 +68,9 @@ export async function generateMetadata(): Promise<Metadata> {
     // добавишь сайт в Google Search Console / Яндекс.Вебмастер (см.
     // объяснение, как их получить, отдельно). Пока не заполнено —
     // Next.js просто не выведет эти мета-теги, ничего не сломается.
-    // verification: {
-    //   google: "СЮДА_КОД_ИЗ_GOOGLE_SEARCH_CONSOLE",
-    //   yandex: "СЮДА_КОД_ИЗ_ЯНДЕКС_ВЕБМАСТЕРА",
-    // },
-    alternates: {
-      // Сайт не разбит на отдельные /ru /en /ro URL (язык переключается на
-      // клиенте на одном и том же адресе) — поэтому все 3 варианта честно
-      // указывают на один и тот же canonical-URL, чтобы не путать поисковик
-      // дублирующимся контентом на разных языках под разными адресами.
-      languages: { ru: BASE_URL, en: BASE_URL, ro: BASE_URL },
+    verification: {
+      google: "tvV1cHQf0tGN5i2O-lyTYw26oP1Ek5_DQHj7sxaxqNM",
+      // yandex: "СЮДА_КОД_ИЗ_ЯНДЕКС_ВЕБМАСТЕРА",
     },
     openGraph: {
       title: seo.title,

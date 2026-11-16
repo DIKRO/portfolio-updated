@@ -1,6 +1,6 @@
 "use client";
 
-import { StarIcon, PlayIcon } from "@/components/Icons/Icons";
+import { StarIcon } from "@/components/Icons/Icons";
 import styles from "./Hero.module.css";
 
 interface HeroProps {
@@ -92,10 +92,9 @@ export default function Hero({ t }: HeroProps) {
 
           <div className={styles.ctaRow}>
             <a href="#contact" className={styles.cta} onClick={scrollTo("contact")}>
-              {t.hero.cta} →
+              {t.hero.cta}
             </a>
             <a href="#work" className={styles.ctaSecondary} onClick={scrollTo("work")}>
-              <PlayIcon />
               {t.hero.ctaSecondary}
             </a>
           </div>

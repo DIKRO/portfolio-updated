@@ -1,5 +1,6 @@
 "use client";
 
+import { INACTIVE_CATEGORIES } from "@/lib/inactiveCategories";
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -324,9 +325,6 @@ function FloatingCollapse({
           exit={{ opacity: 0, y: 14 }}
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span aria-hidden="true" className={styles.floatingArrow}>
-            ↑
-          </span>
           {label}
         </motion.button>
       )}
@@ -363,7 +361,10 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   // переименовали или удалили в данных проектов) — используем "all", чтобы
   // не остаться на пустом несуществующем фильтре. Считаем прямо при
   // рендере, без эффекта.
-  const filter: FilterKey = availableFilters.includes(rawFilter) ? rawFilter : "all";
+  const filter: FilterKey =
+    availableFilters.includes(rawFilter) && !INACTIVE_CATEGORIES.includes(rawFilter as CategoryKey)
+      ? rawFilter
+      : "all";
 
   // Сколько «порций» карточек сейчас раскрыто (1 — только первая).
   const [pages, setPages] = useState(() => {
@@ -517,7 +518,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
   // зависят эффекты ниже).
   const filtered = useMemo(
     () =>
-      sortProjects(filter === "all" ? projects : projects.filter((p) => p.categoryKey === filter), {
+      sortProjects(filter === "all" ? projects.filter((p) => !INACTIVE_CATEGORIES.includes(p.categoryKey)) : projects.filter((p) => p.categoryKey === filter), {
         useFeatured: filter === "all",
       }),
     [filter],
@@ -727,6 +728,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
             <button
               key={`${setIndex}-${key}`}
               className={key === filter ? styles.filterActive : styles.filter}
+              disabled={INACTIVE_CATEGORIES.includes(key as CategoryKey)}
               onClick={() => selectFilter(key)}
             >
               {t.categories[key]}
@@ -758,7 +760,7 @@ export default function WorkGrid({ lang, t }: WorkGridProps) {
                 </span>
                 <div className={styles.moreRow}>
                   <button className={styles.showAllButton} onClick={showMore}>
-                    {t.work.showMore} →
+                    {t.work.showMore}
                   </button>
                   {canCollapse && (
                     <button className={styles.fadeCollapse} onClick={collapse}>

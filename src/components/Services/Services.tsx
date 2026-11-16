@@ -67,7 +67,7 @@ export default function Services({ t }: ServicesProps) {
                 <strong className={styles.title}>{item.title}</strong>
               </span>
               <span className={styles.text}>{item.text}</span>
-              <span className={styles.hint}>{t.services.faqHint} →</span>
+              <span className={styles.hint}>{t.services.faqHint}</span>
             </motion.button>
           );
         })}

@@ -8,6 +8,8 @@ import { SOCIALS } from "@/content/socials";
 import { EmailIcon } from "@/components/Icons/Icons";
 import FAQ from "@/components/FAQ/FAQ";
 import CopyEmailLink, { gmailComposeUrl } from "@/components/CopyEmailLink/CopyEmailLink";
+import ContactForm, { type ContactFormLabels } from "@/components/ContactForm/ContactForm";
+import { useContactForm } from "@/components/ContactForm/useContactForm";
 import styles from "./Header.module.css";
 
 interface HeaderProps {
@@ -15,7 +17,7 @@ interface HeaderProps {
   setLang: (lang: Lang) => void;
   t: {
     nav: { faq: string; work: string; about: string; reviews: string; contact: string };
-    contact: { email: string; emailLabel: string; copied: string };
+    contact: { cta: string; email: string; emailLabel: string; copied: string; form: ContactFormLabels };
     faq: {
       title: string;
       generalTab: string;
@@ -51,6 +53,62 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
   const [faqOpen, setFaqOpen] = useState(false);
   // Вкладка FAQ при открытии: 0 — «Общие», 1..N — раздел из «Чем я занимаюсь».
   const [faqTab, setFaqTab] = useState(0);
+
+  // Выпадающая панель «Контакты» с формой и ссылками (только десктоп).
+  // Открывается по наведению с небольшой задержкой (чтобы не срабатывала,
+  // когда курсор просто проезжает мимо), с клавиатуры — по фокусу, закрывается
+  // по уходу курсора, по Esc и по клику на слово «Контакты». Пока курсор
+  // уехал, но пользователь печатает в поле формы — панель остаётся открытой,
+  // закрывается когда фокус уходит из неё.
+  const contactForm = useContactForm();
+  const [contactOpen, setContactOpen] = useState(false);
+  const popRef = useRef<HTMLDivElement>(null);
+  const hoverRef = useRef(false);
+  const openTimer = useRef<number | undefined>(undefined);
+  const closeTimer = useRef<number | undefined>(undefined);
+
+  const focusInsidePop = () => {
+    const a = document.activeElement;
+    return !!(popRef.current && a && popRef.current.contains(a));
+  };
+  const scheduleOpen = () => {
+    window.clearTimeout(closeTimer.current);
+    window.clearTimeout(openTimer.current);
+    openTimer.current = window.setTimeout(() => setContactOpen(true), 120);
+  };
+  const scheduleClose = () => {
+    window.clearTimeout(openTimer.current);
+    window.clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(() => {
+      if (hoverRef.current || focusInsidePop()) return;
+      setContactOpen(false);
+    }, 280);
+  };
+  const closeContact = () => {
+    window.clearTimeout(openTimer.current);
+    window.clearTimeout(closeTimer.current);
+    setContactOpen(false);
+  };
+
+  useEffect(
+    () => () => {
+      window.clearTimeout(openTimer.current);
+      window.clearTimeout(closeTimer.current);
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (!contactOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setContactOpen(false);
+        (document.activeElement as HTMLElement | null)?.blur();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [contactOpen]);
 
   // Карточки из блока «Чем я занимаюсь» (Services.tsx) открывают FAQ сразу
   // на своей вкладке через window-событие — так не нужно протаскивать
@@ -243,31 +301,60 @@ export default function Header({ lang, setLang, t }: HeaderProps) {
                 как раньше, ведёт к разделу «Контакты». На мобильной
                 версии панель скрыта: там те же ссылки уже есть внутри
                 бургер-меню (.mobileContacts). */}
-            <span className={styles.contactWrap}>
+            <span
+              className={styles.contactWrap}
+              onMouseEnter={() => {
+                hoverRef.current = true;
+                scheduleOpen();
+              }}
+              onMouseLeave={() => {
+                hoverRef.current = false;
+                scheduleClose();
+              }}
+              onBlur={(e) => {
+                if (!e.currentTarget.contains(e.relatedTarget as Node | null)) scheduleClose();
+              }}
+            >
               <a
                 href={isHome ? "#contact" : "/#contact"}
-                onClick={goTo("contact")}
+                onClick={(e) => {
+                  closeContact();
+                  goTo("contact")(e);
+                }}
+                onFocus={(e) => {
+                  // Только с клавиатуры: при клике мышью панель не открываем.
+                  if (e.currentTarget.matches(":focus-visible")) setContactOpen(true);
+                }}
                 className={`${styles.navContactBtn} ${activeSection === "contact" ? styles.navContactBtnActive : ""}`}
               >
                 {t.nav.contact}
               </a>
 
-              <div className={styles.contactPop}>
+              <div className={styles.contactPop} data-open={contactOpen} ref={popRef}>
                 <div className={styles.contactPopInner}>
-                  <CopyEmailLink email={t.contact.email} copiedLabel={t.contact.copied}>
-                    {(copied) => (
-                      <>
-                        <EmailIcon />
-                        <span>{copied ? t.contact.copied : t.contact.emailLabel}</span>
-                      </>
-                    )}
-                  </CopyEmailLink>
-                  {SOCIALS.map(({ key, href, icon: Icon, label }) => (
-                    <a key={key} href={href} target="_blank" rel="noopener noreferrer">
-                      <Icon />
-                      <span>{label}</span>
-                    </a>
-                  ))}
+                  <p className={styles.popTitle}>{t.contact.cta}</p>
+                  <ContactForm form={contactForm} labels={t.contact.form} compact />
+                  <div className={styles.popLinks}>
+                    <CopyEmailLink
+                      email={t.contact.email}
+                      copiedLabel={t.contact.copied}
+                      ariaLabel={`Email: ${t.contact.email}`}
+                      title={t.contact.email}
+                    >
+                      {(copied) => (
+                        <>
+                          <EmailIcon />
+                          <span>{copied ? t.contact.copied : t.contact.emailLabel}</span>
+                        </>
+                      )}
+                    </CopyEmailLink>
+                    {SOCIALS.map(({ key, href, icon: Icon, label }) => (
+                      <a key={key} href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}>
+                        <Icon />
+                        <span>{label}</span>
+                      </a>
+                    ))}
+                  </div>
                 </div>
               </div>
             </span>
