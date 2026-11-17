@@ -789,6 +789,50 @@ export const projects: Project[] = [
       },
     },
   },
+  {
+    id: "9",
+    order: 8.1,
+    slug: "linguata_comrat_promo",
+    client: "linguata",
+    title: { 
+      ru: "Промо-ролик для школы иностранных языков Linguata в Комрате", 
+      en: "Promo Video for Linguata Foreign Language School in Comrat", 
+      ro: "Video promoțional pentru școala de limbi străine Linguata din Comrat" 
+    },
+    categoryKey: "motion-design",
+    year: 2026,
+    cover: "/images/work/animation/linguata_comrat_promo/cover-linguata_comrat_promo.jpg",
+    images: [
+      { video: "https://pub-733e8c8d30a74425ba9f6703c99fb798.r2.dev/Linguata%20rev%201%20(1080%20x%201980%20px).mp4", width: 1080, height: 1920 },
+    ],
+    context: {
+       ru: "Выполнено в рамках сотрудничества с DOOH House",
+       en: "Completed in collaboration with DOOH House",
+       ro: "Realizat în cadrul colaborării cu DOOH House",
+    },
+    description: {
+      ru: "Динамичный промо-ролик для цифровой наружной рекламы (DOOH) школы иностранных языков Linguata в Комрате. Видео создано для привлечения внимания аудитории, информирования об открытии филиала, действующих скидках и наборе на курсы.",
+      en: "A dynamic promotional video for digital out-of-home (DOOH) advertising for the Linguata foreign language school in Comrat. The video is designed to capture audience attention, announce the branch opening, active discounts, and course enrollments.",
+      ro: "Un video promoțional dinamic pentru publicitatea exterioară digitală (DOOH) a școlii de limbi străine Linguata din Comrat. Clipul este conceput pentru a atrage atenția publicului, a anunța deschiderea filialei, reducerile active și înscrierile la cursuri.",
+    },
+    story: {
+      brief: {
+        ru: "Школе иностранных языков Linguata в Комрате требовался яркий и динамичный рекламный ролик для формата DOOH (цифровой наружной рекламы), чтобы привлечь внимание прохожих и запустить набор на курсы для детей, подростков и взрослых.",
+        en: "The Linguata foreign language school in Comrat needed a vibrant and dynamic promotional video for DOOH (Digital Out-of-Home) advertising to grab the attention of passersby and launch course enrollments for children, teenagers, and adults.",
+        ro: "Școala de limbi străine Linguata din Comrat avea nevoie de un video promoțional vibrant și dinamic pentru formatul DOOH (publicitate exterioară digitală), menit să atragă atenția trecătorilor și să lanseze înscrierile la cursuri pentru copii, adolescenți și adulți.",
+      },
+      idea: {
+        ru: "В ролике сделан акцент на ключевых преимуществах: открытие филиала в Комрате, скидка -15%, доступные языки (английский, французский, немецкий, итальянский) и чёткие контактные данные с локацией в здании КГУ. Динамичный темп, контрастные плашки и вовлекающие визуальные элементы адаптированы под специфику уличных экранов.",
+        en: "The video highlights core advantages: the opening of the Comrat branch, a -15% discount, available languages (English, French, German, Italian), and clear contact details featuring the location at the Comrat State University building. The dynamic pace, contrasting badges, and engaging visual hooks are tailored specifically for street digital screens.",
+        ro: "Videoul evidențiază avantajele cheie: deschiderea filialei din Comrat, o reducere de -15%, limbile disponibile (engleză, franceză, germană, italiană) și date de contact clare cu locația în clădirea Universității de Stat din Comrat. Ritmul dinamic, plachetele contrastante și elementele vizuale captivante sunt adaptate special pentru ecranele stradale.",
+      },
+      result: {
+        ru: "Создан эффективный DOOH-ролик, который успешно доносит до аудитории спецпредложения школы, привлекает внимание на оживленных улицах и стимулирует запись на языковые курсы благодаря чёткой структуре и заметному Call-to-Action.",
+        en: "An effective DOOH video was created that successfully communicates the school's special offers, captures attention on busy streets, and drives course registrations through a clear structure and prominent Call-to-Action.",
+        ro: "A fost creat un clip DOOH eficient, care transmite cu succes ofertele speciale ale școlii, atrage atenția pe străzile aglomerate și stimulează înscrierile la cursurile de limbi străine datorită unei structuri clare și unui Call-to-Action vizibil.",
+      },
+    },
+  },
   
   // ── DIGITAL-КРЕАТИВЫ — id 38–71 (занято: см. ниже, остальное — резерв под новые работы) ──
   {
