@@ -9,7 +9,7 @@ export const SOCIALS = [
   // Ссылка со встроенной кириллицей в адресе профиля (уже в закодированном виде).
   {
     key: "linkedin",
-    href: "https://www.linkedin.com/in/%D0%B4%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9-%D1%81%D0%BE%D0%BA%D1%83%D1%80-136867279/",
+    href: "https://www.linkedin.com/in/socurdmitrii/",
     icon: LinkedInIcon,
     label: "LinkedIn",
   },

@@ -804,6 +804,7 @@ export const projects: Project[] = [
     cover: "/images/work/animation/linguata_comrat_promo/cover-linguata_comrat_promo.jpg",
     images: [
       { video: "https://pub-733e8c8d30a74425ba9f6703c99fb798.r2.dev/Linguata%20rev%201%20(1080%20x%201980%20px).mp4", width: 1080, height: 1920 },
+      { video: "https://pub-733e8c8d30a74425ba9f6703c99fb798.r2.dev/linguata%20%D0%BB%D0%B5%D0%B4%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD.MOV", width: 1080, height: 1920 },
     ],
     context: {
        ru: "Выполнено в рамках сотрудничества с DOOH House",
